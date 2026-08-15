@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>অবিবাহিত সনদপত্র - ইউনিয়ন পরিষদ</title>
+
+  <!-- Google Fonts for Bengali Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700;800;900&family=Tiro+Bangla:ital@0;1&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- QR Code Generator Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Top Action Bar (Hidden in Print) -->
+  <header class="no-print control-header">
+    <div class="header-container">
+      <div class="logo-title">
+        <h2>স্থানীয় সরকার অফিস ব্যবস্থাপনা সিস্টেম</h2>
+      </div>
+      <div class="header-actions">
+        <button id="toggleFormBtn" class="btn btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+          তথ্য পরিবর্তন / এডিট
+        </button>
+        <button id="resetBtn" class="btn btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+            <path d="M3 3v5h5"></path>
+          </svg>
+          রিসেট
+        </button>
+        <button id="printBtn" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+          সনদ প্রিন্ট করুন (Print A4)
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-wrapper">
+
+    <!-- Edit Drawer Form (Hidden in Print) -->
+    <aside id="editDrawer" class="no-print edit-drawer">
+      <div class="drawer-header">
+        <h3>সনদের তথ্য পরিবর্তন করুন</h3>
+        <button id="closeDrawerBtn" class="close-btn">&times;</button>
+      </div>
+      <form id="certificateForm" class="drawer-body">
+
+        <div class="form-section-title">পরিষদের তথ্য</div>
+        <div class="form-group">
+          <label>ইউনিয়ন পরিষদের নাম</label>
+          <input type="text" id="input_up_name" value="০৩নং আমঝুপি ইউনিয়ন পরিষদ">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>উপজেলা</label>
+            <input type="text" id="input_upazila" value="মেহেরপুর সদর">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>জেলা</label>
+          <input type="text" id="input_district" value="মেহেরপুর">
+        </div>
+        <div class="form-group">
+          <label>ওয়েবসাইট / লিংক</label>
+          <input type="text" id="input_website" value="www.lgoms.org">
+        </div>
+
+        <div class="form-section-title">সনদের বিবরণ</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>ক্রমিক নং</label>
+            <input type="text" id="input_serial_no" value="00000018">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>সনদের শিরোনাম</label>
+          <input type="text" id="input_cert_title" value="অবিবাহিত সনদ">
+        </div>
+        <div class="form-group">
+          <label>তারিখ</label>
+          <input type="text" id="input_issue_date" value="29-06-2026">
+        </div>
+
+        <div class="form-section-title">আবেদনকারীর তথ্য</div>
+        <div class="form-group">
+          <label>নাম</label>
+          <input type="text" id="input_person_name" value="মুনতাহির রহমান রহিত">
+        </div>
+        <div class="form-group">
+          <label>জাতীয় পরিচয়পত্র / জন্ম নিবন্ধন নং</label>
+          <input type="text" id="input_nid_no" value="7382309735">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>পিতার নাম</label>
+            <input type="text" id="input_father_name" value="মৃত মোঃ আবু তালেব">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>মাতার নাম</label>
+          <input type="text" id="input_mother_name" value="মোছাঃ কাজল রেখা">
+        </div>
+
+        <div class="form-section-title">ঠিকানা</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>গ্রাম</label>
+            <input type="text" id="input_village" value="আমঝুপি">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>বাসা নং</label>
+          <input type="text" id="input_house_no" value="০০">
+        </div>
+        <div class="form-group">
+          <label>ওয়ার্ড নং</label>
+          <input type="text" id="input_ward_no" value="04">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>ডাকঘর</label>
+            <input type="text" id="input_post_office" value="আমঝুপি">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>উপজেলা</label>
+          <input type="text" id="input_person_upazila" value="মেহেরপুর সদর">
+        </div>
+
+        <div class="form-group">
+          <label>জেলা</label>
+          <input type="text" id="input_person_district" value="মেহেরপুর">
+        </div>
+
+        <div class="form-section-title">স্বাক্ষরকারীর তথ্য</div>
+        <div class="form-group">
+          <label>অনুমোদনকারীর নাম</label>
+          <input type="text" id="input_signatory_name" value="মোঃ সিরাজুল ইসলাম">
+        </div>
+        <div class="form-group">
+          <label>পদবি</label>
+          <input type="text" id="input_signatory_role" value="চেয়ারম্যান(ভারপ্রাপ্ত)">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>ট্রানজেকশন নং (Trn)</label>
+            <input type="text" id="input_trn_no" value="10422">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>QR কোড URL / ডাটা</label>
+          <input type="text" id="input_qr_url" value="https://www.lgoms.org/umc_certificates.php?id=10422">
+        </div>
+
+      </form>
+    </aside>
+
+    <!-- Certificate Sheet Container (1:1 Print Ready) -->
+    <main class="certificate-viewport">
+
+      <!-- A4 Landscape Certificate Box -->
+      <div id="certificateSheet" class="certificate-sheet">
+
+        <!-- Inner Decorative Border Container -->
+        <div class="certificate-inner-frame">
+
+          <!-- Background Watermark -->
+          <div class="watermark-container">
+            <img src="../assets/watermark/watermark.webp" alt="Watermark" class="watermark-image">
+          </div>
+
+          <!-- Document Header -->
+          <div class="cert-header">
+
+            <!-- Bangladesh Gov Seal (Left) -->
+            <div class="gov-seal-left">
+              <img src="../assets/logo/logo.webp" alt="বাংলাদেশ সরকার সিল" class="gov-monogram">
+            </div>
+
+            <!-- Header Text Center -->
+            <div class="header-titles">
+              <div class="gov-sub-title">গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার</div>
+              <h1 class="up-main-title" id="display_up_name">০৩নং আমঝুপি ইউনিয়ন পরিষদ</h1>
+              <div class="up-sub-address">
+                উপজেলা: <span id="display_upazila">মেহেরপুর সদর</span>, জেলা: <span
+                  id="display_district">মেহেরপুর</span>।
+              </div>
+              <div class="up-web-url" id="display_website">www.lgoms.org</div>
+            </div>
+
+            <!-- Right Spacer / Balance -->
+            <div class="header-right-spacer"></div>
+          </div>
+
+          <!-- Metadata Ribbon (Serial, Badge, Date) -->
+          <div class="cert-meta-ribbon">
+            <div class="meta-item meta-serial">
+              <span class="lbl">ক্রমিক নং:</span>
+              <span class="val" id="display_serial_no">00000018</span>
+            </div>
+
+            <div class="meta-badge-container">
+              <div class="cert-badge" id="display_cert_title">অবিবাহিত সনদ</div>
+            </div>
+
+            <div class="meta-item meta-date">
+              <span class="lbl">তারিখ:</span>
+              <span class="val" id="display_issue_date">29-06-2026</span>
+            </div>
+          </div>
+
+          <!-- Main Certificate Body Content -->
+          <div class="cert-content-body">
+            <p class="cert-paragraph">
+              এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, <span class="field-val dotted bold-name"
+                id="display_person_name">মুনতাহির রহমান রহিত</span> (<span class="field-val dotted"
+                id="display_nid_no">7382309735</span>), পিতা: <span class="field-val dotted"
+                id="display_father_name">মৃত মোঃ আবু তালেব</span> , মাতা: <span class="field-val dotted"
+                id="display_mother_name">মোছাঃ কাজল রেখা</span> , গ্রাম: <span class="field-val dotted"
+                id="display_village">আমঝুপি</span> , বাসা নং: <span class="field-val dotted"
+                id="display_house_no">০০</span>, ওয়ার্ড নং: <span class="field-val dotted"
+                id="display_ward_no">04</span>, ডাকঘর: <span class="field-val dotted"
+                id="display_post_office">আমঝুপি</span> , উপজেলা: <span class="field-val dotted"
+                id="display_person_upazila">মেহেরপুর সদর</span> জেলা: <span class="field-val dotted"
+                id="display_person_district">মেহেরপুর</span> কে আমি ব্যক্তিগত ভাবে চিনি ও জানি। তিনি অত্র ইউনিয়নের
+              স্থায়ী বাসিন্দা ও বাংলাদেশের নাগরিক। আমার জানামতে তিনি বিবাহবন্ধনে আবদ্ধ হন নাই।
+            </p>
+            <p class="cert-closing">
+              আমি তার সার্বিক কল্যাণ ও উন্নতি কামনা করি।
+            </p>
+          </div>
+
+          <!-- Bottom Footer / Signatures & QR -->
+          <div class="cert-footer-section">
+
+            <!-- Left: QR Code & Transaction ID -->
+            <div class="qr-code-box">
+              <div id="qrcode" class="qr-canvas-holder"></div>
+              <div class="trn-text">Trn- <span id="display_trn_no">10422</span></div>
+            </div>
+
+            <!-- Right: Authority Signature Block -->
+            <div class="signatory-box">
+              <div class="sign-space"></div>
+              <div class="sign-name" id="display_signatory_name">মোঃ সিরাজুল ইসলাম</div>
+              <div class="sign-role-sub">অনুমোদনকারী/প্রদানকারী</div>
+              <div class="sign-designation" id="display_signatory_role">চেয়ারম্যান(ভারপ্রাপ্ত)</div>
+              <div class="sign-office" id="display_signatory_office">০৩নং আমঝুপি ইউনিয়ন পরিষদ</div>
+              <div class="sign-location" id="display_signatory_loc">মেহেরপুর সদর, মেহেরপুর।</div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
