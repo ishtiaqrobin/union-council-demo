@@ -38,7 +38,7 @@ export function ThemeToggle() {
             className="fixed inset-0 z-[1100]"
             onClick={() => setOpen(false)}
           />
-          <div className="absolute right-0 top-full mt-2 w-44 z-[1200] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl overflow-hidden p-1.5 font-siliguri backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-150">
+          <div className="absolute right-0 top-full space-y-1 mt-2 w-44 z-[1200] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl overflow-hidden p-1.5 font-siliguri backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-150">
             {themeOptions.map((opt) => (
               <button
                 key={opt.key}
