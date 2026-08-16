@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        solaiman: ['SolaimanLipi', 'Noto Serif Bengali', 'Tiro Bangla', 'Hind Siliguri', 'serif'],
+        solaiman: ['SolaimanLipi', 'Hind Siliguri', 'serif'],
         siliguri: ['SolaimanLipi', 'Hind Siliguri', 'sans-serif'],
       },
       colors: {

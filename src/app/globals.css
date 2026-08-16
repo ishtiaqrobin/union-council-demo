@@ -4,16 +4,22 @@
 
 @font-face {
   font-family: 'SolaimanLipi';
-  src: url('/fonts/SolaimanLipi.ttf') format('truetype');
+  src: url('../fonts/SolaimanLipi.ttf') format('truetype'),
+       url('/fonts/SolaimanLipi.ttf') format('truetype');
+  font-weight: 400;
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'SolaimanLipi';
-  src: url('/fonts/SolaimanLipi_Bold.ttf') format('truetype');
+  src: url('../fonts/SolaimanLipi_Bold.ttf') format('truetype'),
+       url('/fonts/SolaimanLipi_Bold.ttf') format('truetype');
+  font-weight: 700;
   font-weight: bold;
   font-style: normal;
+  font-display: swap;
 }
 
 :root {
