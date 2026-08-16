@@ -223,7 +223,7 @@ export function Navbar({ onToggleDrawer, isDrawerOpen }: NavbarProps) {
           {pathname.startsWith("/certificates/") && onToggleDrawer && (
             <button
               onClick={onToggleDrawer}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold font-siliguri transition-all shadow-md ${isDrawerOpen
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-bold font-siliguri transition-all shadow-md ${isDrawerOpen
                 ? "bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-100 hover:bg-slate-300 dark:hover:bg-slate-600 border border-slate-300 dark:border-slate-600"
                 : "bg-blue-600 text-white hover:bg-blue-500 shadow-blue-600/20"
                 }`}
@@ -239,7 +239,7 @@ export function Navbar({ onToggleDrawer, isDrawerOpen }: NavbarProps) {
           {pathname.startsWith("/certificates/") && (
             <button
               onClick={handlePrint}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold font-siliguri bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/20 transition-all"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold font-siliguri bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/20 transition-all"
             >
               <Printer className="w-4 h-4" />
               <span className="hidden sm:inline">সনদ প্রিন্ট করুন (A4)</span>
