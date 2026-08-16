@@ -4,22 +4,22 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { CERTIFICATE_MENU_ITEMS } from "@/data/dummyCertificates";
-import { 
-  FileText, 
-  Search, 
-  ArrowRight, 
-  Printer, 
-  PenTool, 
-  CheckCircle2, 
-  ShieldCheck, 
-  Users, 
-  UserCheck, 
-  UserCheck2, 
-  Briefcase, 
-  Award, 
-  Banknote, 
-  MapPinOff, 
-  HeartHandshake, 
+import {
+  FileText,
+  Search,
+  ArrowRight,
+  Printer,
+  PenTool,
+  CheckCircle2,
+  ShieldCheck,
+  Users,
+  UserCheck,
+  UserCheck2,
+  Briefcase,
+  Award,
+  Banknote,
+  MapPinOff,
+  HeartHandshake,
   FileCheck,
   Sparkles
 } from "lucide-react";
@@ -54,7 +54,7 @@ export default function HomePage() {
 
       {/* Main Content */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-8 flex flex-col gap-8">
-        
+
         {/* Hero Banner Section */}
         <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800 border border-slate-800 p-8 sm:p-12 shadow-2xl">
           <div className="absolute top-0 right-0 -mt-12 -mr-12 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -123,53 +123,57 @@ export default function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredItems.length > 0 ? (
             filteredItems.map((item) => (
-              <div
+              <Link
+                href={`/certificates/${item.slug}`}
                 key={item.slug}
-                className="group relative bg-slate-900/80 hover:bg-slate-900 border border-slate-800 hover:border-emerald-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/10 flex flex-col justify-between"
               >
-                <div className="flex flex-col gap-4">
-                  {/* Top Row: Icon & Badge */}
-                  <div className="flex items-center justify-between">
-                    <div className="p-3 rounded-2xl bg-slate-800 border border-slate-700/80 group-hover:border-emerald-500/40 group-hover:bg-slate-800/90 transition-colors">
-                      {ICON_MAP[item.iconName] || <FileText className="w-6 h-6 text-slate-300" />}
+                <div
+                  className="group relative bg-slate-900/80 hover:bg-slate-900 border border-slate-800 hover:border-emerald-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/10 flex flex-col justify-between"
+                >
+                  <div className="flex flex-col gap-4">
+                    {/* Top Row: Icon & Badge */}
+                    <div className="flex items-center justify-between">
+                      <div className="p-3 rounded-2xl bg-slate-800 border border-slate-700/80 group-hover:border-emerald-500/40 group-hover:bg-slate-800/90 transition-colors">
+                        {ICON_MAP[item.iconName] || <FileText className="w-6 h-6 text-slate-300" />}
+                      </div>
+
+                      <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700 font-mono">
+                        {item.slug}.pdf
+                      </span>
                     </div>
 
-                    <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700 font-mono">
-                      {item.slug}.pdf
-                    </span>
+                    {/* Title & Description */}
+                    <div>
+                      <h3 className="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors">
+                        {item.titleBn}
+                      </h3>
+                      <span className="text-xs text-slate-400 font-sans block mb-2">
+                        {item.titleEn}
+                      </span>
+                      <p className="text-sm text-slate-300 line-clamp-2 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
 
-                  {/* Title & Description */}
-                  <div>
-                    <h3 className="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors">
-                      {item.titleBn}
-                    </h3>
-                    <span className="text-xs text-slate-400 font-sans block mb-2">
-                      {item.titleEn}
-                    </span>
-                    <p className="text-sm text-slate-300 line-clamp-2 leading-relaxed">
-                      {item.description}
-                    </p>
+                  {/* Card Action Link */}
+                  <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-xs text-slate-400">
+                      <PenTool className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>লাইভ এডিট</span>
+                      <Printer className="w-3.5 h-3.5 text-blue-400 ml-1" />
+                      <span>প্রিন্ট</span>
+                    </div>
+
+                    <Link
+                      href={`/certificates/${item.slug}`}
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-transform"
+                    >
+                      টেম্পলেট ওপেন <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
                   </div>
                 </div>
-
-                {/* Card Action Link */}
-                <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-xs text-slate-400">
-                    <PenTool className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>লাইভ এডিট</span>
-                    <Printer className="w-3.5 h-3.5 text-blue-400 ml-1" />
-                    <span>প্রিন্ট</span>
-                  </div>
-
-                  <Link
-                    href={`/certificates/${item.slug}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-400 hover:text-emerald-300 group-hover:translate-x-1 transition-transform"
-                  >
-                    টেম্পলেট ওপেন <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </div>
+              </Link>
             ))
           ) : (
             <div className="col-span-full p-12 text-center text-slate-400 text-base font-siliguri bg-slate-900 border border-slate-800 rounded-2xl">

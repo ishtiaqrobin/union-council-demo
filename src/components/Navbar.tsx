@@ -4,22 +4,22 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CERTIFICATE_MENU_ITEMS } from "@/data/dummyCertificates";
-import { 
-  FileText, 
-  Search, 
-  ChevronDown, 
-  Printer, 
-  Edit3, 
-  Home, 
-  ShieldCheck, 
-  Users, 
-  UserCheck, 
-  UserCheck2, 
-  Briefcase, 
-  Award, 
-  Banknote, 
-  MapPinOff, 
-  HeartHandshake, 
+import {
+  FileText,
+  Search,
+  ChevronDown,
+  Printer,
+  Edit3,
+  Home,
+  ShieldCheck,
+  Users,
+  UserCheck,
+  UserCheck2,
+  Briefcase,
+  Award,
+  Banknote,
+  MapPinOff,
+  HeartHandshake,
   FileCheck,
   Sparkles
 } from "lucide-react";
@@ -67,13 +67,13 @@ export function Navbar({ onToggleDrawer, isDrawerOpen }: NavbarProps) {
 
   return (
     <nav className="no-print sticky top-0 z-[1000] bg-slate-900 border-b border-slate-800 text-white shadow-xl">
-      <div className="max-w-[1700px] mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between gap-4">
-        
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between gap-4">
+
         {/* Left: Brand / Logo */}
         <div className="flex items-center gap-4">
-          <Link 
-            href="/" 
-            className="flex items-center gap-3 group transition-transform duration-200 hover:scale-[1.02]"
+          <Link
+            href="/"
+            className="flex items-center gap-3 group transition-transform duration-200"
           >
             <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-600 via-teal-500 to-blue-600 p-0.5 shadow-md group-hover:shadow-emerald-500/20">
               <div className="w-full h-full bg-slate-900 rounded-full flex items-center justify-center">
@@ -95,11 +95,10 @@ export function Navbar({ onToggleDrawer, isDrawerOpen }: NavbarProps) {
           {/* Quick Home Link */}
           <Link
             href="/"
-            className={`hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold font-siliguri transition-colors ${
-              pathname === "/"
-                ? "bg-emerald-600/20 text-emerald-400 border border-emerald-500/30"
-                : "text-slate-300 hover:bg-slate-800 hover:text-white"
-            }`}
+            className={`hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold font-siliguri transition-colors ${pathname === "/"
+              ? "bg-emerald-600/20 text-emerald-400 border border-emerald-500/30"
+              : "text-slate-300 hover:bg-slate-800 hover:text-white border border-slate-800"
+              }`}
           >
             <Home className="w-4 h-4" />
             ড্যাশবোর্ড
@@ -120,13 +119,12 @@ export function Navbar({ onToggleDrawer, isDrawerOpen }: NavbarProps) {
               </span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-[11px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-bold">
+              <span className="text-[11px] bg-emerald-500/20 text-emerald-300 px-3 py-0.5 rounded-full font-bold">
                 {CERTIFICATE_MENU_ITEMS.length} টি টেম্পলেট
               </span>
               <ChevronDown
-                className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${
-                  dropdownOpen ? "rotate-180" : ""
-                }`}
+                className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""
+                  }`}
               />
             </div>
           </button>
@@ -172,11 +170,10 @@ export function Navbar({ onToggleDrawer, isDrawerOpen }: NavbarProps) {
                           key={item.slug}
                           href={`/certificates/${item.slug}`}
                           onClick={() => setDropdownOpen(false)}
-                          className={`flex items-start gap-3 p-2.5 rounded-xl transition-all font-siliguri group ${
-                            isSelected
-                              ? "bg-emerald-600/20 border border-emerald-500/40 text-emerald-300 shadow-sm"
-                              : "hover:bg-slate-800/80 text-slate-200 hover:text-white"
-                          }`}
+                          className={`flex items-start gap-3 p-2.5 rounded-xl transition-all font-siliguri group ${isSelected
+                            ? "bg-emerald-600/20 border border-emerald-500/40 text-emerald-300 shadow-sm"
+                            : "hover:bg-slate-800/80 text-slate-200 hover:text-white"
+                            }`}
                         >
                           <div className="p-2 rounded-lg bg-slate-800 border border-slate-700/60 group-hover:border-slate-600 shrink-0 mt-0.5">
                             {ICON_MAP[item.iconName] || <FileText className="w-4 h-4 text-slate-400" />}
@@ -222,11 +219,10 @@ export function Navbar({ onToggleDrawer, isDrawerOpen }: NavbarProps) {
           {pathname.startsWith("/certificates/") && onToggleDrawer && (
             <button
               onClick={onToggleDrawer}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold font-siliguri transition-all shadow-md ${
-                isDrawerOpen
-                  ? "bg-slate-700 text-slate-100 hover:bg-slate-600 border border-slate-600"
-                  : "bg-blue-600 text-white hover:bg-blue-500 shadow-blue-600/20"
-              }`}
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold font-siliguri transition-all shadow-md ${isDrawerOpen
+                ? "bg-slate-700 text-slate-100 hover:bg-slate-600 border border-slate-600"
+                : "bg-blue-600 text-white hover:bg-blue-500 shadow-blue-600/20"
+                }`}
             >
               <Edit3 className="w-4 h-4" />
               <span className="hidden sm:inline">
@@ -239,7 +235,7 @@ export function Navbar({ onToggleDrawer, isDrawerOpen }: NavbarProps) {
           {pathname.startsWith("/certificates/") && (
             <button
               onClick={handlePrint}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold font-siliguri bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/20 transition-all hover:scale-105"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold font-siliguri bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/20 transition-all"
             >
               <Printer className="w-4 h-4" />
               <span className="hidden sm:inline">সনদ প্রিন্ট করুন (A4)</span>
