@@ -43,7 +43,7 @@ export function UnmarriedSheet({ data }: UnmarriedSheetProps) {
       </div>
 
       {/* Main Certificate Box with Outer Padding and Thick Gradient Border */}
-      <div className="flex-1 w-full relative p-3 my-8 bg-gradient-to-br from-blue-500 via-indigo-600 to-blue-700 shadow-md">
+      <div className="flex-1 relative p-4 my-8 mx-12 bg-gradient-to-br from-blue-500 via-indigo-400 to-blue-500 shadow-md">
         <div className="certificate-inner-frame w-full h-full bg-white pt-4 px-8 pb-3 relative flex flex-col justify-between z-10">
 
           {/* Background Watermark */}
@@ -75,7 +75,8 @@ export function UnmarriedSheet({ data }: UnmarriedSheetProps) {
               <div className="gov-sub-title text-[13.5px] font-semibold text-gray-800 tracking-wide mb-[1px]">
                 গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার
               </div>
-              <h1 className="up-main-title text-[28px] font-black text-header-red leading-snug m-0 tracking-wide drop-shadow-[2px_2px_3px_rgba(0,0,0,0.35)]">
+              <h1 className="up-main-title text-[28px] font-black text-header-red leading-snug m-0 tracking-wide">
+                {/* drop-shadow-[2px_2px_3px_rgba(0,0,0,0.35)] */}
                 {union.up_name}
               </h1>
               <div className="up-sub-address text-[13.5px] font-bold text-slate-900 mt-[1px]">
