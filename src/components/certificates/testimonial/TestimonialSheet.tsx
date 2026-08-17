@@ -13,9 +13,9 @@ export function TestimonialSheet({ data }: TestimonialSheetProps) {
   const { union, meta, applicant, signatory, customDescriptionBn } = data;
 
   return (
-    <div 
+    <div
       id="certificateSheet"
-      className="certificate-sheet w-[297mm] h-[210mm] min-w-[297mm] min-h-[210mm] bg-white border-[12px] border-primary-blue shadow-2xl relative overflow-hidden box-border font-solaiman text-[#121212] select-none print:w-[297mm] print:h-[210mm] print:min-w-[297mm] print:min-h-[210mm] print:max-w-[297mm] print:max-h-[210mm] print:m-0 print:shadow-none print:absolute print:top-0 print:left-0 print:break-inside-avoid"
+      className="certificate-sheet w-[297mm] h-[210mm] min-w-[297mm] min-h-[210mm] bg-white border-[12px] border-primary-blue shadow-2xl relative overflow-hidden box-border font-solaiman text-[#121212]  print:w-[297mm] print:h-[210mm] print:min-w-[297mm] print:min-h-[210mm] print:max-w-[297mm] print:max-h-[210mm] print:m-0 print:shadow-none print:absolute print:top-0 print:left-0 print:break-inside-avoid"
     >
       <div className="certificate-inner-frame w-full h-full pt-5 px-[34px] pb-4 relative flex flex-col justify-between z-10 print:pt-5 print:px-[34px] print:pb-4">
         <div className="watermark-container absolute top-[52%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] pointer-events-none -z-10 flex justify-center items-center">
