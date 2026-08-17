@@ -43,7 +43,7 @@ export function UnmarriedSheet({ data }: UnmarriedSheetProps) {
       </div>
 
       {/* Main Certificate Box with Outer Padding and Thick Gradient Border */}
-      <div className="flex-1 w-full relative p-3 bg-gradient-to-br from-blue-500 via-indigo-600 to-blue-700 shadow-md">
+      <div className="flex-1 w-full relative p-3 my-8 bg-gradient-to-br from-blue-500 via-indigo-600 to-blue-700 shadow-md">
         <div className="certificate-inner-frame w-full h-full bg-white pt-4 px-8 pb-3 relative flex flex-col justify-between z-10">
 
           {/* Background Watermark */}
