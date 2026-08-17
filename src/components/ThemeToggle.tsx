@@ -18,7 +18,7 @@ export function ThemeToggle() {
     <div className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold font-siliguri bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700/80 text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700/80 transition-all shadow-sm"
+        className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold font-siliguri bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700/80 text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700/80 transition-all shadow-sm"
         title="থিম পরিবর্তন করুন"
       >
         {resolvedTheme === "dark" ? (
