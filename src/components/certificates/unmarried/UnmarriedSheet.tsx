@@ -47,7 +47,7 @@ export function UnmarriedSheet({ data }: UnmarriedSheetProps) {
         <div className="certificate-inner-frame w-full h-full bg-white pt-4 px-8 pb-3 relative flex flex-col justify-between z-10">
 
           {/* Background Watermark */}
-          <div className="watermark-container absolute top-[52%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] h-[360px] pointer-events-none -z-10 flex justify-center items-center">
+          <div className="watermark-container absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] h-[360px] pointer-events-none -z-10 flex justify-center items-center">
             <Image
               src="/assets/watermark/watermark.webp"
               alt="Watermark"
