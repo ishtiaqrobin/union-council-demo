@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/components/layout/Navbar";
 import { WarishForm } from "@/components/certificates/warish/WarishForm";
 import { WarishSheet } from "@/components/certificates/warish/WarishSheet";
 import { WARISH_INITIAL_DATA } from "@/data/certificates/warish.data";

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/components/layout/Navbar";
 import { LandlessForm } from "@/components/certificates/landless/LandlessForm";
 import { LandlessSheet } from "@/components/certificates/landless/LandlessSheet";
 import { LANDLESS_INITIAL_DATA } from "@/data/certificates/landless.data";

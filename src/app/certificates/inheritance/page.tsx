@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/components/layout/Navbar";
 import { InheritanceForm } from "@/components/certificates/inheritance/InheritanceForm";
 import { InheritanceSheet } from "@/components/certificates/inheritance/InheritanceSheet";
 import { INHERITANCE_INITIAL_DATA } from "@/data/certificates/inheritance.data";

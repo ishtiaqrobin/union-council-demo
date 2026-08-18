@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/components/layout/Navbar";
 import { CERTIFICATE_MENU_ITEMS } from "@/data/dummyCertificates";
 import {
   FileText,

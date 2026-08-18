@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/components/layout/Navbar";
 import { UnmarriedForm } from "@/components/certificates/unmarried/UnmarriedForm";
 import { UnmarriedSheet } from "@/components/certificates/unmarried/UnmarriedSheet";
 import { UNMARRIED_INITIAL_DATA } from "@/data/certificates/unmarried.data";

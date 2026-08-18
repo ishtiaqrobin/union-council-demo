@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/components/layout/Navbar";
 import { RemarriageForm } from "@/components/certificates/remarriage/RemarriageForm";
 import { RemarriageSheet } from "@/components/certificates/remarriage/RemarriageSheet";
 import { REMARRIAGE_INITIAL_DATA } from "@/data/certificates/remarriage.data";

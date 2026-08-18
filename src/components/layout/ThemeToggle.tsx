@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { useTheme } from "@/context/ThemeContext";
 import { Sun, Moon, Laptop, ChevronDown } from "lucide-react";
+import { useTheme } from "next-themes";
 
 export function ThemeToggle() {
   const { theme, setTheme, resolvedTheme } = useTheme();

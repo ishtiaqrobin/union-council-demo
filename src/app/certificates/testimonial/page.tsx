@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/components/layout/Navbar";
 import { TestimonialForm } from "@/components/certificates/testimonial/TestimonialForm";
 import { TestimonialSheet } from "@/components/certificates/testimonial/TestimonialSheet";
 import { TESTIMONIAL_INITIAL_DATA } from "@/data/certificates/testimonial.data";

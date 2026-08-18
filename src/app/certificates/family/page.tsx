@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/components/layout/Navbar";
 import { FamilyForm } from "@/components/certificates/family/FamilyForm";
 import { FamilySheet } from "@/components/certificates/family/FamilySheet";
 import { FAMILY_INITIAL_DATA } from "@/data/certificates/family.data";

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/components/layout/Navbar";
 import { CitizenshipForm } from "@/components/certificates/citizenship/CitizenshipForm";
 import { CitizenshipSheet } from "@/components/certificates/citizenship/CitizenshipSheet";
 import { CITIZENSHIP_INITIAL_DATA } from "@/data/certificates/citizenship.data";

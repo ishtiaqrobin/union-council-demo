@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/components/layout/Navbar";
 import { SameNameForm } from "@/components/certificates/same-name/SameNameForm";
 import { SameNameSheet } from "@/components/certificates/same-name/SameNameSheet";
 import { SAME_NAME_INITIAL_DATA } from "@/data/certificates/same-name.data";

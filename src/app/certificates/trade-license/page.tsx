@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/components/layout/Navbar";
 import { TradeLicenseForm } from "@/components/certificates/trade-license/TradeLicenseForm";
 import { TradeLicenseSheet } from "@/components/certificates/trade-license/TradeLicenseSheet";
 import { TRADE_LICENSE_INITIAL_DATA } from "@/data/certificates/trade-license.data";

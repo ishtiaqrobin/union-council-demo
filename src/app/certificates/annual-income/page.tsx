@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/components/layout/Navbar";
 import { AnnualIncomeForm } from "@/components/certificates/annual-income/AnnualIncomeForm";
 import { AnnualIncomeSheet } from "@/components/certificates/annual-income/AnnualIncomeSheet";
 import { ANNUAL_INCOME_INITIAL_DATA } from "@/data/certificates/annual-income.data";

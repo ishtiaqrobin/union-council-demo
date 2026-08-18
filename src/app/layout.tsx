@@ -1,6 +1,25 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "@/context/ThemeContext";
+import localFont from "next/font/local";
 import "./globals.css";
+import Providers from "./Providers";
+
+// SolaimanLipi font (root / body font)
+const SolaimanLipi = localFont({
+  src: [
+    {
+      path: "../fonts/SolaimanLipi.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../fonts/SolaimanLipi_Bold.ttf",
+      weight: "700",
+      style: "normal",
+    }
+  ],
+  variable: "--font-solaiman",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "ডিজিটাল ইউনিয়ন পরিষদ ই-সনদ প্ল্যাটফর্ম",
@@ -13,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="bn" suppressHydrationWarning className="light">
+    <html lang="bn" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -22,10 +41,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-slate-950 text-slate-100 min-h-screen font-siliguri antialiased transition-colors duration-200">
-        <ThemeProvider>
+      <body className={`${SolaimanLipi.variable} bg-slate-950 text-slate-100 min-h-screen antialiased transition-colors duration-200`}>
+        <Providers>
           {children}
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
