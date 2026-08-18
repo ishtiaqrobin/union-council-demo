@@ -75,7 +75,7 @@ export function UnmarriedSheet({ data }: UnmarriedSheetProps) {
               <div className="gov-sub-title text-[13.5px] font-semibold text-gray-800 tracking-wide mb-[1px]">
                 গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার
               </div>
-              <h1 className="up-main-title text-[28px] font-black text-header-red leading-snug m-0 tracking-wide">
+              <h1 className="up-main-title text-[28px] font-bold text-header-red leading-snug m-0 tracking-wide">
                 {/* drop-shadow-[2px_2px_3px_rgba(0,0,0,0.35)] */}
                 {union.up_name}
               </h1>
