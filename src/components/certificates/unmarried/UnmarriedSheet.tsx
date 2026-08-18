@@ -44,7 +44,7 @@ export function UnmarriedSheet({ data }: UnmarriedSheetProps) {
 
       {/* Main Certificate Box with Outer Padding and Thick Gradient Border */}
       <div className="flex-1 relative p-4 my-8 mx-12 bg-gradient-to-br from-blue-500 via-indigo-400 to-blue-500 shadow-md">
-        <div className="certificate-inner-frame w-full h-full bg-white pt-4 px-8 pb-3 relative flex flex-col justify-between z-10">
+        <div className="certificate-inner-frame w-full h-full bg-white pt-5 px-12 pb-4 relative flex flex-col justify-between z-10">
 
           {/* Background Watermark */}
           <div className="watermark-container absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] h-[360px] pointer-events-none -z-10 flex justify-center items-center">
@@ -59,7 +59,7 @@ export function UnmarriedSheet({ data }: UnmarriedSheetProps) {
           </div>
 
           {/* Header Section */}
-          <div className="cert-header grid grid-cols-[76px_1fr_76px] items-center text-center mt-0.5 relative">
+          <div className="cert-header grid grid-cols-[76px_1fr_76px] items-center text-center relative">
             <div className="gov-seal-left w-[72px] h-[72px] flex items-center justify-center">
               <Image
                 src="/assets/logo/logo.webp"
