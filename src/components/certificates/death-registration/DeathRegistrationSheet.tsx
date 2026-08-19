@@ -65,7 +65,7 @@ export function DeathRegistrationSheet({ data }: DeathRegistrationSheetProps) {
       {/* Main Certificate Box with Outer Padding and Thick Emerald Gradient Border */}
       <div className="flex-1 relative p-3.5 my-3 mx-2 bg-gradient-to-br from-emerald-600 via-teal-500 to-green-700 shadow-md flex flex-col">
         <div className="certificate-inner-frame w-full h-full bg-white pt-5 px-8 pb-4 relative flex flex-col justify-between z-10 flex-1 border border-emerald-200">
-          
+
           {/* Background Watermark */}
           <div className="watermark-container absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] pointer-events-none -z-10 flex justify-center items-center">
             <Image
