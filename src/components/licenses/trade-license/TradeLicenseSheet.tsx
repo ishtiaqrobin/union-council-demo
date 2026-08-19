@@ -26,7 +26,7 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
     setPrintDateTime(`${month}/${day}/${year}, ${hours}:${minutes} ${ampm}`);
   }, []);
 
-  const lineBorderClass = "font-bold text-slate-950 border-b-[1.5px] border-dashed border-slate-500 pb-0.5";
+  const lineBorderClass = "font-semibold text-slate-950 border-b-[1.5px] border-dashed border-slate-800 pb-0.5";
 
   return (
     <div
@@ -34,7 +34,7 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
       className="certificate-sheet w-[210mm] h-[297mm] min-w-[210mm] min-h-[297mm] bg-white shadow-2xl relative overflow-hidden box-border font-siliguri text-[#121212] px-6 py-4 flex flex-col justify-between print:w-[210mm] print:h-[297mm] print:min-w-[210mm] print:min-h-[297mm] print:max-w-[210mm] print:max-h-[297mm] print:m-0 print:shadow-none print:absolute print:top-0 print:left-0 print:break-inside-avoid"
     >
       {/* Top Header Bar (Outside thick border box) */}
-      <div className="flex justify-between items-center text-[11px] text-gray-800 font-sans px-1 pb-1">
+      {/* <div className="flex justify-between items-center text-[11px] text-gray-800 font-sans px-1 pb-1">
         <div className="w-[150px] text-left font-normal text-slate-800">
           {printDateTime}
         </div>
@@ -42,12 +42,12 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
           ট্রেড লাইসেন্স
         </div>
         <div className="w-[150px]" />
-      </div>
+      </div> */}
 
       {/* Main Certificate Box with Outer Padding and Thick Maroon Gradient Border */}
-      <div className="flex-1 relative p-3 my-2 mx-1 bg-gradient-to-br from-red-900 via-rose-950 to-red-950 shadow-md flex flex-col">
+      <div className="flex-1 relative p-3.5 my-2 mx-1 bg-gradient-to-br from-rose-600 via-rose-800 to-rose-600 shadow-md flex flex-col">
         <div className="certificate-inner-frame w-full h-full bg-white pt-4 px-6 pb-3 relative flex flex-col justify-between z-10 flex-1 border border-red-200">
-          
+
           {/* Background Watermark */}
           <div className="watermark-container absolute top-[52%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] pointer-events-none -z-10 flex justify-center items-center">
             <Image
@@ -112,7 +112,7 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
           </div>
 
           {/* Top Metadata Grid */}
-          <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 text-[12.5px] border-y border-dashed border-slate-400 py-1.5">
+          <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 text-[12.5px]">
             <div className="flex items-baseline gap-1">
               <span className="font-bold text-slate-800 w-[120px]">লাইসেন্স নং</span>
               <span className={`flex-1 ${lineBorderClass}`}>: {meta.license_no}</span>
@@ -162,15 +162,13 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
               <span className="font-bold text-slate-800">৪। লাইসেন্সধারীর নাম</span>
               <span className={`text-[13.5px] ${lineBorderClass}`}>: {owner.name}</span>
             </div>
-            <div className="grid grid-cols-2 gap-2">
-              <div className="grid grid-cols-[160px_1fr] items-baseline">
-                <span className="font-bold text-slate-800">৫। পিতার নাম</span>
-                <span className={lineBorderClass}>: {owner.father_name}</span>
-              </div>
-              <div className="grid grid-cols-[100px_1fr] items-baseline">
-                <span className="font-bold text-slate-800">৬। মাতার নাম</span>
-                <span className={lineBorderClass}>: {owner.mother_name}</span>
-              </div>
+            <div className="grid grid-cols-[160px_1fr] items-baseline">
+              <span className="font-bold text-slate-800">৫। পিতার নাম</span>
+              <span className={lineBorderClass}>: {owner.father_name}</span>
+            </div>
+            <div className="grid grid-cols-[160px_1fr] items-baseline">
+              <span className="font-bold text-slate-800">৬। মাতার নাম</span>
+              <span className={lineBorderClass}>: {owner.mother_name}</span>
             </div>
             <div className="grid grid-cols-[160px_1fr] items-baseline">
               <span className="font-bold text-slate-800">৭। স্বামী/স্ত্রীর নাম</span>
@@ -190,8 +188,8 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
             </div>
 
             <div className="grid grid-cols-2 gap-2">
-              <div className="grid grid-cols-[160px_1fr] items-baseline">
-                <span className="font-bold text-slate-800">১১। এনআইডি/বিআর নং</span>
+              <div className="grid grid-cols-[180px_1fr] items-baseline">
+                <span className="font-bold text-slate-800">১১। এনআইডি/বিআর/পাসপোর্ট নং</span>
                 <span className={lineBorderClass}>: {owner.nid_or_bc}</span>
               </div>
               <div className="grid grid-cols-[100px_1fr] items-baseline">
@@ -201,13 +199,24 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
             </div>
 
             <div className="grid grid-cols-2 gap-2">
-              <div className="grid grid-cols-[160px_1fr] items-baseline">
-                <span className="font-bold text-slate-800">১২। টিন (TIN) নং</span>
+              <div className="grid grid-cols-[180px_1fr] items-baseline">
+                <span className="font-bold text-slate-800">১২। ট্যাক্স আইডেন্টিফিকেশন নং</span>
                 <span className={lineBorderClass}>: {owner.tin_no || "--------"}</span>
               </div>
               <div className="grid grid-cols-[100px_1fr] items-baseline">
                 <span className="font-bold text-slate-800">মোবাইল নং</span>
                 <span className={lineBorderClass}>: {owner.mobile_no}</span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-[180px_1fr] items-baseline">
+                <span className="font-bold text-slate-800">১৩। বিজনেস আইডেন্টিফিকেশন নং</span>
+                <span className={lineBorderClass}>: {owner.bin_no || "--------"}</span>
+              </div>
+              <div className="grid grid-cols-[100px_1fr] items-baseline">
+                <span className="font-bold text-slate-800">ইমেইল নং</span>
+                <span className={lineBorderClass}>: {owner.email || "--------"}</span>
               </div>
             </div>
           </div>
@@ -256,14 +265,14 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
                 </tr>
               </tbody>
             </table>
-            <div className="mt-1 font-bold text-slate-900">
-              কথায় : <span className="underline decoration-dotted">{financials.amount_in_words}</span>
+            <div className="mt-1 font-bold text-slate-800">
+              কথায় : <span className="border-b-[1.5px] border-dashed border-slate-800">{financials.amount_in_words}</span>
             </div>
           </div>
 
           {/* Acknowledgement Line */}
-          <div className="mt-2 text-[11.5px] leading-normal text-slate-900 border-t border-slate-200 pt-1">
-            লাইসেন্সধারী জনাব/জনাবা <span className="font-bold underline decoration-dotted">{owner.name}</span> নিকট হইতে সকল পাওনা বাবদ মোট টাকা, কথায়: <span className="font-bold underline decoration-dotted">{financials.amount_in_words}</span> আদায় করা হইল।
+          <div className="mt-2 text-[11.5px] leading-normal text-slate-800">
+            লাইসেন্সধারী জনাব/জনাবা <span className="font-bold border-b-[1.5px] border-dashed border-slate-800">{owner.name}</span> নিকট হইতে সকল পাওনা বাবদ মোট টাকা, কথায়: <span className="font-bold border-b-[1.5px] border-dashed border-slate-800">{financials.amount_in_words}</span> আদায় করা হইল।
           </div>
 
           {/* Footer Signatory & QR Code Section */}
@@ -321,7 +330,7 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
       </div>
 
       {/* Bottom Footer Bar (Outside thick border box) */}
-      <div className="flex justify-between items-center text-[11px] text-gray-800 font-sans px-1 pt-0.5">
+      {/* <div className="flex justify-between items-center text-[11px] text-gray-800 font-sans px-1 pt-0.5">
         <a
           href={signatory.qr_url || "https://www.lgoms.org"}
           target="_blank"
@@ -333,7 +342,7 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
         <div className="font-normal text-slate-800">
           1/1
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
