@@ -31,7 +31,7 @@ export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
   return (
     <div
       id="certificateSheet"
-      className="certificate-sheet w-[210mm] h-[297mm] min-w-[210mm] min-h-[297mm] bg-white shadow-2xl relative overflow-hidden box-border font-siliguri text-[#121212] px-6 py-4 flex flex-col justify-between print:w-[210mm] print:h-[297mm] print:min-w-[210mm] print:min-h-[297mm] print:max-w-[210mm] print:max-h-[297mm] print:m-0 print:shadow-none print:absolute print:top-0 print:left-0 print:break-inside-avoid"
+      className="certificate-sheet w-[210mm] h-[297mm] min-w-[210mm] min-h-[297mm] bg-white shadow-2xl relative overflow-hidden box-border font-siliguri text-[#121212] px-6 py-4 flex flex-col justify-start print:w-[210mm] print:h-[297mm] print:min-w-[210mm] print:min-h-[297mm] print:max-w-[210mm] print:max-h-[297mm] print:m-0 print:shadow-none print:absolute print:top-0 print:left-0 print:break-inside-avoid"
     >
       {/* Top Header Bar (Outside thick border box) */}
       <div className="flex justify-between items-center text-[11px] text-gray-800 font-sans px-1 pb-1">
@@ -44,8 +44,8 @@ export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
         <div className="w-[150px]" />
       </div>
 
-      {/* Main Certificate Box with Outer Padding and Thick Rose Gradient Border */}
-      <div className="flex-1 relative p-3.5 my-3 mx-2 bg-gradient-to-br from-rose-600 via-rose-800 to-rose-600 shadow-md flex flex-col">
+      {/* Main Certificate Box with Outer Padding and Thick Rose Gradient Border (Fixed 200mm height, Top aligned) */}
+      <div className="h-[210mm] max-h-[210mm] relative p-3.5 my-3 mx-2 bg-gradient-to-br from-rose-600 via-rose-800 to-rose-600 shadow-md flex flex-col">
         <div className="certificate-inner-frame w-full h-full bg-[#fefef0] pt-4 px-6 pb-3 relative flex flex-col justify-between z-10 flex-1 border border-amber-200">
 
           {/* Background Watermark */}
@@ -113,14 +113,16 @@ export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
 
           {/* Key Value Details List */}
           <div className="mt-4 flex-1 flex flex-col gap-2.5 text-[13px] leading-relaxed">
-            <div className="grid grid-cols-[180px_1fr] items-baseline">
-              <span className="font-bold text-slate-800">লাইসেন্স নং</span>
-              <span className={lineBorderClass}>: {meta.license_no}</span>
-            </div>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+              <div className="grid grid-cols-[180px_1fr] items-baseline">
+                <span className="font-bold text-slate-800">লাইসেন্স নং</span>
+                <span className={lineBorderClass}>: {meta.license_no}</span>
+              </div>
 
-            <div className="grid grid-cols-[180px_1fr] items-baseline">
-              <span className="font-bold text-slate-800">তারিখ</span>
-              <span className={lineBorderClass}>: {meta.issue_date}</span>
+              <div className="grid grid-cols-[150px_1fr] items-baseline">
+                <span className="font-bold text-slate-800">লাইসেন্স ইস্যুর তারিখ</span>
+                <span className={lineBorderClass}>: {meta.issue_date}</span>
+              </div>
             </div>
 
             <div className="grid grid-cols-[180px_1fr] items-baseline">
@@ -211,8 +213,8 @@ export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
         </div>
       </div>
 
-      {/* Bottom Footer Bar (Outside thick border box) */}
-      <div className="flex justify-between items-center text-[11px] text-gray-800 font-sans px-1 pt-0.5">
+      {/* Bottom Footer Bar (Outside thick border box, pushed to absolute bottom) */}
+      <div className="mt-auto flex justify-between items-center text-[11px] text-gray-800 font-sans px-1 pt-0.5">
         <a
           href={signatory.qr_url || "https://www.lgoms.org"}
           target="_blank"
