@@ -1,0 +1,56 @@
+import { VehicleLicenseData } from "@/types/license";
+
+export const VEHICLE_LICENSE_INITIAL_DATA: VehicleLicenseData = {
+  id: "vehicle-license",
+  slug: "vehicle-license",
+  titleBn: "যানবাহন লাইসেন্স",
+  titleEn: "Vehicle License",
+  fiscalYearBn: "২০২৫-২০২৬",
+  union: {
+    up_name: "০৮ নং বসন্তপুর ইউনিয়ন পরিষদ",
+    upazila: "রাজবাড়ী সদর",
+    district: "রাজবাড়ী",
+    website: "www.lgoms.org",
+  },
+  meta: {
+    license_no: "0001",
+    license_id: "B-29-02-013-0001",
+    issue_date: "06-10-2025",
+    renewal_date: "06-10-2025",
+    valid_until_date: "30-06-2026",
+    renewal_deadline_date: "05-10-2026",
+  },
+  vehicle: {
+    name: "P.S.V PLUS DOLPHIN LINE",
+    type: "ভাড়ায় বা বাণিজ্যিক কাজে চালিত যানবাহন,বাস,মিনিবাসের মালিক বা প্রতিষ্ঠান",
+    route_place: "ঢাকা-ফরিদপুর-রাজবাড়ী",
+  },
+  owner: {
+    name: "শ্রীকৃষ্ণ চন্দ্র সরকার",
+    father_or_husband_name: "শিবনাথ চন্দ্র সরকার",
+    mother_name: "রিভা রানী সরকার",
+    permanent_address: "গ্রাম: হাটজয়পুর, পোস্ট: বসন্তপুর, উপজেলা: রাজবাড়ী সদর, জেলা: রাজবাড়ী।",
+    present_address: "বাসা/হোল্ডিং: ৪০ নং উ:রাজার বাগ, গ্রাম/রাস্তা: রাজারবাগ, ডাকঘর: বাসাবো - ১২১৪, সবুজবাগ, ঢাকা দক্ষিণ সিটি কর্পোরেশন, ঢাকা।",
+    nid_no: "7318202632",
+    mobile_no: "01738974698",
+    photo_url: "/assets/image/person.webp",
+  },
+  financials: {
+    license_fee: "100.00",
+    arrear_fee: "0.00",
+    profession_tax: "460.00",
+    nameplate_tax: "0.00",
+    miscellaneous: "0.00",
+    vat_income_tax: "15.00",
+    total_amount: "575",
+    amount_in_words: "পাঁচ শত পঁচাত্তর টাকা মাত্র",
+  },
+  signatory: {
+    left_name: "সৈয়দ মেহেদী মাসুদ",
+    left_role: "প্রশাসনিক কর্মকর্তা",
+    right_name: "মোঃ সাহাবুদ্দিন মিঞা (সেলিম)",
+    right_role: "প্যানেল চেয়ারম্যান-২",
+    trn_no: "10428",
+    qr_url: "https://www.lgoms.org/vehicle_license.php?id=10428",
+  },
+};

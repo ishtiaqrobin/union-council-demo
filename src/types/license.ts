@@ -64,3 +64,58 @@ export interface TradeLicenseData {
     qr_url: string;
   };
 }
+
+export interface VehicleLicenseData {
+  id: string;
+  slug: string;
+  titleBn: string;
+  titleEn: string;
+  fiscalYearBn: string; // অর্থ বছর e.g. "২০২২-২০২৩"
+  union: {
+    up_name: string;
+    upazila: string;
+    district: string;
+    website: string;
+  };
+  meta: {
+    license_no: string;
+    license_id: string;
+    issue_date: string;
+    renewal_date: string;
+    valid_until_date: string;
+    renewal_deadline_date: string;
+  };
+  vehicle: {
+    name: string;        // যানবাহনের নাম e.g. P.S.V PLUS DOLPHIN LINE
+    type: string;        // যানবাহনের ধরণ
+    route_place: string; // চলাচলের স্থান e.g. ঢাকা-ফরিদপুর-রাজবাড়ী
+  };
+  owner: {
+    name: string;
+    father_or_husband_name: string;
+    mother_name: string;
+    permanent_address: string;
+    present_address: string;
+    nid_no: string;
+    mobile_no: string;
+    photo_url?: string;
+  };
+  financials: {
+    license_fee: string;
+    arrear_fee: string;
+    profession_tax: string;
+    nameplate_tax: string;
+    miscellaneous: string;
+    vat_income_tax: string;
+    total_amount: string;
+    amount_in_words: string;
+  };
+  signatory: {
+    left_name: string;
+    left_role: string;
+    right_name: string;
+    right_role: string;
+    trn_no: string;
+    qr_url: string;
+  };
+}
