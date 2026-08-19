@@ -31,7 +31,7 @@ export const PROFESSION_LICENSE_INITIAL_DATA: ProfessionLicenseData = {
     photo_url: "/assets/image/person.webp",
   },
   financials: {
-    fee_amount: "৩৪৫/-/-",
+    fee_amount: "৩৪৫/-",
     amount_in_words: "তিন শত পঁতাল্লিশ টাকা মাত্র।",
   },
   signatory: {
