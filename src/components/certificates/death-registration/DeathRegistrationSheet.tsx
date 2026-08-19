@@ -46,6 +46,8 @@ export function DeathRegistrationSheet({ data }: DeathRegistrationSheetProps) {
   const regNo = (registrationNoBn || meta.serial_no || "19998217629000001").padEnd(17, "0");
   const regDigits = regNo.split("").slice(0, 17);
 
+  const borderClass = "font-semibold text-slate-950 border-b-[1.5px] border-dashed border-slate-500 pb-0.5";
+
   return (
     <div
       id="certificateSheet"
@@ -121,10 +123,10 @@ export function DeathRegistrationSheet({ data }: DeathRegistrationSheetProps) {
           <div className="mt-4 flex flex-col gap-2.5 text-[13.5px]">
             <div className="flex justify-between items-center font-semibold text-slate-800">
               <div>
-                নিবন্ধনের তারিখ : <span className="font-bold underline decoration-dotted decoration-gray-500">{registrationDateBn || meta.issue_date}</span>
+                নিবন্ধনের তারিখ : <span className="font-bold border-b-[1.5px] border-dashed border-slate-500">{registrationDateBn || meta.issue_date}</span>
               </div>
               <div>
-                সনদ প্রদান তারিখ : <span className="font-bold underline decoration-dotted decoration-gray-500">{meta.issue_date}</span>
+                সনদ প্রদান তারিখ : <span className="font-bold border-b-[1.5px] border-dashed border-slate-500">{meta.issue_date}</span>
               </div>
             </div>
 
@@ -143,66 +145,66 @@ export function DeathRegistrationSheet({ data }: DeathRegistrationSheetProps) {
 
           {/* Key Value Details Grid */}
           <div className="mt-5 flex-1 flex flex-col gap-3.5 text-[14px] leading-relaxed text-slate-900">
-            <div className="grid grid-cols-[130px_1fr] items-baseline border-b border-dotted border-gray-400 pb-1">
+            <div className="grid grid-cols-[130px_1fr] items-baseline pb-1">
               <span className="font-bold text-slate-800">নাম</span>
-              <span className="font-bold text-[15px] text-slate-950">: {applicant.person_name}</span>
+              <span className="font-bold text-[15px] text-slate-950 border-b-[1.5px] border-dashed border-slate-500 pb-0.5">: {applicant.person_name}</span>
             </div>
 
-            <div className="grid grid-cols-[130px_1fr] items-baseline border-b border-dotted border-gray-400 pb-1">
+            <div className="grid grid-cols-[130px_1fr] items-baseline pb-1">
               <span className="font-bold text-slate-800">মৃত্যুর তারিখ</span>
-              <span className="font-bold text-slate-950">: {dateOfDeathBn || "05-05-1999"}</span>
+              <span className={borderClass}>: {dateOfDeathBn || "05-05-1999"}</span>
             </div>
 
-            <div className="grid grid-cols-[130px_1fr] items-baseline border-b border-dotted border-gray-400 pb-1">
+            <div className="grid grid-cols-[130px_1fr] items-baseline pb-1">
               <span className="font-bold text-slate-800">কথায়</span>
-              <span className="font-semibold text-slate-950">: {dateOfDeathInWordsBn || "পাঁচই মে উনিশশত নিরানব্বই"}</span>
+              <span className={borderClass}>: {dateOfDeathInWordsBn || "পাঁচই মে উনিশশত নিরানব্বই"}</span>
             </div>
 
-            <div className="grid grid-cols-[130px_1fr] items-baseline border-b border-dotted border-gray-400 pb-1">
+            <div className="grid grid-cols-[130px_1fr] items-baseline pb-1">
               <span className="font-bold text-slate-800">লিঙ্গ</span>
-              <span className="font-semibold text-slate-950">: {genderBn || "নারী"}</span>
+              <span className={borderClass}>: {genderBn || "নারী"}</span>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 border-b border-dotted border-gray-400 pb-1">
+            <div className="grid grid-cols-2 gap-4 pb-1">
               <div className="grid grid-cols-[130px_1fr] items-baseline">
                 <span className="font-bold text-slate-800">পিতার নাম</span>
-                <span className="font-semibold text-slate-950">: {applicant.father_name}</span>
+                <span className={borderClass}>: {applicant.father_name}</span>
               </div>
               <div className="grid grid-cols-[100px_1fr] items-baseline">
                 <span className="font-bold text-slate-800">মাতার নাম</span>
-                <span className="font-semibold text-slate-950">: {applicant.mother_name}</span>
+                <span className={borderClass}>: {applicant.mother_name}</span>
               </div>
             </div>
 
-            <div className="grid grid-cols-[130px_1fr] items-baseline border-b border-dotted border-gray-400 pb-1">
+            <div className="grid grid-cols-[130px_1fr] items-baseline pb-1">
               <span className="font-bold text-slate-800">স্বামী/স্ত্রীর নাম</span>
-              <span className="font-semibold text-slate-950">: {applicant.spouse_name || "মৃত- দিপালী অধিকারী"}</span>
+              <span className={borderClass}>: {applicant.spouse_name || "মৃত- দিপালী অধিকারী"}</span>
             </div>
 
-            <div className="grid grid-cols-[130px_1fr] items-baseline border-b border-dotted border-gray-400 pb-1">
+            <div className="grid grid-cols-[130px_1fr] items-baseline pb-1">
               <span className="font-bold text-slate-800">স্থায়ী ঠিকানা</span>
-              <span className="font-semibold text-slate-950">: {permanentAddressBn || `গ্রাম: ${applicant.village}, ডাকঘর: ${applicant.post_office}, উপজেলা: ${applicant.person_upazila}, জেলা: ${applicant.person_district}।`}</span>
+              <span className={borderClass}>: {permanentAddressBn || `গ্রাম: ${applicant.village}, ডাকঘর: ${applicant.post_office}, উপজেলা: ${applicant.person_upazila}, জেলা: ${applicant.person_district}।`}</span>
             </div>
 
-            <div className="grid grid-cols-[130px_1fr] items-baseline border-b border-dotted border-gray-400 pb-1">
+            <div className="grid grid-cols-[130px_1fr] items-baseline pb-1">
               <span className="font-bold text-slate-800">বর্তমান ঠিকানা</span>
-              <span className="font-semibold text-slate-950">: {presentAddressBn || `গ্রাম: ${applicant.village}, ডাকঘর: ${applicant.post_office}, উপজেলা: ${applicant.person_upazila}, জেলা: ${applicant.person_district}।`}</span>
+              <span className={borderClass}>: {presentAddressBn || `গ্রাম: ${applicant.village}, ডাকঘর: ${applicant.post_office}, উপজেলা: ${applicant.person_upazila}, জেলা: ${applicant.person_district}।`}</span>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 border-b border-dotted border-gray-400 pb-1">
+            <div className="grid grid-cols-2 gap-4 pb-1">
               <div className="grid grid-cols-[130px_1fr] items-baseline">
                 <span className="font-bold text-slate-800">মৃত্যুর কারণ</span>
-                <span className="font-semibold text-slate-950">: {causeOfDeathBn || "শ্বাসকষ্ট জনিত কারণ।"}</span>
+                <span className={borderClass}>: {causeOfDeathBn || "শ্বাসকষ্ট জনিত কারণ।"}</span>
               </div>
               <div className="grid grid-cols-[100px_1fr] items-baseline">
                 <span className="font-bold text-slate-800">মৃত্যুর স্থান</span>
-                <span className="font-semibold text-slate-950">: {placeOfDeathBn || `গ্রাম: ${applicant.village}, ডাকঘর: ${applicant.post_office}, উপজেলা: ${applicant.person_upazila}, জেলা: ${applicant.person_district}।`}</span>
+                <span className={borderClass}>: {placeOfDeathBn || `গ্রাম: ${applicant.village}, ডাকঘর: ${applicant.post_office}, উপজেলা: ${applicant.person_upazila}, জেলা: ${applicant.person_district}।`}</span>
               </div>
             </div>
           </div>
 
           {/* Footer Signatory & QR Code Section */}
-          <div className="cert-footer-section flex justify-between items-end mt-auto pt-4 pb-1 px-1 border-t border-slate-200">
+          <div className="cert-footer-section flex justify-between items-end mt-auto pt-4 pb-1 px-1">
             {/* Left Signatory */}
             <div className="signatory-box text-center min-w-[170px]">
               <div className="sign-space h-[28px]" />
