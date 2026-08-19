@@ -92,20 +92,21 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
                 অর্থ বছর: <span>{fiscalYearBn || "২০২৫-২০২৬"}</span>
               </div>
               <div className="mt-1.5">
-                <span className="bg-red-800 text-white text-[17px] font-black px-6 py-1 rounded-md tracking-wider inline-block shadow-md">
+                <span className="bg-red-800 text-white text-[17px] font-black px-6 py-1 rounded-sm tracking-wider inline-block shadow-md">
                   ট্রেড লাইসেন্স
                 </span>
               </div>
             </div>
 
             {/* Right Owner Photo Frame */}
-            <div className="owner-photo-box w-[68px] h-[78px] border-2 border-slate-400 bg-slate-100 p-0.5 rounded flex items-center justify-center overflow-hidden shadow-sm">
+            <div className="owner-photo-box w-[68px] h-[78px] border border-slate-400 bg-slate-100 flex items-center justify-center overflow-hidden shadow-sm">
               <Image
-                src={owner.photo_url || "/assets/logo/logo.webp"}
+                // src={owner.photo_url || "/assets/image/person.webp"}
+                src="/assets/image/person.webp"
                 alt="লাইসেন্সধারী ছবি"
                 width={64}
                 height={74}
-                className="w-full h-full object-cover rounded-sm"
+                className="w-full h-full object-cover text-xs"
                 unoptimized
               />
             </div>
@@ -226,7 +227,8 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
             <div className="font-bold text-slate-900 mb-1">১৪। আর্থিক বিবরণী</div>
             <table className="w-full border-collapse border border-slate-400 text-center">
               <thead>
-                <tr className="bg-slate-100 font-bold">
+                <tr className="font-bold">
+                  {/* bg-slate-50 */}
                   <th className="border border-slate-400 px-2 py-0.5 w-10">*</th>
                   <th className="border border-slate-400 px-3 py-0.5 text-left">আদায়ের বিবরণ</th>
                   <th className="border border-slate-400 px-3 py-0.5 w-24 text-right">টাকা</th>
@@ -236,7 +238,7 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
                 <tr>
                   <td className="border border-slate-400 px-2 py-0.5">*</td>
                   <td className="border border-slate-400 px-3 py-0.5 text-left">ট্রেড লাইসেন্স/নবায়ন ফি</td>
-                  <td className="border border-slate-400 px-3 py-0.5 text-right font-bold">{financials.license_fee}</td>
+                  <td className="border border-slate-400 px-3 py-0.5 text-right">{financials.license_fee}</td>
                 </tr>
                 <tr>
                   <td className="border border-slate-400 px-2 py-0.5">*</td>
@@ -251,17 +253,17 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
                 <tr>
                   <td className="border border-slate-400 px-2 py-0.5">*</td>
                   <td className="border border-slate-400 px-3 py-0.5 text-left">ভ্যাট</td>
-                  <td className="border border-slate-400 px-3 py-0.5 text-right font-bold">{financials.vat}</td>
+                  <td className="border border-slate-400 px-3 py-0.5 text-right">{financials.vat}</td>
                 </tr>
                 <tr>
                   <td className="border border-slate-400 px-2 py-0.5">*</td>
                   <td className="border border-slate-400 px-3 py-0.5 text-left">পেশা-জীবিকাকর</td>
                   <td className="border border-slate-400 px-3 py-0.5 text-right">{financials.profession_tax}</td>
                 </tr>
-                <tr className="bg-slate-50 font-bold">
+                <tr className="bg-slate-50">
                   <td className="border border-slate-400 px-2 py-0.5">*</td>
-                  <td className="border border-slate-400 px-3 py-0.5 text-left">মোট</td>
-                  <td className="border border-slate-400 px-3 py-0.5 text-right text-red-700">{financials.total_amount}.00</td>
+                  <td className="border border-slate-400 px-3 py-0.5 text-left font-bold">মোট</td>
+                  <td className="border border-slate-400 px-3 py-0.5 text-right">{financials.total_amount}.00</td>
                 </tr>
               </tbody>
             </table>
