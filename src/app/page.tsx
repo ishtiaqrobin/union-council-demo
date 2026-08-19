@@ -35,7 +35,8 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   Briefcase: <Briefcase className="w-6 h-6 text-sky-500 dark:text-sky-400" />,
   Award: <Award className="w-6 h-6 text-slate-600 dark:text-slate-300" />,
   Banknote: <Banknote className="w-6 h-6 text-emerald-600 dark:text-emerald-300" />,
-  MapPinOff: <MapPinOff className="w-6 h-6 text-cyan-500 dark:text-cyan-400" />
+  MapPinOff: <MapPinOff className="w-6 h-6 text-cyan-500 dark:text-cyan-400" />,
+  FileText: <FileText className="w-6 h-6 text-emerald-500 dark:text-emerald-400" />
 };
 
 export default function HomePage() {

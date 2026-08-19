@@ -37,7 +37,8 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   Briefcase: <Briefcase className="w-4 h-4 text-sky-600 dark:text-sky-400" />,
   Award: <Award className="w-4 h-4 text-slate-600 dark:text-slate-300" />,
   Banknote: <Banknote className="w-4 h-4 text-emerald-600 dark:text-emerald-300" />,
-  MapPinOff: <MapPinOff className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+  MapPinOff: <MapPinOff className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />,
+  FileText: <FileText className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
 };
 
 interface NavbarProps {

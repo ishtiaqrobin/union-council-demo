@@ -61,6 +61,18 @@ export interface CertificateData {
   remarriageReasonBn?: string;
   landDetailsBn?: string;
   customDescriptionBn?: string;
+  // Death Registration extras
+  registrationDateBn?: string;
+  registrationNoBn?: string;
+  dateOfDeathBn?: string;
+  dateOfDeathInWordsBn?: string;
+  genderBn?: string;
+  permanentAddressBn?: string;
+  presentAddressBn?: string;
+  causeOfDeathBn?: string;
+  placeOfDeathBn?: string;
+  leftSignatoryNameBn?: string;
+  leftSignatoryRoleBn?: string;
 }
 
 export interface CertificateMenuItem {

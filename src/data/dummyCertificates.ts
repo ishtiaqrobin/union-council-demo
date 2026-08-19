@@ -78,6 +78,13 @@ export const CERTIFICATE_MENU_ITEMS: CertificateMenuItem[] = [
     titleEn: "Landless Certificate",
     iconName: "MapPinOff",
     description: "ভূমিহীন পরিবারের তথ্য ও সরকারি সহায়তার প্রত্যয়ন"
+  },
+  {
+    slug: "death-registration",
+    titleBn: "মৃত্যু নিবন্ধন সনদ",
+    titleEn: "Death Registration Certificate",
+    iconName: "FileText",
+    description: "জন্ম ও মৃত্যু নিবন্ধকের কার্যালয় কর্তৃক প্রস্তুতকৃত মৃত্যু নিবন্ধন সনদ"
   }
 ];
 

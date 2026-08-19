@@ -9,6 +9,7 @@ import { TRADE_LICENSE_INITIAL_DATA } from "./trade-license.data";
 import { TESTIMONIAL_INITIAL_DATA } from "./testimonial.data";
 import { ANNUAL_INCOME_INITIAL_DATA } from "./annual-income.data";
 import { LANDLESS_INITIAL_DATA } from "./landless.data";
+import { DEATH_REGISTRATION_INITIAL_DATA } from "./deathRegistrationData";
 import { CertificateData } from "@/types/certificate";
 
 export {
@@ -22,7 +23,8 @@ export {
   TRADE_LICENSE_INITIAL_DATA,
   TESTIMONIAL_INITIAL_DATA,
   ANNUAL_INCOME_INITIAL_DATA,
-  LANDLESS_INITIAL_DATA
+  LANDLESS_INITIAL_DATA,
+  DEATH_REGISTRATION_INITIAL_DATA,
 };
 
 export const CERTIFICATES_DATA_MAP: Record<string, CertificateData> = {
@@ -36,5 +38,6 @@ export const CERTIFICATES_DATA_MAP: Record<string, CertificateData> = {
   "trade-license": TRADE_LICENSE_INITIAL_DATA,
   testimonial: TESTIMONIAL_INITIAL_DATA,
   "annual-income": ANNUAL_INCOME_INITIAL_DATA,
-  landless: LANDLESS_INITIAL_DATA
+  landless: LANDLESS_INITIAL_DATA,
+  "death-registration": DEATH_REGISTRATION_INITIAL_DATA,
 };
