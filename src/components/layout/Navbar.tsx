@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CERTIFICATE_MENU_ITEMS } from "@/data/dummyCertificates";
+import { LICENSE_MENU_ITEMS } from "@/data/licenses";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import {
   FileText,
@@ -51,14 +52,19 @@ export function Navbar({ onToggleDrawer, isDrawerOpen }: NavbarProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredMenuItems = CERTIFICATE_MENU_ITEMS.filter((item) =>
+  const allItems = [
+    ...CERTIFICATE_MENU_ITEMS.map((item) => ({ ...item, group: "certificates", href: `/certificates/${item.slug}` })),
+    ...LICENSE_MENU_ITEMS.map((item) => ({ ...item, group: "licenses", href: `/license/${item.slug}` })),
+  ];
+
+  const filteredItems = allItems.filter((item) =>
     item.titleBn.toLowerCase().includes(searchQuery.toLowerCase()) ||
     item.titleEn.toLowerCase().includes(searchQuery.toLowerCase()) ||
     item.slug.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const activeItem = CERTIFICATE_MENU_ITEMS.find(
-    (item) => pathname === `/certificates/${item.slug}`
+  const activeItem = allItems.find(
+    (item) => pathname === item.href
   );
 
   const handlePrint = () => {
@@ -84,7 +90,7 @@ export function Navbar({ onToggleDrawer, isDrawerOpen }: NavbarProps) {
             </div>
             <div className="flex flex-col">
               <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 tracking-wider font-siliguri flex items-center gap-1">
-                <Sparkles className="w-3 h-3 text-amber-500 dark:text-amber-400" /> ই-সনদ প্ল্যাটফর্ম
+                <Sparkles className="w-3 h-3 text-amber-500 dark:text-amber-400" /> ই-সনদ ও লাইসেন্স
               </span>
               <span className="text-base font-bold text-slate-900 dark:text-slate-100 font-siliguri leading-tight">
                 ডিজিটাল ইউনিয়ন পরিষদ সেবা
@@ -107,7 +113,7 @@ export function Navbar({ onToggleDrawer, isDrawerOpen }: NavbarProps) {
           </Link>
         </div>
 
-        {/* Center: Certificate Selector Menu Dropdown */}
+        {/* Center: Certificate / License Selector Menu Dropdown */}
         <div className="relative flex-1 max-w-xl">
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -115,14 +121,14 @@ export function Navbar({ onToggleDrawer, isDrawerOpen }: NavbarProps) {
           >
             <div className="flex items-center gap-2.5 truncate">
               <FileText className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-              <span className="text-slate-500 dark:text-slate-400 text-xs hidden sm:inline">সনদ নির্বাচন:</span>
+              <span className="text-slate-500 dark:text-slate-400 text-xs hidden sm:inline">মেনু নির্বাচন:</span>
               <span className="font-semibold text-emerald-700 dark:text-emerald-300 truncate">
-                {activeItem ? activeItem.titleBn : "সব সনদের তালিকা দেখুন"}
+                {activeItem ? activeItem.titleBn : "সব সনদ ও লাইসেন্সের তালিকা"}
               </span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-[11px] bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 px-3 py-0.5 rounded-full font-bold">
-                {CERTIFICATE_MENU_ITEMS.length} টি টেম্পলেট
+                {allItems.length} টি টেম্পলেট
               </span>
               <ChevronDown
                 className={`w-4 h-4 text-slate-500 dark:text-slate-400 transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""
@@ -148,7 +154,7 @@ export function Navbar({ onToggleDrawer, isDrawerOpen }: NavbarProps) {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="সনদের নাম লিখে খুঁজুন..."
+                    placeholder="সনদ বা লাইসেন্সের নাম লিখে খুঁজুন..."
                     className="w-full bg-transparent text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none font-siliguri"
                     autoFocus
                   />
@@ -164,13 +170,13 @@ export function Navbar({ onToggleDrawer, isDrawerOpen }: NavbarProps) {
 
                 {/* Menu List */}
                 <div className="max-h-[380px] overflow-y-auto p-2 grid grid-cols-1 md:grid-cols-2 gap-1">
-                  {filteredMenuItems.length > 0 ? (
-                    filteredMenuItems.map((item) => {
-                      const isSelected = pathname === `/certificates/${item.slug}`;
+                  {filteredItems.length > 0 ? (
+                    filteredItems.map((item) => {
+                      const isSelected = pathname === item.href;
                       return (
                         <Link
                           key={item.slug}
-                          href={`/certificates/${item.slug}`}
+                          href={item.href}
                           onClick={() => setDropdownOpen(false)}
                           className={`flex items-start gap-3 p-2.5 rounded-xl transition-all font-siliguri group ${isSelected
                             ? "bg-emerald-500/10 dark:bg-emerald-600/20 border border-emerald-500/40 text-emerald-700 dark:text-emerald-300 shadow-sm"
@@ -200,14 +206,14 @@ export function Navbar({ onToggleDrawer, isDrawerOpen }: NavbarProps) {
                     })
                   ) : (
                     <div className="col-span-2 p-6 text-center text-slate-500 dark:text-slate-400 text-sm font-siliguri">
-                      কোনো সনদ খুঁজে পাওয়া যায়নি
+                      কোনো আইটেম খুঁজে পাওয়া যায়নি
                     </div>
                   )}
                 </div>
 
                 {/* Footer status */}
                 <div className="px-4 py-2 bg-slate-50 dark:bg-slate-950 text-xs text-slate-500 dark:text-slate-400 font-siliguri flex justify-between items-center border-t border-slate-200 dark:border-slate-800">
-                  <span>সব টেম্পলেটে লাইভ এডিটর যুক্ত রয়েছে</span>
+                  <span>সনদ ও লাইসেন্স লাইভ এডিটর</span>
                   <span className="text-emerald-600 dark:text-emerald-400 font-medium">100% Dynamic</span>
                 </div>
               </div>
@@ -221,7 +227,7 @@ export function Navbar({ onToggleDrawer, isDrawerOpen }: NavbarProps) {
           <ThemeToggle />
 
           {/* Edit Drawer Toggle Button */}
-          {pathname.startsWith("/certificates/") && onToggleDrawer && (
+          {(pathname.startsWith("/certificates/") || pathname.startsWith("/license/")) && onToggleDrawer && (
             <button
               onClick={onToggleDrawer}
               className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-bold font-siliguri transition-all shadow-md ${isDrawerOpen
@@ -237,13 +243,13 @@ export function Navbar({ onToggleDrawer, isDrawerOpen }: NavbarProps) {
           )}
 
           {/* Quick Print Button */}
-          {pathname.startsWith("/certificates/") && (
+          {(pathname.startsWith("/certificates/") || pathname.startsWith("/license/")) && (
             <button
               onClick={handlePrint}
               className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold font-siliguri bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/20 transition-all"
             >
               <Printer className="w-4 h-4" />
-              <span className="hidden sm:inline">সনদ প্রিন্ট করুন (A4)</span>
+              <span className="hidden sm:inline">প্রিন্ট করুন (A4)</span>
             </button>
           )}
         </div>
