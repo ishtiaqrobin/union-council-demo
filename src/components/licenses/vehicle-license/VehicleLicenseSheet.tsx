@@ -33,6 +33,17 @@ export function VehicleLicenseSheet({ data }: VehicleLicenseSheetProps) {
       id="certificateSheet"
       className="certificate-sheet w-[210mm] h-[297mm] min-w-[210mm] min-h-[297mm] bg-white shadow-2xl relative overflow-hidden box-border font-siliguri text-[#121212] px-6 py-4 flex flex-col justify-between print:w-[210mm] print:h-[297mm] print:min-w-[210mm] print:min-h-[297mm] print:max-w-[210mm] print:max-h-[297mm] print:m-0 print:shadow-none print:absolute print:top-0 print:left-0 print:break-inside-avoid"
     >
+      {/* Top Header Bar (Outside thick border box) */}
+      <div className="flex justify-between items-center text-[11px] text-gray-800 font-sans px-1 pb-1">
+        <div className="w-[150px] text-left font-normal text-slate-800">
+          {printDateTime}
+        </div>
+        <div className="font-bold text-slate-900 text-[12px] font-solaiman">
+          যানবাহন লাইসেন্স
+        </div>
+        <div className="w-[150px]" />
+      </div>
+
       {/* Main Certificate Box with Outer Padding and Thick Rose Gradient Border */}
       <div className="flex-1 relative p-3.5 my-2 mx-1 bg-gradient-to-br from-rose-600 via-rose-800 to-rose-600 shadow-md flex flex-col">
         <div className="certificate-inner-frame w-full h-full bg-white pt-4 px-6 pb-3 relative flex flex-col justify-between z-10 flex-1 border border-red-200">
@@ -51,15 +62,16 @@ export function VehicleLicenseSheet({ data }: VehicleLicenseSheetProps) {
 
           {/* Header Section with QR Code (Left), Titles (Center), and Photo Placeholder (Right) */}
           <div className="cert-header grid grid-cols-[80px_1fr_68px] items-center text-center relative pt-1">
-            {/* Top Left QR Code */}
-            <div className="qr-code-top-left flex justify-center items-center">
-              <div className="p-1 bg-white border border-gray-300 rounded shadow-sm">
-                <QRCodeSVG
-                  value={signatory.qr_url || "https://www.lgoms.org"}
-                  size={72}
-                  level="M"
-                />
-              </div>
+            {/* Top Left Seal */}
+            <div className="gov-seal-left w-[64px] h-[64px] flex items-center justify-center">
+              <Image
+                src="/assets/logo/logo.webp"
+                alt="বাংলাদেশ সরকার সিল"
+                width={64}
+                height={64}
+                className="gov-monogram w-full h-full drop-shadow-sm"
+                priority
+              />
             </div>
 
             {/* Center Header Titles */}
@@ -247,6 +259,20 @@ export function VehicleLicenseSheet({ data }: VehicleLicenseSheetProps) {
               </div>
             </div>
 
+            {/* Center QR Code */}
+            <div className="qr-code-box flex flex-col items-center">
+              <div className="qr-canvas-holder p-1 bg-white border border-gray-300 rounded shadow-sm">
+                <QRCodeSVG
+                  value={signatory.qr_url || "https://www.lgoms.org"}
+                  size={76}
+                  level="M"
+                />
+              </div>
+              <div className="trn-text font-siliguri text-[11.5px] font-bold text-gray-900 mt-[2px]">
+                Trn- <span>{signatory.trn_no}</span>
+              </div>
+            </div>
+
             {/* Right Signatory */}
             <div className="signatory-box text-center min-w-[170px]">
               <div className="sign-space h-[24px]" />
@@ -265,6 +291,21 @@ export function VehicleLicenseSheet({ data }: VehicleLicenseSheetProps) {
             </div>
           </div>
 
+        </div>
+      </div>
+
+      {/* Bottom Footer Bar (Outside thick border box) */}
+      <div className="flex justify-between items-center text-[11px] text-gray-800 font-sans px-1 pt-0.5">
+        <a
+          href={signatory.qr_url || "https://www.lgoms.org"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline text-slate-800 font-normal truncate max-w-[80%]"
+        >
+          {signatory.qr_url || "https://www.lgoms.org"}
+        </a>
+        <div className="font-normal text-slate-800">
+          1/1
         </div>
       </div>
     </div>
