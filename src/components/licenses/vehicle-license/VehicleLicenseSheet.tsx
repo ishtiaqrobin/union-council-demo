@@ -167,15 +167,13 @@ export function VehicleLicenseSheet({ data }: VehicleLicenseSheetProps) {
               <span className={lineBorderClass}>: {owner.present_address}</span>
             </div>
 
-            <div className="grid grid-cols-2 gap-2">
-              <div className="grid grid-cols-[160px_1fr] items-baseline">
-                <span className="font-bold text-slate-800">৮। এনআইডি নং</span>
-                <span className={lineBorderClass}>: {owner.nid_no}</span>
-              </div>
-              <div className="grid grid-cols-[100px_1fr] items-baseline">
-                <span className="font-bold text-slate-800">৯। মোবাইল নং</span>
-                <span className={lineBorderClass}>: {owner.mobile_no}</span>
-              </div>
+            <div className="grid grid-cols-[160px_1fr] items-baseline">
+              <span className="font-bold text-slate-800">৮। এনআইডি নং</span>
+              <span className={lineBorderClass}>: {owner.nid_no}</span>
+            </div>
+            <div className="grid grid-cols-[160px_1fr] items-baseline">
+              <span className="font-bold text-slate-800">৯। মোবাইল নং</span>
+              <span className={lineBorderClass}>: {owner.mobile_no}</span>
             </div>
 
             <div className="grid grid-cols-[160px_1fr] items-baseline">
