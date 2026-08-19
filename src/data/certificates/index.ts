@@ -5,7 +5,6 @@ import { CITIZENSHIP_INITIAL_DATA } from "./citizenship.data";
 import { FAMILY_INITIAL_DATA } from "./family.data";
 import { SAME_NAME_INITIAL_DATA } from "./same-name.data";
 import { REMARRIAGE_INITIAL_DATA } from "./remarriage.data";
-import { TRADE_LICENSE_INITIAL_DATA } from "./trade-license.data";
 import { TESTIMONIAL_INITIAL_DATA } from "./testimonial.data";
 import { ANNUAL_INCOME_INITIAL_DATA } from "./annual-income.data";
 import { LANDLESS_INITIAL_DATA } from "./landless.data";
@@ -20,7 +19,6 @@ export {
   FAMILY_INITIAL_DATA,
   SAME_NAME_INITIAL_DATA,
   REMARRIAGE_INITIAL_DATA,
-  TRADE_LICENSE_INITIAL_DATA,
   TESTIMONIAL_INITIAL_DATA,
   ANNUAL_INCOME_INITIAL_DATA,
   LANDLESS_INITIAL_DATA,
@@ -35,7 +33,6 @@ export const CERTIFICATES_DATA_MAP: Record<string, CertificateData> = {
   family: FAMILY_INITIAL_DATA,
   "same-name": SAME_NAME_INITIAL_DATA,
   remarriage: REMARRIAGE_INITIAL_DATA,
-  "trade-license": TRADE_LICENSE_INITIAL_DATA,
   testimonial: TESTIMONIAL_INITIAL_DATA,
   "annual-income": ANNUAL_INCOME_INITIAL_DATA,
   landless: LANDLESS_INITIAL_DATA,

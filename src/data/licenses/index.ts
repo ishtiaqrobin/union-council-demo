@@ -1,11 +1,13 @@
 import { TRADE_LICENSE_INITIAL_DATA } from "./trade-license/tradeLicenseData";
 import { VEHICLE_LICENSE_INITIAL_DATA } from "./vehicle-license/vehicleLicenseData";
+import { PROFESSION_LICENSE_INITIAL_DATA } from "./profession-license/professionLicenseData";
 
-export { TRADE_LICENSE_INITIAL_DATA, VEHICLE_LICENSE_INITIAL_DATA };
+export { TRADE_LICENSE_INITIAL_DATA, VEHICLE_LICENSE_INITIAL_DATA, PROFESSION_LICENSE_INITIAL_DATA };
 
 export const LICENSES_DATA_MAP = {
   "trade-license": TRADE_LICENSE_INITIAL_DATA,
   "vehicle-license": VEHICLE_LICENSE_INITIAL_DATA,
+  "profession-license": PROFESSION_LICENSE_INITIAL_DATA,
 };
 
 export const LICENSE_MENU_ITEMS = [
@@ -22,5 +24,12 @@ export const LICENSE_MENU_ITEMS = [
     titleEn: "Vehicle License (Portrait)",
     iconName: "Briefcase",
     description: "ইউনিয়ন পরিষদ এলাকার সকল প্রকার যানবাহনের সরকারি লাইসেন্স",
+  },
+  {
+    slug: "profession-license",
+    titleBn: "পেশা ও জীবিকা লাইসেন্স",
+    titleEn: "Profession & Occupation License (Landscape)",
+    iconName: "Briefcase",
+    description: "ইউনিয়ন পরিষদের পেশা ও জীবিকা লাইসেন্সপত্র",
   },
 ];

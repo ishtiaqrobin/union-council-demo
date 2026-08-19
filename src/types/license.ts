@@ -119,3 +119,46 @@ export interface VehicleLicenseData {
     qr_url: string;
   };
 }
+
+export interface ProfessionLicenseData {
+  id: string;
+  slug: string;
+  titleBn: string;
+  titleEn: string;
+  fiscalYearBn: string; // অর্থ বছর e.g. "২০২৫-২০২৬"
+  union: {
+    up_name: string;
+    upazila: string;
+    district: string;
+    website: string;
+  };
+  meta: {
+    license_no: string;
+    issue_date: string;
+    renewal_date: string;
+    valid_until_date: string;
+  };
+  business: {
+    institution_name: string; // প্রতিষ্ঠানের নাম
+    business_type: string;    // ব্যবসার ধরণ
+    business_place: string;   // ব্যবসার স্থান
+  };
+  owner: {
+    name: string;
+    father_or_husband_name: string;
+    mother_name: string;
+    address: string;          // ঠিকানা
+    mobile_no?: string;
+    photo_url?: string;
+  };
+  financials: {
+    fee_amount: string;       // ফি প্রদানের পরিমাণ (১৫% ভ্যাটসহ) e.g. "৩৪৫/-/-"
+    amount_in_words: string;  // কথায় e.g. "তিন শত পঁতাল্লিশ টাকা মাত্র।"
+  };
+  signatory: {
+    name: string;
+    role: string;
+    trn_no: string;
+    qr_url: string;
+  };
+}

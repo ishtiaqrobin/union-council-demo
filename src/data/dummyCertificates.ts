@@ -52,13 +52,6 @@ export const CERTIFICATE_MENU_ITEMS: CertificateMenuItem[] = [
     description: "পুনর্বিবাহের বিবরণ ও প্রত্যয়নপত্র"
   },
   {
-    slug: "trade-license",
-    titleBn: "পেশা ও জীবিকা লাইসেন্স",
-    titleEn: "Trade & Occupation License",
-    iconName: "Briefcase",
-    description: "ইউনিয়ন পরিষদ এলাকার পেশা ও ব্যবসা পরিচালনার লাইসেন্স"
-  },
-  {
     slug: "testimonial",
     titleBn: "প্রত্যয়নপত্র",
     titleEn: "General Testimonial",

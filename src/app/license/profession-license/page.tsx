@@ -2,19 +2,19 @@
 
 import React, { useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
-import { TradeLicenseForm } from "@/components/certificates/trade-license/TradeLicenseForm";
-import { TradeLicenseSheet } from "@/components/certificates/trade-license/TradeLicenseSheet";
-import { TRADE_LICENSE_INITIAL_DATA } from "@/data/certificates/trade-license.data";
-import { CertificateData } from "@/types/certificate";
+import { ProfessionLicenseForm } from "@/components/licenses/profession-license/ProfessionLicenseForm";
+import { ProfessionLicenseSheet } from "@/components/licenses/profession-license/ProfessionLicenseSheet";
+import { PROFESSION_LICENSE_INITIAL_DATA } from "@/data/licenses/profession-license/professionLicenseData";
+import { ProfessionLicenseData } from "@/types/license";
 
-export default function TradeLicensePage() {
-  const [certData, setCertData] = useState<CertificateData>(
-    JSON.parse(JSON.stringify(TRADE_LICENSE_INITIAL_DATA))
+export default function ProfessionLicensePage() {
+  const [licenseData, setLicenseData] = useState<ProfessionLicenseData>(
+    JSON.parse(JSON.stringify(PROFESSION_LICENSE_INITIAL_DATA))
   );
   const [isDrawerOpen, setIsDrawerOpen] = useState(true);
 
   const handleReset = () => {
-    setCertData(JSON.parse(JSON.stringify(TRADE_LICENSE_INITIAL_DATA)));
+    setLicenseData(JSON.parse(JSON.stringify(PROFESSION_LICENSE_INITIAL_DATA)));
   };
 
   return (
@@ -25,16 +25,16 @@ export default function TradeLicensePage() {
       />
 
       <div className="main-wrapper flex flex-1 relative print:block print:m-0 print:p-0">
-        <TradeLicenseForm
-          data={certData}
-          onChange={setCertData}
+        <ProfessionLicenseForm
+          data={licenseData}
+          onChange={setLicenseData}
           onReset={handleReset}
           isOpen={isDrawerOpen}
           onClose={() => setIsDrawerOpen(false)}
         />
 
         <main className="certificate-viewport flex-1 p-8 px-4 flex justify-center items-start overflow-x-auto print:p-0 print:m-0 print:block print:overflow-visible bg-slate-200/80 dark:bg-slate-900/60 shadow-inner">
-          <TradeLicenseSheet data={certData} />
+          <ProfessionLicenseSheet data={licenseData} />
         </main>
       </div>
     </div>
