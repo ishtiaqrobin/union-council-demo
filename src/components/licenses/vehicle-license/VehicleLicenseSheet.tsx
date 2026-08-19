@@ -76,6 +76,9 @@ export function VehicleLicenseSheet({ data }: VehicleLicenseSheetProps) {
 
             {/* Center Header Titles */}
             <div className="header-titles flex flex-col items-center justify-center">
+              <div className="gov-sub-title text-[12.5px] font-semibold text-gray-800 tracking-wide mb-[1px]">
+                গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার
+              </div>
               <h1 className="up-main-title text-[24px] font-black text-header-red leading-tight m-0 tracking-wide">
                 {union.up_name}
               </h1>

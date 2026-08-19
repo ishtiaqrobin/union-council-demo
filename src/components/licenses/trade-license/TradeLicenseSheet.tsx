@@ -263,7 +263,7 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
                 <tr className="bg-slate-50">
                   <td className="border border-slate-400 px-2 py-0.5">*</td>
                   <td className="border border-slate-400 px-3 py-0.5 text-left font-bold">মোট</td>
-                  <td className="border border-slate-400 px-3 py-0.5 text-right">{financials.total_amount}.00</td>
+                  <td className="border border-slate-400 px-3 py-0.5 text-right font-bold">{financials.total_amount}.00</td>
                 </tr>
               </tbody>
             </table>
