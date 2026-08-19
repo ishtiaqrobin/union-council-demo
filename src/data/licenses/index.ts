@@ -28,7 +28,7 @@ export const LICENSE_MENU_ITEMS = [
   {
     slug: "profession-license",
     titleBn: "পেশা ও জীবিকা লাইসেন্স",
-    titleEn: "Profession & Occupation License (Landscape)",
+    titleEn: "Profession & Occupation License (Portrait)",
     iconName: "Briefcase",
     description: "ইউনিয়ন পরিষদের পেশা ও জীবিকা লাইসেন্সপত্র",
   },
