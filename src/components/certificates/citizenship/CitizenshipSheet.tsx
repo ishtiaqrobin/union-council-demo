@@ -146,27 +146,27 @@ export function CitizenshipSheet({ data }: CitizenshipSheetProps) {
               <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.mother_name}
               </span>
-              ,গ্রামঃ{" "}
+              , গ্রামঃ{" "}
               <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.village}
               </span>
               , বাসা নংঃ{" "}
               <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.house_no}
-              </span>{" "}
-              ,ওয়ার্ড নংঃ{" "}
-              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
-                {applicant.ward_no}
               </span>
-              ,ডাকঘরঃ{" "}
+              , ওয়ার্ড নংঃ{" "}
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+                {applicant.ward_no},
+              </span>
+              {" "}ডাকঘরঃ{" "}
               <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.post_office}
-              </span>{" "}
-              ,উপজেলাঃ{" "}
+              </span>
+              , উপজেলাঃ{" "}
               <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.person_upazila}
-              </span>{" "}
-              ,জেলাঃ{" "}
+              </span>
+              , জেলাঃ{" "}
               <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.person_district}
               </span>
