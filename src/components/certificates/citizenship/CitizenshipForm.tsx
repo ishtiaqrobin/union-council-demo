@@ -81,7 +81,7 @@ export function CitizenshipForm({
           </div>
           <div className="grid grid-cols-2 gap-2.5">
             <div className="flex flex-col gap-1">
-              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">ক্রমিক নং</label>
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">স্মারক নং</label>
               <input type="text" value={data.meta.serial_no} onChange={(e) => updateMeta("serial_no", e.target.value)} className={inputClass} />
             </div>
             <div className="flex flex-col gap-1">
@@ -99,9 +99,15 @@ export function CitizenshipForm({
             <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">নাম</label>
             <input type="text" value={data.applicant.person_name} onChange={(e) => updateApplicant("person_name", e.target.value)} className={inputClass} />
           </div>
-          <div className="flex flex-col gap-1">
-            <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">এনআইডি নং</label>
-            <input type="text" value={data.applicant.nid_no} onChange={(e) => updateApplicant("nid_no", e.target.value)} className={inputClass} />
+          <div className="grid grid-cols-2 gap-2.5">
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">এনআইডি/জন্ম নিবন্ধন নং</label>
+              <input type="text" value={data.applicant.nid_no} onChange={(e) => updateApplicant("nid_no", e.target.value)} className={inputClass} />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">ছবির URL</label>
+              <input type="text" value={data.applicant.photo_url || ""} onChange={(e) => updateApplicant("photo_url", e.target.value)} className={inputClass} placeholder="/assets/image/person.webp" />
+            </div>
           </div>
           <div className="grid grid-cols-2 gap-2.5">
             <div className="flex flex-col gap-1">

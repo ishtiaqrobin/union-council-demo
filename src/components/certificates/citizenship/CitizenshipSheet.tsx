@@ -45,14 +45,14 @@ export function CitizenshipSheet({ data }: CitizenshipSheetProps) {
           {printDateTime}
         </div>
         <div className="font-bold text-slate-900 text-[13px] font-solaiman">
-          {meta.cert_title || "নাগরিকত্ব সনদ"}
+          {meta.cert_title || "নাগরিক সনদ"}
         </div>
         <div className="w-[180px]" />
       </div>
 
       {/* Main Certificate Box with Outer Padding and Thick Gradient Border */}
-      <div className="flex-1 relative p-4 my-8 mx-12 bg-gradient-to-br from-blue-500 via-indigo-400 to-blue-500 shadow-md">
-        <div className="certificate-inner-frame w-full h-full bg-white pt-5 px-12 pb-4 relative flex flex-col justify-between z-10">
+      <div className="flex-1 relative p-4 my-8 mx-12 bg-gradient-to-br from-blue-600 via-indigo-500 to-blue-600 shadow-md flex flex-col">
+        <div className="certificate-inner-frame w-full h-full bg-white pt-5 px-10 pb-3 relative flex flex-col justify-between z-10 flex-1 border border-amber-200">
 
           {/* Background Watermark */}
           <div className="watermark-container absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] h-[360px] pointer-events-none -z-10 flex justify-center items-center">
@@ -79,6 +79,7 @@ export function CitizenshipSheet({ data }: CitizenshipSheetProps) {
               />
             </div>
 
+            {/* Center Header Titles */}
             <div className="header-titles flex flex-col items-center justify-center">
               <div className="gov-sub-title text-[13.5px] font-semibold text-gray-800 tracking-wide mb-[1px]">
                 গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার
@@ -94,19 +95,29 @@ export function CitizenshipSheet({ data }: CitizenshipSheetProps) {
               </div>
             </div>
 
-            <div className="header-right-spacer w-[76px] h-[76px]" />
+            {/* Top Right Applicant Photo */}
+            <div className="applicant-photo-box w-[74px] h-[84px] border border-slate-400 bg-white p-0.5 shadow-sm flex items-center justify-center overflow-hidden">
+              <Image
+                src={applicant.photo_url || "/assets/image/person.webp"}
+                alt="আবেদনকারীর ছবি"
+                width={70}
+                height={80}
+                className="w-full h-full object-cover text-xs"
+                unoptimized
+              />
+            </div>
           </div>
 
           {/* Metadata Ribbon */}
           <div className="cert-meta-ribbon flex justify-between items-center mt-[10px] px-1">
             <div className="meta-item meta-serial text-[14px] text-[#121212]">
-              <span className="lbl font-semibold mr-1.5">ক্রমিক নং:</span>
+              <span className="lbl font-semibold mr-1.5">স্মারক নং:</span>
               <span className="val font-bold font-siliguri tracking-wide">{meta.serial_no}</span>
             </div>
 
             <div className="meta-badge-container flex justify-center flex-1">
-              <div className="cert-badge bg-teal-600 text-white text-[15.5px] font-bold px-[32px] py-[3.5px] rounded-md tracking-wide inline-block shadow-sm">
-                {meta.cert_title}
+              <div className="cert-badge bg-red-800 text-white text-[16px] font-bold px-[32px] py-[3.5px] rounded-sm tracking-wider inline-block shadow-sm">
+                {meta.cert_title || "নাগরিক সনদপত্র"}
               </div>
             </div>
 
@@ -118,52 +129,64 @@ export function CitizenshipSheet({ data }: CitizenshipSheetProps) {
 
           {/* Certificate Content Body */}
           <div className="cert-content-body mt-4 px-2 flex-1 flex flex-col justify-start">
-            <p className="cert-paragraph text-[14.5px] leading-[2.2] text-gray-900 text-justify">
+            <p className="cert-paragraph text-[15px] leading-[2.3] text-gray-900 text-justify font-solaiman">
               এই মর্মে প্রত্যয়ন করা যাচ্ছে যে,{" "}
               <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
                 {applicant.person_name}
               </span>{" "}
-              (জাতীয় পরিচয়পত্র নং:{" "}
-              <span className="border-b border-dotted border-gray-600 pb-[1px]">
+              (এনআইডি/জন্ম নিবন্ধন নং:{" "}
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.nid_no}
               </span>
               ), পিতা:{" "}
-              <span className="border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.father_name}
               </span>
-              , মাতা:{" "}
-              <span className="border-b border-dotted border-gray-600 pb-[1px]">
+              , মাতাঃ{" "}
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.mother_name}
               </span>
-              , গ্রাম:{" "}
-              <span className="border-b border-dotted border-gray-600 pb-[1px]">
+              ,গ্রামঃ{" "}
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.village}
               </span>
-              , বাসা নং:{" "}
-              <span className="border-b border-dotted border-gray-600 pb-[1px]">
+              , বাসা নংঃ{" "}
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.house_no}
-              </span>
-              , ওয়ার্ড নং:{" "}
-              <span className="border-b border-dotted border-gray-600 pb-[1px]">
+              </span>{" "}
+              ,ওয়ার্ড নংঃ{" "}
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.ward_no}
               </span>
-              , ডাকঘর:{" "}
-              <span className="border-b border-dotted border-gray-600 pb-[1px]">
+              ,ডাকঘরঃ{" "}
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.post_office}
-              </span>
-              , উপজেলা:{" "}
-              <span className="border-b border-dotted border-gray-600 pb-[1px]">
-                {applicant.person_upazila}
-              </span>
-              , জেলা:{" "}
-              <span className="border-b border-dotted border-gray-600 pb-[1px]">
-                {applicant.person_district}
               </span>{" "}
-              অত্র ইউনিয়নের স্থায়ী বাসিন্দা। তিনি জন্মসূত্রে গণপ্রজাতন্ত্রী বাংলাদেশের একজন একনিষ্ঠ নাগরিক। তাহার চরিত্র শুভ এবং তিনি রাষ্ট্র বিরোধী কোনো কর্মকাণ্ডে জড়িত নহেন।
+              ,উপজেলাঃ{" "}
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+                {applicant.person_upazila}
+              </span>{" "}
+              ,জেলাঃ{" "}
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+                {applicant.person_district}
+              </span>
+              । এর জন্মনিবন্ধন সনদ/জাতীয় পরিচয়পত্র যাচাই করে{" "}
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+                {applicant.ward_no}
+              </span>{" "}
+              নং ওয়ার্ডের ইউপি সদস্য এর তথ্যমতে জানা যায় যে, তিনি অত্র ইউনিয়নের{" "}
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+                {applicant.ward_no}
+              </span>{" "}
+              নং ওয়ার্ডের{" "}
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+                {applicant.village}
+              </span>{" "}
+              গ্রামের স্থায়ী বাসিন্দা এবং জন্ম সূত্রে বাংলাদেশের নাগরিক।
             </p>
 
-            <p className="cert-closing text-[14px] font-bold text-gray-900 mt-3 pl-[16px]">
-              আমি তাহার জীবন ও ভবিষ্যতের উত্তরোত্তর সমৃদ্ধি ও সুস্বাস্থ্য কামনা করি।
+            <p className="cert-closing text-[14.5px] font-bold text-gray-900 mt-3.5 pl-[32px]">
+              আমি তার সার্বিক কল্যাণ ও উন্নতি কামনা করি।
             </p>
           </div>
 
@@ -186,6 +209,11 @@ export function CitizenshipSheet({ data }: CitizenshipSheetProps) {
               <div className="sign-office text-[12.5px] font-semibold text-gray-800 leading-tight">{union.up_name}</div>
               <div className="sign-location text-[12.5px] font-semibold text-gray-800 leading-tight">{union.upazila}, {union.district}।</div>
             </div>
+          </div>
+
+          {/* Bottom Tagline Ribbon (Under QR Code & Chairman Info) */}
+          <div className="mt-2 text-center text-[12px] font-bold text-gray-900 bg-gray-50/90 py-0.5 border border-gray-200 rounded">
+            ইউপি কর পরিশোধ করুন* অল্প সময়ে সল্প খরচে, সঠিক বিচার পেতে, চল যাই গ্রামআদালতে* সময়মত জন্ম ও মৃত্যু নিবন্ধন করুন।
           </div>
 
         </div>

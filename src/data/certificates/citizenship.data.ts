@@ -5,7 +5,7 @@ export const CITIZENSHIP_INITIAL_DATA: CertificateData = {
   slug: "citizenship",
   titleBn: "নাগরিক সনদ",
   titleEn: "Citizenship Certificate",
-  badgeColor: "bg-teal-600",
+  badgeColor: "bg-red-800",
   union: {
     up_name: "০৩নং আমঝুপি ইউনিয়ন পরিষদ",
     upazila: "মেহেরপুর সদর",
@@ -13,26 +13,27 @@ export const CITIZENSHIP_INITIAL_DATA: CertificateData = {
     website: "www.lgoms.org"
   },
   meta: {
-    serial_no: "00000042",
-    cert_title: "নাগরিক সনদ",
-    issue_date: "10-08-2026"
+    serial_no: "00002692",
+    cert_title: "নাগরিক সনদপত্র",
+    issue_date: "12-08-2026"
   },
   applicant: {
-    person_name: "মোঃ তরিকুল ইসলাম",
-    nid_no: "1987654321098",
-    father_name: "মোঃ সামসুল হক",
-    mother_name: "মোছাঃ ফরিদা বেগম",
-    village: "চকশ্যামনগর",
-    house_no: "০৮",
+    person_name: "মোঃ শিপন",
+    nid_no: "1513835494",
+    father_name: "মৃত আঃ জলিল",
+    mother_name: "মোছাঃ সুফিয়া খাতুন",
+    village: "খোকসা",
+    house_no: "০০",
     ward_no: "01",
     post_office: "আমঝুপি",
     person_upazila: "মেহেরপুর সদর",
-    person_district: "মেহেরপুর"
+    person_district: "মেহেরপুর",
+    photo_url: "/assets/image/person.webp"
   },
   signatory: {
     signatory_name: "মোঃ সিরাজুল ইসলাম",
     signatory_role: "চেয়ারম্যান(ভারপ্রাপ্ত)",
-    trn_no: "10425",
-    qr_url: "https://www.lgoms.org/umc_certificates.php?id=10425"
+    trn_no: "669745",
+    qr_url: "https://www.lgoms.org/cc_certificates.php?id=669745"
   }
 };

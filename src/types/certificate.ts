@@ -23,6 +23,7 @@ export interface ApplicantInfo {
   post_office: string;
   person_upazila: string;
   person_district: string;
+  photo_url?: string;
 }
 
 export interface SignatoryInfo {
