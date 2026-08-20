@@ -270,7 +270,7 @@ export function VehicleLicenseSheet({ data }: VehicleLicenseSheetProps) {
 
             {/* Center QR Code */}
             <div className="qr-code-box flex flex-col items-center">
-              <div className="qr-canvas-holder p-1 bg-white border border-gray-300 rounded shadow-sm">
+              <div className="qr-canvas-holder p-1 bg-white border border-gray-300 shadow-sm">
                 <QRCodeSVG
                   value={signatory.qr_url || "https://www.lgoms.org"}
                   size={76}

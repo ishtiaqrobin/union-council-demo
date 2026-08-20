@@ -188,7 +188,7 @@ export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
           <div className="cert-footer-section flex justify-between items-end mt-auto pt-3 pb-1 px-1">
             {/* Left Bottom QR Code */}
             <div className="qr-code-box flex flex-col items-center">
-              <div className="qr-canvas-holder p-1 bg-white border border-gray-300 rounded shadow-sm">
+              <div className="qr-canvas-holder p-1 bg-white border border-gray-300 shadow-sm">
                 <QRCodeSVG
                   value={signatory.qr_url || "https://www.lgoms.org"}
                   size={76}

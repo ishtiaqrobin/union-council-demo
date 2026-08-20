@@ -138,7 +138,7 @@ export function SameNameSheet({ data }: SameNameSheetProps) {
           {/* Footer Signatures */}
           <div className="cert-footer-section flex justify-between items-end mt-auto p-[4px]">
             <div className="qr-code-box flex flex-col items-start">
-              <div className="qr-canvas-holder p-1 bg-white border border-gray-300 rounded shadow-sm">
+              <div className="qr-canvas-holder p-1 bg-white border border-gray-300 shadow-sm">
                 <QRCodeSVG value={signatory.qr_url || "https://www.lgoms.org"} size={78} level="M" />
               </div>
               <div className="trn-text font-siliguri text-[13px] font-bold text-gray-900 mt-[3px]">

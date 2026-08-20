@@ -31,7 +31,7 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
   return (
     <div
       id="certificateSheet"
-      className="certificate-sheet certificate-sheet-portrait w-[210mm] h-[297mm] min-w-[210mm] min-h-[297mm] bg-white shadow-2xl relative overflow-hidden box-border font-siliguri text-[#121212] px-6 py-4 flex flex-col justify-between print:w-[210mm] print:h-[297mm] print:min-w-[210mm] print:min-h-[297mm] print:max-w-[210mm] print:max-h-[297mm] print:m-0 print:shadow-none print:absolute print:top-0 print:left-0 print:break-inside-avoid"
+      className="certificate-sheet certificate-sheet-portrait w-[210mm] h-[297mm] min-w-[210mm] min-h-[297mm] bg-white shadow-2xl relative overflow-hidden box-border font-solaiman text-[#121212] px-6 py-4 flex flex-col justify-between print:w-[210mm] print:h-[297mm] print:min-w-[210mm] print:min-h-[297mm] print:max-w-[210mm] print:max-h-[297mm] print:m-0 print:shadow-none print:absolute print:top-0 print:left-0 print:break-inside-avoid"
     >
       <style>{`
         @media print {
@@ -150,7 +150,7 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
 
           {/* Legal Notice */}
           <div className="my-1.5 text-[11px] leading-snug text-slate-800 text-justify bg-slate-50 p-1.5 rounded border border-slate-200">
-            স্থানীয় সরকার (ইউনিয়ন পরিষদ) আইন, ২০০৯ সনের ৬১ নং আইনের ধারা ৬৬ তে প্রদত্ত ক্ষমতাবলে সরকার প্রণীত আদর্শ কর তফসিল ২০১৩ এর ৬ ও ১৭ নং অনুচ্ছেদ অনুযায়ী ব্যবসা, বৃত্তি, পেশা বা শিল্প প্রতিষ্ঠানের উপর আরোপিত কর আদায়ের লক্ষ্যে নির্ধারিত শর্তে নিম্নলিখিত ব্যক্তি/প্রতিষ্ঠানের অনুকূলে এই ট্রেড লাইসেন্সটি ইস্যু করা হইল। যাহার মেয়াদ তারিখ <span className="font-bold text-red-700">{meta.valid_until_date}</span> তারিখ পর্যন্ত বলবৎ থাকিবে।
+            স্থানীয় সরকার (ইউনিয়ন পরিষদ) আইন, ২০০৯ সনের ৬১ নং আইনের ধারা ৬৬ তে প্রদত্ত ক্ষমতাবলে সরকার প্রণীত আদর্শ কর তফসিল ২০১৩ এর ৬ ও ১৭ নং অনুচ্ছেদ অনুযায়ী ব্যবসা, বৃত্তি, পেশা বা শিল্প প্রতিষ্ঠানের উপর আরোপিত কর আদায়ের লক্ষ্যে নির্ধারিত শর্তে নিম্নলিখিত ব্যক্তি/প্রতিষ্ঠানের অনুকূলে এই ট্রেড লাইসেন্সটি ইস্যু করা হইল। যাহার মেয়াদ তারিখ <span className="font-bold">{meta.valid_until_date}</span> তারিখ পর্যন্ত বলবৎ থাকিবে।
           </div>
 
           {/* Numbered Details List (১ - ১৩) */}
@@ -306,7 +306,7 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
 
             {/* Center QR Code */}
             <div className="qr-code-box flex flex-col items-center">
-              <div className="qr-canvas-holder p-1 bg-white border border-gray-300 rounded shadow-sm">
+              <div className="qr-canvas-holder p-1 bg-white border border-gray-300 shadow-sm">
                 <QRCodeSVG
                   value={signatory.qr_url || "https://www.lgoms.org"}
                   size={76}
