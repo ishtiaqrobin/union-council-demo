@@ -31,8 +31,16 @@ export function VehicleLicenseSheet({ data }: VehicleLicenseSheetProps) {
   return (
     <div
       id="certificateSheet"
-      className="certificate-sheet w-[210mm] h-[297mm] min-w-[210mm] min-h-[297mm] bg-white shadow-2xl relative overflow-hidden box-border font-siliguri text-[#121212] px-6 py-4 flex flex-col justify-between print:w-[210mm] print:h-[297mm] print:min-w-[210mm] print:min-h-[297mm] print:max-w-[210mm] print:max-h-[297mm] print:m-0 print:shadow-none print:absolute print:top-0 print:left-0 print:break-inside-avoid"
+      className="certificate-sheet certificate-sheet-portrait w-[210mm] h-[297mm] min-w-[210mm] min-h-[297mm] bg-white shadow-2xl relative overflow-hidden box-border font-siliguri text-[#121212] px-6 py-4 flex flex-col justify-between print:w-[210mm] print:h-[297mm] print:min-w-[210mm] print:min-h-[297mm] print:max-w-[210mm] print:max-h-[297mm] print:m-0 print:shadow-none print:absolute print:top-0 print:left-0 print:break-inside-avoid"
     >
+      <style>{`
+        @media print {
+          @page {
+            size: A4 portrait !important;
+            margin: 0 !important;
+          }
+        }
+      `}</style>
       {/* Top Header Bar (Outside thick border box) */}
       <div className="flex justify-between items-center text-[11px] text-gray-800 font-sans px-1 pb-1">
         <div className="w-[150px] text-left font-normal text-slate-800">
