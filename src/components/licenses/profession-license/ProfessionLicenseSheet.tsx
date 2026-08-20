@@ -191,7 +191,7 @@ export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
               <div className="qr-canvas-holder p-1 bg-white border border-gray-300 shadow-sm">
                 <QRCodeSVG
                   value={signatory.qr_url || "https://www.lgoms.org"}
-                  size={76}
+                  size={78}
                   level="M"
                 />
               </div>

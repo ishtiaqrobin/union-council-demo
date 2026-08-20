@@ -29,7 +29,7 @@ export function RemarriageSheet({ data }: RemarriageSheetProps) {
   return (
     <div
       id="certificateSheet"
-      className="certificate-sheet certificate-sheet-landscape w-[297mm] h-[210mm] min-w-[297mm] min-h-[210mm] bg-white shadow-2xl relative overflow-hidden box-border font-siliguri text-[#121212] px-8 py-4 flex flex-col justify-between print:w-[297mm] print:h-[210mm] print:min-w-[297mm] print:min-h-[210mm] print:max-w-[297mm] print:max-h-[210mm] print:m-0 print:shadow-none print:absolute print:top-0 print:left-0 print:break-inside-avoid"
+      className="certificate-sheet certificate-sheet-landscape w-[297mm] h-[210mm] min-w-[297mm] min-h-[210mm] bg-white shadow-2xl relative overflow-hidden box-border font-solaiman text-[#121212] px-8 py-4 flex flex-col justify-between print:w-[297mm] print:h-[210mm] print:min-w-[297mm] print:min-h-[210mm] print:max-w-[297mm] print:max-h-[210mm] print:m-0 print:shadow-none print:absolute print:top-0 print:left-0 print:break-inside-avoid"
     >
       <style>{`
         @media print {
@@ -53,7 +53,7 @@ export function RemarriageSheet({ data }: RemarriageSheetProps) {
       {/* Main Certificate Box with Outer Padding and Thick Gradient Border */}
       <div className="flex-1 relative p-4 my-8 mx-12 bg-gradient-to-br from-blue-500 via-indigo-400 to-blue-500 shadow-md">
         <div className="certificate-inner-frame w-full h-full bg-white pt-5 px-12 pb-4 relative flex flex-col justify-between z-10">
-          
+
           {/* Background Watermark */}
           <div className="watermark-container absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] h-[360px] pointer-events-none -z-10 flex justify-center items-center">
             <Image

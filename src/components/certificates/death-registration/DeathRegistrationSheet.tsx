@@ -51,7 +51,7 @@ export function DeathRegistrationSheet({ data }: DeathRegistrationSheetProps) {
   return (
     <div
       id="certificateSheet"
-      className="certificate-sheet certificate-sheet-portrait w-[210mm] h-[297mm] min-w-[210mm] min-h-[297mm] bg-white shadow-2xl relative overflow-hidden box-border font-siliguri text-[#121212] px-6 py-4 flex flex-col justify-between print:w-[210mm] print:h-[297mm] print:min-w-[210mm] print:min-h-[297mm] print:max-w-[210mm] print:max-h-[297mm] print:m-0 print:shadow-none print:absolute print:top-0 print:left-0 print:break-inside-avoid"
+      className="certificate-sheet certificate-sheet-portrait w-[210mm] h-[297mm] min-w-[210mm] min-h-[297mm] bg-white shadow-2xl relative overflow-hidden box-border font-solaiman text-[#121212] px-6 py-4 flex flex-col justify-between print:w-[210mm] print:h-[297mm] print:min-w-[210mm] print:min-h-[297mm] print:max-w-[210mm] print:max-h-[297mm] print:m-0 print:shadow-none print:absolute print:top-0 print:left-0 print:break-inside-avoid"
     >
       <style>{`
         @media print {
@@ -235,7 +235,7 @@ export function DeathRegistrationSheet({ data }: DeathRegistrationSheetProps) {
               <div className="qr-canvas-holder p-1 bg-white border border-gray-300 shadow-sm">
                 <QRCodeSVG
                   value={signatory.qr_url || "https://www.lgoms.org"}
-                  size={84}
+                  size={78}
                   level="M"
                 />
               </div>
