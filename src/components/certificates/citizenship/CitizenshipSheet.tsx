@@ -212,7 +212,8 @@ export function CitizenshipSheet({ data }: CitizenshipSheetProps) {
           </div>
 
           {/* Bottom Tagline Ribbon (Under QR Code & Chairman Info) */}
-          <div className="mt-2 text-center text-[12px] font-bold text-gray-900 bg-gray-50/90 py-0.5 border border-gray-200 rounded">
+          {/* bg-gray-50/90 py-0.5 border border-gray-200 rounded */}
+          <div className="mt-4 mb-2 text-center text-[12px] font-bold text-gray-900 ">
             ইউপি কর পরিশোধ করুন* অল্প সময়ে সল্প খরচে, সঠিক বিচার পেতে, চল যাই গ্রামআদালতে* সময়মত জন্ম ও মৃত্যু নিবন্ধন করুন।
           </div>
 
