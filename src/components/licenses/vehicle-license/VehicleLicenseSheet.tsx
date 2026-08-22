@@ -100,7 +100,7 @@ export function VehicleLicenseSheet({ data }: VehicleLicenseSheetProps) {
                 অর্থ বছর: <span>{fiscalYearBn || "২০২৫-২০২৬"}</span>
               </div>
               <div className="mt-1.5">
-                <span className="bg-red-800 text-white text-[17px] font-black px-6 py-1 rounded-sm tracking-wider inline-block shadow-md">
+                <span className="bg-red-800 text-white text-[16px] font-black px-6 py-1 rounded-sm tracking-wider inline-block shadow-md">
                   যানবাহন লাইসেন্স
                 </span>
               </div>
