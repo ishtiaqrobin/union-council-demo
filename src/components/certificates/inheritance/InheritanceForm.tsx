@@ -172,14 +172,26 @@ export function InheritanceForm({
               className={inputClass}
             />
           </div>
-          <div className="flex flex-col gap-1">
-            <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">এনআইডি নং</label>
-            <input
-              type="text"
-              value={data.applicant.nid_no}
-              onChange={(e) => updateApplicant("nid_no", e.target.value)}
-              className={inputClass}
-            />
+          <div className="grid grid-cols-2 gap-2.5">
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">এনআইডি/আইডি নং</label>
+              <input
+                type="text"
+                value={data.applicant.nid_no}
+                onChange={(e) => updateApplicant("nid_no", e.target.value)}
+                className={inputClass}
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">ছবির URL</label>
+              <input
+                type="text"
+                value={data.applicant.photo_url || ""}
+                onChange={(e) => updateApplicant("photo_url", e.target.value)}
+                className={inputClass}
+                placeholder="/assets/image/person.webp"
+              />
+            </div>
           </div>
           <div className="grid grid-cols-2 gap-2.5">
             <div className="flex flex-col gap-1">
