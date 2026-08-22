@@ -3,7 +3,7 @@ import { CertificateData } from "@/types/certificate";
 export const ANNUAL_INCOME_INITIAL_DATA: CertificateData = {
   id: "cert_annual_income",
   slug: "annual-income",
-  titleBn: "বার্ষিক আয় প্রত্যয়ন",
+  titleBn: "বার্ষিক আয়ের প্রত্যয়ন",
   titleEn: "Annual Income Certificate",
   badgeColor: "bg-emerald-700",
   union: {
@@ -14,7 +14,7 @@ export const ANNUAL_INCOME_INITIAL_DATA: CertificateData = {
   },
   meta: {
     serial_no: "00000102",
-    cert_title: "বার্ষিক আয় প্রত্যয়ন",
+    cert_title: "বার্ষিক আয়ের প্রত্যয়ন",
     issue_date: "13-08-2026"
   },
   applicant: {
@@ -35,5 +35,5 @@ export const ANNUAL_INCOME_INITIAL_DATA: CertificateData = {
     trn_no: "10431",
     qr_url: "https://www.lgoms.org/umc_certificates.php?id=10431"
   },
-  incomeAmountBn: "১,৮০,০০০/- (এক লক্ষ আশি হাজার টাকা মাত্র)"
+  incomeAmountBn: "১,৮০,০০০/- (এক লক্ষ আশি হাজার)"
 };

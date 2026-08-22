@@ -105,7 +105,7 @@ export function AnnualIncomeSheet({ data }: AnnualIncomeSheetProps) {
             </div>
 
             <div className="meta-badge-container flex justify-center flex-1">
-              <div className="cert-badge bg-emerald-700 text-white text-[15.5px] font-bold px-[32px] py-[3.5px] rounded-md tracking-wide inline-block shadow-sm">
+              <div className="cert-badge bg-emerald-700 text-white text-[15.5px] font-bold px-[32px] py-[3.5px] rounded-sm tracking-wide inline-block shadow-sm">
                 {meta.cert_title}
               </div>
             </div>
@@ -123,10 +123,11 @@ export function AnnualIncomeSheet({ data }: AnnualIncomeSheetProps) {
               <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
                 {applicant.person_name}
               </span>{" "}
-              (এনআইডি: {applicant.nid_no}), পিতা: {applicant.father_name}, মাতা: {applicant.mother_name}, গ্রাম: {applicant.village}, ওয়ার্ড নং: {applicant.ward_no}, উপজেলা: {applicant.person_upazila}, জেলা: {applicant.person_district} অত্র ইউনিয়নের একজন স্থায়ী বাসিন্দা। আমার জানামতে ও অনুসন্ধান সাপেক্ষে তাহার সকল বৈধ উৎস হতে প্রাপ্ত সর্বমোট বার্ষিক আয়{" "}
-              <span className="font-bold text-emerald-700 text-base border-b border-dotted border-emerald-700 pb-[1px]">
+              (এনআইডি: {applicant.nid_no}), পিতা: {applicant.father_name}, মাতা: {applicant.mother_name}, গ্রাম: {applicant.village}, ওয়ার্ড নং: {applicant.ward_no}, উপজেলা: {applicant.person_upazila}, জেলা: {applicant.person_district} কে আমি ব্যক্তিগত ভাবে চিনি ও জানি। তিনি এ ইউনিয়নের স্থায়ী বাসিন্দা ও বাংলাদেশের নাগরিক। আমার জানামতে তাহার পেশা মোতাবেক বার্ষিক আয়{" "}
+              <span className="font-bold text-gray-900 text-base border-b border-dotted border-gray-600 pb-[1px]">
                 {incomeAmountBn || "১,৫০,০০০/- (এক লক্ষ পঞ্চাশ হাজার টাকা)"}
-              </span>।
+              </span>
+              <span>{" "}টাকা মাত্র।</span>
             </p>
 
             <p className="cert-closing text-[14px] font-bold text-gray-900 mt-3 pl-[16px]">
