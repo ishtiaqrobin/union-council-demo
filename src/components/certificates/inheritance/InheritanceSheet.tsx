@@ -132,11 +132,11 @@ export function InheritanceSheet({ data }: InheritanceSheetProps) {
                 <table className="w-full border-collapse border border-gray-400 text-[12.5px]">
                   <thead>
                     <tr className="bg-gray-100 font-bold text-center">
-                      <th className="border border-gray-400 px-2 py-1 w-10">ক্র: নং</th>
+                      <th className="border border-gray-400 px-2 py-1 w-12">ক্র: নং</th>
                       <th className="border border-gray-400 px-3 py-1">উত্তরাধিকারীর নাম</th>
                       <th className="border border-gray-400 px-3 py-1 w-20">সম্পর্ক</th>
                       <th className="border border-gray-400 px-3 py-1 w-20">বয়স</th>
-                      <th className="border border-gray-400 px-3 py-1">এনআইডি/জন্ম সনদ নং</th>
+                      <th className="border border-gray-400 px-3 py-1 w-40">এনআইডি/জন্ম সনদ নং</th>
                       <th className="border border-gray-400 px-2 py-1 w-16">মন্তব্য</th>
                     </tr>
                   </thead>
