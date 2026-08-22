@@ -207,13 +207,13 @@ export function InheritanceSheet({ data }: InheritanceSheetProps) {
               মন্তব্যঃ <span className="font-bold"> গ্রামঃ <span>{applicant.village}</span>, ডাকঘরঃ <span>{applicant.post_office}</span>, উপজেলাঃ <span>{applicant.person_upazila || union.upazila}</span>, জেলাঃ <span>{applicant.person_district || union.district}</span>।</span>
             </div>
 
-            {/* Heirs Table (3 columns: ক্রমিক নম্বর, গনের নাম, সম্পর্ক) */}
+            {/* Heirs Table (3 columns: ক্রমিক নম্বর, সদস্য গনের নাম, সম্পর্ক) */}
             <div className="w-full my-1 overflow-hidden">
               <table className="w-full border-collapse border border-gray-400 text-[13.5px]">
                 <thead>
                   <tr className="bg-gray-100 font-bold text-center">
                     <th className="border border-gray-400 px-2 py-1.5 w-24">ক্রমিক নম্বর</th>
-                    <th className="border border-gray-400 px-3 py-1.5 text-center">গনের নাম</th>
+                    <th className="border border-gray-400 px-3 py-1.5 text-center">সদস্য গনের নাম</th>
                     <th className="border border-gray-400 px-3 py-1.5 w-36 text-center">সম্পর্ক</th>
                   </tr>
                 </thead>
@@ -231,7 +231,7 @@ export function InheritanceSheet({ data }: InheritanceSheetProps) {
 
             {/* Heirs Table Bottom Summary Note */}
             <p className="cert-summary text-[13.5px] leading-relaxed text-gray-900 mt-2.5 text-justify font-solaiman">
-              উক্ত ব্যক্তির {sonCount > 0 ? `${toBnNo(sonCount)} জন পুত্র, ` : "জন পুত্র, "}{daughterCount > 0 ? `${toBnNo(daughterCount)} জন কন্যা,` : "জন কন্যা,"}{spouseCount > 0 ? "স্বামী/স্ত্রী, " : "স্বামী/স্ত্রী, "}{relativesCount > 0 ? `${toBnNo(relativesCount)} জন নিকট আত্মীয়সহ ` : "জন নিকট আত্মীয়সহ "}মোট-({toBnNo(totalCount)}) ({toBnWords(totalCount)}) জন আছে, ইহা ব্যতিত তাহার আর কোন নাই, {applicant.ward_no} নং ওয়ার্ড ইউপি সদস্য/সদস্যা এর সুপারিশের ভিত্তিতে প্রদান করা হইল।
+              উক্ত ব্যক্তির {sonCount > 0 ? `${toBnNo(sonCount)} জন পুত্র, ` : "জন পুত্র, "}{daughterCount > 0 ? `${toBnNo(daughterCount)} জন কন্যা,` : "জন কন্যা,"}{spouseCount > 0 ? "স্বামী/স্ত্রী, " : "স্বামী/স্ত্রী, "}{relativesCount > 0 ? `${toBnNo(relativesCount)} জন নিকট আত্মীয়সহ ` : "জন নিকট আত্মীয়সহ "}মোট-({toBnNo(totalCount)}) ({toBnWords(totalCount)}) জন আছে, ইহা ব্যতিত তাহার আর কোন উত্তরাধিকার নাই, {applicant.ward_no} নং ওয়ার্ড ইউপি সদস্য/সদস্যা এর সুপারিশের ভিত্তিতে প্রদান করা হইল।
             </p>
           </div>
 

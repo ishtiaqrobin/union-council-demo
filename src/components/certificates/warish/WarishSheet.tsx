@@ -105,7 +105,7 @@ export function WarishSheet({ data }: WarishSheetProps) {
             </div>
 
             <div className="meta-badge-container flex justify-center flex-1">
-              <div className="cert-badge bg-indigo-600 text-white text-[15.5px] font-bold px-[32px] py-[3.5px] rounded-md tracking-wide inline-block shadow-sm">
+              <div className="cert-badge bg-indigo-600 text-white text-[15.5px] font-bold px-[32px] py-[3.5px] rounded-sm tracking-wide inline-block shadow-sm">
                 {meta.cert_title}
               </div>
             </div>
@@ -119,11 +119,15 @@ export function WarishSheet({ data }: WarishSheetProps) {
           {/* Certificate Body */}
           <div className="cert-content-body mt-3 px-2 flex-1 flex flex-col justify-start">
             <p className="cert-paragraph text-[14px] leading-[2.0] text-gray-900 text-justify mb-2">
-              এই মর্মে প্রত্যয়ন করা যাচ্ছে যে,{" "}
+              এই মর্মে ওয়ারিশ সনদ দেওয়া যাইতেছে যে,{" "}
               <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
                 {applicant.person_name}
               </span>{" "}
-              (এনআইডি/জন্ম সনদ: {applicant.nid_no}), পিতা: {applicant.father_name}, মাতা: {applicant.mother_name}, গ্রাম: {applicant.village}, ওয়ার্ড নং: {applicant.ward_no}, উপজেলা: {applicant.person_upazila}, জেলা: {applicant.person_district}। তাহার ইন্তেকালের সময় নিম্নোক্ত ওয়ারিশগণকে রাখিয়া যান:
+              (আইডি নং-{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.nid_no}
+              </span>{" "}
+              ), পিতা: {applicant.father_name}, মাতা: {applicant.mother_name}, গ্রাম: {applicant.village}, ওয়ার্ড নং: {applicant.ward_no}, উপজেলা: {applicant.person_upazila}, জেলা: {applicant.person_district}। উল্লিখিত ব্যক্তির পরিবারে নিন্মলিখিত ওয়ারিশ রহিয়াছে যাদের সম্পর্ক উল্লেখ করা হলো।
             </p>
 
             {heirs && heirs.length > 0 && (
@@ -131,12 +135,11 @@ export function WarishSheet({ data }: WarishSheetProps) {
                 <table className="w-full border-collapse border border-gray-400 text-[12.5px]">
                   <thead>
                     <tr className="bg-gray-100 font-bold text-center">
-                      <th className="border border-gray-400 px-2 py-1 w-10">ক্র: নং</th>
-                      <th className="border border-gray-400 px-3 py-1">ওয়ারিশের নাম</th>
-                      <th className="border border-gray-400 px-3 py-1 w-20">সম্পর্ক</th>
+                      <th className="border border-gray-400 px-2 py-1 w-20">ক্রমিক নং</th>
+                      <th className="border border-gray-400 px-3 py-1">সদস্য গনের নাম</th>
+                      <th className="border border-gray-400 px-3 py-1">জন্ম তারিখ</th>
                       <th className="border border-gray-400 px-3 py-1 w-20">বয়স</th>
-                      <th className="border border-gray-400 px-3 py-1">এনআইডি/জন্ম সনদ নং</th>
-                      <th className="border border-gray-400 px-2 py-1 w-16">মন্তব্য</th>
+                      <th className="border border-gray-400 px-3 py-1 w-20">সম্পর্ক</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -144,10 +147,9 @@ export function WarishSheet({ data }: WarishSheetProps) {
                       <tr key={item.id || idx} className="text-center">
                         <td className="border border-gray-400 px-2 py-1">{idx + 1}</td>
                         <td className="border border-gray-400 px-3 py-1 font-bold text-left">{item.name}</td>
-                        <td className="border border-gray-400 px-3 py-1">{item.relation}</td>
                         <td className="border border-gray-400 px-3 py-1">{item.age_or_dob}</td>
-                        <td className="border border-gray-400 px-3 py-1">{item.nid_or_bc}</td>
-                        <td className="border border-gray-400 px-2 py-1">{item.comments || "জীবিত"}</td>
+                        <td className="border border-gray-400 px-3 py-1">{item.age_or_dob}</td>
+                        <td className="border border-gray-400 px-3 py-1">{item.relation}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -155,9 +157,10 @@ export function WarishSheet({ data }: WarishSheetProps) {
               </div>
             )}
 
-            <p className="cert-closing text-[13.5px] font-bold text-gray-900 mt-2 pl-[16px]">
-              আমি ওয়ারিশগণের সুস্বাস্থ্য ও সর্বাঙ্গীন মঙ্গল কামনা করি।
-            </p>
+            {/* Heirs Table Bottom Summary Note */}
+            {/* <p className="cert-summary text-[13.5px] leading-relaxed text-gray-900 mt-2.5 text-justify font-solaiman">
+              উক্ত ব্যক্তির {sonCount > 0 ? `${toBnNo(sonCount)} জন পুত্র, ` : "জন পুত্র, "}{daughterCount > 0 ? `${toBnNo(daughterCount)} জন কন্যা,` : "জন কন্যা,"}{spouseCount > 0 ? "স্বামী/স্ত্রী, " : "স্বামী/স্ত্রী, "}{relativesCount > 0 ? `${toBnNo(relativesCount)} জন নিকট আত্মীয়সহ ` : "জন নিকট আত্মীয়সহ "}মোট-({toBnNo(totalCount)}) ({toBnWords(totalCount)}) জন আছে, ইহা ব্যতিত তাহার আর কোন উত্তরাধিকার নাই, {applicant.ward_no} নং ওয়ার্ড ইউপি সদস্য/সদস্যা এর সুপারিশের ভিত্তিতে প্রদান করা হইল।
+            </p> */}
           </div>
 
           {/* Footer Signatures */}
@@ -174,13 +177,16 @@ export function WarishSheet({ data }: WarishSheetProps) {
             <div className="signatory-box text-center min-w-[200px] pb-[2px]">
               <div className="sign-space h-[32px]" />
               <div className="sign-name text-[14.5px] font-bold text-black leading-tight">{signatory.signatory_name}</div>
-              <div className="sign-role-sub text-[12.5px] font-semibold text-gray-800 leading-tight">অনুমোদনকারী/প্রদানকারী</div>
               <div className="sign-designation text-[12.5px] font-semibold text-gray-800 leading-tight">{signatory.signatory_role}</div>
               <div className="sign-office text-[12.5px] font-semibold text-gray-800 leading-tight">{union.up_name}</div>
               <div className="sign-location text-[12.5px] font-semibold text-gray-800 leading-tight">{union.upazila}, {union.district}।</div>
             </div>
           </div>
 
+          {/* Bottom Tagline Ribbon (Under Chairman Signatory Info) */}
+          <div className="mt-2 text-center text-[14px] text-gray-900 bg-gray-50/90 py-0.5 border border-gray-200 rounded">
+            অল্প সময়ে সল্প খরচে, সঠিক বিচার পেতে, চল যাই গ্রামআদালতে* সময়মত জন্ম ও মৃত্যু নিবন্ধন করুন।
+          </div>
         </div>
       </div>
 
