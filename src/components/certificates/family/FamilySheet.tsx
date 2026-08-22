@@ -125,7 +125,19 @@ export function FamilySheet({ data }: FamilySheetProps) {
               </div>
             </div>
 
-            <div className="header-right-spacer w-[76px] h-[76px]" />
+            {/* Top Right Logo AND Photo Image side by side */}
+            <div className="flex items-center justify-end">
+              <div className="owner-photo-box w-[68px] h-[78px] border border-slate-400 bg-white p-0.5 shadow-sm flex items-center justify-center overflow-hidden">
+                <Image
+                  src={applicant.photo_url || "/assets/image/person.webp"}
+                  alt="আবেদনকারীর ছবি"
+                  width={64}
+                  height={74}
+                  className="w-full h-full object-cover text-xs"
+                  unoptimized
+                />
+              </div>
+            </div>
           </div>
 
           {/* Metadata Ribbon */}
@@ -154,11 +166,11 @@ export function FamilySheet({ data }: FamilySheetProps) {
               <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.person_name}
               </span>{" "}
-              ({applicant.nid_no}), পিতা:{" "}
+              (আইডি নং:{" "}{applicant.nid_no}), পিতা:{" "}
               <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.father_name}
               </span>
-              ,মাাতাঃ{" "}
+              , মাতাঃ{" "}
               <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.mother_name}
               </span>
@@ -166,11 +178,11 @@ export function FamilySheet({ data }: FamilySheetProps) {
               <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.village}
               </span>
-              ,ওয়ার্ডঃ{" "}
+              , ওয়ার্ডঃ{" "}
               <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.ward_no}
               </span>
-              ,বাসা নং{" "}
+              , বাসা নং{" "}
               <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.house_no}
               </span>

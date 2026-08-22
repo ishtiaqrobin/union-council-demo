@@ -7,7 +7,7 @@ export const FAMILY_INITIAL_DATA: CertificateData = {
   titleEn: "Family Certificate",
   badgeColor: "bg-red-800",
   union: {
-    up_name: "০৩নং আমঝুপি ইউনিয়ন পরিষদ",
+    up_name: "০৩ নং আমঝুপি ইউনিয়ন পরিষদ",
     upazila: "মেহেরপুর সদর",
     district: "মেহেরপুর",
     website: "www.lgoms.org"

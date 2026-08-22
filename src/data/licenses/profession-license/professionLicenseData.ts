@@ -7,7 +7,7 @@ export const PROFESSION_LICENSE_INITIAL_DATA: ProfessionLicenseData = {
   titleEn: "Profession & Occupation License",
   fiscalYearBn: "২০২৫-২০২৬",
   union: {
-    up_name: "০৩নং আমঝুপি ইউনিয়ন পরিষদ",
+    up_name: "০৩ নং আমঝুপি ইউনিয়ন পরিষদ",
     upazila: "মেহেরপুর সদর",
     district: "মেহেরপুর",
     website: "www.lgoms.org",

@@ -7,7 +7,7 @@ export const UNMARRIED_INITIAL_DATA: CertificateData = {
   titleEn: "Unmarried Certificate",
   badgeColor: "bg-emerald-600",
   union: {
-    up_name: "০৩নং আমঝুপি ইউনিয়ন পরিষদ",
+    up_name: "০৩ নং আমঝুপি ইউনিয়ন পরিষদ",
     upazila: "মেহেরপুর সদর",
     district: "মেহেরপুর",
     website: "www.lgoms.org"

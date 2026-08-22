@@ -7,7 +7,7 @@ export const LANDLESS_INITIAL_DATA: CertificateData = {
   titleEn: "Landless Certificate",
   badgeColor: "bg-cyan-700",
   union: {
-    up_name: "০৩নং আমঝুপি ইউনিয়ন পরিষদ",
+    up_name: "০৩ নং আমঝুপি ইউনিয়ন পরিষদ",
     upazila: "মেহেরপুর সদর",
     district: "মেহেরপুর",
     website: "www.lgoms.org"

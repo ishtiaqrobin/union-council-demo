@@ -7,7 +7,7 @@ export const ANNUAL_INCOME_INITIAL_DATA: CertificateData = {
   titleEn: "Annual Income Certificate",
   badgeColor: "bg-emerald-700",
   union: {
-    up_name: "০৩নং আমঝুপি ইউনিয়ন পরিষদ",
+    up_name: "০৩ নং আমঝুপি ইউনিয়ন পরিষদ",
     upazila: "মেহেরপুর সদর",
     district: "মেহেরপুর",
     website: "www.lgoms.org"
