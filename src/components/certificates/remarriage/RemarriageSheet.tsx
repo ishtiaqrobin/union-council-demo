@@ -122,12 +122,12 @@ export function RemarriageSheet({ data }: RemarriageSheetProps) {
               এই মর্মে প্রত্যয়ন করা যাচ্ছে যে,{" "}
               <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
                 {applicant.person_name}
-              </span>{" "}
-              ,(আইডি:
+              </span>
+              , (আইডি:{" "}
               <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
                 {applicant.nid_no}
               </span>
-              ), স্বামী:
+              ), স্বামী:{" "}
               <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
                 {applicant.spouse_name || "স্বামীর নাম"}
               </span>
@@ -139,32 +139,32 @@ export function RemarriageSheet({ data }: RemarriageSheetProps) {
               <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
                 {applicant.village}
               </span>
-              ,বাসা নং:{" "}
+              , বাসা নং:{" "}
               <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
                 {applicant.house_no}
               </span>{" "}
               ওয়ার্ড নং:{" "}
               <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
-                {applicant.ward_no}
+                {applicant.ward_no},
               </span>{" "}
               ডাকঘর:{" "}
               <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
-                {applicant.post_office}
+                {applicant.post_office},
               </span>{" "}
               উপজেলা:{" "}
               <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
-                {applicant.person_upazila || union.upazila}
+                {applicant.person_upazila || union.upazila},
               </span>{" "}
               জেলা:{" "}
               <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
                 {applicant.person_district || union.district}
               </span>{" "}
               এর জন্মনিবন্ধন সনদ/জাতীয় পরিচয়পত্র যাচাই করে{" "}
-              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="">
                 {applicant.ward_no}
               </span>{" "}
               নং ওয়ার্ডের ইউপি সদস্য এর তথ্যমতে জানা যায় যে, তিনি অত্র ইউনিয়নের{" "}
-              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="">
                 {applicant.ward_no}
               </span>{" "}
               নং ওয়ার্ডের{" "}
