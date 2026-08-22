@@ -10,7 +10,7 @@ interface FamilySheetProps {
 }
 
 export function FamilySheet({ data }: FamilySheetProps) {
-  const { union, meta, applicant, signatory, heirs } = data;
+  const { union, meta, applicant, signatory, heirs = [] } = data;
   const [printDateTime, setPrintDateTime] = useState("2/12/26, 10:30 AM");
 
   useEffect(() => {
@@ -26,6 +26,37 @@ export function FamilySheet({ data }: FamilySheetProps) {
     setPrintDateTime(`${month}/${day}/${year}, ${hours}:${minutes} ${ampm}`);
   }, []);
 
+  const toBnNo = (num: number) => {
+    const bnDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+    return String(num).padStart(2, "0").split("").map((d) => bnDigits[parseInt(d)] || d).join("");
+  };
+
+  const toBnWords = (num: number) => {
+    const wordsMap: Record<number, string> = {
+      1: "এক",
+      2: "দুই",
+      3: "তিন",
+      4: "চার",
+      5: "পাঁচ",
+      6: "ছয়",
+      7: "সাত",
+      8: "আট",
+      9: "নয়",
+      10: "দশ",
+    };
+    return wordsMap[num] || String(num);
+  };
+
+  const sonCount = heirs.filter((h) => h.relation.includes("পুত্র")).length;
+  const daughterCount = heirs.filter((h) => h.relation.includes("কন্যা")).length;
+  const spouseCount = heirs.filter((h) => h.relation.includes("স্ত্রী") || h.relation.includes("স্বামী")).length;
+  const fatherCount = heirs.filter((h) => h.relation.includes("পিতা")).length;
+  const motherCount = heirs.filter((h) => h.relation.includes("মাতা")).length;
+  const brotherCount = heirs.filter((h) => h.relation.includes("ভাই")).length;
+  const sisterCount = heirs.filter((h) => h.relation.includes("বোন")).length;
+  const selfCount = heirs.filter((h) => h.relation.includes("নিজ")).length;
+  const totalCount = heirs.length;
+
   return (
     <div
       id="certificateSheet"
@@ -40,22 +71,22 @@ export function FamilySheet({ data }: FamilySheetProps) {
         }
       `}</style>
       {/* Top Header Bar (Outside thick border box) */}
-      <div className="flex justify-between items-center text-[12px] text-gray-800 font-sans px-1 pb-1">
-        <div className="w-[180px] text-left font-normal text-slate-800">
+      <div className="flex justify-between items-center text-[11px] text-gray-800 font-sans px-1 pb-1">
+        <div className="w-[150px] text-left font-normal text-slate-800">
           {printDateTime}
         </div>
         <div className="font-bold text-slate-900 text-[13px] font-solaiman">
           {meta.cert_title || "পারিবারিক সনদ"}
         </div>
-        <div className="w-[180px]" />
+        <div className="w-[150px]" />
       </div>
 
       {/* Main Certificate Box with Outer Padding and Thick Gradient Border */}
-      <div className="flex-1 relative p-3.5 my-3 mx-2 bg-gradient-to-br from-blue-500 via-indigo-400 to-blue-500 shadow-md">
-        <div className="certificate-inner-frame w-full h-full bg-white pt-5 px-12 pb-4 relative flex flex-col justify-between z-10">
+      <div className="flex-1 relative p-3.5 my-3 mx-2 bg-gradient-to-br from-blue-600 via-indigo-600 to-blue-600 shadow-md flex flex-col">
+        <div className="certificate-inner-frame w-full h-full bg-white pt-4 px-6 pb-3 relative flex flex-col justify-between z-10 flex-1 border border-amber-200">
 
           {/* Background Watermark */}
-          <div className="watermark-container absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] h-[360px] pointer-events-none -z-10 flex justify-center items-center">
+          <div className="watermark-container absolute top-[52%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] h-[360px] pointer-events-none -z-10 flex justify-center items-center">
             <Image
               src="/assets/watermark/watermark.webp"
               alt="Watermark"
@@ -100,13 +131,13 @@ export function FamilySheet({ data }: FamilySheetProps) {
           {/* Metadata Ribbon */}
           <div className="cert-meta-ribbon flex justify-between items-center mt-[10px] px-1">
             <div className="meta-item meta-serial text-[14px] text-[#121212]">
-              <span className="lbl font-semibold mr-1.5">ক্রমিক নং:</span>
+              <span className="lbl font-semibold mr-1.5">সনদ নং:</span>
               <span className="val font-bold font-siliguri tracking-wide">{meta.serial_no}</span>
             </div>
 
             <div className="meta-badge-container flex justify-center flex-1">
-              <div className="cert-badge bg-purple-600 text-white text-[15.5px] font-bold px-[32px] py-[3.5px] rounded-md tracking-wide inline-block shadow-sm">
-                {meta.cert_title}
+              <div className="cert-badge bg-red-900 text-white text-[16px] font-black px-[36px] py-[3.5px] rounded-sm tracking-wider inline-block shadow-md">
+                {meta.cert_title || "পারিবারিক সনদ"}
               </div>
             </div>
 
@@ -116,49 +147,80 @@ export function FamilySheet({ data }: FamilySheetProps) {
             </div>
           </div>
 
-          {/* Certificate Body */}
-          <div className="cert-content-body mt-3 px-2 flex-1 flex flex-col justify-start">
-            <p className="cert-paragraph text-[14px] leading-[2.0] text-gray-900 text-justify mb-2">
-              এই মর্মে পারিবারিক সনদ দেওয়া যাইতেছে যে,{" "}
-              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+          {/* Certificate Content Body */}
+          <div className="cert-content-body mt-3 px-1 flex-1 flex flex-col justify-start">
+            <p className="cert-paragraph text-[14px] leading-[2.1] text-gray-900 text-justify mb-2">
+              এই মর্মে পারিবারিক সনদ দেওয়া হইতেছে যে,{" "}
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.person_name}
               </span>{" "}
-              (এনআইডি: {applicant.nid_no}), পিতা: {applicant.father_name}, মাতা: {applicant.mother_name}, গ্রাম: {applicant.village}, ওয়ার্ড নং: {applicant.ward_no}, উপজেলা: {applicant.person_upazila}, জেলা: {applicant.person_district}, উল্লিখিত ব্যক্তির পরিবারে নিন্মলিখিত সদস্য রহিয়াছে যাদের সম্পর্ক উল্লেখ করা হলো।
+              ({applicant.nid_no}), পিতা:{" "}
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+                {applicant.father_name}
+              </span>
+              ,মাাতাঃ{" "}
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+                {applicant.mother_name}
+              </span>
+              , গ্রাম:{" "}
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+                {applicant.village}
+              </span>
+              ,ওয়ার্ডঃ{" "}
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+                {applicant.ward_no}
+              </span>
+              ,বাসা নং{" "}
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+                {applicant.house_no}
+              </span>
+              , ইউনিয়ন:{" "}
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+                {union.up_name}
+              </span>
+              , উপজেলা:{" "}
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+                {union.upazila}
+              </span>
+              , জেলা:{" "}
+              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+                {union.district}
+              </span>
+              , উল্লেখিত ব্যক্তির পরিবারে নিম্নলিখিত সদস্য রহিয়াছে যাদের সম্পর্ক উল্লেখ করা হলো।
             </p>
 
-            {heirs && heirs.length > 0 && (
-              <div className="w-full my-1">
-                <table className="w-full border-collapse border border-gray-400 text-[12.5px]">
-                  <thead>
-                    <tr className="bg-gray-100 font-bold text-center">
-                      <th className="border border-gray-400 px-2 py-1 w-20">ক্রমিক নং</th>
-                      <th className="border border-gray-400 px-3 py-1">সদস্য গনের নাম</th>
-                      <th className="border border-gray-400 px-3 py-1">জন্ম তারিখ</th>
-                      <th className="border border-gray-400 px-3 py-1 w-20">বয়স</th>
-                      <th className="border border-gray-400 px-3 py-1 w-20">সম্পর্ক</th>
-                      <th className="border border-gray-400 px-3 py-1">এনআইডি/জন্ম সনদ নং</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {heirs.map((item, idx) => (
-                      <tr key={item.id || idx} className="text-center">
-                        <td className="border border-gray-400 px-2 py-1">{idx + 1}</td>
-                        <td className="border border-gray-400 px-3 py-1 font-bold text-left">{item.name}</td>
-                        <td className="border border-gray-400 px-3 py-1">{item.relation}</td>
-                        <td className="border border-gray-400 px-3 py-1">{item.age_or_dob}</td>
-                        <td className="border border-gray-400 px-3 py-1">{item.relation}</td>
-                        <td className="border border-gray-400 px-3 py-1">{item.nid_or_bc}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
 
-            {/* Heirs Table Bottom Summary Note */}
-            {/* <p className="cert-summary text-[13.5px] leading-relaxed text-gray-900 mt-2.5 text-justify font-solaiman">
-              উক্ত ব্যক্তির {sonCount > 0 ? `${toBnNo(sonCount)} জন পুত্র, ` : "জন পুত্র, "}{daughterCount > 0 ? `${toBnNo(daughterCount)} জন কন্যা,` : "জন কন্যা,"}{spouseCount > 0 ? "স্বামী/স্ত্রী, " : "স্বামী/স্ত্রী, "}{relativesCount > 0 ? `${toBnNo(relativesCount)} জন নিকট আত্মীয়সহ ` : "জন নিকট আত্মীয়সহ "}মোট-({toBnNo(totalCount)}) ({toBnWords(totalCount)}) জন আছে, ইহা ব্যতিত তাহার আর কোন উত্তরাধিকার নাই, {applicant.ward_no} নং ওয়ার্ড ইউপি সদস্য/সদস্যা এর সুপারিশের ভিত্তিতে প্রদান করা হইল।
-            </p> */}
+
+            {/* Family Table (5 columns: ক্রম, সদস্যগণের নাম, জন্ম তারিখ, বয়স, সম্পর্ক) */}
+            <div className="w-full my-1 overflow-hidden">
+              <table className="w-full border-collapse border border-gray-400 text-[14px]">
+                <thead>
+                  <tr className="bg-gray-100 font-bold text-center">
+                    <th className="border border-gray-400 px-2 py-1.5 w-20">ক্রমিক নং</th>
+                    <th className="border border-gray-400 px-3 py-1.5 text-center">সদস্য গণের নাম</th>
+                    <th className="border border-gray-400 px-3 py-1.5 w-28 text-center">জন্ম তারিখ</th>
+                    <th className="border border-gray-400 px-2 py-1.5 w-20 text-center">বয়স</th>
+                    <th className="border border-gray-400 px-3 py-1.5 w-24 text-center">সম্পর্ক</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {heirs.map((item, idx) => (
+                    <tr key={item.id || idx} className="text-center">
+                      <td className="border border-gray-400 px-2 py-1 font-bold">{toBnNo(idx + 1)}</td>
+                      <td className="border border-gray-400 px-3 py-1 text-left font-bold">{item.name}</td>
+                      <td className="border border-gray-400 px-3 py-1 font-semibold">{item.dob || item.age_or_dob}</td>
+                      <td className="border border-gray-400 px-2 py-1 font-semibold">{item.age_or_dob}</td>
+                      <td className="border border-gray-400 px-3 py-1 font-semibold">{item.relation}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Family Table Bottom Summary Note */}
+            <p className="cert-summary text-[13.5px] leading-relaxed text-gray-900 mt-2.5 text-justify font-solaiman">
+              উল্লেখিত ব্যক্তির {toBnNo(sonCount)} জন পুত্র,{toBnNo(daughterCount)} জন কন্যা,{toBnNo(spouseCount)} জন স্বামী/স্ত্রী, {toBnNo(fatherCount)} জন পিতা,{toBnNo(motherCount)} জন মাতা,{toBnNo(brotherCount)} জন ভাই,{toBnNo(sisterCount)} জন বোন, {toBnNo(selfCount)} নিজসহ মোট-{toBnNo(totalCount)} ({toBnWords(totalCount)}) জন সদস্য আছে, ইহা ব্যতিত তাহার আর কোন পারিবারিক সদস্য নাই, {applicant.ward_no} নং ওয়ার্ড ইউপি সদস্য/সদস্যা এর সুপারিশের ভিত্তিতে প্রদান করা হইল।
+            </p>
           </div>
 
           {/* Footer Signatures */}
@@ -175,7 +237,6 @@ export function FamilySheet({ data }: FamilySheetProps) {
             <div className="signatory-box text-center min-w-[200px] pb-[2px]">
               <div className="sign-space h-[32px]" />
               <div className="sign-name text-[14.5px] font-bold text-black leading-tight">{signatory.signatory_name}</div>
-              <div className="sign-role-sub text-[12.5px] font-semibold text-gray-800 leading-tight">অনুমোদনকারী/প্রদানকারী</div>
               <div className="sign-designation text-[12.5px] font-semibold text-gray-800 leading-tight">{signatory.signatory_role}</div>
               <div className="sign-office text-[12.5px] font-semibold text-gray-800 leading-tight">{union.up_name}</div>
               <div className="sign-location text-[12.5px] font-semibold text-gray-800 leading-tight">{union.upazila}, {union.district}।</div>

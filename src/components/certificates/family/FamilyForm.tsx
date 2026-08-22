@@ -50,6 +50,7 @@ export function FamilyForm({
       id: String(Date.now()),
       name: "",
       relation: "",
+      dob: "",
       age_or_dob: "",
       nid_or_bc: ""
     };
@@ -61,8 +62,8 @@ export function FamilyForm({
     onChange({ ...data, heirs: data.heirs.filter((_, i) => i !== index) });
   };
 
-  const inputClass = "px-3 py-2 bg-slate-50 dark:bg-slate-800/90 border border-slate-300 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-slate-100  outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/80 transition-colors";
-  const smallInputClass = "px-2.5 py-1.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-slate-100  outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/80 transition-colors";
+  const inputClass = "px-3 py-2 bg-slate-50 dark:bg-slate-800/90 border border-slate-300 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-slate-100 outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/80 transition-colors";
+  const smallInputClass = "px-2.5 py-1.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-xs text-slate-900 dark:text-slate-100 outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/80 transition-colors";
 
   return (
     <aside className="no-print edit-drawer w-full sm:w-[420px] bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 shadow-2xl h-[calc(100vh-62px)] overflow-y-auto sticky top-[62px] z-[500] flex flex-col font-siliguri transition-colors duration-200">
@@ -90,6 +91,7 @@ export function FamilyForm({
       </div>
 
       <div className="p-5 flex flex-col gap-6 overflow-y-auto">
+        {/* Union Info */}
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-2 text-xs font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider pb-1 border-b border-slate-200 dark:border-slate-800">
             <Building2 className="w-4 h-4" /> পরিষদের তথ্য
@@ -98,15 +100,26 @@ export function FamilyForm({
             <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">ইউনিয়ন পরিষদ</label>
             <input type="text" value={data.union.up_name} onChange={(e) => updateUnion("up_name", e.target.value)} className={inputClass} />
           </div>
+          <div className="grid grid-cols-2 gap-2.5">
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">উপজেলা</label>
+              <input type="text" value={data.union.upazila} onChange={(e) => updateUnion("upazila", e.target.value)} className={inputClass} />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">জেলা</label>
+              <input type="text" value={data.union.district} onChange={(e) => updateUnion("district", e.target.value)} className={inputClass} />
+            </div>
+          </div>
         </div>
 
+        {/* Certificate Metadata */}
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-2 text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider pb-1 border-b border-slate-200 dark:border-slate-800">
             <FileText className="w-4 h-4" /> সনদের বিবরণ
           </div>
           <div className="grid grid-cols-2 gap-2.5">
             <div className="flex flex-col gap-1">
-              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">ক্রমিক নং</label>
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">সনদ নং</label>
               <input type="text" value={data.meta.serial_no} onChange={(e) => updateMeta("serial_no", e.target.value)} className={inputClass} />
             </div>
             <div className="flex flex-col gap-1">
@@ -116,20 +129,59 @@ export function FamilyForm({
           </div>
         </div>
 
+        {/* Applicant Details */}
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-2 text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider pb-1 border-b border-slate-200 dark:border-slate-800">
-            <User className="w-4 h-4" /> গৃহপ্রধানের তথ্য
+            <User className="w-4 h-4" /> আবেদনকারীর/গৃহপ্রধানের তথ্য
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">গৃহপ্রধানের নাম</label>
+            <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">নাম</label>
             <input type="text" value={data.applicant.person_name} onChange={(e) => updateApplicant("person_name", e.target.value)} className={inputClass} />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">এনআইডি নং</label>
+            <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">এনআইডি/জন্ম সনদ নং</label>
             <input type="text" value={data.applicant.nid_no} onChange={(e) => updateApplicant("nid_no", e.target.value)} className={inputClass} />
+          </div>
+          <div className="grid grid-cols-2 gap-2.5">
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">পিতার নাম</label>
+              <input type="text" value={data.applicant.father_name} onChange={(e) => updateApplicant("father_name", e.target.value)} className={inputClass} />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">মাতার নাম</label>
+              <input type="text" value={data.applicant.mother_name} onChange={(e) => updateApplicant("mother_name", e.target.value)} className={inputClass} />
+            </div>
           </div>
         </div>
 
+        {/* Address */}
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center gap-2 text-xs font-bold text-teal-600 dark:text-teal-400 uppercase tracking-wider pb-1 border-b border-slate-200 dark:border-slate-800">
+            <MapPin className="w-4 h-4" /> ঠিকানা
+          </div>
+          <div className="grid grid-cols-2 gap-2.5">
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">গ্রাম</label>
+              <input type="text" value={data.applicant.village} onChange={(e) => updateApplicant("village", e.target.value)} className={inputClass} />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">ওয়ার্ড নং</label>
+              <input type="text" value={data.applicant.ward_no} onChange={(e) => updateApplicant("ward_no", e.target.value)} className={inputClass} />
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-2.5">
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">বাসা নং</label>
+              <input type="text" value={data.applicant.house_no} onChange={(e) => updateApplicant("house_no", e.target.value)} className={inputClass} />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">ডাকঘর</label>
+              <input type="text" value={data.applicant.post_office} onChange={(e) => updateApplicant("post_office", e.target.value)} className={inputClass} />
+            </div>
+          </div>
+        </div>
+
+        {/* Family Members List */}
         <div className="flex flex-col gap-3">
           <div className="flex items-center justify-between pb-1 border-b border-slate-200 dark:border-slate-800">
             <div className="flex items-center gap-2 text-xs font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider">
@@ -152,7 +204,7 @@ export function FamilyForm({
                 <div className="grid grid-cols-2 gap-2">
                   <input
                     type="text"
-                    placeholder="নাম"
+                    placeholder="সদস্যগণের নাম"
                     value={member.name}
                     onChange={(e) => handleMemberChange(idx, "name", e.target.value)}
                     className={smallInputClass}
@@ -168,16 +220,16 @@ export function FamilyForm({
                 <div className="grid grid-cols-2 gap-2">
                   <input
                     type="text"
-                    placeholder="বয়স"
-                    value={member.age_or_dob}
-                    onChange={(e) => handleMemberChange(idx, "age_or_dob", e.target.value)}
+                    placeholder="জন্ম তারিখ (DD-MM-YYYY)"
+                    value={member.dob || ""}
+                    onChange={(e) => handleMemberChange(idx, "dob", e.target.value)}
                     className={smallInputClass}
                   />
                   <input
                     type="text"
-                    placeholder="NID / জন্ম সনদ"
-                    value={member.nid_or_bc}
-                    onChange={(e) => handleMemberChange(idx, "nid_or_bc", e.target.value)}
+                    placeholder="বয়স (e.g. ৩৫)"
+                    value={member.age_or_dob}
+                    onChange={(e) => handleMemberChange(idx, "age_or_dob", e.target.value)}
                     className={smallInputClass}
                   />
                 </div>
@@ -186,6 +238,7 @@ export function FamilyForm({
           </div>
         </div>
 
+        {/* Signatory */}
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-2 text-xs font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider pb-1 border-b border-slate-200 dark:border-slate-800">
             <Info className="w-4 h-4" /> স্বাক্ষরকারী
