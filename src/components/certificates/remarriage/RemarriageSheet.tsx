@@ -10,7 +10,7 @@ interface RemarriageSheetProps {
 }
 
 export function RemarriageSheet({ data }: RemarriageSheetProps) {
-  const { union, meta, applicant, signatory, remarriageReasonBn } = data;
+  const { union, meta, applicant, signatory } = data;
   const [printDateTime, setPrintDateTime] = useState("2/12/26, 10:30 AM");
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export function RemarriageSheet({ data }: RemarriageSheetProps) {
           {printDateTime}
         </div>
         <div className="font-bold text-slate-900 text-[13px] font-solaiman">
-          {meta.cert_title || "পুনঃবিবাহ সনদ"}
+          {meta.cert_title || "পূনঃবিবাহ না হওয়া সনদ"}
         </div>
         <div className="w-[180px]" />
       </div>
@@ -105,8 +105,8 @@ export function RemarriageSheet({ data }: RemarriageSheetProps) {
             </div>
 
             <div className="meta-badge-container flex justify-center flex-1">
-              <div className="cert-badge bg-amber-600 text-white text-[15.5px] font-bold px-[32px] py-[3.5px] rounded-md tracking-wide inline-block shadow-sm">
-                {meta.cert_title}
+              <div className="cert-badge bg-green-700 text-white text-[16px] font-bold px-[32px] py-[3.5px] rounded-sm tracking-wide inline-block shadow-sm">
+                {meta.cert_title || "পূনবিবাহ না হওয়া সনদ"}
               </div>
             </div>
 
@@ -119,11 +119,63 @@ export function RemarriageSheet({ data }: RemarriageSheetProps) {
           {/* Certificate Content Body */}
           <div className="cert-content-body mt-4 px-2 flex-1 flex flex-col justify-start">
             <p className="cert-paragraph text-[14.5px] leading-[2.2] text-gray-900 text-justify">
-              এই মর্মে প্রত্যয়ন করা যাচ্ছে যে,{" "}
+              এই মর্মে প্রত্যয়ন করা যাচ্ছে যে,{" "}
               <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
                 {applicant.person_name}
               </span>{" "}
-              (এনআইডি: {applicant.nid_no}), পিতা: {applicant.father_name}, মাতা: {applicant.mother_name}, স্বামী: {applicant.spouse_name || "স্বামীর নাম"}, গ্রাম: {applicant.village}, ওয়ার্ড নং: {applicant.ward_no}, উপজেলা: {applicant.person_upazila}, জেলা: {applicant.person_district}। {remarriageReasonBn || "তিনি স্বীয় সম্মতিতে ও পারিবারিকভাবে পুনঃবিবাহ বন্ধনে আবদ্ধ হইয়াছেন।"}
+              ,(আইডি:
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.nid_no}
+              </span>
+              ), স্বামী:
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.spouse_name || "স্বামীর নাম"}
+              </span>
+              , মাতা:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.mother_name}
+              </span>
+              , গ্রাম:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.village}
+              </span>
+              ,বাসা নং:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.house_no}
+              </span>{" "}
+              ওয়ার্ড নং:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.ward_no}
+              </span>{" "}
+              ডাকঘর:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.post_office}
+              </span>{" "}
+              উপজেলা:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.person_upazila || union.upazila}
+              </span>{" "}
+              জেলা:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.person_district || union.district}
+              </span>{" "}
+              এর জন্মনিবন্ধন সনদ/জাতীয় পরিচয়পত্র যাচাই করে{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.ward_no}
+              </span>{" "}
+              নং ওয়ার্ডের ইউপি সদস্য এর তথ্যমতে জানা যায় যে, তিনি অত্র ইউনিয়নের{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.ward_no}
+              </span>{" "}
+              নং ওয়ার্ডের{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.village}
+              </span>{" "}
+              গ্রামের স্থায়ী বাসিন্দা এবং জন্ম সূত্রে বাংলাদেশের নাগরিক। আমার জানামতে{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.person_name}
+              </span>{" "}
+              পূনরায় বিবাহ বন্ধনে আবদ্ধ হননি।
             </p>
 
             <p className="cert-closing text-[14px] font-bold text-gray-900 mt-3 pl-[16px]">
@@ -145,11 +197,15 @@ export function RemarriageSheet({ data }: RemarriageSheetProps) {
             <div className="signatory-box text-center min-w-[200px] pb-[2px]">
               <div className="sign-space h-[32px]" />
               <div className="sign-name text-[14.5px] font-bold text-black leading-tight">{signatory.signatory_name}</div>
-              <div className="sign-role-sub text-[12.5px] font-semibold text-gray-800 leading-tight">অনুমোদনকারী/প্রদানকারী</div>
               <div className="sign-designation text-[12.5px] font-semibold text-gray-800 leading-tight">{signatory.signatory_role}</div>
               <div className="sign-office text-[12.5px] font-semibold text-gray-800 leading-tight">{union.up_name}</div>
               <div className="sign-location text-[12.5px] font-semibold text-gray-800 leading-tight">{union.upazila}, {union.district}।</div>
             </div>
+          </div>
+
+          {/* Bottom Tagline Ribbon (Under Chairman Signatory Info) */}
+          <div className="mt-4 mb-2 text-center text-[14px] font-bold text-gray-900">
+            ইউপি কর পরিশোধ করুন* অল্প সময়ে সল্প খরচে, সঠিক বিচার পেতে, চল যাই গ্রামআদালতে* সময়মত জন্ম ও মৃত্যু নিবন্ধন করুন।
           </div>
 
         </div>

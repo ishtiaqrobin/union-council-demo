@@ -5,36 +5,36 @@ export const REMARRIAGE_INITIAL_DATA: CertificateData = {
   slug: "remarriage",
   titleBn: "পূনঃবিবাহ সনদ",
   titleEn: "Remarriage Certificate",
-  badgeColor: "bg-amber-600",
+  badgeColor: "bg-green-700",
   union: {
-    up_name: "০৩ নং আমঝুপি ইউনিয়ন পরিষদ",
-    upazila: "মেহেরপুর সদর",
-    district: "মেহেরপুর",
+    up_name: "০৮ নং বসন্তপুর ইউনিয়ন পরিষদ",
+    upazila: "রাজবাড়ী সদর",
+    district: "রাজবাড়ী",
     website: "www.lgoms.org"
   },
   meta: {
-    serial_no: "00000078",
-    cert_title: "পূনঃবিবাহ সনদ",
-    issue_date: "05-08-2026"
+    serial_no: "00000008",
+    cert_title: "পূনবিবাহ না হওয়া সনদ",
+    issue_date: "09-08-2026"
   },
   applicant: {
-    person_name: "মোছাঃ রোকেয়া সুলতানা",
-    nid_no: "8790654321",
-    father_name: "মোঃ আনিসুর রহমান",
-    mother_name: "মোছাঃ ছালেহা বেগম",
-    spouse_name: "মোঃ কামরুল হাসান",
-    village: "আমঝুপি পশ্চিমপাড়া",
-    house_no: "০৫",
-    ward_no: "06",
-    post_office: "আমঝুপি",
-    person_upazila: "মেহেরপুর সদর",
-    person_district: "মেহেরপুর"
+    person_name: "মোছাঃ জুলেখা বেগম",
+    nid_no: "3253480820",
+    father_name: "মৃত- মোঃ ফজের আলী মোল্লা",
+    mother_name: "হাজেরা বেগম",
+    spouse_name: "মৃত- মোঃ ফজের আলী মোল্লা",
+    village: "মহারাজপুর",
+    house_no: "00-00-0000-00",
+    ward_no: "০৪",
+    post_office: "উদয়পুর-৭৮০০",
+    person_upazila: "রাজবাড়ী সদর",
+    person_district: "রাজবাড়ী",
+    photo_url: "/assets/image/person.webp"
   },
   signatory: {
-    signatory_name: "মোঃ সিরাজুল ইসলাম",
-    signatory_role: "চেয়ারম্যান(ভারপ্রাপ্ত)",
-    trn_no: "10428",
-    qr_url: "https://www.lgoms.org/umc_certificates.php?id=10428"
-  },
-  remarriageReasonBn: "প্রথম স্বামীর ইন্তেকালের পর পারিবারিকভাবে গত ১০-০১-২০২৫ ইং তারিখে পুনরুদ্দেগ ও স্বীয় সম্মতিতে পুনঃবিবাহ বন্ধনে আবদ্ধ হন।"
+    signatory_name: "মোঃ জাকির হোসেন সরদার",
+    signatory_role: "চেয়ারম্যান",
+    trn_no: "1500",
+    qr_url: "https://www.lgoms.org/rmc_certificates_view.php?id=1500"
+  }
 };
