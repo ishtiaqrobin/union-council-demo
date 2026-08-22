@@ -78,7 +78,7 @@ export function InheritanceSheet({ data }: InheritanceSheetProps) {
       </div>
 
       {/* Main Certificate Box with Outer Padding and Thick Gradient Border */}
-      <div className="flex-1 relative p-3.5 my-2 mx-1 bg-gradient-to-br from-blue-600 via-indigo-600 to-blue-600 shadow-md flex flex-col">
+      <div className="flex-1 relative p-3.5 my-3 mx-2 bg-gradient-to-br from-blue-600 via-indigo-600 to-blue-600 shadow-md flex flex-col">
         <div className="certificate-inner-frame w-full h-full bg-white pt-4 px-6 pb-3 relative flex flex-col justify-between z-10 flex-1 border border-amber-200">
 
           {/* Background Watermark */}
@@ -158,20 +158,20 @@ export function InheritanceSheet({ data }: InheritanceSheetProps) {
 
           {/* Certificate Content Body */}
           <div className="cert-content-body mt-3 px-1 flex-1 flex flex-col justify-start">
-            <p className="cert-paragraph text-[14px] leading-[2.1] text-gray-900 text-justify mb-2">
+            <p className="cert-paragraph text-[14px] leading-[2.1] text-gray-900 text-justify mb-1">
               এই মর্মে সনদ দেওয়া যাইতেছে যে,{" "}
               <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.person_name}
-              </span>
+              </span>{" "}
               (আইডি নং-
               <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.nid_no}
               </span>
-              ) , পিতা:{" "}
+              ), পিতা:{" "}
               <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.father_name}
               </span>
-              ,মাাতাঃ{" "}
+              , মাতাঃ{" "}
               <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.mother_name}
               </span>
@@ -179,11 +179,11 @@ export function InheritanceSheet({ data }: InheritanceSheetProps) {
               <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.village}
               </span>
-              ,ওয়ার্ডঃ{" "}
+              , ওয়ার্ডঃ{" "}
               <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.ward_no}
               </span>
-              ,বাসা নং{" "}
+              , বাসা নং:{" "}
               <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
                 {applicant.house_no}
               </span>
@@ -203,8 +203,8 @@ export function InheritanceSheet({ data }: InheritanceSheetProps) {
             </p>
 
             {/* Heirs Table Top Note */}
-            <div className="text-[13px] font-bold text-gray-900 mb-1 border-b border-dashed border-gray-400 pb-1">
-              মন্তব্যঃ গ্রামঃ <span>{applicant.village}</span>, ডাকঘরঃ <span>{applicant.post_office}</span>, উপজেলাঃ <span>{applicant.person_upazila || union.upazila}</span>, জেলাঃ <span>{applicant.person_district || union.district}</span>।
+            <div className="text-[14px] text-gray-900 mb-1 pb-1">
+              মন্তব্যঃ <span className="font-bold"> গ্রামঃ <span>{applicant.village}</span>, ডাকঘরঃ <span>{applicant.post_office}</span>, উপজেলাঃ <span>{applicant.person_upazila || union.upazila}</span>, জেলাঃ <span>{applicant.person_district || union.district}</span>।</span>
             </div>
 
             {/* Heirs Table (3 columns: ক্রমিক নম্বর, গনের নাম, সম্পর্ক) */}

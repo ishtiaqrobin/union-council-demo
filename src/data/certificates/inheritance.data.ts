@@ -34,7 +34,7 @@ export const INHERITANCE_INITIAL_DATA: CertificateData = {
     signatory_name: "মোঃ জাকির হোসেন সরদার",
     signatory_role: "চেয়ারম্যান",
     trn_no: "5708",
-    qr_url: "https://www.lgoms.org"
+    qr_url: "https://www.lgoms.org/inheritance_certificates.php?id=10423"
   },
   heirs: [
     { id: "1", name: "মোছাঃ খাদিজা বেগম", relation: "স্ত্রী", age_or_dob: "", nid_or_bc: "", comments: "" },
