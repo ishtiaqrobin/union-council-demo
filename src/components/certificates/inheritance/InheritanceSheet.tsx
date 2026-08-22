@@ -256,7 +256,7 @@ export function InheritanceSheet({ data }: InheritanceSheetProps) {
           </div>
 
           {/* Bottom Tagline Ribbon (Under Chairman Signatory Info) */}
-          <div className="mt-2 text-center text-[12px] font-bold text-gray-900 bg-gray-50/90 py-0.5 border border-gray-200 rounded">
+          <div className="mt-2 text-center text-[14px] text-gray-900 bg-gray-50/90 py-0.5 border border-gray-200 rounded">
             অল্প সময়ে সল্প খরচে, সঠিক বিচার পেতে, চল যাই গ্রামআদালতে* সময়মত জন্ম ও মৃত্যু নিবন্ধন করুন।
           </div>
 
