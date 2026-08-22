@@ -145,7 +145,7 @@ export function InheritanceSheet({ data }: InheritanceSheetProps) {
             </div>
 
             <div className="meta-badge-container flex justify-center flex-1">
-              <div className="cert-badge bg-blue-600 text-white text-[15.5px] font-bold px-[32px] py-[3.5px] rounded-sm tracking-wide inline-block shadow-sm">
+              <div className="cert-badge bg-blue-600 text-white text-[16px] font-bold px-[32px] py-[3.5px] rounded-sm tracking-wide inline-block shadow-sm">
                 {meta.cert_title}
               </div>
             </div>
@@ -212,7 +212,7 @@ export function InheritanceSheet({ data }: InheritanceSheetProps) {
               <table className="w-full border-collapse border border-gray-400 text-[13.5px]">
                 <thead>
                   <tr className="bg-gray-100 font-bold text-center">
-                    <th className="border border-gray-400 px-2 py-1.5 w-24">ক্রমিক নম্বর</th>
+                    <th className="border border-gray-400 px-2 py-1.5 w-24">ক্রমিক নং</th>
                     <th className="border border-gray-400 px-3 py-1.5 text-center">সদস্য গনের নাম</th>
                     <th className="border border-gray-400 px-3 py-1.5 w-36 text-center">সম্পর্ক</th>
                   </tr>
