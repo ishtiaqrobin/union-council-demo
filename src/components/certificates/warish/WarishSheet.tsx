@@ -146,7 +146,7 @@ export function WarishSheet({ data }: WarishSheetProps) {
             </div>
 
             <div className="meta-badge-container flex justify-center flex-1">
-              <div className="cert-badge bg-red-900 text-white text-[16px] font-black px-[36px] py-[2.5px] rounded-sm tracking-wider inline-block shadow-md">
+              <div className="cert-badge bg-red-900 text-white text-[16px] font-black px-[36px] py-[3.5px] rounded-sm tracking-wider inline-block shadow-md">
                 {meta.cert_title || "ওয়ারিশ সনদ"}
               </div>
             </div>
@@ -205,7 +205,7 @@ export function WarishSheet({ data }: WarishSheetProps) {
 
             {/* Warish Table (5 columns: ক্রম, সদস্যগণের নাম, জন্ম তারিখ, বয়স, সম্পর্ক) */}
             <div className="w-full my-1 overflow-hidden">
-              <table className="w-full border-collapse border border-gray-400 text-[13px]">
+              <table className="w-full border-collapse border border-gray-400 text-[14px]">
                 <thead>
                   <tr className="bg-gray-100 font-bold text-center">
                     <th className="border border-gray-400 px-2 py-1.5 w-20">ক্রমিক নং</th>
