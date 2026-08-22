@@ -63,6 +63,7 @@ export interface CertificateData {
   remarriageReasonBn?: string;
   landDetailsBn?: string;
   customDescriptionBn?: string;
+  closingWishBn?: string;
   // Death Registration extras
   registrationDateBn?: string;
   registrationNoBn?: string;

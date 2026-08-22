@@ -10,7 +10,7 @@ interface TestimonialSheetProps {
 }
 
 export function TestimonialSheet({ data }: TestimonialSheetProps) {
-  const { union, meta, applicant, signatory, customDescriptionBn } = data;
+  const { union, meta, applicant, signatory, customDescriptionBn, closingWishBn } = data;
   const [printDateTime, setPrintDateTime] = useState("2/12/26, 10:30 AM");
 
   useEffect(() => {
@@ -94,7 +94,17 @@ export function TestimonialSheet({ data }: TestimonialSheetProps) {
               </div>
             </div>
 
-            <div className="header-right-spacer w-[76px] h-[76px]" />
+            {/* Top Right Applicant Photo Frame */}
+            <div className="applicant-photo-box w-[74px] h-[84px] border border-slate-400 bg-white p-0.5 shadow-sm flex items-center justify-center overflow-hidden">
+              <Image
+                src={applicant.photo_url || "/assets/image/person.webp"}
+                alt="আবেদনকারীর ছবি"
+                width={70}
+                height={80}
+                className="w-full h-full object-cover text-xs"
+                unoptimized
+              />
+            </div>
           </div>
 
           {/* Metadata Ribbon */}
@@ -105,8 +115,8 @@ export function TestimonialSheet({ data }: TestimonialSheetProps) {
             </div>
 
             <div className="meta-badge-container flex justify-center flex-1">
-              <div className="cert-badge bg-slate-700 text-white text-[15.5px] font-bold px-[32px] py-[3.5px] rounded-md tracking-wide inline-block shadow-sm">
-                {meta.cert_title}
+              <div className="cert-badge bg-green-700 text-white text-[16px] font-bold px-[32px] py-[3.5px] rounded-sm tracking-wide inline-block shadow-sm">
+                {meta.cert_title || "প্রত্যয়নপত্র"}
               </div>
             </div>
 
@@ -118,17 +128,48 @@ export function TestimonialSheet({ data }: TestimonialSheetProps) {
 
           {/* Certificate Content Body */}
           <div className="cert-content-body mt-4 px-2 flex-1 flex flex-col justify-start">
-            <p className="cert-paragraph text-[14.5px] leading-[2.2] text-gray-900 text-justify">
-              এই মর্মে प्रत्यয়ন করা যাচ্ছে যে,{" "}
+            <p className="cert-paragraph text-[14.5px] leading-[2.2] text-gray-900 text-justify font-solaiman">
+              এই মর্মে প্রত্যয়ন করা যাচ্ছে যে,{" "}
               <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
-                {applicant.person_name}
+                {applicant.person_name}{" "}
+              </span>
+              (আইডি নং: {applicant.nid_no || "-"}), {applicant.spouse_name ? `স্বামী:${applicant.spouse_name}` : `পিতা: ${applicant.father_name}`},{" "}
+              মাতাঃ{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.mother_name},
               </span>{" "}
-              (এনআইডি: {applicant.nid_no}), পিতা: {applicant.father_name}, মাতা: {applicant.mother_name}, গ্রাম: {applicant.village}, ওয়ার্ড নং: {applicant.ward_no}, উপজেলা: {applicant.person_upazila}, জেলা: {applicant.person_district} কে আমি ব্যক্তিগতভাবে চিনি। {customDescriptionBn || "তিনি অত্র ইউনিয়নের একজন স্থায়ী বাসিন্দা ও সৎ, চরিত্রবান ও আইনমান্যকারী নাগরিক। রাষ্ট্র বা সমাজ বিরোধী কোন কার্যকলাপে তাহার জড়িত থাকার তথ্য পাওয়া যায় নাই।"}
+              গ্রামঃ{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.village},
+              </span>{" "}
+              বাসা নংঃ{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.house_no},{" "}
+              </span>
+              ওয়ার্ড নংঃ{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.ward_no},
+              </span>{" "}
+              ডাকঘরঃ{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.post_office},
+              </span>{" "}
+              উপজেলাঃ{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.person_upazila || union.upazila},
+              </span>{" "}
+              জেলাঃ{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.person_district || union.district}
+              </span>
+              {customDescriptionBn ? ` ${customDescriptionBn}` : ""}
             </p>
 
-            <p className="cert-closing text-[14px] font-bold text-gray-900 mt-3 pl-[16px]">
-              আমি তাহার জীবন ও কর্মক্ষেত্রে সার্বিক কল্যাণ ও সুস্বাস্থ্য কামনা করি।
-            </p>
+            {closingWishBn && (
+              <p className="cert-closing text-[14px] font-bold text-gray-900 mt-3 font-solaiman">
+                {closingWishBn}
+              </p>
+            )}
           </div>
 
           {/* Footer Signatures */}
@@ -145,11 +186,15 @@ export function TestimonialSheet({ data }: TestimonialSheetProps) {
             <div className="signatory-box text-center min-w-[200px] pb-[2px]">
               <div className="sign-space h-[32px]" />
               <div className="sign-name text-[14.5px] font-bold text-black leading-tight">{signatory.signatory_name}</div>
-              <div className="sign-role-sub text-[12.5px] font-semibold text-gray-800 leading-tight">অনুমোদনকারী/প্রদানকারী</div>
               <div className="sign-designation text-[12.5px] font-semibold text-gray-800 leading-tight">{signatory.signatory_role}</div>
               <div className="sign-office text-[12.5px] font-semibold text-gray-800 leading-tight">{union.up_name}</div>
               <div className="sign-location text-[12.5px] font-semibold text-gray-800 leading-tight">{union.upazila}, {union.district}।</div>
             </div>
+          </div>
+
+          {/* Bottom Tagline Ribbon (Under QR Code & Chairman Signatory Info) */}
+          <div className="mt-4 mb-2 text-center text-[14px] font-bold text-gray-900">
+            ইউপি কর পরিশোধ করুন* অল্প সময়ে সল্প খরচে, সঠিক বিচার পেতে, চল যাই গ্রামআদালতে* সময়মত জন্ম ও মৃত্যু নিবন্ধন করুন।
           </div>
 
         </div>
