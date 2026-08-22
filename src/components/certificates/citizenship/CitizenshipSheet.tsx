@@ -129,7 +129,7 @@ export function CitizenshipSheet({ data }: CitizenshipSheetProps) {
 
           {/* Certificate Content Body */}
           <div className="cert-content-body mt-4 px-2 flex-1 flex flex-col justify-start">
-            <p className="cert-paragraph text-[15px] leading-[2.3] text-gray-900 text-justify font-solaiman">
+            <p className="cert-paragraph text-[15px] leading-[2.2] text-gray-900 text-justify font-solaiman">
               এই মর্মে প্রত্যয়ন করা যাচ্ছে যে,{" "}
               <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
                 {applicant.person_name}
@@ -213,7 +213,7 @@ export function CitizenshipSheet({ data }: CitizenshipSheetProps) {
 
           {/* Bottom Tagline Ribbon (Under QR Code & Chairman Info) */}
           {/* bg-gray-50/90 py-0.5 border border-gray-200 rounded */}
-          <div className="mt-4 mb-2 text-center text-[12px] font-bold text-gray-900 ">
+          <div className="mt-4 mb-2 text-center text-[14px] font-bold text-gray-900 ">
             ইউপি কর পরিশোধ করুন* অল্প সময়ে সল্প খরচে, সঠিক বিচার পেতে, চল যাই গ্রামআদালতে* সময়মত জন্ম ও মৃত্যু নিবন্ধন করুন।
           </div>
 

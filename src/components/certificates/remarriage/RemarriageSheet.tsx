@@ -127,7 +127,7 @@ export function RemarriageSheet({ data }: RemarriageSheetProps) {
             </p>
 
             <p className="cert-closing text-[14px] font-bold text-gray-900 mt-3 pl-[16px]">
-              আমি তাহাদের দাম্পত্য জীবনের সার্বিক সুখ ও সমৃদ্ধি কামনা করি।
+              আমি তার সার্বিক কল্যাণ ও উন্নতি কামনা করি।
             </p>
           </div>
 

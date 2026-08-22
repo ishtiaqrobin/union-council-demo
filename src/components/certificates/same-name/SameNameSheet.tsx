@@ -94,7 +94,17 @@ export function SameNameSheet({ data }: SameNameSheetProps) {
               </div>
             </div>
 
-            <div className="header-right-spacer w-[76px] h-[76px]" />
+            {/* Top Right Photo Frame */}
+            <div className="applicant-photo-box w-[74px] h-[84px] border border-slate-400 bg-white p-0.5 shadow-sm flex items-center justify-center overflow-hidden">
+              <Image
+                src={applicant.photo_url || "/assets/image/person.webp"}
+                alt="আবেদনকারীর ছবি"
+                width={70}
+                height={80}
+                className="w-full h-full object-cover text-xs"
+                unoptimized
+              />
+            </div>
           </div>
 
           {/* Metadata Ribbon */}
@@ -105,8 +115,8 @@ export function SameNameSheet({ data }: SameNameSheetProps) {
             </div>
 
             <div className="meta-badge-container flex justify-center flex-1">
-              <div className="cert-badge bg-rose-600 text-white text-[15.5px] font-bold px-[32px] py-[3.5px] rounded-md tracking-wide inline-block shadow-sm">
-                {meta.cert_title}
+              <div className="cert-badge bg-green-700 text-white text-[16px] font-bold px-[32px] py-[3.5px] rounded-sm tracking-wide inline-block shadow-sm">
+                {meta.cert_title || "একই নামের প্রত্যয়ন"}
               </div>
             </div>
 
@@ -119,19 +129,63 @@ export function SameNameSheet({ data }: SameNameSheetProps) {
           {/* Certificate Content Body */}
           <div className="cert-content-body mt-4 px-2 flex-1 flex flex-col justify-start">
             <p className="cert-paragraph text-[14.5px] leading-[2.2] text-gray-900 text-justify">
-              এই মর্মে প্রত্যয়ন করা যাচ্ছে যে,{" "}
+              এই মর্মে প্রত্যয়ন করা যাচ্ছে যে,{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.person_name}
+              </span>{" "}
+              ওরেফে{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {aliasNameBn || "অন্য নাম"}
+              </span>
+              , (আইডি নং:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.nid_no}
+              </span>
+              ), পিতা:
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.father_name}
+              </span>
+              , মাতা:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.mother_name}
+              </span>
+              , গ্রাম:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.village}
+              </span>
+              , বাসা নং:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.house_no},
+              </span>{" "}
+              ওয়ার্ড নং:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.ward_no},
+              </span>{" "}
+              ডাকঘর:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.post_office},
+              </span>{" "}
+              উপজেলা:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.person_upazila || union.upazila},
+              </span>{" "}
+              জেলা:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.person_district || union.district}।
+              </span>{" "}
+              তিনি এ ইউনিয়নের স্থায়ী বাসিন্দা। আমার জানামতে{" "}
               <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
                 {applicant.person_name}
               </span>{" "}
               এবং{" "}
-              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px] text-rose-700">
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
                 {aliasNameBn || "অন্য নাম"}
               </span>{" "}
-              (জাতীয় পরিচয়পত্র নং: {applicant.nid_no}), পিতা: {applicant.father_name}, মাতা: {applicant.mother_name}, গ্রাম: {applicant.village}, ওয়ার্ড নং: {applicant.ward_no}, ডাকঘর: {applicant.post_office}, উপজেলা: {applicant.person_upazila}, জেলা: {applicant.person_district} কে আমি ব্যক্তিগতভাবে চিনি। বিভিন্ন নথিপত্রে উল্লিখিত উপরোক্ত উভয় নাম মূলত একই ব্যক্তির নাম এবং তিনি অত্র ইউনিয়নের একজন স্থায়ী বাসিন্দা।
+              একই ব্যক্তি।
             </p>
 
             <p className="cert-closing text-[14px] font-bold text-gray-900 mt-3 pl-[16px]">
-              আমি তাহার সার্বিক সাফল্য ও কল্যাণ কামনা করি।
+              আমি তার সার্বিক কল্যাণ ও উন্নতি কামনা করি।
             </p>
           </div>
 
@@ -149,11 +203,15 @@ export function SameNameSheet({ data }: SameNameSheetProps) {
             <div className="signatory-box text-center min-w-[200px] pb-[2px]">
               <div className="sign-space h-[32px]" />
               <div className="sign-name text-[14.5px] font-bold text-black leading-tight">{signatory.signatory_name}</div>
-              <div className="sign-role-sub text-[12.5px] font-semibold text-gray-800 leading-tight">অনুমোদনকারী/প্রদানকারী</div>
               <div className="sign-designation text-[12.5px] font-semibold text-gray-800 leading-tight">{signatory.signatory_role}</div>
               <div className="sign-office text-[12.5px] font-semibold text-gray-800 leading-tight">{union.up_name}</div>
               <div className="sign-location text-[12.5px] font-semibold text-gray-800 leading-tight">{union.upazila}, {union.district}।</div>
             </div>
+          </div>
+
+          {/* Bottom Tagline Ribbon (Under Chairman Signatory Info) */}
+          <div className="mt-4 mb-2 text-center text-[14px] font-bold text-gray-900 ">
+            ইউপি কর পরিশোধ করুন* অল্প সময়ে সল্প খরচে, সঠিক বিচার পেতে, চল যাই গ্রামআদালতে* সময়মত জন্ম ও মৃত্যু নিবন্ধন করুন।
           </div>
 
         </div>
