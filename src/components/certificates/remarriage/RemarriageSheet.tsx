@@ -123,7 +123,7 @@ export function RemarriageSheet({ data }: RemarriageSheetProps) {
               <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
                 {applicant.person_name}
               </span>
-              , (আইডি:{" "}
+              , (আইডি নং:{" "}
               <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
                 {applicant.nid_no}
               </span>
