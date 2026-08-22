@@ -119,11 +119,38 @@ export function InheritanceSheet({ data }: InheritanceSheetProps) {
           {/* Certificate Body */}
           <div className="cert-content-body mt-3 px-2 flex-1 flex flex-col justify-start">
             <p className="cert-paragraph text-[14px] leading-[2.0] text-gray-900 text-justify mb-2">
-              এই মর্মে প্রত্যয়ন করা যাচ্ছে যে,{" "}
+              এই মর্মে সনদ দেওয়া যাইতেছে যে,{" "}
               <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
                 {applicant.person_name}
               </span>{" "}
-              (এনআইডি/জন্ম সনদ: {applicant.nid_no}), পিতা: {applicant.father_name}, মাতা: {applicant.mother_name}, গ্রাম: {applicant.village}, ওয়ার্ড নং: {applicant.ward_no}, উপজেলা: {applicant.person_upazila}, জেলা: {applicant.person_district}। তাহার মৃত্যুর পর নিম্নলিখিত ওয়ারিশ/উত্তরাধিকারীগণকে জীবিত রাখিয়া ইন্তেকাল করিয়াছেন:
+              <span>
+                (এনআইডি/জন্ম সনদ: {applicant.nid_no}),
+              </span>{" "}
+              পিতা: {" "}
+              <span className="font-bold">
+                {applicant.father_name},
+              </span>{" "}
+              মাতা: {" "}
+              <span className="font-bold">
+                {applicant.mother_name},
+              </span>{" "}
+              গ্রাম:{" "}
+              <span className="font-bold">
+                {applicant.village},
+              </span>{" "}
+              ওয়ার্ড নং:{" "}
+              <span className="font-bold">
+                {applicant.ward_no},
+              </span>{" "}
+              উপজেলা:{" "}
+              <span className="font-bold">
+                {applicant.person_upazila},
+              </span>{" "}
+              জেলা:{" "}
+              <span className="font-bold">
+                {applicant.person_district}।
+              </span>{" "}
+              তাহার নিন্মলিখিত রহিয়াছে।
             </p>
 
             {/* Heirs Table */}
@@ -132,7 +159,7 @@ export function InheritanceSheet({ data }: InheritanceSheetProps) {
                 <table className="w-full border-collapse border border-gray-400 text-[12.5px]">
                   <thead>
                     <tr className="bg-gray-100 font-bold text-center">
-                      <th className="border border-gray-400 px-2 py-1 w-12">ক্র: নং</th>
+                      <th className="border border-gray-400 px-2 py-1 w-20">ক্রমিক নং</th>
                       <th className="border border-gray-400 px-3 py-1">উত্তরাধিকারীর নাম</th>
                       <th className="border border-gray-400 px-3 py-1 w-20">সম্পর্ক</th>
                       <th className="border border-gray-400 px-3 py-1 w-20">বয়স</th>
