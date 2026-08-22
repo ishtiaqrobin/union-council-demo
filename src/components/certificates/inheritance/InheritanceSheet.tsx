@@ -105,7 +105,7 @@ export function InheritanceSheet({ data }: InheritanceSheetProps) {
             </div>
 
             <div className="meta-badge-container flex justify-center flex-1">
-              <div className="cert-badge bg-blue-600 text-white text-[15.5px] font-bold px-[32px] py-[3.5px] rounded-md tracking-wide inline-block shadow-sm">
+              <div className="cert-badge bg-blue-600 text-white text-[15.5px] font-bold px-[32px] py-[3.5px] rounded-sm tracking-wide inline-block shadow-sm">
                 {meta.cert_title}
               </div>
             </div>

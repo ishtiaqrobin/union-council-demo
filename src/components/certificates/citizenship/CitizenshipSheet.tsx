@@ -52,7 +52,7 @@ export function CitizenshipSheet({ data }: CitizenshipSheetProps) {
 
       {/* Main Certificate Box with Outer Padding and Thick Gradient Border */}
       <div className="flex-1 relative p-4 my-8 mx-12 bg-gradient-to-br from-blue-600 via-indigo-500 to-blue-600 shadow-md flex flex-col">
-        <div className="certificate-inner-frame w-full h-full bg-white pt-5 px-10 pb-3 relative flex flex-col justify-between z-10 flex-1 border border-amber-200">
+        <div className="certificate-inner-frame w-full h-full bg-white pt-5 px-12 pb-4 relative flex flex-col justify-between z-10 flex-1 border border-amber-200">
 
           {/* Background Watermark */}
           <div className="watermark-container absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] h-[360px] pointer-events-none -z-10 flex justify-center items-center">
@@ -111,7 +111,7 @@ export function CitizenshipSheet({ data }: CitizenshipSheetProps) {
           {/* Metadata Ribbon */}
           <div className="cert-meta-ribbon flex justify-between items-center mt-[10px] px-1">
             <div className="meta-item meta-serial text-[14px] text-[#121212]">
-              <span className="lbl font-semibold mr-1.5">স্মারক নং:</span>
+              <span className="lbl font-semibold mr-1.5">ক্রমিক নং:</span>
               <span className="val font-bold font-siliguri tracking-wide">{meta.serial_no}</span>
             </div>
 
