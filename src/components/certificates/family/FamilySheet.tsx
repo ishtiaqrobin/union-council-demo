@@ -29,12 +29,12 @@ export function FamilySheet({ data }: FamilySheetProps) {
   return (
     <div
       id="certificateSheet"
-      className="certificate-sheet certificate-sheet-landscape w-[297mm] h-[210mm] min-w-[297mm] min-h-[210mm] bg-white shadow-2xl relative overflow-hidden box-border font-solaiman text-[#121212] px-8 py-4 flex flex-col justify-between print:w-[297mm] print:h-[210mm] print:min-w-[297mm] print:min-h-[210mm] print:max-w-[297mm] print:max-h-[210mm] print:m-0 print:shadow-none print:absolute print:top-0 print:left-0 print:break-inside-avoid"
+      className="certificate-sheet certificate-sheet-portrait w-[210mm] h-[297mm] min-w-[210mm] min-h-[297mm] bg-white shadow-2xl relative overflow-hidden box-border font-solaiman text-[#121212] px-6 py-4 flex flex-col justify-between print:w-[210mm] print:h-[297mm] print:min-w-[210mm] print:min-h-[297mm] print:max-w-[210mm] print:max-h-[297mm] print:m-0 print:shadow-none print:absolute print:top-0 print:left-0 print:break-inside-avoid"
     >
       <style>{`
         @media print {
           @page {
-            size: A4 landscape !important;
+            size: A4 portrait !important;
             margin: 0 !important;
           }
         }
@@ -51,7 +51,7 @@ export function FamilySheet({ data }: FamilySheetProps) {
       </div>
 
       {/* Main Certificate Box with Outer Padding and Thick Gradient Border */}
-      <div className="flex-1 relative p-4 my-8 mx-12 bg-gradient-to-br from-blue-500 via-indigo-400 to-blue-500 shadow-md">
+      <div className="flex-1 relative p-3.5 my-3 mx-2 bg-gradient-to-br from-blue-500 via-indigo-400 to-blue-500 shadow-md">
         <div className="certificate-inner-frame w-full h-full bg-white pt-5 px-12 pb-4 relative flex flex-col justify-between z-10">
 
           {/* Background Watermark */}
@@ -119,11 +119,11 @@ export function FamilySheet({ data }: FamilySheetProps) {
           {/* Certificate Body */}
           <div className="cert-content-body mt-3 px-2 flex-1 flex flex-col justify-start">
             <p className="cert-paragraph text-[14px] leading-[2.0] text-gray-900 text-justify mb-2">
-              এই মর্মে প্রত্যয়ন করা যাচ্ছে যে,{" "}
+              এই মর্মে পারিবারিক সনদ দেওয়া যাইতেছে যে,{" "}
               <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
                 {applicant.person_name}
               </span>{" "}
-              (এনআইডি: {applicant.nid_no}), পিতা: {applicant.father_name}, মাতা: {applicant.mother_name}, গ্রাম: {applicant.village}, ওয়ার্ড নং: {applicant.ward_no}, উপজেলা: {applicant.person_upazila}, জেলা: {applicant.person_district}। তাহার পারিবারিক সদস্য ও কাঠামোর বিবরণ নিম্নে প্রদান করা হইলো:
+              (এনআইডি: {applicant.nid_no}), পিতা: {applicant.father_name}, মাতা: {applicant.mother_name}, গ্রাম: {applicant.village}, ওয়ার্ড নং: {applicant.ward_no}, উপজেলা: {applicant.person_upazila}, জেলা: {applicant.person_district}, উল্লিখিত ব্যক্তির পরিবারে নিন্মলিখিত সদস্য রহিয়াছে যাদের সম্পর্ক উল্লেখ করা হলো।
             </p>
 
             {heirs && heirs.length > 0 && (
@@ -131,10 +131,11 @@ export function FamilySheet({ data }: FamilySheetProps) {
                 <table className="w-full border-collapse border border-gray-400 text-[12.5px]">
                   <thead>
                     <tr className="bg-gray-100 font-bold text-center">
-                      <th className="border border-gray-400 px-2 py-1 w-10">ক্র: নং</th>
-                      <th className="border border-gray-400 px-3 py-1">সদস্যের নাম</th>
-                      <th className="border border-gray-400 px-3 py-1 w-20">সম্পর্ক</th>
+                      <th className="border border-gray-400 px-2 py-1 w-20">ক্রমিক নং</th>
+                      <th className="border border-gray-400 px-3 py-1">সদস্য গনের নাম</th>
+                      <th className="border border-gray-400 px-3 py-1">জন্ম তারিখ</th>
                       <th className="border border-gray-400 px-3 py-1 w-20">বয়স</th>
+                      <th className="border border-gray-400 px-3 py-1 w-20">সম্পর্ক</th>
                       <th className="border border-gray-400 px-3 py-1">এনআইডি/জন্ম সনদ নং</th>
                     </tr>
                   </thead>
@@ -145,6 +146,7 @@ export function FamilySheet({ data }: FamilySheetProps) {
                         <td className="border border-gray-400 px-3 py-1 font-bold text-left">{item.name}</td>
                         <td className="border border-gray-400 px-3 py-1">{item.relation}</td>
                         <td className="border border-gray-400 px-3 py-1">{item.age_or_dob}</td>
+                        <td className="border border-gray-400 px-3 py-1">{item.relation}</td>
                         <td className="border border-gray-400 px-3 py-1">{item.nid_or_bc}</td>
                       </tr>
                     ))}
@@ -153,9 +155,10 @@ export function FamilySheet({ data }: FamilySheetProps) {
               </div>
             )}
 
-            <p className="cert-closing text-[13.5px] font-bold text-gray-900 mt-2 pl-[16px]">
-              আমি উক্ত পরিবারের উত্তরোত্তর সমৃদ্ধি ও সুখ-শান্তি কামনা করি।
-            </p>
+            {/* Heirs Table Bottom Summary Note */}
+            {/* <p className="cert-summary text-[13.5px] leading-relaxed text-gray-900 mt-2.5 text-justify font-solaiman">
+              উক্ত ব্যক্তির {sonCount > 0 ? `${toBnNo(sonCount)} জন পুত্র, ` : "জন পুত্র, "}{daughterCount > 0 ? `${toBnNo(daughterCount)} জন কন্যা,` : "জন কন্যা,"}{spouseCount > 0 ? "স্বামী/স্ত্রী, " : "স্বামী/স্ত্রী, "}{relativesCount > 0 ? `${toBnNo(relativesCount)} জন নিকট আত্মীয়সহ ` : "জন নিকট আত্মীয়সহ "}মোট-({toBnNo(totalCount)}) ({toBnWords(totalCount)}) জন আছে, ইহা ব্যতিত তাহার আর কোন উত্তরাধিকার নাই, {applicant.ward_no} নং ওয়ার্ড ইউপি সদস্য/সদস্যা এর সুপারিশের ভিত্তিতে প্রদান করা হইল।
+            </p> */}
           </div>
 
           {/* Footer Signatures */}
@@ -177,6 +180,10 @@ export function FamilySheet({ data }: FamilySheetProps) {
               <div className="sign-office text-[12.5px] font-semibold text-gray-800 leading-tight">{union.up_name}</div>
               <div className="sign-location text-[12.5px] font-semibold text-gray-800 leading-tight">{union.upazila}, {union.district}।</div>
             </div>
+          </div>
+          {/* Bottom Tagline Ribbon (Under Chairman Signatory Info) */}
+          <div className="mt-2 text-center text-[14px] text-gray-900 bg-gray-50/90 py-0.5 border border-gray-200 rounded">
+            অল্প সময়ে সল্প খরচে, সঠিক বিচার পেতে, চল যাই গ্রামআদালতে* সময়মত জন্ম ও মৃত্যু নিবন্ধন করুন।
           </div>
 
         </div>
