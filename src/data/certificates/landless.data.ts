@@ -24,7 +24,7 @@ export const LANDLESS_INITIAL_DATA: CertificateData = {
     mother_name: "মৃত আনোয়ারা বেগম",
     village: "আমঝুপি নদীর ধার",
     house_no: "০০",
-    ward_no: "02",
+    ward_no: "০২",
     post_office: "আমঝুপি",
     person_upazila: "মেহেরপুর সদর",
     person_district: "মেহেরপুর"
@@ -35,5 +35,5 @@ export const LANDLESS_INITIAL_DATA: CertificateData = {
     trn_no: "10432",
     qr_url: "https://www.lgoms.org/umc_certificates.php?id=10432"
   },
-  landDetailsBn: "উহার নিজের নামে বা পরিবারের কোন সদস্যের নামে কোন প্রকার কৃষি বা অকৃষি জমিজমা নাই। তিনি সম্পূর্ণ ভূমিহীন ও দিনমজুর।"
+  landDetailsBn: "আমার জানামতে তার কোন জায়গা জমি নাই। তিনি একজন ভূমিহীন।"
 };

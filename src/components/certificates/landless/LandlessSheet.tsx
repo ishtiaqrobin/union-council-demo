@@ -105,7 +105,7 @@ export function LandlessSheet({ data }: LandlessSheetProps) {
             </div>
 
             <div className="meta-badge-container flex justify-center flex-1">
-              <div className="cert-badge bg-cyan-700 text-white text-[15.5px] font-bold px-[32px] py-[3.5px] rounded-md tracking-wide inline-block shadow-sm">
+              <div className="cert-badge bg-cyan-700 text-white text-[15.5px] font-bold px-[32px] py-[3.5px] rounded-sm tracking-wide inline-block shadow-sm">
                 {meta.cert_title}
               </div>
             </div>
@@ -118,16 +118,69 @@ export function LandlessSheet({ data }: LandlessSheetProps) {
 
           {/* Certificate Content Body */}
           <div className="cert-content-body mt-4 px-2 flex-1 flex flex-col justify-start">
-            <p className="cert-paragraph text-[14.5px] leading-[2.2] text-gray-900 text-justify">
+            <p className="cert-paragraph text-[14.5px] leading-[2.2] text-gray-900 text-justify font-solaiman">
               এই মর্মে প্রত্যয়ন করা যাচ্ছে যে,{" "}
               <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
                 {applicant.person_name}
               </span>{" "}
-              (এনআইডি: {applicant.nid_no}), পিতা: {applicant.father_name}, মাতা: {applicant.mother_name}, গ্রাম: {applicant.village}, ওয়ার্ড নং: {applicant.ward_no}, উপজেলা: {applicant.person_upazila}, জেলা: {applicant.person_district}। {landDetailsBn || "উহার নিজের নামে বা পরিবারের কোন সদস্যের নামে কোন প্রকার কৃষি বা অকৃষি জমিজমা নাই। তিনি সম্পূর্ণ ভূমিহীন ও দিনমজুর।"}
+              (আইডি নং:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.nid_no}
+              </span>
+              ), পিতা:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.father_name}
+              </span>
+              , মাতা:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.mother_name}
+              </span>
+              {applicant.spouse_name ? (
+                <>
+                  , স্বামী/স্ত্রীর নাম:{" "}
+                  <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                    {applicant.spouse_name}
+                  </span>
+                </>
+              ) : null}
+              , গ্রাম:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.village}
+              </span>
+              , বাসা নং:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.house_no}
+              </span>
+              , ওয়ার্ড নং:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.ward_no}
+              </span>
+              , ডাকঘর:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.post_office}
+              </span>
+              , উপজেলা:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.person_upazila}
+              </span>
+              , জেলা:{" "}
+              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                {applicant.person_district}
+              </span>{" "}
+              এর তথ্য গ্রামপুলিশ ও মেম্বার দ্বারা যাচাই বাছাই করা হয়। যাচাই করে জানা যায় যে, তিনি অত্র ইউনিয়নের{" "}
+              <span className="">
+                {applicant.ward_no}
+              </span>{" "}
+              নং ওয়ার্ডের{" "}
+              <span className="">
+                {applicant.village}
+              </span>{" "}
+              গ্রামের স্থায়ী বাসিন্দা। আরো জানা যায়, তিনি বাংলাদেশের আইন-শৃঙখলা ও রাষ্ট্র বিরোধী কর্মকান্ডের সহিত জড়িত নহে। তিনি এ ইউনিয়নের স্থায়ী বাসিন্দা।{" "}
+              {landDetailsBn || "আমার জানামতে তার কোন জায়গা জমি নাই। তিনি একজন ভূমিহীন।"}
             </p>
 
             <p className="cert-closing text-[14px] font-bold text-gray-900 mt-3 pl-[16px]">
-              আমি তাহার পরিবারবর্গের সার্বিক কল্যাণ ও সুস্বাস্থ্য কামনা করি।
+              আমি তার সার্বিক কল্যাণ ও উন্নতি কামনা করি।
             </p>
           </div>
 
@@ -145,7 +198,6 @@ export function LandlessSheet({ data }: LandlessSheetProps) {
             <div className="signatory-box text-center min-w-[200px] pb-[2px]">
               <div className="sign-space h-[32px]" />
               <div className="sign-name text-[14.5px] font-bold text-black leading-tight">{signatory.signatory_name}</div>
-              <div className="sign-role-sub text-[12.5px] font-semibold text-gray-800 leading-tight">অনুমোদনকারী/প্রদানকারী</div>
               <div className="sign-designation text-[12.5px] font-semibold text-gray-800 leading-tight">{signatory.signatory_role}</div>
               <div className="sign-office text-[12.5px] font-semibold text-gray-800 leading-tight">{union.up_name}</div>
               <div className="sign-location text-[12.5px] font-semibold text-gray-800 leading-tight">{union.upazila}, {union.district}।</div>

@@ -100,12 +100,62 @@ export function LandlessForm({
             <input type="text" value={data.applicant.person_name} onChange={(e) => updateApplicant("person_name", e.target.value)} className={inputClass} />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">এনআইডি নং</label>
+            <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">আইডি/এনআইডি নং</label>
             <input type="text" value={data.applicant.nid_no} onChange={(e) => updateApplicant("nid_no", e.target.value)} className={inputClass} />
+          </div>
+          <div className="grid grid-cols-2 gap-2.5">
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">পিতার নাম</label>
+              <input type="text" value={data.applicant.father_name} onChange={(e) => updateApplicant("father_name", e.target.value)} className={inputClass} />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">মাতার নাম</label>
+              <input type="text" value={data.applicant.mother_name} onChange={(e) => updateApplicant("mother_name", e.target.value)} className={inputClass} />
+            </div>
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">স্বামী/স্ত্রীর নাম (ঐচ্ছিক)</label>
+            <input type="text" value={data.applicant.spouse_name || ""} onChange={(e) => updateApplicant("spouse_name", e.target.value)} className={inputClass} />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center gap-2 text-xs font-bold text-teal-600 dark:text-teal-400 uppercase tracking-wider pb-1 border-b border-slate-200 dark:border-slate-800">
+            <Building2 className="w-4 h-4" /> ঠিকানা ও বিবরণ
+          </div>
+          <div className="grid grid-cols-2 gap-2.5">
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">গ্রাম</label>
+              <input type="text" value={data.applicant.village} onChange={(e) => updateApplicant("village", e.target.value)} className={inputClass} />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">বাসা নং</label>
+              <input type="text" value={data.applicant.house_no} onChange={(e) => updateApplicant("house_no", e.target.value)} className={inputClass} />
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-2.5">
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">ওয়ার্ড নং</label>
+              <input type="text" value={data.applicant.ward_no} onChange={(e) => updateApplicant("ward_no", e.target.value)} className={inputClass} />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">ডাকঘর</label>
+              <input type="text" value={data.applicant.post_office} onChange={(e) => updateApplicant("post_office", e.target.value)} className={inputClass} />
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-2.5">
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">উপজেলা</label>
+              <input type="text" value={data.applicant.person_upazila} onChange={(e) => updateApplicant("person_upazila", e.target.value)} className={inputClass} />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">জেলা</label>
+              <input type="text" value={data.applicant.person_district} onChange={(e) => updateApplicant("person_district", e.target.value)} className={inputClass} />
+            </div>
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-xs font-semibold text-cyan-600 dark:text-cyan-400">ভূমিহীন তথ্য বিবরণ</label>
-            <textarea value={data.landDetailsBn || ""} onChange={(e) => onChange({ ...data, landDetailsBn: e.target.value })} className={`${inputClass} h-24`} />
+            <textarea value={data.landDetailsBn || ""} onChange={(e) => onChange({ ...data, landDetailsBn: e.target.value })} className={`${inputClass} h-24`} placeholder="আমার জানামতে তার কোন জায়গা জমি নাই। তিনি একজন ভূমিহীন।" />
           </div>
         </div>
 
