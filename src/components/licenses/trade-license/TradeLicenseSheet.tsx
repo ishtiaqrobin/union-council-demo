@@ -87,7 +87,7 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
               <div className="gov-sub-title text-[12.5px] font-semibold text-gray-800 tracking-wide mb-[1px]">
                 গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার
               </div>
-              <h1 className="up-main-title text-[24px] font-black text-header-red leading-tight m-0 tracking-wide">
+              <h1 className="up-main-title text-[24px] font-bold text-header-red leading-tight m-0 tracking-wide">
                 {union.up_name}
               </h1>
               <div className="up-sub-address text-[12px] font-bold text-slate-900 mt-[1px]">
@@ -100,7 +100,7 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
                 অর্থ বছর: <span>{fiscalYearBn || "২০২৫-২০২৬"}</span>
               </div>
               <div className="mt-1.5">
-                <span className="bg-red-800 text-white text-[16px] font-black px-6 py-1 rounded-sm tracking-wider inline-block shadow-md">
+                <span className="bg-red-800 text-white text-[16px] font-bold px-6 py-1 rounded-sm tracking-wider inline-block shadow-md">
                   ট্রেড লাইসেন্স
                 </span>
               </div>

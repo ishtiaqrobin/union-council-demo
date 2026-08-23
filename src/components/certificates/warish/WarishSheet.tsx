@@ -145,7 +145,7 @@ export function WarishSheet({ data }: WarishSheetProps) {
             </div>
 
             <div className="meta-badge-container flex justify-center flex-1">
-              <div className="cert-badge bg-red-900 text-white text-[16px] font-black px-[36px] py-[3.5px] rounded-sm tracking-wider inline-block shadow-md">
+              <div className="cert-badge bg-red-900 text-white text-[16px] font-bold px-[36px] py-[3.5px] rounded-sm tracking-wider inline-block shadow-md">
                 {meta.cert_title || "ওয়ারিশ সনদ"}
               </div>
             </div>

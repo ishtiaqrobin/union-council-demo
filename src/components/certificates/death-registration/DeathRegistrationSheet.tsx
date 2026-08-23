@@ -108,7 +108,7 @@ export function DeathRegistrationSheet({ data }: DeathRegistrationSheetProps) {
               <div className="text-[14px] font-bold text-emerald-800 tracking-wide">
                 জন্ম ও মৃত্যু নিবন্ধকের কার্যালয়
               </div>
-              <h1 className="up-main-title text-[26px] font-black text-header-red leading-snug m-0 tracking-wide">
+              <h1 className="up-main-title text-[26px] font-bold text-header-red leading-snug m-0 tracking-wide">
                 {union.up_name}
               </h1>
               <div className="up-sub-address text-[13px] font-bold text-slate-900 mt-[1px]">
@@ -121,7 +121,7 @@ export function DeathRegistrationSheet({ data }: DeathRegistrationSheetProps) {
 
             {/* Green Title Badge */}
             <div className="mt-3">
-              <h2 className="text-[22px] font-black text-emerald-700 tracking-wide border-b-2 border-emerald-600 pb-0.5 inline-block">
+              <h2 className="text-[22px] font-bold text-emerald-700 tracking-wide border-b-2 border-emerald-600 pb-0.5 inline-block">
                 মৃত্যু নিবন্ধন সনদ
               </h2>
             </div>
