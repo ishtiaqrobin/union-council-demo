@@ -11,6 +11,8 @@
   --font-hind: 'Hind Siliguri', sans-serif;
   --font-solaiman: 'SolaimanLipi', sans-serif;
   --font-solaimanlipi: 'SolaimanLipi', sans-serif;
+  --font-notoserif: 'Noto Serif Bengali', serif;
+  --font-tiro: 'Tiro Bangla', serif;
 
   /* ─── Certificate Theme Colors ─── */
   --color-primary-blue: #3252eb;
@@ -72,14 +74,6 @@
   font-family: 'SolaimanLipi';
   src: url('/fonts/SolaimanLipi.ttf') format('truetype');
   font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'SolaimanLipi';
-  src: url('/fonts/SolaimanLipi_Bold.ttf') format('truetype');
-  font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
@@ -170,6 +164,16 @@
     .font-siliguri,
     .font-hind {
       font-family: 'Hind Siliguri', sans-serif !important;
+    }
+
+    .font-notoserif,
+    .NotoSerif {
+      font-family: 'Noto Serif Bengali', serif !important;
+    }
+
+    .font-tiro,
+    .Tiro {
+      font-family: 'Tiro Bangla', serif !important;
     }
   }
 

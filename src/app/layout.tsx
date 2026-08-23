@@ -3,17 +3,12 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Providers from "./Providers";
 
-// SolaimanLipi font (root / body font)
+// SolaimanLipi Font Configuration
 const SolaimanLipi = localFont({
   src: [
     {
       path: "../fonts/SolaimanLipi.ttf",
       weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../fonts/SolaimanLipi_Bold.ttf",
-      weight: "700",
       style: "normal",
     }
   ],

@@ -12,6 +12,8 @@ const config: Config = {
       fontFamily: {
         solaiman: ['SolaimanLipi', 'Hind Siliguri', 'serif'],
         siliguri: ['SolaimanLipi', 'Hind Siliguri', 'sans-serif'],
+        notoserif: ['Noto Serif Bengali', 'serif'],
+        tiro: ['Tiro Bangla', 'serif']
       },
       colors: {
         'primary-blue': '#3252eb',
