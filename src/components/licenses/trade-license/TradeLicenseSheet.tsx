@@ -121,7 +121,7 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
           </div>
 
           {/* Top Metadata Grid */}
-          <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 text-[12.5px]">
+          <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 text-[12.5px] leading-relaxed">
             <div className="flex items-baseline gap-1">
               <span className="text-black w-[120px]">লাইসেন্স নং</span>
               <span className={`flex-1 ${lineBorderClass}`}>: {meta.license_no}</span>
@@ -309,7 +309,7 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
               <div className="qr-canvas-holder p-1 bg-white border border-gray-300 shadow-sm">
                 <QRCodeSVG
                   value={signatory.qr_url || "https://www.lgoms.org"}
-                  size={72}
+                  size={70}
                   level="M"
                 />
               </div>
