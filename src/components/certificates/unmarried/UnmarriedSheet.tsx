@@ -40,11 +40,11 @@ export function UnmarriedSheet({ data }: UnmarriedSheetProps) {
         }
       `}</style>
       {/* Top Header Bar (Outside thick border box) */}
-      <div className="flex justify-between items-center text-[12px] text-gray-800 font-sans px-1 pb-1">
+      <div className="flex justify-between items-center text-xs text-gray-800 font-sans px-1 pb-1">
         <div className="w-[180px] text-left font-normal text-slate-800">
           {printDateTime}
         </div>
-        <div className="text-slate-900 text-[13px] font-solaiman">
+        <div className="text-slate-900 text-sm font-solaiman">
           {meta.cert_title || "অবিবাহিত সনদ"}
         </div>
         <div className="w-[180px]" />
@@ -80,14 +80,14 @@ export function UnmarriedSheet({ data }: UnmarriedSheetProps) {
             </div>
 
             <div className="header-titles flex flex-col items-center justify-center">
-              <div className="gov-sub-title text-sm text-gray-800 tracking-wide mb-[1px]">
+              <div className="gov-sub-title text-base text-gray-800 tracking-wide mb-[1px]">
                 গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার
               </div>
-              <h1 className="up-main-title text-3xl font-bold text-header-red leading-snug m-0 tracking-wide">
+              <h1 className="up-main-title text-4xl font-bold text-header-red leading-snug m-0 tracking-wide">
                 {/* drop-shadow-[2px_2px_3px_rgba(0,0,0,0.35)] */}
                 {union.up_name}
               </h1>
-              <div className="up-sub-address text-base font-semibold text-slate-900 mt-[1px]">
+              <div className="up-sub-address text-xl font-semibold text-slate-900 mt-[1px]">
                 উপজেলা: <span>{union.upazila}</span>, জেলা: <span>{union.district}</span>।
               </div>
               <div className="up-web-url font-siliguri text-sm font-semibold text-slate-900 mt-[1px]">
@@ -106,7 +106,7 @@ export function UnmarriedSheet({ data }: UnmarriedSheetProps) {
             </div>
 
             <div className="meta-badge-container flex justify-center flex-1">
-              <div className="cert-badge bg-emerald-600 text-white text-lg font-semibold px-9 py-1 rounded-[4px] tracking-wide inline-block shadow-sm">
+              <div className="cert-badge bg-emerald-600 text-white text-xl font-semibold px-9 py-1 rounded-[4px] tracking-wide inline-block shadow-sm">
                 {meta.cert_title}
               </div>
             </div>
@@ -170,6 +170,7 @@ export function UnmarriedSheet({ data }: UnmarriedSheetProps) {
 
           {/* Bottom Signatures & QR Section */}
           <div className="cert-footer-section flex justify-between items-end mt-auto p-[4px]">
+            {/* qr code box */}
             <div className="qr-code-box flex flex-col items-start">
               <div className="qr-canvas-holder p-1 bg-white border border-gray-300 shadow-sm">
                 <QRCodeSVG
@@ -183,6 +184,7 @@ export function UnmarriedSheet({ data }: UnmarriedSheetProps) {
               </div>
             </div>
 
+            {/* signatory box */}
             <div className="signatory-box text-center min-w-[200px] pb-[2px]">
               <div className="sign-space h-[32px]" />
               <div className="sign-name text-base font-semibold text-black leading-tight">
@@ -207,7 +209,7 @@ export function UnmarriedSheet({ data }: UnmarriedSheetProps) {
       </div>
 
       {/* Bottom Footer Bar (Outside thick border box) */}
-      <div className="flex justify-between items-center text-[11px] text-gray-800 font-sans px-1 pt-1">
+      <div className="flex justify-between items-center text-xs text-gray-800 font-sans px-1 pt-1">
         <a
           href={signatory.qr_url || "https://www.lgoms.org/umc_certificates.php?id=10422"}
           target="_blank"
