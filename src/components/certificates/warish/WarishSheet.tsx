@@ -67,11 +67,11 @@ export function WarishSheet({ data }: WarishSheetProps) {
         }
       `}</style>
       {/* Top Header Bar (Outside thick border box) */}
-      <div className="flex justify-between items-center text-[11px] text-gray-800 font-sans px-1 pb-1">
-        <div className="w-[150px] text-left font-normal text-slate-800">
+      <div className="flex justify-between items-center text-xs text-black font-sans px-1 pb-1">
+        <div className="w-[150px] text-left font-normal text-black">
           {printDateTime}
         </div>
-        <div className="font-bold text-slate-900 text-[13px] font-solaiman">
+        <div className="text-black text-sm font-solaiman">
           {meta.cert_title || "ওয়ারিশ সনদ"}
         </div>
         <div className="w-[150px]" />
@@ -108,16 +108,16 @@ export function WarishSheet({ data }: WarishSheetProps) {
 
             {/* Center Header Titles */}
             <div className="header-titles flex flex-col items-center justify-center">
-              <div className="gov-sub-title text-[13.5px] font-semibold text-gray-800 tracking-wide mb-[1px]">
+              <div className="gov-sub-title text-base text-black tracking-wide mb-[1px]">
                 গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার
               </div>
-              <h1 className="up-main-title text-[28px] font-bold text-header-red leading-snug m-0 tracking-wide">
+              <h1 className="up-main-title text-4xl font-bold text-header-red leading-snug m-0 tracking-wide">
                 {union.up_name}
               </h1>
-              <div className="up-sub-address text-[13.5px] font-bold text-slate-900 mt-[1px]">
+              <div className="up-sub-address text-xl font-semibold text-black mt-[1px]">
                 উপজেলা: <span>{union.upazila}</span>, জেলা: <span>{union.district}</span>।
               </div>
-              <div className="up-web-url font-siliguri text-[12.5px] font-bold text-slate-900 mt-[1px]">
+              <div className="up-web-url font-siliguri text-sm font-semibold text-black mt-[1px]">
                 {union.website}
               </div>
             </div>
@@ -139,64 +139,64 @@ export function WarishSheet({ data }: WarishSheetProps) {
 
           {/* Metadata Ribbon */}
           <div className="cert-meta-ribbon flex justify-between items-center mt-[10px] px-1">
-            <div className="meta-item meta-serial text-[14px] text-[#121212]">
-              <span className="lbl font-semibold mr-1.5">ক্রমিক নং:</span>
+            <div className="meta-item meta-serial text-base text-[#121212]">
+              <span className="lbl mr-1.5">ক্রমিক নং:</span>
               <span className="val font-bold font-siliguri tracking-wide">{meta.serial_no}</span>
             </div>
 
             <div className="meta-badge-container flex justify-center flex-1">
-              <div className="cert-badge bg-red-900 text-white text-[16px] font-bold px-[36px] py-[3.5px] rounded-sm tracking-wider inline-block shadow-md">
+              <div className="cert-badge bg-red-900 text-white text-xl font-semibold px-9 py-1 rounded-[4px] tracking-wide inline-block shadow-md">
                 {meta.cert_title || "ওয়ারিশ সনদ"}
               </div>
             </div>
 
-            <div className="meta-item meta-date text-[14px] text-[#121212]">
-              <span className="lbl font-semibold mr-1.5">তারিখ:</span>
+            <div className="meta-item meta-date text-base text-[#121212]">
+              <span className="lbl mr-1.5">তারিখ:</span>
               <span className="val font-bold font-siliguri tracking-wide">{meta.issue_date}</span>
             </div>
           </div>
 
           {/* Certificate Content Body */}
           <div className="cert-content-body mt-3 px-1 flex-1 flex flex-col justify-start">
-            <p className="cert-paragraph text-[14px] leading-[2.1] text-gray-900 text-justify mb-2">
+            <p className="cert-paragraph text-base leading-[2.1] text-black text-justify mb-2">
               এই মর্মে ওয়ারিশ সনদ দেওয়া যাইতেছে যে,{" "}
-              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.person_name}
               </span>{" "}
               (আইডি নং:{" "}
-              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.nid_no}
               </span>{" "}
               ), পিতা:{" "}
-              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.father_name}
               </span>
               , মাতা:{" "}
-              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.mother_name}
               </span>
               , গ্রাম:{" "}
-              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.village}
               </span>
               , ওয়ার্ড নং:{" "}
-              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.ward_no}
               </span>
               , বাসা নং{" "}
-              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.house_no}
               </span>
               , ইউনিয়ন:{" "}
-              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {union.up_name}
               </span>
               , উপজেলা:{" "}
-              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {union.upazila}
               </span>
               , জেলা:{" "}
-              <span className="font-bold border-b border-dotted border-gray-700 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {union.district}
               </span>
               , উল্লেখিত ব্যক্তির পরিবারে নিম্নলিখিত ওয়ারিশ রহিয়াছে যাদের সম্পর্ক উল্লেখ করা হলো।
@@ -204,7 +204,7 @@ export function WarishSheet({ data }: WarishSheetProps) {
 
             {/* Warish Table (5 columns: ক্রম, সদস্যগণের নাম, জন্ম তারিখ, বয়স, সম্পর্ক) */}
             <div className="w-full my-1 overflow-hidden">
-              <table className="w-full border-collapse border border-gray-400 text-[14px]">
+              <table className="w-full border-collapse border border-gray-400 text-sm">
                 <thead>
                   <tr className="bg-gray-100 font-bold text-center">
                     <th className="border border-gray-400 px-2 py-1.5 w-20">ক্রমিক নং</th>
@@ -217,11 +217,11 @@ export function WarishSheet({ data }: WarishSheetProps) {
                 <tbody>
                   {heirs.map((item, idx) => (
                     <tr key={item.id || idx} className="text-center">
-                      <td className="border border-gray-400 px-2 py-1 font-bold">{toBnNo(idx + 1)}</td>
-                      <td className="border border-gray-400 px-3 py-1 text-left font-bold">{item.name}</td>
-                      <td className="border border-gray-400 px-3 py-1 font-semibold">{item.dob || item.age_or_dob}</td>
-                      <td className="border border-gray-400 px-2 py-1 font-semibold">{item.age_or_dob}</td>
-                      <td className="border border-gray-400 px-3 py-1 font-semibold">{item.relation}</td>
+                      <td className="border border-gray-400 px-2 py-1">{toBnNo(idx + 1)}</td>
+                      <td className="border border-gray-400 px-3 py-1 text-left">{item.name}</td>
+                      <td className="border border-gray-400 px-3 py-1">{item.dob || item.age_or_dob}</td>
+                      <td className="border border-gray-400 px-2 py-1">{item.age_or_dob}</td>
+                      <td className="border border-gray-400 px-3 py-1">{item.relation}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -229,8 +229,8 @@ export function WarishSheet({ data }: WarishSheetProps) {
             </div>
 
             {/* Warish Table Bottom Summary Note */}
-            <p className="cert-summary text-[13.5px] leading-relaxed text-gray-900 mt-2.5 text-justify font-solaiman">
-              উল্লেখিত ব্যক্তির {sonCount > 0 ? `${toBnNo(sonCount)} জন পুত্র, ` : ""}{daughterCount > 0 ? `${toBnNo(daughterCount)} জন কন্যা, ` : ""}{spouseCount > 0 ? `${toBnNo(spouseCount)} জন স্ত্রী, ` : ""}{relativesCount > 0 ? `${toBnNo(relativesCount)} জন নিকট আত্মীয়সহ ` : "- জন নিকট আত্মীয়সহ "}মোট-({toBnNo(totalCount)}) ({toBnWords(totalCount)}) জন ওয়ারিশ আছে, ইহা ব্যতিত তাহার আর কোন ওয়ারিশ নাই, {applicant.ward_no} নং ওয়ার্ড ইউপি সদস্য এর সুপারিশের ভিত্তিতে প্রদান করা হইল।
+            <p className="cert-summary text-base leading-relaxed text-black mt-2.5 text-justify font-solaiman">
+              উক্ত ব্যক্তির <span className="font-semibold">{sonCount > 0 ? `${toBnNo(sonCount)} জন পুত্র, ` : ""}{daughterCount > 0 ? `${toBnNo(daughterCount)} জন কন্যা, ` : ""}{spouseCount > 0 ? `${toBnNo(spouseCount)} জন স্ত্রী, ` : ""}{relativesCount > 0 ? `${toBnNo(relativesCount)} জন নিকট আত্মীয়সহ ` : "- জন নিকট আত্মীয়সহ "}মোট-({toBnNo(totalCount)}) ({toBnWords(totalCount)})</span> জন ওয়ারিশ আছে, ইহা ব্যতিত তাহার আর কোন ওয়ারিশ নাই, {applicant.ward_no} নং ওয়ার্ড ইউপি সদস্য এর সুপারিশের ভিত্তিতে প্রদান করা হইল।
             </p>
           </div>
 
@@ -240,38 +240,38 @@ export function WarishSheet({ data }: WarishSheetProps) {
               <div className="qr-canvas-holder p-1 bg-white border border-gray-300 shadow-sm">
                 <QRCodeSVG value={signatory.qr_url || "https://www.lgoms.org"} size={78} level="M" />
               </div>
-              <div className="trn-text font-siliguri text-[13px] font-bold text-gray-900 mt-[3px]">
+              <div className="trn-text font-siliguri text-sm text-black mt-[3px]">
                 Trn- <span>{signatory.trn_no}</span>
               </div>
             </div>
 
             <div className="signatory-box text-center min-w-[200px] pb-[2px]">
               <div className="sign-space h-[32px]" />
-              <div className="sign-name text-[14.5px] font-bold text-black leading-tight">{signatory.signatory_name}</div>
-              <div className="sign-designation text-[12.5px] font-semibold text-gray-800 leading-tight">{signatory.signatory_role}</div>
-              <div className="sign-office text-[12.5px] font-semibold text-gray-800 leading-tight">{union.up_name}</div>
-              <div className="sign-location text-[12.5px] font-semibold text-gray-800 leading-tight">{union.upazila}, {union.district}।</div>
+              <div className="sign-name text-base font-semibold text-black leading-tight">{signatory.signatory_name}</div>
+              <div className="sign-designation text-base text-black leading-tight">{signatory.signatory_role}</div>
+              <div className="sign-office text-base text-black leading-tight">{union.up_name}</div>
+              <div className="sign-location text-base text-black leading-tight">{union.upazila}, {union.district}।</div>
             </div>
           </div>
 
           {/* Bottom Tagline Ribbon (Under Chairman Signatory Info) */}
-          <div className="mt-2 text-center text-[14px] text-gray-900 bg-gray-50/90 py-0.5 border border-gray-200 rounded">
+          <div className="mt-3 text-center text-base text-black">
             অল্প সময়ে সল্প খরচে, সঠিক বিচার পেতে, চল যাই গ্রামআদালতে* সময়মত জন্ম ও মৃত্যু নিবন্ধন করুন।
           </div>
         </div>
       </div>
 
       {/* Bottom Footer Bar (Outside thick border box) */}
-      <div className="flex justify-between items-center text-[11px] text-gray-800 font-sans px-1 pt-1">
+      <div className="flex justify-between items-center text-xs text-black font-sans px-1 pt-1">
         <a
           href={signatory.qr_url || "https://www.lgoms.org"}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:underline text-slate-800 font-normal truncate max-w-[80%]"
+          className="hover:underline text-black font-normal truncate max-w-[80%]"
         >
           {signatory.qr_url || "https://www.lgoms.org"}
         </a>
-        <div className="font-normal text-slate-800">
+        <div className="font-normal text-black">
           1/1
         </div>
       </div>
