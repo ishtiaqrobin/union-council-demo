@@ -40,11 +40,11 @@ export function UnmarriedSheet({ data }: UnmarriedSheetProps) {
         }
       `}</style>
       {/* Top Header Bar (Outside thick border box) */}
-      <div className="flex justify-between items-center text-xs text-gray-800 font-sans px-1 pb-1">
-        <div className="w-[180px] text-left font-normal text-slate-800">
+      <div className="flex justify-between items-center text-xs text-black font-sans px-1 pb-1">
+        <div className="w-[180px] text-left font-normal text-black">
           {printDateTime}
         </div>
-        <div className="text-slate-900 text-sm font-solaiman">
+        <div className="text-black text-sm font-solaiman">
           {meta.cert_title || "অবিবাহিত সনদ"}
         </div>
         <div className="w-[180px]" />
@@ -80,17 +80,17 @@ export function UnmarriedSheet({ data }: UnmarriedSheetProps) {
             </div>
 
             <div className="header-titles flex flex-col items-center justify-center">
-              <div className="gov-sub-title text-base text-gray-800 tracking-wide mb-[1px]">
+              <div className="gov-sub-title text-base text-black tracking-wide mb-[1px]">
                 গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার
               </div>
               <h1 className="up-main-title text-4xl font-bold text-header-red leading-snug m-0 tracking-wide">
                 {/* drop-shadow-[2px_2px_3px_rgba(0,0,0,0.35)] */}
                 {union.up_name}
               </h1>
-              <div className="up-sub-address text-xl font-semibold text-slate-900 mt-[1px]">
+              <div className="up-sub-address text-xl font-semibold text-black mt-[1px]">
                 উপজেলা: <span>{union.upazila}</span>, জেলা: <span>{union.district}</span>।
               </div>
-              <div className="up-web-url font-siliguri text-sm font-semibold text-slate-900 mt-[1px]">
+              <div className="up-web-url font-siliguri text-sm font-semibold text-black mt-[1px]">
                 {union.website}
               </div>
             </div>
@@ -119,51 +119,51 @@ export function UnmarriedSheet({ data }: UnmarriedSheetProps) {
 
           {/* Certificate Content Body */}
           <div className="cert-content-body mt-6 px-2 flex-1 flex flex-col justify-start">
-            <p className="cert-paragraph text-base leading-[2.2] text-gray-900 text-justify">
+            <p className="cert-paragraph text-base leading-[2.2] text-black text-justify">
               এই মর্মে প্রত্যয়ন করা যাচ্ছে যে,{" "}
-              <span className="font-semibold border-b border-dotted border-gray-900 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.person_name}
               </span>{" "}
               (এনআইডি/জন্ম সনদ:{" "}
-              <span className="font-semibold border-b border-dotted border-gray-900 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.nid_no}
               </span>
               ), পিতা:{" "}
-              <span className="font-semibold border-b border-dotted border-gray-900 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.father_name}
               </span>
               , মাতা:{" "}
-              <span className="font-semibold border-b border-dotted border-gray-900 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.mother_name}
               </span>
               , গ্রাম:{" "}
-              <span className="font-semibold border-b border-dotted border-gray-900 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.village}
               </span>
               , বাসা নং:{" "}
-              <span className="font-semibold border-b border-dotted border-gray-900 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.house_no}
               </span>
               , ওয়ার্ড নং:{" "}
-              <span className="font-semibold border-b border-dotted border-gray-900 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.ward_no}
               </span>
               , ডাকঘর:{" "}
-              <span className="font-semibold border-b border-dotted border-gray-900 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.post_office}
               </span>
               , উপজেলা:{" "}
-              <span className="font-semibold border-b border-dotted border-gray-900 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.person_upazila}
               </span>
               , জেলা:{" "}
-              <span className="font-semibold border-b border-dotted border-gray-900 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.person_district}
               </span>{" "}
               কে আমি ব্যক্তিগত ভাবে চিনি ও জানি। তিনি অত্র ইউনিয়নের স্থায়ী বাসিন্দা ও বাংলাদেশের নাগরিক। আমার জানামতে তিনি বিবাহবন্ধনে আবদ্ধ হন নাই।
             </p>
 
-            <p className="cert-closing text-base font-semibold text-gray-900 mt-3 pl-[16px]">
+            <p className="cert-closing text-base font-semibold text-black mt-3 pl-[16px]">
               আমি তাহার সার্বিক কল্যাণ ও উন্নতি কামনা করি।
             </p>
           </div>
@@ -179,7 +179,7 @@ export function UnmarriedSheet({ data }: UnmarriedSheetProps) {
                   level="M"
                 />
               </div>
-              <div className="trn-text font-siliguri text-sm text-gray-900 mt-[3px]">
+              <div className="trn-text font-siliguri text-sm text-black mt-[3px]">
                 Trn- <span>{signatory.trn_no}</span>
               </div>
             </div>
@@ -190,39 +190,39 @@ export function UnmarriedSheet({ data }: UnmarriedSheetProps) {
               <div className="sign-name text-base font-semibold text-black leading-tight">
                 {signatory.signatory_name}
               </div>
-              <div className="sign-role-sub text-base text-gray-800 leading-tight">
+              <div className="sign-role-sub text-base text-black leading-tight">
                 অনুমোদনকারী/প্রদানকারী
               </div>
-              <div className="sign-designation text-base text-gray-800 leading-tight">
+              <div className="sign-designation text-base text-black leading-tight">
                 {signatory.signatory_role}
               </div>
-              <div className="sign-office text-base text-gray-800 leading-tight">
+              <div className="sign-office text-base text-black leading-tight">
                 {union.up_name}
               </div>
-              <div className="sign-location text-base text-gray-800 leading-tight">
+              <div className="sign-location text-base text-black leading-tight">
                 {union.upazila}, {union.district}।
               </div>
             </div>
           </div>
 
           {/* Bottom Tagline Ribbon (Under QR Code & Chairman Info) */}
-          <div className="mt-4 mb-2 text-center text-base text-gray-900">
+          <div className="mt-4 mb-2 text-center text-base text-black">
             ইউপি কর পরিশোধ করুন* অল্প সময়ে সল্প খরচে, সঠিক বিচার পেতে, চল যাই গ্রামআদালতে* সময়মত জন্ম ও মৃত্যু নিবন্ধন করুন।
           </div>
         </div>
       </div>
 
       {/* Bottom Footer Bar (Outside thick border box) */}
-      <div className="flex justify-between items-center text-xs text-gray-800 font-sans px-1 pt-1">
+      <div className="flex justify-between items-center text-xs text-black font-sans px-1 pt-1">
         <a
           href={signatory.qr_url || "https://www.lgoms.org/umc_certificates.php?id=10422"}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:underline text-slate-800 font-normal truncate max-w-[80%]"
+          className="hover:underline text-black font-normal truncate max-w-[80%]"
         >
           {signatory.qr_url || "https://www.lgoms.org/umc_certificates.php?id=10422"}
         </a>
-        <div className="font-normal text-slate-800">
+        <div className="font-normal text-black">
           1/1
         </div>
       </div>
