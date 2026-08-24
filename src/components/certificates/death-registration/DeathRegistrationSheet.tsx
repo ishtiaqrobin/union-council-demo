@@ -105,7 +105,7 @@ export function DeathRegistrationSheet({ data }: DeathRegistrationSheetProps) {
               <div className="gov-sub-title text-base text-black tracking-wide mb-[1px]">
                 গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার
               </div>
-              <div className="text-base font-semibold text-emerald-800 tracking-wide">
+              <div className="text-xl font-semibold text-emerald-800 tracking-wide">
                 জন্ম ও মৃত্যু নিবন্ধকের কার্যালয়
               </div>
               <h1 className="up-main-title text-4xl font-bold text-header-red leading-snug m-0 tracking-wide">
@@ -121,7 +121,7 @@ export function DeathRegistrationSheet({ data }: DeathRegistrationSheetProps) {
 
             {/* Green Title Badge */}
             <div className="mt-3">
-              <h2 className="text-[22px] font-bold text-emerald-700 tracking-wide border-b-2 border-emerald-600 pb-0.5 inline-block">
+              <h2 className="text-2xl font-semibold text-emerald-700 tracking-wide border-b-2 border-emerald-600 pb-0.5 inline-block">
                 মৃত্যু নিবন্ধন সনদ
               </h2>
             </div>
@@ -143,7 +143,7 @@ export function DeathRegistrationSheet({ data }: DeathRegistrationSheetProps) {
               <span className="text-base text-black whitespace-nowrap">মৃত্যু নিবন্ধন নং:</span>
               <div className="flex-1 grid grid-cols-17 gap-0.5 border border-slate-800 p-0.5 bg-slate-50">
                 {regDigits.map((digit, index) => (
-                  <div key={index} className="h-7 border border-slate-400 flex items-center justify-center font-bold text-black text-base font-solaiman bg-white">
+                  <div key={index} className="h-7 border border-slate-400 flex items-center justify-center text-black text-base font-solaiman bg-white">
                     {digit}
                   </div>
                 ))}
@@ -152,60 +152,60 @@ export function DeathRegistrationSheet({ data }: DeathRegistrationSheetProps) {
           </div>
 
           {/* Key Value Details Grid */}
-          <div className="mt-5 flex-1 flex flex-col gap-3.5 text-base leading-relaxed text-black">
+          <div className="mt-5 flex-1 flex flex-col gap-3.5 text-base leading-normal text-black">
             <div className="grid grid-cols-[130px_1fr] items-baseline pb-1">
-              <span className="font-semibold text-black">নাম</span>
+              <span className="text-black">নাম</span>
               <span className="font-semibold text-base text-black border-b-[1.5px] border-dashed border-black pb-0.5">: {applicant.person_name}</span>
             </div>
 
             <div className="grid grid-cols-[130px_1fr] items-baseline pb-1">
-              <span className="font-semibold text-black">মৃত্যুর তারিখ</span>
+              <span className="text-black">মৃত্যুর তারিখ</span>
               <span className={borderClass}>: {dateOfDeathBn || "05-05-1999"}</span>
             </div>
 
             <div className="grid grid-cols-[130px_1fr] items-baseline pb-1">
-              <span className="font-semibold text-black">কথায়</span>
+              <span className="text-black">কথায়</span>
               <span className={borderClass}>: {dateOfDeathInWordsBn || "পাঁচই মে উনিশশত নিরানব্বই"}</span>
             </div>
 
             <div className="grid grid-cols-[130px_1fr] items-baseline pb-1">
-              <span className="font-semibold text-black">লিঙ্গ</span>
+              <span className="text-black">লিঙ্গ</span>
               <span className={borderClass}>: {genderBn || "নারী"}</span>
             </div>
 
             <div className="grid grid-cols-2 gap-4 pb-1">
               <div className="grid grid-cols-[130px_1fr] items-baseline">
-                <span className="font-semibold text-black">পিতার নাম</span>
+                <span className="text-black">পিতার নাম</span>
                 <span className={borderClass}>: {applicant.father_name}</span>
               </div>
               <div className="grid grid-cols-[100px_1fr] items-baseline">
-                <span className="font-semibold text-black">মাতার নাম</span>
+                <span className="text-black">মাতার নাম</span>
                 <span className={borderClass}>: {applicant.mother_name}</span>
               </div>
             </div>
 
             <div className="grid grid-cols-[130px_1fr] items-baseline pb-1">
-              <span className="font-semibold text-black">স্বামী/স্ত্রীর নাম</span>
+              <span className="text-black">স্বামী/স্ত্রীর নাম</span>
               <span className={borderClass}>: {applicant.spouse_name || "মৃত- দিপালী অধিকারী"}</span>
             </div>
 
             <div className="grid grid-cols-[130px_1fr] items-baseline pb-1">
-              <span className="font-semibold text-black">স্থায়ী ঠিকানা</span>
+              <span className="text-black">স্থায়ী ঠিকানা</span>
               <span className={borderClass}>: {permanentAddressBn || `গ্রাম: ${applicant.village}, ডাকঘর: ${applicant.post_office}, উপজেলা: ${applicant.person_upazila}, জেলা: ${applicant.person_district}।`}</span>
             </div>
 
             <div className="grid grid-cols-[130px_1fr] items-baseline pb-1">
-              <span className="font-semibold text-black">বর্তমান ঠিকানা</span>
+              <span className="text-black">বর্তমান ঠিকানা</span>
               <span className={borderClass}>: {presentAddressBn || `গ্রাম: ${applicant.village}, ডাকঘর: ${applicant.post_office}, উপজেলা: ${applicant.person_upazila}, জেলা: ${applicant.person_district}।`}</span>
             </div>
 
             <div className="grid grid-cols-2 gap-4 pb-1">
               <div className="grid grid-cols-[130px_1fr] items-baseline">
-                <span className="font-semibold text-black">মৃত্যুর কারণ</span>
+                <span className="text-black">মৃত্যুর কারণ</span>
                 <span className={borderClass}>: {causeOfDeathBn || "শ্বাসকষ্ট জনিত কারণ।"}</span>
               </div>
               <div className="grid grid-cols-[100px_1fr] items-baseline">
-                <span className="font-semibold text-black">মৃত্যুর স্থান</span>
+                <span className="text-black">মৃত্যুর স্থান</span>
                 <span className={borderClass}>: {placeOfDeathBn || `গ্রাম: ${applicant.village}, ডাকঘর: ${applicant.post_office}, উপজেলা: ${applicant.person_upazila}, জেলা: ${applicant.person_district}।`}</span>
               </div>
             </div>
@@ -263,7 +263,7 @@ export function DeathRegistrationSheet({ data }: DeathRegistrationSheetProps) {
           </div>
 
           {/* Bottom Tagline Ribbon */}
-          <div className="mt-3 text-center text-base text-black">
+          <div className="mt-5 text-center text-base text-black">
             সময়মত কর পরিশোধ করুন * গাছ লাগান পরিবেশ বাঁচান * আপনার সন্তানকে স্কুলে পাঠান
           </div>
 
@@ -271,7 +271,7 @@ export function DeathRegistrationSheet({ data }: DeathRegistrationSheetProps) {
       </div>
 
       {/* Bottom Footer Bar (Outside thick border box) */}
-      <div className="flex justify-between items-center text-xs text-black font-sans px-1 pt-0.5">
+      <div className="flex justify-between items-center text-xs text-black font-sans px-1 pt-1">
         <a
           href={signatory.qr_url || "https://www.lgoms.org"}
           target="_blank"
