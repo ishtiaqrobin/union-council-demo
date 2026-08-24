@@ -26,7 +26,7 @@ export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
     setPrintDateTime(`${month}/${day}/${year}, ${hours}:${minutes} ${ampm}`);
   }, []);
 
-  const lineBorderClass = "font-semibold text-slate-950 border-b-[1.5px] border-dashed border-slate-800 pb-0.5";
+  const lineBorderClass = "font-semibold text-black border-b-[1.5px] border-dashed border-black pb-0.5";
 
   return (
     <div
@@ -42,18 +42,18 @@ export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
         }
       `}</style>
       {/* Top Header Bar (Outside thick border box) */}
-      <div className="flex justify-between items-center text-[11px] text-gray-800 font-sans px-1 pb-1">
-        <div className="w-[150px] text-left font-normal text-slate-800">
+      <div className="flex justify-between items-center text-xs text-black font-sans px-1 pb-1">
+        <div className="w-[150px] text-left font-normal text-black">
           {printDateTime}
         </div>
-        <div className="font-bold text-slate-900 text-[12px] font-solaiman">
+        <div className="text-black text-sm font-solaiman">
           পেশা ও জীবিকা লাইসেন্স
         </div>
         <div className="w-[150px]" />
       </div>
 
       {/* Main Certificate Box with Outer Padding and Thick Rose Gradient Border (Fixed 200mm height, Top aligned) */}
-      <div className="h-[210mm] max-h-[210mm] relative p-3.5 my-3 mx-2 bg-gradient-to-br from-rose-600 via-rose-800 to-rose-600 shadow-md flex flex-col">
+      <div className="flex-1 relative p-3.5 my-3 mx-2 bg-gradient-to-br from-rose-600 via-rose-800 to-rose-600 shadow-md flex flex-col">
         <div className="certificate-inner-frame w-full h-full bg-[#fefef0] pt-4 px-6 pb-3 relative flex flex-col justify-between z-10 flex-1 border border-amber-200">
 
           {/* Background Watermark */}
@@ -71,12 +71,12 @@ export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
           {/* Header Section */}
           <div className="cert-header grid grid-cols-[68px_1fr_68px] items-center text-center relative pt-1">
             {/* Top Left Seal */}
-            <div className="gov-seal-left w-[64px] h-[64px] flex items-center justify-center">
+            <div className="gov-seal-left w-[72px] h-[72px] flex items-center justify-center">
               <Image
                 src="/assets/logo/logo.webp"
                 alt="বাংলাদেশ সরকার সিল"
-                width={64}
-                height={64}
+                width={72}
+                height={72}
                 className="gov-monogram w-full h-full drop-shadow-sm"
                 priority
               />
@@ -84,23 +84,23 @@ export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
 
             {/* Center Header Titles (Matching TradeLicenseSheet.tsx) */}
             <div className="header-titles flex flex-col items-center justify-center">
-              <div className="gov-sub-title text-[12.5px] font-semibold text-gray-800 tracking-wide mb-[1px]">
+              <div className="gov-sub-title text-base text-black tracking-wide mb-[1px]">
                 গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার
               </div>
-              <h1 className="up-main-title text-[24px] font-bold text-header-red leading-tight m-0 tracking-wide">
+              <h1 className="up-main-title text-4xl font-bold text-header-red leading-snug m-0 tracking-wide">
                 {union.up_name}
               </h1>
-              <div className="up-sub-address text-[12px] font-bold text-slate-900 mt-[1px]">
+              <div className="up-sub-address text-xl font-semibold text-black mt-[1px]">
                 উপজেলা: <span>{union.upazila}</span>, জেলা: <span>{union.district}</span>।
               </div>
-              <div className="up-web-url font-siliguri text-[11.5px] font-bold text-slate-900 mt-[1px]">
+              <div className="up-web-url font-siliguri text-sm font-semibold text-black mt-[1px]">
                 {union.website}
               </div>
-              <div className="text-[12px] font-bold text-slate-900 mt-[1px]">
+              <div className="text-base font-bold text-black mt-[1px]">
                 অর্থ বছর: <span>{fiscalYearBn || "২০২৫-২০২৬"}</span>
               </div>
               <div className="mt-1.5">
-                <span className="bg-red-800 text-white text-[16px] font-bold px-6 py-1 rounded-sm tracking-wider inline-block shadow-md">
+                <span className="bg-red-800 text-white text-xl font-semibold px-9 py-1 rounded-[4px] tracking-wider inline-block shadow-md">
                   পেশা ও জীবিকা লাইসেন্স
                 </span>
               </div>
@@ -120,67 +120,67 @@ export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
           </div>
 
           {/* Key Value Details List */}
-          <div className="mt-4 flex-1 flex flex-col gap-2.5 text-[13px] leading-relaxed">
+          <div className="mt-4 flex-1 flex flex-col gap-2.5 text-base leading-normal text-black">
             <div className="grid grid-cols-2 gap-x-4 gap-y-1">
               <div className="grid grid-cols-[180px_1fr] items-baseline">
-                <span className="font-bold text-slate-800">লাইসেন্স নং</span>
+                <span className="text-black">লাইসেন্স নং</span>
                 <span className={lineBorderClass}>: {meta.license_no}</span>
               </div>
 
               <div className="grid grid-cols-[150px_1fr] items-baseline">
-                <span className="font-bold text-slate-800">লাইসেন্স ইস্যুর তারিখ</span>
+                <span className="text-black">লাইসেন্স ইস্যুর তারিখ</span>
                 <span className={lineBorderClass}>: {meta.issue_date}</span>
               </div>
             </div>
 
             <div className="grid grid-cols-[180px_1fr] items-baseline">
-              <span className="font-bold text-slate-800">প্রতিষ্ঠানের নাম</span>
-              <span className={`text-[14px] text-red-950 ${lineBorderClass}`}>: {business.institution_name}</span>
+              <span className="text-black">প্রতিষ্ঠানের নাম</span>
+              <span className={`text-base font-semibold text-black ${lineBorderClass}`}>: {business.institution_name}</span>
             </div>
 
             <div className="grid grid-cols-[180px_1fr] items-baseline">
-              <span className="font-bold text-slate-800">লাইসেন্সধারীর নাম</span>
-              <span className={`text-[13.5px] ${lineBorderClass}`}>: {owner.name}</span>
+              <span className="text-black">লাইসেন্সধারীর নাম</span>
+              <span className={`text-base ${lineBorderClass}`}>: {owner.name}</span>
             </div>
 
             <div className="grid grid-cols-[180px_1fr] items-baseline">
-              <span className="font-bold text-slate-800">পিতা/স্বামী</span>
+              <span className="text-black">পিতা/স্বামী</span>
               <span className={lineBorderClass}>: {owner.father_or_husband_name}</span>
             </div>
 
             <div className="grid grid-cols-[180px_1fr] items-baseline">
-              <span className="font-bold text-slate-800">ঠিকানা</span>
+              <span className="text-black">ঠিকানা</span>
               <span className={lineBorderClass}>: {owner.address}</span>
             </div>
 
             <div className="grid grid-cols-[180px_1fr] items-baseline">
-              <span className="font-bold text-slate-800">ব্যবসার ধরণ</span>
+              <span className="text-black">ব্যবসার ধরণ</span>
               <span className={lineBorderClass}>: {business.business_type}</span>
             </div>
 
             <div className="grid grid-cols-[180px_1fr] items-baseline">
-              <span className="font-bold text-slate-800">ব্যবসার স্থান</span>
+              <span className="text-black">ব্যবসার স্থান</span>
               <span className={lineBorderClass}>: {business.business_place}</span>
             </div>
 
             <div className="grid grid-cols-[180px_1fr] items-baseline">
-              <span className="font-bold text-slate-800">বৈধতার মেয়াদ</span>
+              <span className="text-black">বৈধতার মেয়াদ</span>
               <span className={lineBorderClass}>: {meta.valid_until_date}</span>
             </div>
 
             <div className="grid grid-cols-[180px_1fr] items-baseline">
-              <span className="font-bold text-slate-800">নবায়নের তারিখ</span>
+              <span className="text-black">নবায়নের তারিখ</span>
               <span className={lineBorderClass}>: {meta.renewal_date}</span>
             </div>
 
             <div className="grid grid-cols-[180px_1fr] items-baseline">
-              <span className="font-bold text-slate-800">ফি প্রদানের পরিমাণ(১৫% ভ্যাটসহ)</span>
+              <span className="text-black">ফি প্রদানের পরিমাণ(১৫% ভ্যাটসহ)</span>
               <span className={lineBorderClass}>: {financials.fee_amount} (কথায়: {financials.amount_in_words})</span>
             </div>
 
             {/* Acknowledgement Line */}
-            <div className="mt-3 text-[12.5px] leading-relaxed text-slate-900">
-              প্রাপ্ত হয়ে <span className="font-bold border-b-[1.5px] border-dashed border-slate-800">{business.institution_name}</span> কে তার ব্যবসা/বৃত্তি/পেশা চালিয়ে যাবার জন্য অত্র লাইসেন্স প্রদান করা হলো।
+            <div className="mt-3 text-base leading-relaxed text-black">
+              প্রাপ্ত হয়ে <span className="font-semibold border-b-[1.5px] border-dashed border-black">{business.institution_name}</span> কে তার ব্যবসা/বৃত্তি/পেশা চালিয়ে যাবার জন্য অত্র লাইসেন্স প্রদান করা হলো।
             </div>
           </div>
 
@@ -195,7 +195,7 @@ export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
                   level="M"
                 />
               </div>
-              <div className="trn-text font-siliguri text-[11.5px] font-bold text-gray-900 mt-[2px]">
+              <div className="trn-text font-siliguri text-sm text-black mt-[2px]">
                 Trn- <span>{signatory.trn_no}</span>
               </div>
             </div>
@@ -203,16 +203,16 @@ export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
             {/* Right Signatory (Chairman) */}
             <div className="signatory-box text-center min-w-[180px] pb-[2px]">
               <div className="sign-space h-[28px]" />
-              <div className="sign-name text-[14px] font-bold text-slate-950 leading-tight">
+              <div className="sign-name text-base font-semibold text-black leading-tight">
                 {signatory.name}
               </div>
-              <div className="sign-role-sub text-[12px] font-semibold text-slate-700 leading-tight">
+              <div className="sign-role-sub text-base text-black leading-tight">
                 {signatory.role}
               </div>
-              <div className="sign-office text-[12px] font-semibold text-slate-700 leading-tight">
+              <div className="sign-office text-base text-black leading-tight">
                 {union.up_name}
               </div>
-              <div className="sign-location text-[12px] font-semibold text-slate-700 leading-tight">
+              <div className="sign-location text-base text-black leading-tight">
                 {union.upazila}, {union.district}।
               </div>
             </div>
@@ -222,16 +222,16 @@ export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
       </div>
 
       {/* Bottom Footer Bar (Outside thick border box, pushed to absolute bottom) */}
-      <div className="mt-auto flex justify-between items-center text-[11px] text-gray-800 font-sans px-1 pt-0.5">
+      <div className="mt-auto flex justify-between items-center text-xs text-black font-sans px-1 pt-0.5">
         <a
           href={signatory.qr_url || "https://www.lgoms.org"}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:underline text-slate-800 font-normal truncate max-w-[80%]"
+          className="hover:underline text-black font-normal truncate max-w-[80%]"
         >
           {signatory.qr_url || "https://www.lgoms.org"}
         </a>
-        <div className="font-normal text-slate-800">
+        <div className="font-normal text-black">
           1/1
         </div>
       </div>
