@@ -71,12 +71,12 @@ export function VehicleLicenseSheet({ data }: VehicleLicenseSheetProps) {
           {/* Header Section with QR Code (Left), Titles (Center), and Photo Placeholder (Right) */}
           <div className="cert-header grid grid-cols-[80px_1fr_68px] items-center text-center relative pt-1">
             {/* Top Left Seal */}
-            <div className="gov-seal-left w-[64px] h-[64px] flex items-center justify-center">
+            <div className="gov-seal-left w-[72px] h-[72px] flex items-center justify-center">
               <Image
                 src="/assets/logo/logo.webp"
                 alt="বাংলাদেশ সরকার সিল"
-                width={64}
-                height={64}
+                width={72}
+                height={72}
                 className="gov-monogram w-full h-full drop-shadow-sm"
                 priority
               />
@@ -100,14 +100,14 @@ export function VehicleLicenseSheet({ data }: VehicleLicenseSheetProps) {
                 অর্থ বছর: <span>{fiscalYearBn || "২০২৫-২০২৬"}</span>
               </div>
               <div className="mt-1.5">
-                <span className="bg-red-800 text-white text-[16px] font-bold px-6 py-1 rounded-sm tracking-wider inline-block shadow-md">
+                <span className="bg-red-800 text-white text-lg font-bold px-9 py-1 rounded-[4px] tracking-wider inline-block shadow-md">
                   যানবাহন লাইসেন্স
                 </span>
               </div>
             </div>
 
             {/* Right Owner Photo Frame */}
-            <div className="owner-photo-box w-[68px] h-[78px] border border-slate-400 bg-slate-100 flex items-center justify-center overflow-hidden shadow-sm">
+            <div className="owner-photo-box w-[68px] h-[78px] border border-slate-400 bg-white-100 p-0.5 flex items-center justify-center overflow-hidden shadow-sm">
               <Image
                 src={owner.photo_url || "/assets/image/person.webp"}
                 alt="লাইসেন্সধারী ছবি"
@@ -140,8 +140,8 @@ export function VehicleLicenseSheet({ data }: VehicleLicenseSheetProps) {
           </div>
 
           {/* Legal Notice */}
-          <div className="my-1.5 text-[11px] leading-snug text-slate-800 text-justify bg-slate-50 p-1.5 rounded border border-slate-200">
-            ইউনিয়ন পরিষদ আইন- ২০০৯ এর ১০২-১০৮ ধারার ৩য় তফসিলের ,৮,১০,১৯,ও২২আইটেম অনুসারে (ট্রেড,প্রফেশন,যানবাহন,কলিং ও বিজ্ঞাপন) ব্যবসা/পেশার অনুমোদনপত্র নিম্নে বর্ণিত ব্যক্তি/প্রতিষ্ঠানের অনুকূলে দেওয়া হইল। যাহার মেয়াদ তারিখ <span className="font-bold text-red-700">{meta.valid_until_date}</span> তারিখ পর্যন্ত বলবৎ থাকিবে।
+          <div className="my-1.5 text-[11px] leading-snug text-slate-800 text-justify">
+            ইউনিয়ন পরিষদ আইন- ২০০৯ এর ১০২-১০৮ ধারার ৩য় তফসিলের ,৮,১০,১৯,ও২২আইটেম অনুসারে (ট্রেড,প্রফেশন,যানবাহন,কলিং ও বিজ্ঞাপন) ব্যবসা/পেশার অনুমোদনপত্র নিম্নে বর্ণিত ব্যক্তি/প্রতিষ্ঠানের অনুকূলে দেওয়া হইল। যাহার মেয়াদ তারিখ <span className="font-semibold text-black">{meta.valid_until_date}</span> তারিখ পর্যন্ত বলবৎ থাকিবে।
           </div>
 
           {/* Numbered Details List (১ - ১০) */}

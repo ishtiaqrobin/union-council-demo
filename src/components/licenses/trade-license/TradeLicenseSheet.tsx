@@ -26,7 +26,7 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
     setPrintDateTime(`${month}/${day}/${year}, ${hours}:${minutes} ${ampm}`);
   }, []);
 
-  const lineBorderClass = "font-semibold text-slate-950 border-b-[1.5px] border-dashed border-slate-800 pb-0.5";
+  const lineBorderClass = "font-semibold text-black border-b-[1.5px] border-dashed border-black pb-0.5";
 
   return (
     <div
@@ -42,11 +42,11 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
         }
       `}</style>
       {/* Top Header Bar (Outside thick border box) */}
-      {/* <div className="flex justify-between items-center text-[11px] text-gray-800 font-sans px-1 pb-1">
-        <div className="w-[150px] text-left font-normal text-slate-800">
+      {/* <div className="flex justify-between items-center text-[11px] text-black font-sans px-1 pb-1">
+        <div className="w-[150px] text-left font-normal text-black">
           {printDateTime}
         </div>
-        <div className="font-bold text-slate-900 text-[12px] font-solaiman">
+        <div className="font-bold text-black text-[12px] font-solaiman">
           ট্রেড লাইসেন্স
         </div>
         <div className="w-[150px]" />
@@ -84,19 +84,19 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
 
             {/* Center Header Titles */}
             <div className="header-titles flex flex-col items-center justify-center">
-              <div className="gov-sub-title text-[12.5px] text-gray-800 tracking-wide mb-[1px]">
+              <div className="gov-sub-title text-[12.5px] text-black tracking-wide mb-[1px]">
                 গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার
               </div>
               <h1 className="up-main-title text-[24px] font-bold text-header-red leading-tight m-0 tracking-wide">
                 {union.up_name}
               </h1>
-              <div className="up-sub-address text-[12px] font-bold text-slate-900 mt-[1px]">
+              <div className="up-sub-address text-[12px] font-bold text-black mt-[1px]">
                 উপজেলা: <span>{union.upazila}</span>, জেলা: <span>{union.district}</span>।
               </div>
-              <div className="up-web-url font-siliguri text-[11.5px] font-semibold text-slate-900 mt-[1px]">
+              <div className="up-web-url font-siliguri text-[11.5px] font-semibold text-black mt-[1px]">
                 {union.website}
               </div>
-              <div className="text-sm font-bold text-slate-900 mt-[1px]">
+              <div className="text-sm font-bold text-black mt-[1px]">
                 অর্থ বছর: <span>{fiscalYearBn || "২০২৫-২০২৬"}</span>
               </div>
               <div className="mt-1.5">
@@ -107,7 +107,7 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
             </div>
 
             {/* Right Owner Photo Frame */}
-            <div className="owner-photo-box w-[68px] h-[78px] border border-slate-400 bg-slate-100 flex items-center justify-center overflow-hidden shadow-sm">
+            <div className="owner-photo-box w-[68px] h-[78px] border border-slate-400 bg-white-100 p-0.5 flex items-center justify-center overflow-hidden shadow-sm">
               <Image
                 // src={owner.photo_url || "/assets/image/person.webp"}
                 src="/assets/image/person.webp"
@@ -123,108 +123,108 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
           {/* Top Metadata Grid */}
           <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 text-[12.5px]">
             <div className="flex items-baseline gap-1">
-              <span className="text-slate-800 w-[120px]">লাইসেন্স নং</span>
+              <span className="text-black w-[120px]">লাইসেন্স নং</span>
               <span className={`flex-1 ${lineBorderClass}`}>: {meta.license_no}</span>
             </div>
             <div className="flex items-baseline gap-1">
-              <span className="text-slate-800 w-[120px]">লাইসেন্স আইডি</span>
+              <span className="text-black w-[120px]">লাইসেন্স আইডি</span>
               <span className={`flex-1 ${lineBorderClass}`}>: {meta.license_id}</span>
             </div>
             <div className="flex items-baseline gap-1">
-              <span className="text-slate-800 w-[120px]">ওয়ার্ড নং</span>
+              <span className="text-black w-[120px]">ওয়ার্ড নং</span>
               <span className={`flex-1 ${lineBorderClass}`}>: {meta.ward_no}</span>
             </div>
             <div className="flex items-baseline gap-1">
-              <span className="text-slate-800 w-[120px]">সার্কেল/রাস্তা/মহল্লা</span>
+              <span className="text-black w-[120px]">সার্কেল/রাস্তা/মহল্লা</span>
               <span className={`flex-1 ${lineBorderClass}`}>: {meta.circle_road_mohalla}</span>
             </div>
             <div className="flex items-baseline gap-1">
-              <span className="text-slate-800 w-[120px]">লাইসেন্স ইস্যুর তারিখ</span>
+              <span className="text-black w-[120px]">লাইসেন্স ইস্যুর তারিখ</span>
               <span className={`flex-1 ${lineBorderClass}`}>: {meta.issue_date}</span>
             </div>
             <div className="flex items-baseline gap-1">
-              <span className="text-slate-800 w-[120px]">লাইসেন্স নবায়নের তারিখ</span>
+              <span className="text-black w-[120px]">লাইসেন্স নবায়নের তারিখ</span>
               <span className={`flex-1 ${lineBorderClass}`}>: {meta.renewal_date}</span>
             </div>
           </div>
 
           {/* Legal Notice */}
-          <div className="my-1.5 text-[12.5px] leading-snug text-slate-800 text-justify">
+          <div className="my-1.5 text-[12.5px] leading-snug text-black text-justify">
             স্থানীয় সরকার (ইউনিয়ন পরিষদ) আইন, ২০০৯ সনের ৬১ নং আইনের ধারা ৬৬ তে প্রদত্ত ক্ষমতাবলে সরকার প্রণীত আদর্শ কর তফসিল ২০১৩ এর ৬ ও ১৭ নং অনুচ্ছেদ অনুযায়ী ব্যবসা, বৃত্তি, পেশা বা শিল্প প্রতিষ্ঠানের উপর আরোপিত কর আদায়ের লক্ষ্যে নির্ধারিত শর্তে নিম্নলিখিত ব্যক্তি/প্রতিষ্ঠানের অনুকূলে এই ট্রেড লাইসেন্সটি ইস্যু করা হইল। যাহার মেয়াদ তারিখ <span className="font-bold">{meta.valid_until_date}</span> তারিখ পর্যন্ত বলবৎ থাকিবে।
           </div>
 
           {/* Numbered Details List (১ - ১৩) */}
           <div className="flex-1 flex flex-col gap-1 text-[12.5px] leading-relaxed">
             <div className="grid grid-cols-[160px_1fr] items-baseline">
-              <span className="text-slate-800">১। প্রতিষ্ঠানের নাম</span>
-              <span className={`text-[13.5px] text-red-900 ${lineBorderClass}`}>: {business.institution_name}</span>
+              <span className="text-black">১। প্রতিষ্ঠানের নাম</span>
+              <span className={`text-[13.5px] text-black ${lineBorderClass}`}>: {business.institution_name}</span>
             </div>
             <div className="grid grid-cols-[160px_1fr] items-baseline">
-              <span className="text-slate-800">২। ব্যবসার ধরণ</span>
+              <span className="text-black">২। ব্যবসার ধরণ</span>
               <span className={lineBorderClass}>: {business.business_type}</span>
             </div>
             <div className="grid grid-cols-[160px_1fr] items-baseline">
-              <span className="text-slate-800">৩। ব্যবসার প্রকৃতি</span>
+              <span className="text-black">৩। ব্যবসার প্রকৃতি</span>
               <span className={lineBorderClass}>: {business.business_nature}</span>
             </div>
             <div className="grid grid-cols-[160px_1fr] items-baseline">
-              <span className="text-slate-800">৪। লাইসেন্সধারীর নাম</span>
+              <span className="text-black">৪। লাইসেন্সধারীর নাম</span>
               <span className={`text-[13.5px] ${lineBorderClass}`}>: {owner.name}</span>
             </div>
             <div className="grid grid-cols-[160px_1fr] items-baseline">
-              <span className="text-slate-800">৫। পিতার নাম</span>
+              <span className="text-black">৫। পিতার নাম</span>
               <span className={lineBorderClass}>: {owner.father_name}</span>
             </div>
             <div className="grid grid-cols-[160px_1fr] items-baseline">
-              <span className="text-slate-800">৬। মাতার নাম</span>
+              <span className="text-black">৬। মাতার নাম</span>
               <span className={lineBorderClass}>: {owner.mother_name}</span>
             </div>
             <div className="grid grid-cols-[160px_1fr] items-baseline">
-              <span className="text-slate-800">৭। স্বামী/স্ত্রীর নাম</span>
+              <span className="text-black">৭। স্বামী/স্ত্রীর নাম</span>
               <span className={lineBorderClass}>: {owner.spouse_name || "--------"}</span>
             </div>
             <div className="grid grid-cols-[160px_1fr] items-baseline">
-              <span className="text-slate-800">৮। ব্যবসার স্থান</span>
+              <span className="text-black">৮। ব্যবসার স্থান</span>
               <span className={lineBorderClass}>: {business.business_place}</span>
             </div>
             <div className="grid grid-cols-[160px_1fr] items-baseline">
-              <span className="text-slate-800">৯। স্থায়ী ঠিকানা</span>
+              <span className="text-black">৯। স্থায়ী ঠিকানা</span>
               <span className={lineBorderClass}>: {owner.permanent_address}</span>
             </div>
             <div className="grid grid-cols-[160px_1fr] items-baseline">
-              <span className="text-slate-800">১০। বর্তমান ঠিকানা</span>
+              <span className="text-black">১০। বর্তমান ঠিকানা</span>
               <span className={lineBorderClass}>: {owner.present_address}</span>
             </div>
 
             <div className="grid grid-cols-2 gap-2">
               <div className="grid grid-cols-[180px_1fr] items-baseline">
-                <span className="text-slate-800">১১। এনআইডি/বিআর/পাসপোর্ট নং</span>
+                <span className="text-black">১১। এনআইডি/বিআর/পাসপোর্ট নং</span>
                 <span className={lineBorderClass}>: {owner.nid_or_bc}</span>
               </div>
               <div className="grid grid-cols-[100px_1fr] items-baseline">
-                <span className="text-slate-800">করঅঞ্চল</span>
+                <span className="text-black">করঅঞ্চল</span>
                 <span className={lineBorderClass}>: {owner.tax_zone || "রাজবাড়ী"}</span>
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-2">
               <div className="grid grid-cols-[180px_1fr] items-baseline">
-                <span className="text-slate-800">১২। ট্যাক্স আইডেন্টিফিকেশন নং</span>
+                <span className="text-black">১২। ট্যাক্স আইডেন্টিফিকেশন নং</span>
                 <span className={lineBorderClass}>: {owner.tin_no || "--------"}</span>
               </div>
               <div className="grid grid-cols-[100px_1fr] items-baseline">
-                <span className="text-slate-800">মোবাইল নং</span>
+                <span className="text-black">মোবাইল নং</span>
                 <span className={lineBorderClass}>: {owner.mobile_no}</span>
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-2">
               <div className="grid grid-cols-[180px_1fr] items-baseline">
-                <span className="text-slate-800">১৩। বিজনেস আইডেন্টিফিকেশন নং</span>
+                <span className="text-black">১৩। বিজনেস আইডেন্টিফিকেশন নং</span>
                 <span className={lineBorderClass}>: {owner.bin_no || "--------"}</span>
               </div>
               <div className="grid grid-cols-[100px_1fr] items-baseline">
-                <span className="text-slate-800">ইমেইল নং</span>
+                <span className="text-black">ইমেইল নং</span>
                 <span className={lineBorderClass}>: {owner.email || "--------"}</span>
               </div>
             </div>
@@ -232,57 +232,57 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
 
           {/* 14. Financial Breakdown Table */}
           <div className="mt-2">
-            <div className="font-bold text-sm text-slate-900 mb-1">১৪। আর্থিক বিবরণী</div>
-            <table className="w-full text-[13px] border-collapse border border-slate-400 text-center">
+            <div className="font-bold text-sm text-black mb-1">১৪। আর্থিক বিবরণী</div>
+            <table className="w-full text-[13px] text-black border-collapse border border-gray-400 text-center">
               <thead>
                 <tr className="font-bold">
                   {/* bg-slate-50 */}
-                  <th className="border border-slate-400 px-2 py-0.5 w-10">*</th>
-                  <th className="border border-slate-400 px-3 py-0.5 text-left">আদায়ের বিবরণ</th>
-                  <th className="border border-slate-400 px-3 py-0.5 w-24 text-right">টাকা</th>
+                  <th className="border border-gray-400 px-2 py-0.5 w-10">*</th>
+                  <th className="border border-gray-400 px-3 py-0.5 text-left">আদায়ের বিবরণ</th>
+                  <th className="border border-gray-400 px-3 py-0.5 w-24 text-right">টাকা</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-slate-400 px-2 py-0.5">*</td>
-                  <td className="border border-slate-400 px-3 py-0.5 text-left">ট্রেড লাইসেন্স/নবায়ন ফি</td>
-                  <td className="border border-slate-400 px-3 py-0.5 text-right">{financials.license_fee}</td>
+                  <td className="border border-gray-400 px-2 py-0.5">*</td>
+                  <td className="border border-gray-400 px-3 py-0.5 text-left">ট্রেড লাইসেন্স/নবায়ন ফি</td>
+                  <td className="border border-gray-400 px-3 py-0.5 text-right">{financials.license_fee}</td>
                 </tr>
                 <tr>
-                  <td className="border border-slate-400 px-2 py-0.5">*</td>
-                  <td className="border border-slate-400 px-3 py-0.5 text-left">বকেয়া ফি</td>
-                  <td className="border border-slate-400 px-3 py-0.5 text-right">{financials.arrear_fee}</td>
+                  <td className="border border-gray-400 px-2 py-0.5">*</td>
+                  <td className="border border-gray-400 px-3 py-0.5 text-left">বকেয়া ফি</td>
+                  <td className="border border-gray-400 px-3 py-0.5 text-right">{financials.arrear_fee}</td>
                 </tr>
                 <tr>
-                  <td className="border border-slate-400 px-2 py-0.5">*</td>
-                  <td className="border border-slate-400 px-3 py-0.5 text-left">সাইনবোর্ড কর</td>
-                  <td className="border border-slate-400 px-3 py-0.5 text-right">{financials.signboard_tax}</td>
+                  <td className="border border-gray-400 px-2 py-0.5">*</td>
+                  <td className="border border-gray-400 px-3 py-0.5 text-left">সাইনবোর্ড কর</td>
+                  <td className="border border-gray-400 px-3 py-0.5 text-right">{financials.signboard_tax}</td>
                 </tr>
                 <tr>
-                  <td className="border border-slate-400 px-2 py-0.5">*</td>
-                  <td className="border border-slate-400 px-3 py-0.5 text-left">ভ্যাট</td>
-                  <td className="border border-slate-400 px-3 py-0.5 text-right">{financials.vat}</td>
+                  <td className="border border-gray-400 px-2 py-0.5">*</td>
+                  <td className="border border-gray-400 px-3 py-0.5 text-left">ভ্যাট</td>
+                  <td className="border border-gray-400 px-3 py-0.5 text-right">{financials.vat}</td>
                 </tr>
                 <tr>
-                  <td className="border border-slate-400 px-2 py-0.5">*</td>
-                  <td className="border border-slate-400 px-3 py-0.5 text-left">পেশা-জীবিকাকর</td>
-                  <td className="border border-slate-400 px-3 py-0.5 text-right">{financials.profession_tax}</td>
+                  <td className="border border-gray-400 px-2 py-0.5">*</td>
+                  <td className="border border-gray-400 px-3 py-0.5 text-left">পেশা-জীবিকাকর</td>
+                  <td className="border border-gray-400 px-3 py-0.5 text-right">{financials.profession_tax}</td>
                 </tr>
                 <tr className="bg-slate-50">
-                  <td className="border border-slate-400 px-2 py-0.5">*</td>
-                  <td className="border border-slate-400 px-3 py-0.5 text-left font-bold">মোট</td>
-                  <td className="border border-slate-400 px-3 py-0.5 text-right font-bold">{financials.total_amount}.00</td>
+                  <td className="border border-gray-400 px-2 py-0.5">*</td>
+                  <td className="border border-gray-400 px-3 py-0.5 text-left font-bold">মোট</td>
+                  <td className="border border-gray-400 px-3 py-0.5 text-right font-bold">{financials.total_amount}.00</td>
                 </tr>
               </tbody>
             </table>
-            <div className="mt-1 text-[13px] font-bold text-slate-800">
-              কথায় : <span className="border-b-[1.5px] border-dashed border-slate-800">{financials.amount_in_words}</span>
+            <div className="mt-1 text-[13px] font-bold text-black">
+              কথায় : <span className="border-b-[1.5px] border-dashed border-black">{financials.amount_in_words}</span>
             </div>
           </div>
 
           {/* Acknowledgement Line */}
-          <div className="mt-2 text-[13px] leading-normal text-slate-800">
-            লাইসেন্সধারী জনাব/জনাবা <span className="font-bold border-b-[1.5px] border-dashed border-slate-800">{owner.name}</span> নিকট হইতে সকল পাওনা বাবদ মোট টাকা, কথায়: <span className="font-bold border-b-[1.5px] border-dashed border-slate-800">{financials.amount_in_words}</span> আদায় করা হইল।
+          <div className="mt-2 text-[13px] leading-normal text-black">
+            লাইসেন্সধারী জনাব/জনাবা <span className="font-bold border-b-[1.5px] border-dashed border-black">{owner.name}</span> নিকট হইতে সকল পাওনা বাবদ মোট টাকা, কথায়: <span className="font-bold border-b-[1.5px] border-dashed border-black">{financials.amount_in_words}</span> আদায় করা হইল।
           </div>
 
           {/* Footer Signatory & QR Code Section */}
@@ -290,16 +290,16 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
             {/* Left Signatory */}
             <div className="signatory-box text-center min-w-[170px]">
               <div className="sign-space h-[24px]" />
-              <div className="sign-name text-[13.5px] font-bold text-slate-950 leading-tight">
+              <div className="sign-name text-[13.5px] font-bold text-black leading-tight">
                 {signatory.left_name}
               </div>
-              <div className="sign-role-sub text-[12px] text-slate-700 leading-tight">
+              <div className="sign-role-sub text-[12px] text-black leading-tight">
                 {signatory.left_role}
               </div>
-              <div className="sign-office text-[12px] text-slate-700 leading-tight">
+              <div className="sign-office text-[12px] text-black leading-tight">
                 {union.up_name}
               </div>
-              <div className="sign-location text-[12px] text-slate-700 leading-tight">
+              <div className="sign-location text-[12px] text-black leading-tight">
                 {union.upazila}, {union.district}।
               </div>
             </div>
@@ -313,7 +313,7 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
                   level="M"
                 />
               </div>
-              <div className="trn-text font-siliguri text-[12px] text-gray-900 mt-[2px]">
+              <div className="trn-text font-siliguri text-[12px] text-black mt-[2px]">
                 Trn- <span>{signatory.trn_no}</span>
               </div>
             </div>
@@ -321,16 +321,16 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
             {/* Right Signatory */}
             <div className="signatory-box text-center min-w-[170px]">
               <div className="sign-space h-[24px]" />
-              <div className="sign-name text-[13.5px] font-bold text-slate-950 leading-tight">
+              <div className="sign-name text-[13.5px] font-bold text-black leading-tight">
                 {signatory.right_name}
               </div>
-              <div className="sign-role-sub text-[12px] text-slate-700 leading-tight">
+              <div className="sign-role-sub text-[12px] text-black leading-tight">
                 {signatory.right_role}
               </div>
-              <div className="sign-office text-[12px] text-slate-700 leading-tight">
+              <div className="sign-office text-[12px] text-black leading-tight">
                 {union.up_name}
               </div>
-              <div className="sign-location text-[12px] text-slate-700 leading-tight">
+              <div className="sign-location text-[12px] text-black leading-tight">
                 {union.upazila}, {union.district}।
               </div>
             </div>
@@ -340,16 +340,16 @@ export function TradeLicenseSheet({ data }: TradeLicenseSheetProps) {
       </div>
 
       {/* Bottom Footer Bar (Outside thick border box) */}
-      {/* <div className="flex justify-between items-center text-[11px] text-gray-800 font-sans px-1 pt-0.5">
+      {/* <div className="flex justify-between items-center text-[11px] text-black font-sans px-1 pt-0.5">
         <a
           href={signatory.qr_url || "https://www.lgoms.org"}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:underline text-slate-800 font-normal truncate max-w-[80%]"
+          className="hover:underline text-black font-normal truncate max-w-[80%]"
         >
           {signatory.qr_url || "https://www.lgoms.org"}
         </a>
-        <div className="font-normal text-slate-800">
+        <div className="font-normal text-black">
           1/1
         </div>
       </div> */}
