@@ -121,43 +121,43 @@ export function UnmarriedSheet({ data }: UnmarriedSheetProps) {
           <div className="cert-content-body mt-6 px-2 flex-1 flex flex-col justify-start">
             <p className="cert-paragraph text-base leading-[2.2] text-gray-900 text-justify">
               এই মর্মে প্রত্যয়ন করা যাচ্ছে যে,{" "}
-              <span className="font-semibold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-gray-900 pb-[1px]">
                 {applicant.person_name}
               </span>{" "}
               (এনআইডি/জন্ম সনদ:{" "}
-              <span className="font-semibold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-gray-900 pb-[1px]">
                 {applicant.nid_no}
               </span>
               ), পিতা:{" "}
-              <span className="font-semibold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-gray-900 pb-[1px]">
                 {applicant.father_name}
               </span>
               , মাতা:{" "}
-              <span className="font-semibold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-gray-900 pb-[1px]">
                 {applicant.mother_name}
               </span>
               , গ্রাম:{" "}
-              <span className="font-semibold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-gray-900 pb-[1px]">
                 {applicant.village}
               </span>
               , বাসা নং:{" "}
-              <span className="font-semibold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-gray-900 pb-[1px]">
                 {applicant.house_no}
               </span>
               , ওয়ার্ড নং:{" "}
-              <span className="font-semibold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-gray-900 pb-[1px]">
                 {applicant.ward_no}
               </span>
               , ডাকঘর:{" "}
-              <span className="font-semibold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-gray-900 pb-[1px]">
                 {applicant.post_office}
               </span>
               , উপজেলা:{" "}
-              <span className="font-semibold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-gray-900 pb-[1px]">
                 {applicant.person_upazila}
               </span>
               , জেলা:{" "}
-              <span className="font-semibold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-gray-900 pb-[1px]">
                 {applicant.person_district}
               </span>{" "}
               কে আমি ব্যক্তিগত ভাবে চিনি ও জানি। তিনি অত্র ইউনিয়নের স্থায়ী বাসিন্দা ও বাংলাদেশের নাগরিক। আমার জানামতে তিনি বিবাহবন্ধনে আবদ্ধ হন নাই।
@@ -205,6 +205,10 @@ export function UnmarriedSheet({ data }: UnmarriedSheetProps) {
             </div>
           </div>
 
+          {/* Bottom Tagline Ribbon (Under QR Code & Chairman Info) */}
+          <div className="mt-4 mb-2 text-center text-base text-gray-900">
+            ইউপি কর পরিশোধ করুন* অল্প সময়ে সল্প খরচে, সঠিক বিচার পেতে, চল যাই গ্রামআদালতে* সময়মত জন্ম ও মৃত্যু নিবন্ধন করুন।
+          </div>
         </div>
       </div>
 
