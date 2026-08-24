@@ -40,11 +40,11 @@ export function LandlessSheet({ data }: LandlessSheetProps) {
         }
       `}</style>
       {/* Top Header Bar (Outside thick border box) */}
-      <div className="flex justify-between items-center text-[12px] text-gray-800 font-sans px-1 pb-1">
-        <div className="w-[180px] text-left font-normal text-slate-800">
+      <div className="flex justify-between items-center text-xs text-black font-sans px-1 pb-1">
+        <div className="w-[180px] text-left font-normal text-black">
           {printDateTime}
         </div>
-        <div className="font-bold text-slate-900 text-[13px] font-solaiman">
+        <div className="text-black text-sm font-solaiman">
           {meta.cert_title || "ভূমিহীন প্রত্যয়ন"}
         </div>
         <div className="w-[180px]" />
@@ -80,16 +80,16 @@ export function LandlessSheet({ data }: LandlessSheetProps) {
             </div>
 
             <div className="header-titles flex flex-col items-center justify-center">
-              <div className="gov-sub-title text-[13.5px] font-semibold text-gray-800 tracking-wide mb-[1px]">
+              <div className="gov-sub-title text-base text-black tracking-wide mb-[1px]">
                 গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার
               </div>
-              <h1 className="up-main-title text-[28px] font-bold text-header-red leading-snug m-0 tracking-wide">
+              <h1 className="up-main-title text-4xl font-bold text-header-red leading-snug m-0 tracking-wide">
                 {union.up_name}
               </h1>
-              <div className="up-sub-address text-[13.5px] font-bold text-slate-900 mt-[1px]">
+              <div className="up-sub-address text-xl font-semibold text-black mt-[1px]">
                 উপজেলা: <span>{union.upazila}</span>, জেলা: <span>{union.district}</span>।
               </div>
-              <div className="up-web-url font-siliguri text-[12.5px] font-bold text-slate-900 mt-[1px]">
+              <div className="up-web-url font-siliguri text-sm font-semibold text-black mt-[1px]">
                 {union.website}
               </div>
             </div>
@@ -99,87 +99,87 @@ export function LandlessSheet({ data }: LandlessSheetProps) {
 
           {/* Metadata Ribbon */}
           <div className="cert-meta-ribbon flex justify-between items-center mt-[10px] px-1">
-            <div className="meta-item meta-serial text-[14px] text-[#121212]">
-              <span className="lbl font-semibold mr-1.5">ক্রমিক নং:</span>
+            <div className="meta-item meta-serial text-base text-[#121212]">
+              <span className="lbl mr-1.5">ক্রমিক নং:</span>
               <span className="val font-bold font-siliguri tracking-wide">{meta.serial_no}</span>
             </div>
 
             <div className="meta-badge-container flex justify-center flex-1">
-              <div className="cert-badge bg-cyan-700 text-white text-[15.5px] font-bold px-[32px] py-[3.5px] rounded-sm tracking-wide inline-block shadow-sm">
+              <div className="cert-badge bg-cyan-700 text-white text-xl font-semibold px-9 py-1 rounded-[4px] tracking-wide inline-block shadow-sm">
                 {meta.cert_title}
               </div>
             </div>
 
-            <div className="meta-item meta-date text-[14px] text-[#121212]">
-              <span className="lbl font-semibold mr-1.5">তারিখ:</span>
+            <div className="meta-item meta-date text-base text-[#121212]">
+              <span className="lbl mr-1.5">তারিখ:</span>
               <span className="val font-bold font-siliguri tracking-wide">{meta.issue_date}</span>
             </div>
           </div>
 
           {/* Certificate Content Body */}
-          <div className="cert-content-body mt-4 px-2 flex-1 flex flex-col justify-start">
-            <p className="cert-paragraph text-[14.5px] leading-[2.2] text-gray-900 text-justify font-solaiman">
+          <div className="cert-content-body mt-6 px-2 flex-1 flex flex-col justify-start">
+            <p className="cert-paragraph text-base leading-[2.2] text-black text-justify">
               এই মর্মে প্রত্যয়ন করা যাচ্ছে যে,{" "}
-              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.person_name}
               </span>{" "}
               (আইডি নং:{" "}
-              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.nid_no}
               </span>
               ), পিতা:{" "}
-              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.father_name}
               </span>
               , মাতা:{" "}
-              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.mother_name}
               </span>
               {applicant.spouse_name ? (
                 <>
                   , স্বামী/স্ত্রীর নাম:{" "}
-                  <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+                  <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                     {applicant.spouse_name}
                   </span>
                 </>
               ) : null}
               , গ্রাম:{" "}
-              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.village}
               </span>
               , বাসা নং:{" "}
-              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.house_no}
               </span>
               , ওয়ার্ড নং:{" "}
-              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.ward_no}
               </span>
               , ডাকঘর:{" "}
-              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.post_office}
               </span>
               , উপজেলা:{" "}
-              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.person_upazila}
               </span>
               , জেলা:{" "}
-              <span className="font-bold border-b border-dotted border-gray-600 pb-[1px]">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.person_district}
               </span>{" "}
               এর তথ্য গ্রামপুলিশ ও মেম্বার দ্বারা যাচাই বাছাই করা হয়। যাচাই করে জানা যায় যে, তিনি অত্র ইউনিয়নের{" "}
-              <span className="">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.ward_no}
               </span>{" "}
               নং ওয়ার্ডের{" "}
-              <span className="">
+              <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                 {applicant.village}
               </span>{" "}
               গ্রামের স্থায়ী বাসিন্দা। আরো জানা যায়, তিনি বাংলাদেশের আইন-শৃঙখলা ও রাষ্ট্র বিরোধী কর্মকান্ডের সহিত জড়িত নহে। তিনি এ ইউনিয়নের স্থায়ী বাসিন্দা।{" "}
               {landDetailsBn || "আমার জানামতে তার কোন জায়গা জমি নাই। তিনি একজন ভূমিহীন।"}
             </p>
 
-            <p className="cert-closing text-[14px] font-bold text-gray-900 mt-3 pl-[16px]">
+            <p className="cert-closing text-base font-semibold text-black mt-3 pl-[16px]">
               আমি তার সার্বিক কল্যাণ ও উন্নতি কামনা করি।
             </p>
           </div>
@@ -190,17 +190,18 @@ export function LandlessSheet({ data }: LandlessSheetProps) {
               <div className="qr-canvas-holder p-1 bg-white border border-gray-300 shadow-sm">
                 <QRCodeSVG value={signatory.qr_url || "https://www.lgoms.org"} size={78} level="M" />
               </div>
-              <div className="trn-text font-siliguri text-[13px] font-bold text-gray-900 mt-[3px]">
+              <div className="trn-text font-siliguri text-sm text-black mt-[3px]">
                 Trn- <span>{signatory.trn_no}</span>
               </div>
             </div>
 
             <div className="signatory-box text-center min-w-[200px] pb-[2px]">
               <div className="sign-space h-[32px]" />
-              <div className="sign-name text-[14.5px] font-bold text-black leading-tight">{signatory.signatory_name}</div>
-              <div className="sign-designation text-[12.5px] font-semibold text-gray-800 leading-tight">{signatory.signatory_role}</div>
-              <div className="sign-office text-[12.5px] font-semibold text-gray-800 leading-tight">{union.up_name}</div>
-              <div className="sign-location text-[12.5px] font-semibold text-gray-800 leading-tight">{union.upazila}, {union.district}।</div>
+              <div className="sign-name text-base font-semibold text-black leading-tight">{signatory.signatory_name}</div>
+              <div className="sign-role-sub text-base text-black leading-tight">অনুমোদনকারী/প্রদানকারী</div>
+              <div className="sign-designation text-base text-black leading-tight">{signatory.signatory_role}</div>
+              <div className="sign-office text-base text-black leading-tight">{union.up_name}</div>
+              <div className="sign-location text-base text-black leading-tight">{union.upazila}, {union.district}।</div>
             </div>
           </div>
 
@@ -208,16 +209,16 @@ export function LandlessSheet({ data }: LandlessSheetProps) {
       </div>
 
       {/* Bottom Footer Bar (Outside thick border box) */}
-      <div className="flex justify-between items-center text-[11px] text-gray-800 font-sans px-1 pt-1">
+      <div className="flex justify-between items-center text-xs text-black font-sans px-1 pt-1">
         <a
           href={signatory.qr_url || "https://www.lgoms.org"}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:underline text-slate-800 font-normal truncate max-w-[80%]"
+          className="hover:underline text-black font-normal truncate max-w-[80%]"
         >
           {signatory.qr_url || "https://www.lgoms.org"}
         </a>
-        <div className="font-normal text-slate-800">
+        <div className="font-normal text-black">
           1/1
         </div>
       </div>
