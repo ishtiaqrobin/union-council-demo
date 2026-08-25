@@ -59,7 +59,9 @@ export interface HeirItem {
   relation: string;
   relation_en?: string;
   age_or_dob: string;
+  age_or_dob_en?: string;
   dob?: string;
+  dob_en?: string;
   nid_or_bc: string;
   comments?: string;
   comments_en?: string;

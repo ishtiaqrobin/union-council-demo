@@ -280,8 +280,8 @@ export function FamilySheet({ data, lang = "bn" }: FamilySheetProps) {
                     <tr key={item.id || idx} className="text-center">
                       <td className="border border-gray-400 px-2 py-1">{isEn ? idx + 1 : toBnNo(idx + 1)}</td>
                       <td className="border border-gray-400 px-3 py-1 text-left">{isEn ? (item.name_en || item.name) : item.name}</td>
-                      <td className="border border-gray-400 px-3 py-1">{item.dob || item.age_or_dob}</td>
-                      <td className="border border-gray-400 px-2 py-1">{item.age_or_dob}</td>
+                      <td className="border border-gray-400 px-3 py-1">{isEn ? (item.dob_en || item.dob || item.age_or_dob_en || item.age_or_dob) : (item.dob || item.age_or_dob)}</td>
+                      <td className="border border-gray-400 px-2 py-1">{isEn ? (item.age_or_dob_en || item.age_or_dob) : item.age_or_dob}</td>
                       <td className="border border-gray-400 px-3 py-1">{isEn ? (item.relation_en || item.relation) : item.relation}</td>
                     </tr>
                   ))}

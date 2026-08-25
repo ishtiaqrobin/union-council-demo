@@ -69,7 +69,7 @@ export function WarishForm({
   const handleHeirChange = (index: number, field: keyof HeirItem, value: string) => {
     if (!data.heirs) return;
     const updatedHeirs = [...data.heirs];
-    const key = isEn && (field === "name" || field === "relation" || field === "comments") ? `${field}_en` : field;
+    const key = isEn && (field === "name" || field === "relation" || field === "comments" || field === "dob" || field === "age_or_dob") ? `${field}_en` : field;
     updatedHeirs[index] = { ...updatedHeirs[index], [key]: value, [field]: updatedHeirs[index][field] || value };
     onChange({ ...data, heirs: updatedHeirs });
   };
@@ -83,7 +83,9 @@ export function WarishForm({
       relation: "",
       relation_en: "",
       dob: "",
+      dob_en: "",
       age_or_dob: "",
+      age_or_dob_en: "",
       nid_or_bc: "",
       comments: "জীবিত"
     };
@@ -397,14 +399,14 @@ export function WarishForm({
                   <input
                     type="text"
                     placeholder={isEn ? "Date of Birth" : "জন্ম তারিখ (DD-MM-YYYY)"}
-                    value={heir.dob || ""}
+                    value={isEn ? (heir.dob_en || heir.dob || "") : (heir.dob || "")}
                     onChange={(e) => handleHeirChange(idx, "dob", e.target.value)}
                     className={smallInputClass}
                   />
                   <input
                     type="text"
                     placeholder={isEn ? "Age" : "বয়স (e.g. ৩৮ বছর)"}
-                    value={heir.age_or_dob}
+                    value={isEn ? (heir.age_or_dob_en || heir.age_or_dob || "") : (heir.age_or_dob || "")}
                     onChange={(e) => handleHeirChange(idx, "age_or_dob", e.target.value)}
                     className={smallInputClass}
                   />

@@ -55,9 +55,9 @@ export const FAMILY_INITIAL_DATA: CertificateData = {
     qr_url: "https://www.lgoms.org/re_certificates_view.php?id=7450"
   },
   heirs: [
-    { id: "1", name: "মোঃ ইলফাজদ্দীন", name_en: "Md. Ilfazuddin", relation: "পিতা", relation_en: "Father", dob: "11-03-1962", age_or_dob: "৬৪ বছর", nid_or_bc: "", comments: "" },
-    { id: "2", name: "মোছাঃ জাহানারা খাতুন", name_en: "Mst. Jahanara Khatun", relation: "মাতা", relation_en: "Mother", dob: "28-03-1967", age_or_dob: "৫৯ বছর", nid_or_bc: "", comments: "" },
-    { id: "3", name: "মোছাঃ মুক্তা খাতুন", name_en: "Mst. Mukta Khatun", relation: "বোন", relation_en: "Sister", dob: "27-03-1988", age_or_dob: "৩৮ বছর", nid_or_bc: "", comments: "" },
-    { id: "4", name: "মোঃ এলাহী আলামিন", name_en: "Md. Elahi Alamin", relation: "নিজ", relation_en: "Self", dob: "12-01-1991", age_or_dob: "৩৫ বছর", nid_or_bc: "", comments: "" }
+    { id: "1", name: "মোঃ ইলফাজদ্দীন", name_en: "Md. Ilfazuddin", relation: "পিতা", relation_en: "Father", dob: "১১-০৩-১৯৬২", dob_en: "11-03-1962", age_or_dob: "৬৪ বছর", age_or_dob_en: "64 Years", nid_or_bc: "", comments: "" },
+    { id: "2", name: "মোছাঃ জাহানারা খাতুন", name_en: "Mst. Jahanara Khatun", relation: "মাতা", relation_en: "Mother", dob: "২৮-০৩-১৯৬৭", dob_en: "28-03-1967", age_or_dob: "৫৯ বছর", age_or_dob_en: "59 Years", nid_or_bc: "", comments: "" },
+    { id: "3", name: "মোছাঃ মুক্তা খাতুন", name_en: "Mst. Mukta Khatun", relation: "বোন", relation_en: "Sister", dob: "২৭-০৩-১৯৮৮", dob_en: "27-03-1988", age_or_dob: "৩৮ বছর", age_or_dob_en: "38 Years", nid_or_bc: "", comments: "" },
+    { id: "4", name: "মোঃ এলাহী আলামিন", name_en: "Md. Elahi Alamin", relation: "নিজ", relation_en: "Self", dob: "১২-০১-১৯৯১", dob_en: "12-01-1991", age_or_dob: "৩৫ বছর", age_or_dob_en: "35 Years", nid_or_bc: "", comments: "" }
   ]
 };
