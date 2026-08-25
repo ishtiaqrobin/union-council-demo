@@ -118,7 +118,7 @@ export function FamilySheet({ data, lang = "bn" }: FamilySheetProps) {
               <div className="gov-sub-title text-base text-black tracking-wide mb-[1px]">
                 {isEn ? "Government of the People's Republic of Bangladesh" : "গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার"}
               </div>
-              <h1 className="up-main-title text-3xl sm:text-4xl font-bold text-header-red leading-snug m-0 tracking-wide">
+              <h1 className="up-main-title text-4xl font-bold text-header-red leading-snug m-0 tracking-wide">
                 {isEn ? (union.up_name_en || union.up_name) : union.up_name}
               </h1>
               <div className="up-sub-address text-lg sm:text-xl font-semibold text-black mt-[1px]">

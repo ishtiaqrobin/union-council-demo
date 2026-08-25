@@ -74,7 +74,7 @@ export default function HomePage() {
               ডিজিটাল ইউনিয়ন পরিষদ অফিস ব্যবস্থাপনা সিস্টেম
             </div>
 
-            <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white leading-tight tracking-tight">
+            <h1 className="text-5xl font-black text-slate-900 dark:text-white leading-tight tracking-tight">
               ই-সনদ ও লাইসেন্স লাইভ এডিটর ও <br className="hidden sm:inline" />
               <span className="bg-gradient-to-r from-emerald-600 via-teal-500 to-blue-600 dark:from-emerald-400 dark:via-teal-300 dark:to-blue-400 bg-clip-text text-transparent">
                 প্রিন্ট ডিসাইন টেম্পলেট

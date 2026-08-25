@@ -123,7 +123,7 @@ export function DeathRegistrationSheet({ data, lang = "bn" }: DeathRegistrationS
               <div className="text-xl font-semibold text-emerald-800 tracking-wide">
                 {isEn ? "Office of the Registrar of Birth and Death" : "জন্ম ও মৃত্যু নিবন্ধকের কার্যালয়"}
               </div>
-              <h1 className="up-main-title text-3xl sm:text-4xl font-bold text-header-red leading-snug m-0 tracking-wide">
+              <h1 className="up-main-title text-4xl font-bold text-header-red leading-snug m-0 tracking-wide">
                 {isEn ? (union.up_name_en || union.up_name) : union.up_name}
               </h1>
               <div className="up-sub-address text-lg sm:text-xl font-semibold text-black mt-[1px]">
