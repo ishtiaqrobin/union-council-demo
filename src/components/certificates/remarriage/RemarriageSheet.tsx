@@ -32,7 +32,7 @@ export function RemarriageSheet({ data, lang = "bn" }: RemarriageSheetProps) {
     <div
       id="certificateSheet"
       className={`certificate-sheet certificate-sheet-landscape w-[297mm] h-[210mm] min-w-[297mm] min-h-[210mm] bg-white shadow-2xl relative overflow-hidden box-border text-[#121212] px-8 py-4 flex flex-col justify-between print:w-[297mm] print:h-[210mm] print:min-w-[297mm] print:min-h-[210mm] print:max-w-[297mm] print:max-h-[210mm] print:m-0 print:shadow-none print:absolute print:top-0 print:left-0 print:break-inside-avoid ${
-        isEn ? "font-sans" : "font-solaiman"
+        isEn ? "font-serif" : "font-solaiman"
       }`}
     >
       <style>{`
@@ -48,7 +48,7 @@ export function RemarriageSheet({ data, lang = "bn" }: RemarriageSheetProps) {
         <div className="w-[180px] text-left font-normal text-black">
           {printDateTime}
         </div>
-        <div className={`text-black text-sm ${isEn ? "font-sans" : "font-solaiman"}`}>
+        <div className={`text-black text-sm ${isEn ? "font-serif" : "font-solaiman"}`}>
           {isEn ? (meta.cert_title_en || "Non-Remarriage Certificate") : (meta.cert_title || "পূনঃবিবাহ না হওয়া সনদ")}
         </div>
         <div className="w-[180px]" />
@@ -97,7 +97,7 @@ export function RemarriageSheet({ data, lang = "bn" }: RemarriageSheetProps) {
                   <>উপজেলা: <span>{union.upazila}</span>, জেলা: <span>{union.district}</span>।</>
                 )}
               </div>
-              <div className={`up-web-url text-sm font-semibold text-black mt-[1px] ${isEn ? "font-sans" : "font-siliguri"}`}>
+              <div className={`up-web-url text-sm font-semibold text-black mt-[1px] ${isEn ? "font-serif" : "font-siliguri"}`}>
                 {union.website}
               </div>
             </div>
@@ -109,7 +109,7 @@ export function RemarriageSheet({ data, lang = "bn" }: RemarriageSheetProps) {
           <div className="cert-meta-ribbon flex justify-between items-center mt-[10px] px-1">
             <div className="meta-item meta-serial text-base text-[#121212]">
               <span className="lbl mr-1.5">{isEn ? "Serial No:" : "ক্রমিক নং:"}</span>
-              <span className={`val font-bold tracking-wide ${isEn ? "font-sans" : "font-siliguri"}`}>
+              <span className={`val font-bold tracking-wide ${isEn ? "font-serif" : "font-siliguri"}`}>
                 {isEn ? (meta.serial_no_en || meta.serial_no) : meta.serial_no}
               </span>
             </div>
@@ -122,7 +122,7 @@ export function RemarriageSheet({ data, lang = "bn" }: RemarriageSheetProps) {
 
             <div className="meta-item meta-date text-base text-[#121212]">
               <span className="lbl mr-1.5">{isEn ? "Date:" : "তারিখ:"}</span>
-              <span className={`val font-bold tracking-wide ${isEn ? "font-sans" : "font-siliguri"}`}>
+              <span className={`val font-bold tracking-wide ${isEn ? "font-serif" : "font-siliguri"}`}>
                 {isEn ? (meta.issue_date_en || meta.issue_date) : meta.issue_date}
               </span>
             </div>
@@ -131,7 +131,7 @@ export function RemarriageSheet({ data, lang = "bn" }: RemarriageSheetProps) {
           {/* Certificate Content Body */}
           <div className="cert-content-body mt-6 px-2 flex-1 flex flex-col justify-start">
             {isEn ? (
-              <p className="cert-paragraph text-base leading-[2.2] text-black text-justify font-sans">
+              <p className="cert-paragraph text-base leading-[2.2] text-black text-justify font-serif">
                 This is to certify that,{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                   {applicant.person_name_en || applicant.person_name}
@@ -252,7 +252,7 @@ export function RemarriageSheet({ data, lang = "bn" }: RemarriageSheetProps) {
               </p>
             )}
 
-            <p className={`cert-closing text-base font-semibold text-black mt-3 pl-[16px] ${isEn ? "font-sans" : "font-solaiman"}`}>
+            <p className={`cert-closing text-base font-semibold text-black mt-3 pl-[16px] ${isEn ? "font-serif" : "font-solaiman"}`}>
               {isEn
                 ? "I wish him/her all success and prosperity in life."
                 : "আমি তার সার্বিক কল্যাণ ও উন্নতি কামনা করি।"}
@@ -265,7 +265,7 @@ export function RemarriageSheet({ data, lang = "bn" }: RemarriageSheetProps) {
               <div className="qr-canvas-holder p-1 bg-white border border-gray-300 shadow-sm">
                 <QRCodeSVG value={signatory.qr_url || "https://www.lgoms.org"} size={78} level="M" />
               </div>
-              <div className={`trn-text text-sm text-black mt-[3px] ${isEn ? "font-sans" : "font-siliguri"}`}>
+              <div className={`trn-text text-sm text-black mt-[3px] ${isEn ? "font-serif" : "font-siliguri"}`}>
                 Trn- <span>{signatory.trn_no}</span>
               </div>
             </div>
