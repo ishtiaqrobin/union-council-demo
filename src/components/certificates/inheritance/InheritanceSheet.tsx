@@ -135,7 +135,7 @@ export function InheritanceSheet({ data, lang = "bn" }: InheritanceSheetProps) {
               <div className="owner-photo-box w-[68px] h-[78px] border border-slate-400 bg-white p-0.5 shadow-sm flex items-center justify-center overflow-hidden">
                 <Image
                   src={applicant.photo_url || "/assets/image/person.webp"}
-                  alt="Applicant Photo"
+                alt={`${isEn ? "Applicant's Photo" : "আবেদনকারীর ছবি"}`}
                   width={64}
                   height={74}
                   className="w-full h-full object-cover text-xs"
