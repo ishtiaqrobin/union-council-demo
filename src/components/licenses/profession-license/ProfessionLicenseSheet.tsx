@@ -7,11 +7,13 @@ import { ProfessionLicenseData } from "@/types/license";
 
 interface ProfessionLicenseSheetProps {
   data: ProfessionLicenseData;
+  lang?: "bn" | "en";
 }
 
-export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
-  const { union, meta, business, owner, financials, signatory, fiscalYearBn } = data;
+export function ProfessionLicenseSheet({ data, lang = "bn" }: ProfessionLicenseSheetProps) {
+  const { union, meta, business, owner, financials, signatory, fiscalYearBn, fiscalYearEn } = data;
   const [printDateTime, setPrintDateTime] = useState("2/12/26, 10:30 AM");
+  const isEn = lang === "en";
 
   useEffect(() => {
     const now = new Date();
@@ -31,7 +33,7 @@ export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
   return (
     <div
       id="certificateSheet"
-      className="certificate-sheet certificate-sheet-portrait w-[210mm] h-[297mm] min-w-[210mm] min-h-[297mm] bg-white shadow-2xl relative overflow-hidden box-border font-solaiman text-[#121212] px-6 py-4 flex flex-col justify-start print:w-[210mm] print:h-[297mm] print:min-w-[210mm] print:min-h-[297mm] print:max-w-[210mm] print:max-h-[297mm] print:m-0 print:shadow-none print:absolute print:top-0 print:left-0 print:break-inside-avoid"
+      className={`certificate-sheet certificate-sheet-portrait w-[210mm] h-[297mm] min-w-[210mm] min-h-[297mm] bg-white shadow-2xl relative overflow-hidden box-border ${isEn ? "font-serif" : "font-solaiman"} text-[#121212] px-6 py-4 flex flex-col justify-start print:w-[210mm] print:h-[297mm] print:min-w-[210mm] print:min-h-[297mm] print:max-w-[210mm] print:max-h-[297mm] print:m-0 print:shadow-none print:absolute print:top-0 print:left-0 print:break-inside-avoid`}
     >
       <style>{`
         @media print {
@@ -46,13 +48,13 @@ export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
         <div className="w-[150px] text-left font-normal text-black">
           {printDateTime}
         </div>
-        <div className="text-black text-sm font-solaiman">
-          পেশা ও জীবিকা লাইসেন্স
+        <div className="text-black text-sm uppercase font-bold">
+          {isEn ? "Profession & Occupation License" : "পেশা ও জীবিকা লাইসেন্স"}
         </div>
         <div className="w-[150px]" />
       </div>
 
-      {/* Main Certificate Box with Outer Padding and Thick Rose Gradient Border (Fixed 200mm height, Top aligned) */}
+      {/* Main Certificate Box with Outer Padding and Thick Rose Gradient Border */}
       <div className="flex-1 relative p-3.5 my-3 mx-2 bg-gradient-to-br from-rose-600 via-rose-800 to-rose-600 shadow-md flex flex-col">
         <div className="certificate-inner-frame w-full h-full bg-[#fefef0] pt-4 px-6 pb-3 relative flex flex-col justify-between z-10 flex-1 border border-amber-200">
 
@@ -74,7 +76,7 @@ export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
             <div className="gov-seal-left w-[72px] h-[72px] flex items-center justify-center">
               <Image
                 src="/assets/logo/logo.webp"
-                alt="বাংলাদেশ সরকার সিল"
+                alt={isEn ? "Government Seal of Bangladesh" : "বাংলাদেশ সরকার সিল"}
                 width={72}
                 height={72}
                 className="gov-monogram w-full h-full drop-shadow-sm"
@@ -82,26 +84,31 @@ export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
               />
             </div>
 
-            {/* Center Header Titles (Matching TradeLicenseSheet.tsx) */}
+            {/* Center Header Titles */}
             <div className="header-titles flex flex-col items-center justify-center">
               <div className="gov-sub-title text-base text-black tracking-wide mb-[1px]">
-                গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার
+                {isEn ? "Government of the People's Republic of Bangladesh" : "গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার"}
               </div>
               <h1 className="up-main-title text-4xl font-bold text-header-red leading-snug m-0 tracking-wide">
-                {union.up_name}
+                {isEn ? (union.up_name_en || union.up_name) : union.up_name}
               </h1>
               <div className="up-sub-address text-xl font-semibold text-black mt-[1px]">
-                উপজেলা: <span>{union.upazila}</span>, জেলা: <span>{union.district}</span>।
+                {isEn ? (
+                  <>Upazila: <span>{union.upazila_en || union.upazila}</span>, District: <span>{union.district_en || union.district}</span>.</>
+                ) : (
+                  <>উপজেলা: <span>{union.upazila}</span>, জেলা: <span>{union.district}</span>।</>
+                )}
               </div>
               <div className="up-web-url font-siliguri text-sm font-semibold text-black mt-[1px]">
                 {union.website}
               </div>
               <div className="text-base font-bold text-black mt-[1px]">
-                অর্থ বছর: <span>{fiscalYearBn || "২০২৫-২০২৬"}</span>
+                {isEn ? "Fiscal Year: " : "অর্থ বছর: "}
+                <span>{isEn ? (fiscalYearEn || fiscalYearBn || "2025-2026") : (fiscalYearBn || "২০২৫-২০২৬")}</span>
               </div>
               <div className="mt-1.5">
-                <span className="bg-red-800 text-white text-xl font-semibold px-9 py-1 rounded-[4px] tracking-wider inline-block shadow-md">
-                  পেশা ও জীবিকা লাইসেন্স
+                <span className="bg-red-800 text-white text-xl font-semibold px-9 py-1 rounded-[4px] tracking-wider inline-block shadow-md uppercase">
+                  {isEn ? "PROFESSION & OCCUPATION LICENSE" : "পেশা ও জীবিকা লাইসেন্স"}
                 </span>
               </div>
             </div>
@@ -110,7 +117,7 @@ export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
             <div className="owner-photo-box w-[68px] h-[78px] border border-slate-400 bg-white flex items-center justify-center overflow-hidden shadow-sm">
               <Image
                 src={owner.photo_url || "/assets/image/person.webp"}
-                alt="লাইসেন্সধারী ছবি"
+                alt={isEn ? "Applicant's Photo" : "লাইসেন্সধারী ছবি"}
                 width={64}
                 height={74}
                 className="w-full h-full object-cover text-xs"
@@ -123,64 +130,74 @@ export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
           <div className="mt-4 flex-1 flex flex-col gap-2.5 text-base leading-normal text-black">
             <div className="grid grid-cols-2 gap-x-4 gap-y-1">
               <div className="grid grid-cols-[180px_1fr] items-baseline">
-                <span className="text-black">লাইসেন্স নং</span>
-                <span className={lineBorderClass}>: {meta.license_no}</span>
+                <span className="text-black">{isEn ? "License No." : "লাইসেন্স নং"}</span>
+                <span className={lineBorderClass}>: {isEn ? (meta.license_no_en || meta.license_no) : meta.license_no}</span>
               </div>
 
               <div className="grid grid-cols-[150px_1fr] items-baseline">
-                <span className="text-black">লাইসেন্স ইস্যুর তারিখ</span>
-                <span className={lineBorderClass}>: {meta.issue_date}</span>
+                <span className="text-black">{isEn ? "Issue Date" : "লাইসেন্স ইস্যুর তারিখ"}</span>
+                <span className={lineBorderClass}>: {isEn ? (meta.issue_date_en || meta.issue_date) : meta.issue_date}</span>
               </div>
             </div>
 
             <div className="grid grid-cols-[180px_1fr] items-baseline">
-              <span className="text-black">প্রতিষ্ঠানের নাম</span>
-              <span className={`text-base font-semibold text-black ${lineBorderClass}`}>: {business.institution_name}</span>
+              <span className="text-black">{isEn ? "Institution Name" : "প্রতিষ্ঠানের নাম"}</span>
+              <span className={`text-base font-semibold text-black ${lineBorderClass}`}>: {isEn ? (business.institution_name_en || business.institution_name) : business.institution_name}</span>
             </div>
 
             <div className="grid grid-cols-[180px_1fr] items-baseline">
-              <span className="text-black">লাইসেন্সধারীর নাম</span>
-              <span className={`text-base ${lineBorderClass}`}>: {owner.name}</span>
+              <span className="text-black">{isEn ? "License Holder Name" : "লাইসেন্সধারীর নাম"}</span>
+              <span className={`text-base ${lineBorderClass}`}>: {isEn ? (owner.name_en || owner.name) : owner.name}</span>
             </div>
 
             <div className="grid grid-cols-[180px_1fr] items-baseline">
-              <span className="text-black">পিতা/স্বামী</span>
-              <span className={lineBorderClass}>: {owner.father_or_husband_name}</span>
+              <span className="text-black">{isEn ? "Father/Husband's Name" : "পিতা/স্বামী"}</span>
+              <span className={lineBorderClass}>: {isEn ? (owner.father_or_husband_name_en || owner.father_or_husband_name) : owner.father_or_husband_name}</span>
             </div>
 
             <div className="grid grid-cols-[180px_1fr] items-baseline">
-              <span className="text-black">ঠিকানা</span>
-              <span className={lineBorderClass}>: {owner.address}</span>
+              <span className="text-black">{isEn ? "Address" : "ঠিকানা"}</span>
+              <span className={lineBorderClass}>: {isEn ? (owner.address_en || owner.address) : owner.address}</span>
             </div>
 
             <div className="grid grid-cols-[180px_1fr] items-baseline">
-              <span className="text-black">ব্যবসার ধরণ</span>
-              <span className={lineBorderClass}>: {business.business_type}</span>
+              <span className="text-black">{isEn ? "Business Type" : "ব্যবসার ধরণ"}</span>
+              <span className={lineBorderClass}>: {isEn ? (business.business_type_en || business.business_type) : business.business_type}</span>
             </div>
 
             <div className="grid grid-cols-[180px_1fr] items-baseline">
-              <span className="text-black">ব্যবসার স্থান</span>
-              <span className={lineBorderClass}>: {business.business_place}</span>
+              <span className="text-black">{isEn ? "Business Place" : "ব্যবসার স্থান"}</span>
+              <span className={lineBorderClass}>: {isEn ? (business.business_place_en || business.business_place) : business.business_place}</span>
             </div>
 
             <div className="grid grid-cols-[180px_1fr] items-baseline">
-              <span className="text-black">বৈধতার মেয়াদ</span>
-              <span className={lineBorderClass}>: {meta.valid_until_date}</span>
+              <span className="text-black">{isEn ? "Valid Until" : "বৈধতার মেয়াদ"}</span>
+              <span className={lineBorderClass}>: {isEn ? (meta.valid_until_date_en || meta.valid_until_date) : meta.valid_until_date}</span>
             </div>
 
             <div className="grid grid-cols-[180px_1fr] items-baseline">
-              <span className="text-black">নবায়নের তারিখ</span>
-              <span className={lineBorderClass}>: {meta.renewal_date}</span>
+              <span className="text-black">{isEn ? "Renewal Date" : "নবায়নের তারিখ"}</span>
+              <span className={lineBorderClass}>: {isEn ? (meta.renewal_date_en || meta.renewal_date) : meta.renewal_date}</span>
             </div>
 
             <div className="grid grid-cols-[180px_1fr] items-baseline">
-              <span className="text-black">ফি প্রদানের পরিমাণ(১৫% ভ্যাটসহ)</span>
-              <span className={lineBorderClass}>: {financials.fee_amount} (কথায়: {financials.amount_in_words})</span>
+              <span className="text-black">{isEn ? "Fee Amount (incl. 15% VAT)" : "ফি প্রদানের পরিমাণ(১৫% ভ্যাটসহ)"}</span>
+              <span className={lineBorderClass}>
+                : {isEn ? (financials.fee_amount_en || financials.fee_amount) : financials.fee_amount} ({isEn ? "In Words: " : "কথায়: "}{isEn ? (financials.amount_in_words_en || financials.amount_in_words) : financials.amount_in_words})
+              </span>
             </div>
 
             {/* Acknowledgement Line */}
             <div className="mt-3 text-base leading-relaxed text-black">
-              প্রাপ্ত হয়ে <span className="font-semibold border-b-[1.5px] border-dashed border-black">{business.institution_name}</span> কে তার ব্যবসা/বৃত্তি/পেশা চালিয়ে যাবার জন্য অত্র লাইসেন্স প্রদান করা হলো।
+              {isEn ? (
+                <>
+                  This license is hereby issued to <span className="font-semibold border-b-[1.5px] border-dashed border-black">{business.institution_name_en || business.institution_name}</span> upon receipt of the fees to continue their trade/profession/occupation.
+                </>
+              ) : (
+                <>
+                  প্রাপ্ত হয়ে <span className="font-semibold border-b-[1.5px] border-dashed border-black">{business.institution_name}</span> কে তার ব্যবসা/বৃত্তি/পেশা চালিয়ে যাবার জন্য অত্র লাইসেন্স প্রদান করা হলো।
+                </>
+              )}
             </div>
           </div>
 
@@ -204,16 +221,16 @@ export function ProfessionLicenseSheet({ data }: ProfessionLicenseSheetProps) {
             <div className="signatory-box text-center min-w-[180px] pb-[2px]">
               <div className="sign-space h-[28px]" />
               <div className="sign-name text-base font-semibold text-black leading-tight">
-                {signatory.name}
+                {isEn ? (signatory.name_en || signatory.name) : signatory.name}
               </div>
               <div className="sign-role-sub text-base text-black leading-tight">
-                {signatory.role}
+                {isEn ? (signatory.role_en || signatory.role) : signatory.role}
               </div>
               <div className="sign-office text-base text-black leading-tight">
-                {union.up_name}
+                {isEn ? (union.up_name_en || union.up_name) : union.up_name}
               </div>
               <div className="sign-location text-base text-black leading-tight">
-                {union.upazila}, {union.district}।
+                {isEn ? `${union.upazila_en || union.upazila}, ${union.district_en || union.district}.` : `${union.upazila}, ${union.district}।`}
               </div>
             </div>
           </div>
