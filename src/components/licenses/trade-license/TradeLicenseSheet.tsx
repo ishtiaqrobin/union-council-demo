@@ -258,7 +258,7 @@ export function TradeLicenseSheet({ data, lang = "bn" }: TradeLicenseSheetProps)
                     {isEn ? "Description of Dues" : "আদায়ের বিবরণ"}
                   </th>
                   <th className="border border-gray-400 px-3 py-0.5 w-24 text-right">
-                    {isEn ? "Amount (BDT)" : "টাকা"}
+                    {isEn ? "Amount" : "টাকা"}
                   </th>
                 </tr>
               </thead>

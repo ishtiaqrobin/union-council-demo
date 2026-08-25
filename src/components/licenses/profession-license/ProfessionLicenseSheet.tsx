@@ -114,7 +114,7 @@ export function ProfessionLicenseSheet({ data, lang = "bn" }: ProfessionLicenseS
             </div>
 
             {/* Right Owner Photo Frame */}
-            <div className="owner-photo-box w-[68px] h-[78px] border border-slate-400 bg-white flex items-center justify-center overflow-hidden shadow-sm">
+            <div className="owner-photo-box w-[68px] h-[78px] border border-slate-400 bg-white flex items-center justify-center overflow-hidden shadow-sm p-0.5">
               <Image
                 src={owner.photo_url || "/assets/image/person.webp"}
                 alt={isEn ? "Applicant's Photo" : "লাইসেন্সধারী ছবি"}
