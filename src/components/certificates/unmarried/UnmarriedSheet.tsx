@@ -48,7 +48,7 @@ export function UnmarriedSheet({ data, lang = "bn" }: UnmarriedSheetProps) {
         <div className="w-[180px] text-left font-normal text-black">
           {printDateTime}
         </div>
-        <div className={`text-black text-sm ${isEn ? "font-sans font-medium" : "font-solaiman font-bold"}`}>
+        <div className={`text-black text-sm ${isEn ? "font-sans" : "font-solaiman"}`}>
           {isEn ? (meta.cert_title_en || "Unmarried Certificate") : (meta.cert_title || "অবিবাহিত সনদ")}
         </div>
         <div className="w-[180px]" />
