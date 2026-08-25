@@ -48,7 +48,7 @@ export function ProfessionLicenseSheet({ data, lang = "bn" }: ProfessionLicenseS
         <div className="w-[150px] text-left font-normal text-black">
           {printDateTime}
         </div>
-        <div className="text-black text-sm uppercase font-bold">
+        <div className={`text-black text-sm ${isEn ? "font-serif" : "font-solaiman"}`}>
           {isEn ? "Profession & Occupation License" : "পেশা ও জীবিকা লাইসেন্স"}
         </div>
         <div className="w-[150px]" />
@@ -89,10 +89,10 @@ export function ProfessionLicenseSheet({ data, lang = "bn" }: ProfessionLicenseS
               <div className="gov-sub-title text-base text-black tracking-wide mb-[1px]">
                 {isEn ? "Government of the People's Republic of Bangladesh" : "গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার"}
               </div>
-              <h1 className="up-main-title text-4xl font-bold text-header-red leading-snug m-0 tracking-wide">
+              <h1 className={`${isEn ? "text-3xl" : "text-4xl"} up-main-title font-bold text-header-red leading-snug m-0 tracking-wide`}>
                 {isEn ? (union.up_name_en || union.up_name) : union.up_name}
               </h1>
-              <div className="up-sub-address text-xl font-semibold text-black mt-[1px]">
+              <div className={`${isEn ? "text-lg" : "text-xl"} up-sub-address font-semibold text-black mt-[1px]`}>
                 {isEn ? (
                   <>Upazila: <span>{union.upazila_en || union.upazila}</span>, District: <span>{union.district_en || union.district}</span>.</>
                 ) : (
@@ -107,8 +107,8 @@ export function ProfessionLicenseSheet({ data, lang = "bn" }: ProfessionLicenseS
                 <span>{isEn ? (fiscalYearEn || fiscalYearBn || "2025-2026") : (fiscalYearBn || "২০২৫-২০২৬")}</span>
               </div>
               <div className="mt-1.5">
-                <span className="bg-red-800 text-white text-xl font-semibold px-9 py-1 rounded-[4px] tracking-wider inline-block shadow-md uppercase">
-                  {isEn ? "PROFESSION & OCCUPATION LICENSE" : "পেশা ও জীবিকা লাইসেন্স"}
+                <span className="bg-red-800 text-white text-xl font-semibold px-9 py-1 rounded-[4px] tracking-wider inline-block shadow-md">
+                  {isEn ? "Profession & Occupation License" : "পেশা ও জীবিকা লাইসেন্স"}
                 </span>
               </div>
             </div>

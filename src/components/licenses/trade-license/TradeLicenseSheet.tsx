@@ -44,6 +44,17 @@ export function TradeLicenseSheet({ data, lang = "bn" }: TradeLicenseSheetProps)
         }
       `}</style>
 
+       {/* Top Header Bar (Outside thick border box) */}
+      {/* <div className="flex justify-between items-center text-[11px] text-black font-sans px-1 pb-1">
+        <div className="w-[150px] text-[12px] text-left font-normal text-black">
+          {printDateTime}
+        </div>
+        <div className={`text-black text-sm ${isEn ? "font-serif" : "font-solaiman"}`}>
+          {isEn ? "Trade License" : "ট্রেড লাইসেন্স"}
+        </div>
+        <div className="w-[150px]" />
+      </div> */}
+
       {/* Main Certificate Box with Outer Padding and Thick Maroon Gradient Border */}
       <div className="flex-1 relative p-3.5 my-2 mx-1 bg-gradient-to-br from-rose-600 via-rose-800 to-rose-600 shadow-md flex flex-col">
         <div className="certificate-inner-frame w-full h-full bg-white pt-4 px-6 pb-3 relative flex flex-col justify-between z-10 flex-1 border border-red-200">
@@ -97,8 +108,8 @@ export function TradeLicenseSheet({ data, lang = "bn" }: TradeLicenseSheetProps)
                 <span>{isEn ? (fiscalYearEn || fiscalYearBn || "2025-2026") : (fiscalYearBn || "২০২৫-২০২৬")}</span>
               </div>
               <div className="mt-1.5">
-                <span className="bg-red-800 text-white text-lg font-bold px-9 py-1 rounded-[4px] tracking-wider inline-block shadow-md uppercase">
-                  {isEn ? "TRADE LICENSE" : "ট্রেড লাইসেন্স"}
+                <span className="bg-red-800 text-white text-lg font-bold px-9 py-1 rounded-[4px] tracking-wider inline-block shadow-md">
+                  {isEn ? "Trade License" : "ট্রেড লাইসেন্স"}
                 </span>
               </div>
             </div>
@@ -341,7 +352,7 @@ export function TradeLicenseSheet({ data, lang = "bn" }: TradeLicenseSheetProps)
               <div className="qr-canvas-holder p-1 bg-white border border-gray-300 shadow-sm">
                 <QRCodeSVG
                   value={signatory.qr_url || "https://www.lgoms.org"}
-                  size={70}
+                  size={64}
                   level="M"
                 />
               </div>

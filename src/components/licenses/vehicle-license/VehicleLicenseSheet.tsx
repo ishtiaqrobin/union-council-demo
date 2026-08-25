@@ -44,15 +44,17 @@ export function VehicleLicenseSheet({ data, lang = "bn" }: VehicleLicenseSheetPr
         }
       `}</style>
       {/* Top Header Bar (Outside thick border box) */}
+      {!isEn && (
       <div className="flex justify-between items-center text-[11px] text-black font-sans px-1 pb-1">
         <div className="w-[150px] text-[12px] text-left font-normal text-black">
           {printDateTime}
         </div>
-        <div className="text-black text-[13px] uppercase font-bold">
+        <div className={`text-black text-sm ${isEn ? "font-serif" : "font-solaiman"}`}>
           {isEn ? "Vehicle License" : "যানবাহন লাইসেন্স"}
         </div>
         <div className="w-[150px]" />
       </div>
+      )}
 
       {/* Main Certificate Box with Outer Padding and Thick Rose Gradient Border */}
       <div className="flex-1 relative p-3.5 my-2 mx-1 bg-gradient-to-br from-rose-600 via-rose-800 to-rose-600 shadow-md flex flex-col">
@@ -107,8 +109,8 @@ export function VehicleLicenseSheet({ data, lang = "bn" }: VehicleLicenseSheetPr
                 <span>{isEn ? (fiscalYearEn || fiscalYearBn || "2025-2026") : (fiscalYearBn || "২০২৫-২০২৬")}</span>
               </div>
               <div className="mt-1.5">
-                <span className="bg-red-800 text-white text-lg font-bold px-9 py-1 rounded-[4px] tracking-wider inline-block shadow-md uppercase">
-                  {isEn ? "VEHICLE LICENSE" : "যানবাহন লাইসেন্স"}
+                <span className="bg-red-800 text-white text-lg font-bold px-9 py-1 rounded-[4px] tracking-wider inline-block shadow-md">
+                  {isEn ? "Vehicle License" : "যানবাহন লাইসেন্স"}
                 </span>
               </div>
             </div>
@@ -350,6 +352,7 @@ export function VehicleLicenseSheet({ data, lang = "bn" }: VehicleLicenseSheetPr
       </div>
 
       {/* Bottom Footer Bar (Outside thick border box) */}
+      {!isEn && (
       <div className="flex justify-between items-center text-[12px] text-black font-sans px-1 pt-0.5">
         <a
           href={signatory.qr_url || "https://www.lgoms.org"}
@@ -362,7 +365,8 @@ export function VehicleLicenseSheet({ data, lang = "bn" }: VehicleLicenseSheetPr
         <div className="font-normal text-black">
           1/1
         </div>
-      </div>
+      </div> 
+      )}
     </div>
   );
 }
