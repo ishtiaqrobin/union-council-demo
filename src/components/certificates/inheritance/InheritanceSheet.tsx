@@ -59,7 +59,7 @@ export function InheritanceSheet({ data, lang = "bn" }: InheritanceSheetProps) {
     <div
       id="certificateSheet"
       className={`certificate-sheet certificate-sheet-portrait w-[210mm] h-[297mm] min-w-[210mm] min-h-[297mm] bg-white shadow-2xl relative overflow-hidden box-border text-[#121212] px-6 py-4 flex flex-col justify-between print:w-[210mm] print:h-[297mm] print:min-w-[210mm] print:min-h-[297mm] print:max-w-[210mm] print:max-h-[297mm] print:m-0 print:shadow-none print:absolute print:top-0 print:left-0 print:break-inside-avoid ${
-        isEn ? "font-sans" : "font-solaiman"
+        isEn ? "font-serif" : "font-solaiman"
       }`}
     >
       <style>{`
@@ -75,7 +75,7 @@ export function InheritanceSheet({ data, lang = "bn" }: InheritanceSheetProps) {
         <div className="w-[150px] text-left font-normal text-black">
           {printDateTime}
         </div>
-        <div className={`text-black text-sm ${isEn ? "font-sans" : "font-solaiman"}`}>
+        <div className={`text-black text-sm ${isEn ? "font-serif" : "font-solaiman"}`}>
           {isEn ? (meta.cert_title_en || "Inheritance Certificate") : (meta.cert_title || "উত্তরাধিকার সনদ")}
         </div>
         <div className="w-[150px]" />
@@ -125,7 +125,7 @@ export function InheritanceSheet({ data, lang = "bn" }: InheritanceSheetProps) {
                   <>উপজেলা: <span>{union.upazila}</span>, জেলা: <span>{union.district}</span>।</>
                 )}
               </div>
-              <div className={`up-web-url text-sm font-semibold text-black mt-[1px] ${isEn ? "font-sans" : "font-siliguri"}`}>
+              <div className={`up-web-url text-sm font-semibold text-black mt-[1px] ${isEn ? "font-serif" : "font-siliguri"}`}>
                 {union.website}
               </div>
             </div>
@@ -149,7 +149,7 @@ export function InheritanceSheet({ data, lang = "bn" }: InheritanceSheetProps) {
           <div className="cert-meta-ribbon flex justify-between items-center mt-[10px] px-1">
             <div className="meta-item meta-serial text-base text-[#121212]">
               <span className="lbl mr-1.5">{isEn ? "Serial No:" : "ক্রমিক নং:"}</span>
-              <span className={`val font-bold tracking-wide ${isEn ? "font-sans" : "font-siliguri"}`}>
+              <span className={`val font-bold tracking-wide ${isEn ? "font-serif" : "font-siliguri"}`}>
                 {isEn ? (meta.serial_no_en || meta.serial_no) : meta.serial_no}
               </span>
             </div>
@@ -162,7 +162,7 @@ export function InheritanceSheet({ data, lang = "bn" }: InheritanceSheetProps) {
 
             <div className="meta-item meta-date text-base text-[#121212]">
               <span className="lbl mr-1.5">{isEn ? "Date:" : "তারিখ:"}</span>
-              <span className={`val font-bold tracking-wide ${isEn ? "font-sans" : "font-siliguri"}`}>
+              <span className={`val font-bold tracking-wide ${isEn ? "font-serif" : "font-siliguri"}`}>
                 {isEn ? (meta.issue_date_en || meta.issue_date) : meta.issue_date}
               </span>
             </div>
@@ -171,7 +171,7 @@ export function InheritanceSheet({ data, lang = "bn" }: InheritanceSheetProps) {
           {/* Certificate Content Body */}
           <div className="cert-content-body mt-3 px-1 flex-1 flex flex-col justify-start">
             {isEn ? (
-              <p className="cert-paragraph text-base leading-[2.1] text-black text-justify mb-1 font-sans">
+              <p className="cert-paragraph text-base leading-[2.1] text-black text-justify mb-1 font-serif">
                 This is to certify that,{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                   {applicant.person_name_en || applicant.person_name}
@@ -261,7 +261,7 @@ export function InheritanceSheet({ data, lang = "bn" }: InheritanceSheetProps) {
             )}
 
             {/* Heirs Table Top Note */}
-            <div className={`text-base text-black mb-1 pb-1 ${isEn ? "font-sans" : "font-solaiman"}`}>
+            <div className={`text-base text-black mb-1 pb-1 ${isEn ? "font-serif" : "font-solaiman"}`}>
               {isEn ? (
                 <>Remarks: <span className="font-semibold">Village: <span>{applicant.village_en || applicant.village}</span>, Post Office: <span>{applicant.post_office_en || applicant.post_office}</span>, Upazila: <span>{applicant.person_upazila_en || union.upazila_en || union.upazila}</span>, District: <span>{applicant.person_district_en || union.district_en || union.district}</span>.</span></>
               ) : (
@@ -293,7 +293,7 @@ export function InheritanceSheet({ data, lang = "bn" }: InheritanceSheetProps) {
 
             {/* Heirs Table Bottom Summary Note */}
             {isEn ? (
-              <p className="cert-summary text-base leading-relaxed text-black mt-2.5 text-justify font-sans">
+              <p className="cert-summary text-base leading-relaxed text-black mt-2.5 text-justify font-serif">
                 The aforementioned person has <span className="font-semibold">{sonCount} Son(s), {daughterCount} Daughter(s), {spouseCount} Spouse(s), {relativesCount} Relative(s), making a total of ({totalCount})</span> legal heir(s). Aside from them, there are no other legal heirs. Issued upon recommendation of the Ward No. {applicant.ward_no_en || applicant.ward_no} UP Member.
               </p>
             ) : (
@@ -309,7 +309,7 @@ export function InheritanceSheet({ data, lang = "bn" }: InheritanceSheetProps) {
               <div className="qr-canvas-holder p-1 bg-white border border-gray-300 shadow-sm">
                 <QRCodeSVG value={signatory.qr_url || "https://www.lgoms.org"} size={78} level="M" />
               </div>
-              <div className={`trn-text text-sm text-black mt-[3px] ${isEn ? "font-sans" : "font-siliguri"}`}>
+              <div className={`trn-text text-sm text-black mt-[3px] ${isEn ? "font-serif" : "font-siliguri"}`}>
                 Trn- <span>{signatory.trn_no}</span>
               </div>
             </div>

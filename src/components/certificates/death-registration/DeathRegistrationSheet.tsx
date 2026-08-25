@@ -118,7 +118,7 @@ export function DeathRegistrationSheet({ data, lang = "bn" }: DeathRegistrationS
 
             <div className="header-titles flex flex-col items-center justify-center pt-1">
               <div className={`${isEn ? "text-[15px]" : "text-base"} gov-sub-title text-black tracking-wide mb-[1px]`}>
-                {isEn ? "People's Republic Of Bangladesh Government" : "গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার"}
+                {isEn ? "Government of the People's Republic of Bangladesh" : "গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার"}
               </div>
               <div className="text-xl font-semibold text-emerald-800 tracking-wide">
                 {isEn ? "Register's office of the Death & Birth" : "জন্ম ও মৃত্যু নিবন্ধকের কার্যালয়"}
