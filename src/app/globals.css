@@ -14,6 +14,14 @@
   --font-notoserif: 'Noto Serif Bengali', serif;
   --font-tiro: 'Tiro Bangla', serif;
 
+  --font-roboto: 'Roboto', sans-serif;
+  --font-lato: 'Lato', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
+  --font-open: 'Open Sans', sans-serif;
+  --font-serif: 'serif';
+  --font-sans: 'sans-serif';
+
   /* ─── Certificate Theme Colors ─── */
   --color-primary-blue: #3252eb;
   --color-header-red: #d01923;
@@ -174,6 +182,42 @@
     .font-tiro,
     .Tiro {
       font-family: 'Tiro Bangla', serif !important;
+    }
+
+    .font-roboto,
+    .Roboto {
+      font-family: 'Roboto', sans-serif !important;
+    }
+
+    .font-lato,
+    .Lato {
+      font-family: 'Lato', sans-serif !important;
+    }
+
+    .font-inter,
+    .Inter {
+      font-family: 'Inter', sans-serif !important;
+    }
+
+    .font-poppins,
+    .Poppins {
+      font-family: 'Poppins', sans-serif !important;
+    }
+
+    .font-open,
+    .font-opensans,
+    .OpenSans {
+      font-family: 'Open Sans', sans-serif !important;
+    }
+
+    .font-serif,
+    .Serif {
+      font-family: 'Playfair Display', 'Lora', serif !important;
+    }
+
+    .font-sans,
+    .Sans {
+      font-family: 'Inter', 'Roboto', sans-serif !important;
     }
   }
 

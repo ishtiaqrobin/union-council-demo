@@ -65,7 +65,7 @@ export function DeathRegistrationSheet({ data, lang = "bn" }: DeathRegistrationS
     <div
       id="certificateSheet"
       className={`certificate-sheet certificate-sheet-portrait w-[210mm] h-[297mm] min-w-[210mm] min-h-[297mm] bg-white shadow-2xl relative overflow-hidden box-border text-[#121212] px-6 py-4 flex flex-col justify-between print:w-[210mm] print:h-[297mm] print:min-w-[210mm] print:min-h-[297mm] print:max-w-[210mm] print:max-h-[297mm] print:m-0 print:shadow-none print:absolute print:top-0 print:left-0 print:break-inside-avoid ${
-        isEn ? "font-sans" : "font-solaiman"
+        isEn ? "font-serif" : "font-solaiman"
       }`}
     >
       <style>{`
@@ -81,7 +81,7 @@ export function DeathRegistrationSheet({ data, lang = "bn" }: DeathRegistrationS
         <div className="w-[150px] text-left font-normal text-black">
           {printDateTime}
         </div>
-        <div className={`text-black text-sm ${isEn ? "font-sans" : "font-solaiman"}`}>
+        <div className={`text-black text-sm ${isEn ? "font-serif" : "font-solaiman"}`}>
           {isEn ? (meta.cert_title_en || "Death Registration Certificate") : (meta.cert_title || "মৃত্যু নিবন্ধন সনদ")}
         </div>
         <div className="w-[150px]" />
@@ -133,7 +133,7 @@ export function DeathRegistrationSheet({ data, lang = "bn" }: DeathRegistrationS
                   <>উপজেলা: <span>{union.upazila}</span>, জেলা: <span>{union.district}</span>।</>
                 )}
               </div>
-              <div className={`up-web-url text-sm font-semibold text-black mt-[1px] ${isEn ? "font-sans" : "font-siliguri"}`}>
+              <div className={`up-web-url text-sm font-semibold text-black mt-[1px] ${isEn ? "font-serif" : "font-siliguri"}`}>
                 {union.website}
               </div>
             </div>
@@ -162,7 +162,7 @@ export function DeathRegistrationSheet({ data, lang = "bn" }: DeathRegistrationS
               <span className={`${isEn ? "text-[15px]" : "text-base"} text-black whitespace-nowrap`}>{isEn ? "Death Registration No:" : "মৃত্যু নিবন্ধন নং:"}</span>
               <div className="flex-1 grid grid-cols-17 gap-0.5 border border-slate-800 p-0.5 bg-slate-50">
                 {regDigits.map((digit, index) => (
-                  <div key={index} className={`h-7 border border-slate-400 flex items-center justify-center text-black bg-white ${isEn ? "font-sans text-[15px]" : "text-base font-solaiman"}`}>
+                  <div key={index} className={`h-7 border border-slate-400 flex items-center justify-center text-black bg-white ${isEn ? "font-serif text-[15px]" : "text-base font-solaiman"}`}>
                     {digit}
                   </div>
                 ))}
@@ -258,7 +258,7 @@ export function DeathRegistrationSheet({ data, lang = "bn" }: DeathRegistrationS
                   level="M"
                 />
               </div>
-              <div className={`trn-text text-sm text-black mt-[3px] ${isEn ? "font-sans" : "font-siliguri"}`}>
+              <div className={`trn-text text-sm text-black mt-[3px] ${isEn ? "font-serif" : "font-siliguri"}`}>
                 Trn- <span>{signatory.trn_no}</span>
               </div>
             </div>
