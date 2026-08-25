@@ -91,7 +91,7 @@ export function UnmarriedSheet({ data, lang = "bn" }: UnmarriedSheetProps) {
                 {/* drop-shadow-[2px_2px_3px_rgba(0,0,0,0.35)] */}
                 {isEn ? (union.up_name_en || union.up_name) : union.up_name}
               </h1>
-              <div className="up-sub-address text-lg sm:text-xl font-semibold text-black mt-[1px]">
+              <div className="up-sub-address text-xl font-semibold text-black mt-[1px]">
                 {isEn ? (
                   <>Upazila: <span>{union.upazila_en || union.upazila}</span>, District: <span>{union.district_en || union.district}</span>.</>
                 ) : (

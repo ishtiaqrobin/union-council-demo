@@ -90,7 +90,7 @@ export function RemarriageSheet({ data, lang = "bn" }: RemarriageSheetProps) {
               <h1 className="up-main-title text-4xl font-bold text-header-red leading-snug m-0 tracking-wide">
                 {isEn ? (union.up_name_en || union.up_name) : union.up_name}
               </h1>
-              <div className="up-sub-address text-lg sm:text-xl font-semibold text-black mt-[1px]">
+              <div className="up-sub-address text-xl font-semibold text-black mt-[1px]">
                 {isEn ? (
                   <>Upazila: <span>{union.upazila_en || union.upazila}</span>, District: <span>{union.district_en || union.district}</span>.</>
                 ) : (
