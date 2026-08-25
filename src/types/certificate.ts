@@ -55,11 +55,14 @@ export interface SignatoryInfo {
 export interface HeirItem {
   id: string;
   name: string;
+  name_en?: string;
   relation: string;
+  relation_en?: string;
   age_or_dob: string;
   dob?: string;
   nid_or_bc: string;
   comments?: string;
+  comments_en?: string;
 }
 
 export interface CertificateData {
@@ -91,16 +94,27 @@ export interface CertificateData {
   closingWishEn?: string;
   // Death Registration extras
   registrationDateBn?: string;
+  registrationDateEn?: string;
   registrationNoBn?: string;
+  registrationNoEn?: string;
   dateOfDeathBn?: string;
+  dateOfDeathEn?: string;
   dateOfDeathInWordsBn?: string;
+  dateOfDeathInWordsEn?: string;
   genderBn?: string;
+  genderEn?: string;
   permanentAddressBn?: string;
+  permanentAddressEn?: string;
   presentAddressBn?: string;
+  presentAddressEn?: string;
   causeOfDeathBn?: string;
+  causeOfDeathEn?: string;
   placeOfDeathBn?: string;
+  placeOfDeathEn?: string;
   leftSignatoryNameBn?: string;
+  leftSignatoryNameEn?: string;
   leftSignatoryRoleBn?: string;
+  leftSignatoryRoleEn?: string;
 }
 
 export interface CertificateMenuItem {

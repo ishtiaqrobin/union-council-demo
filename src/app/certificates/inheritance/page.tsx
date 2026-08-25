@@ -12,6 +12,7 @@ export default function InheritancePage() {
     JSON.parse(JSON.stringify(INHERITANCE_INITIAL_DATA))
   );
   const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+  const [lang, setLang] = useState<"bn" | "en">("bn");
 
   const handleReset = () => {
     setCertData(JSON.parse(JSON.stringify(INHERITANCE_INITIAL_DATA)));
@@ -31,10 +32,12 @@ export default function InheritancePage() {
           onReset={handleReset}
           isOpen={isDrawerOpen}
           onClose={() => setIsDrawerOpen(false)}
+          lang={lang}
+          onLangChange={setLang}
         />
 
         <main className="certificate-viewport flex-1 p-8 px-4 flex justify-center items-start overflow-x-auto print:p-0 print:m-0 print:block print:overflow-visible bg-slate-200/80 dark:bg-slate-900/60 shadow-inner">
-          <InheritanceSheet data={certData} />
+          <InheritanceSheet data={certData} lang={lang} />
         </main>
       </div>
     </div>
