@@ -8,7 +8,7 @@ export const UNMARRIED_INITIAL_DATA: CertificateData = {
   badgeColor: "bg-emerald-600",
   union: {
     up_name: "০৩ নং আমঝুপি ইউনিয়ন পরিষদ",
-    up_name_en: "03 No. Amjhupi Union Parishad",
+    up_name_en: "03 No Amjhupi Union Parishad",
     upazila: "মেহেরপুর সদর",
     upazila_en: "Meherpur Sadar",
     district: "মেহেরপুর",
