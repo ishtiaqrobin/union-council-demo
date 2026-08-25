@@ -41,7 +41,7 @@ export default function UnmarriedPage() {
           onLangChange={setLang}
         />
 
-        <main className="certificate-viewport flex-1 p-6 px-4 flex flex-col justify-start items-center overflow-x-auto print:p-0 print:m-0 print:block print:overflow-visible bg-slate-200/80 dark:bg-slate-900/60 shadow-inner">
+        <main className="certificate-viewport flex-1 p-8 px-4 flex flex-col justify-start items-center overflow-x-auto print:p-0 print:m-0 print:block print:overflow-visible bg-slate-200/80 dark:bg-slate-900/60 shadow-inner">
           <UnmarriedSheet data={certData} lang={lang} />
         </main>
       </div>

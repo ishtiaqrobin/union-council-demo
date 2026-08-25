@@ -84,7 +84,7 @@ export function UnmarriedSheet({ data, lang = "bn" }: UnmarriedSheetProps) {
             </div>
 
             <div className="header-titles flex flex-col items-center justify-center">
-              <div className={`text-base text-black tracking-wide mb-[1px] ${isEn ? "font-semibold" : ""}`}>
+              <div className={`text-base text-black tracking-wide mb-[1px] `}>
                 {isEn ? "Government of the People's Republic of Bangladesh" : "গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার"}
               </div>
               <h1 className="up-main-title text-3xl sm:text-4xl font-bold text-header-red leading-snug m-0 tracking-wide">

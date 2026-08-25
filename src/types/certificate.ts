@@ -75,14 +75,20 @@ export interface CertificateData {
   // Specific extras
   heirs?: HeirItem[];
   incomeAmountBn?: string;
+  incomeAmountEn?: string;
   businessNameBn?: string;
   businessTypeBn?: string;
   licenseFeeBn?: string;
   aliasNameBn?: string;
+  aliasNameEn?: string;
   remarriageReasonBn?: string;
+  remarriageReasonEn?: string;
   landDetailsBn?: string;
+  landDetailsEn?: string;
   customDescriptionBn?: string;
+  customDescriptionEn?: string;
   closingWishBn?: string;
+  closingWishEn?: string;
   // Death Registration extras
   registrationDateBn?: string;
   registrationNoBn?: string;
