@@ -8,7 +8,7 @@ export const REMARRIAGE_INITIAL_DATA: CertificateData = {
   badgeColor: "bg-green-700",
   union: {
     up_name: "০৮ নং বসন্তপুর ইউনিয়ন পরিষদ",
-    up_name_en: "08 No. Basantapur Union Parishad",
+    up_name_en: "08 No Basantapur Union Parishad",
     upazila: "রাজবাড়ী সদর",
     upazila_en: "Rajbari Sadar",
     district: "রাজবাড়ী",

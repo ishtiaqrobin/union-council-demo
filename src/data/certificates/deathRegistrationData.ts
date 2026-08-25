@@ -8,7 +8,7 @@ export const DEATH_REGISTRATION_INITIAL_DATA: CertificateData = {
   badgeColor: "bg-emerald-600",
   union: {
     up_name: "০৮ নং বসন্তপুর ইউনিয়ন পরিষদ",
-    up_name_en: "08 No. Basantapur Union Parishad",
+    up_name_en: "08 No Basantapur Union Parishad",
     upazila: "রাজবাড়ী সদর",
     upazila_en: "Rajbari Sadar",
     district: "রাজবাড়ী",
@@ -19,7 +19,7 @@ export const DEATH_REGISTRATION_INITIAL_DATA: CertificateData = {
     serial_no: "19998217629000001",
     serial_no_en: "19998217629000001",
     cert_title: "মৃত্যু নিবন্ধন সনদ",
-    cert_title_en: "Death Registration Certificate",
+    cert_title_en: "Death Certificate",
     issue_date: "03-07-2026",
     issue_date_en: "03-07-2026",
   },

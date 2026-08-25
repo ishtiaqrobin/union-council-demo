@@ -117,16 +117,16 @@ export function DeathRegistrationSheet({ data, lang = "bn" }: DeathRegistrationS
             </div>
 
             <div className="header-titles flex flex-col items-center justify-center pt-1">
-              <div className="gov-sub-title text-base text-black tracking-wide mb-[1px]">
-                {isEn ? "Government of the People's Republic of Bangladesh" : "গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার"}
+              <div className={`${isEn ? "text-[15px]" : "text-base"} gov-sub-title text-black tracking-wide mb-[1px]`}>
+                {isEn ? "People's Republic Of Bangladesh Government" : "গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার"}
               </div>
               <div className="text-xl font-semibold text-emerald-800 tracking-wide">
-                {isEn ? "Office of the Registrar of Birth and Death" : "জন্ম ও মৃত্যু নিবন্ধকের কার্যালয়"}
+                {isEn ? "Register's office of the Death & Birth" : "জন্ম ও মৃত্যু নিবন্ধকের কার্যালয়"}
               </div>
-              <h1 className="up-main-title text-4xl font-bold text-header-red leading-snug m-0 tracking-wide">
+              <h1 className={`${isEn ? "text-3xl" : "text-4xl"} up-main-title font-bold text-header-red leading-snug m-0 tracking-wide`}>
                 {isEn ? (union.up_name_en || union.up_name) : union.up_name}
               </h1>
-              <div className="up-sub-address text-xl font-semibold text-black mt-[1px]">
+              <div className="up-sub-address text-lg font-bold text-black mt-[1px]">
                 {isEn ? (
                   <>Upazila: <span>{union.upazila_en || union.upazila}</span>, District: <span>{union.district_en || union.district}</span>.</>
                 ) : (
@@ -140,14 +140,14 @@ export function DeathRegistrationSheet({ data, lang = "bn" }: DeathRegistrationS
 
             {/* Title Badge */}
             <div className="mt-3">
-              <h2 className="text-2xl font-semibold text-emerald-700 tracking-wide border-b-2 border-emerald-600 pb-0.5 inline-block">
-                {isEn ? (meta.cert_title_en || "Death Registration Certificate") : (meta.cert_title || "মৃত্যু নিবন্ধন সনদ")}
+              <h2 className="text-2xl font-bold text-emerald-700 tracking-wide">
+                {isEn ? (meta.cert_title_en || "Death Certificate") : (meta.cert_title || "মৃত্যু নিবন্ধন সনদ")}
               </h2>
             </div>
           </div>
 
           {/* Metadata Section */}
-          <div className="mt-4 flex flex-col gap-2.5 text-base text-black">
+          <div className={`${isEn ? "text-[15px]" : "text-base"} mt-4 flex flex-col gap-2.5 text-black`}>
             <div className="flex justify-between items-center text-black">
               <div>
                 {isEn ? "Date of Registration:" : "নিবন্ধনের তারিখ :"} <span className="font-semibold border-b-[1.5px] border-dashed border-black">{(isEn ? registrationDateEn : registrationDateBn) || meta.issue_date}</span>
@@ -159,10 +159,10 @@ export function DeathRegistrationSheet({ data, lang = "bn" }: DeathRegistrationS
 
             {/* 17 Digit Death Registration Number Box */}
             <div className="flex items-center gap-2 mt-1">
-              <span className="text-base text-black whitespace-nowrap">{isEn ? "Death Registration No:" : "মৃত্যু নিবন্ধন নং:"}</span>
+              <span className={`${isEn ? "text-[15px]" : "text-base"} text-black whitespace-nowrap`}>{isEn ? "Death Registration No:" : "মৃত্যু নিবন্ধন নং:"}</span>
               <div className="flex-1 grid grid-cols-17 gap-0.5 border border-slate-800 p-0.5 bg-slate-50">
                 {regDigits.map((digit, index) => (
-                  <div key={index} className={`h-7 border border-slate-400 flex items-center justify-center text-black text-base bg-white ${isEn ? "font-sans" : "font-solaiman"}`}>
+                  <div key={index} className={`h-7 border border-slate-400 flex items-center justify-center text-black bg-white ${isEn ? "font-sans text-[15px]" : "text-base font-solaiman"}`}>
                     {digit}
                   </div>
                 ))}
@@ -171,10 +171,10 @@ export function DeathRegistrationSheet({ data, lang = "bn" }: DeathRegistrationS
           </div>
 
           {/* Key Value Details Grid */}
-          <div className="mt-5 flex-1 flex flex-col gap-3.5 text-base leading-normal text-black">
+          <div className={`${isEn ? "text-[15px]" : "text-base"} mt-4 gap-2.5 flex-1 flex flex-col leading-normal text-black`}>
             <div className="grid grid-cols-[140px_1fr] items-baseline pb-1">
               <span className="text-black">{isEn ? "Name" : "নাম"}</span>
-              <span className="font-semibold text-base text-black border-b-[1.5px] border-dashed border-black pb-0.5">: {isEn ? (applicant.person_name_en || applicant.person_name) : applicant.person_name}</span>
+              <span className={`${isEn ? "text-[15px]" : "text-base"} font-semibold text-black border-b-[1.5px] border-dashed border-black pb-0.5`}>: {isEn ? (applicant.person_name_en || applicant.person_name) : applicant.person_name}</span>
             </div>
 
             <div className="grid grid-cols-[140px_1fr] items-baseline pb-1">
@@ -233,18 +233,18 @@ export function DeathRegistrationSheet({ data, lang = "bn" }: DeathRegistrationS
           {/* Footer Signatory & QR Code Section */}
           <div className="cert-footer-section flex justify-between items-end mt-auto pt-4 pb-1 px-1">
             {/* Left Signatory */}
-            <div className="signatory-box text-center min-w-[170px]">
+            <div className={`${isEn ? "text-[15px]" : "text-base"} signatory-box text-center min-w-[170px]`}>
               <div className="sign-space h-[28px]" />
-              <div className="sign-name text-base font-semibold text-black leading-tight">
+              <div className={`sign-name font-semibold text-black leading-tight`}>
                 {isEn ? (leftSignatoryNameEn || leftSignatoryNameBn || "Syed Mehedi Masud") : (leftSignatoryNameBn || "সৈয়দ মেহেদী মাসুদ")}
               </div>
-              <div className="sign-role-sub text-base text-black leading-tight">
+              <div className="sign-role-sub text-black leading-tight">
                 {isEn ? (leftSignatoryRoleEn || leftSignatoryRoleBn || "Administrative Officer") : (leftSignatoryRoleBn || "প্রশাসনিক কর্মকর্তা")}
               </div>
-              <div className="sign-office text-base text-black leading-tight">
+              <div className="sign-office text-black leading-tight">
                 {isEn ? (union.up_name_en || union.up_name) : union.up_name}
               </div>
-              <div className="sign-location text-base text-black leading-tight">
+              <div className="sign-location text-black leading-tight">
                 {isEn ? <>{union.upazila_en || union.upazila}, {union.district_en || union.district}.</> : <>{union.upazila}, {union.district}।</>}
               </div>
             </div>
@@ -254,7 +254,7 @@ export function DeathRegistrationSheet({ data, lang = "bn" }: DeathRegistrationS
               <div className="qr-canvas-holder p-1 bg-white border border-gray-300 shadow-sm">
                 <QRCodeSVG
                   value={signatory.qr_url || "https://www.lgoms.org"}
-                  size={78}
+                  size={isEn ? 72 : 78}
                   level="M"
                 />
               </div>
@@ -264,25 +264,25 @@ export function DeathRegistrationSheet({ data, lang = "bn" }: DeathRegistrationS
             </div>
 
             {/* Right Signatory */}
-            <div className="signatory-box text-center min-w-[170px]">
+            <div className={`${isEn ? "text-[15px]" : "text-base"} signatory-box text-center min-w-[170px]`}>
               <div className="sign-space h-[28px]" />
-              <div className="sign-name text-base font-semibold text-black leading-tight">
+              <div className="sign-name font-semibold text-black leading-tight">
                 {isEn ? (signatory.signatory_name_en || signatory.signatory_name) : signatory.signatory_name}
               </div>
-              <div className="sign-role-sub text-base text-black leading-tight">
+              <div className="sign-role-sub text-black leading-tight">
                 {isEn ? (signatory.signatory_role_en || signatory.signatory_role) : signatory.signatory_role}
               </div>
-              <div className="sign-office text-base text-black leading-tight">
+              <div className="sign-office text-black leading-tight">
                 {isEn ? (union.up_name_en || union.up_name) : union.up_name}
               </div>
-              <div className="sign-location text-base text-black leading-tight">
+              <div className="sign-location text-black leading-tight">
                 {isEn ? <>{union.upazila_en || union.upazila}, {union.district_en || union.district}.</> : <>{union.upazila}, {union.district}।</>}
               </div>
             </div>
           </div>
 
           {/* Bottom Tagline Ribbon */}
-          <div className="mt-5 text-center text-base text-black">
+          <div className={`${isEn ? "text-[15px]" : "text-base"} mt-4 text-center text-black`}>
             {isEn
               ? "Pay tax on time * Plant trees save environment * Send your child to school"
               : "সময়মত কর পরিশোধ করুন * গাছ লাগান পরিবেশ বাঁচান * আপনার সন্তানকে স্কুলে পাঠান"}
