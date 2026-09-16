@@ -146,9 +146,9 @@ export function NewVoterForm({
             <button
               onClick={() => applyTemplate(
                 "নতুন ভোটার নিবন্ধনের প্রত্যয়ন",
-                "তিনি অত্র ইউনিয়নের একজন স্থায়ী বাসিন্দা। স্থানীয় ইউপি সদস্যের তদন্ত সাপেক্ষে জানা যায় যে, তিনি পূর্বে দেশের কোথাও ভোটার হননি। ইতিপূর্বে ভোটার নিবন্ধনের সময় এলাকায় না থাকার কারনে ভোটার নিবন্ধন করতে ব্যর্থ হন। বর্তমানে তিনি নতুন ভোটার তালিকায় নাম অন্তর্ভুক্ত করতে ইচ্ছুক। আমার জানা মতে তিনি কোনো রাষ্ট্রবিরোধী বা সমাজবিরোধী কর্মকাণ্ডে জড়িত নন এবং তার নৈতিক চরিত্র ভালো।",
+                "তিনি অত্র ইউনিয়নের স্থায়ী বাসিন্দা। স্থানীয় ইউপি সদস্যের তথ্যমতে, তিনি ইতিপূর্বে দেশের কোথাও ভোটার হননি। বর্তমানে তিনি নতুন ভোটার হতে ইচ্ছুক। আমার জানামতে তার নৈতিক চরিত্র ভালো।",
                 "New Voter Registration Certificate",
-                "He/She is a permanent resident of this Union Parishad. As per investigation by the local UP Member, he/she has never been enrolled as a voter anywhere in Bangladesh. He/She was unable to register earlier due to absence from the locality during voter registration. Currently he/she wishes to enroll as a new voter. To the best of my knowledge, he/she is not involved in any anti-state activities and bears a good moral character.",
+                "He/She is a permanent resident of this Union Parishad. As verified by the local UP Member, he/she has never been enrolled as a voter anywhere in Bangladesh and currently wishes to enroll as a new voter. To the best of my knowledge, he/she bears a good moral character.",
                 "আমি তার সার্বিক কল্যাণ ও উন্নতি কামনা করি।",
                 "I wish him/her all success and prosperity in life."
               )}
@@ -159,9 +159,9 @@ export function NewVoterForm({
             <button
               onClick={() => applyTemplate(
                 "নতুন ভোটার প্রত্যয়ন (বিদেশে অবস্থান সংক্রান্ত)",
-                "তিনি বিগত দিনে চাকুরীর সূত্রে প্রবাসে অবস্থান করার কারণে যথাসময়ে নতুন ভোটার তালিকাভুক্ত হতে পারেন নাই। স্থানীয় ইউপি সদস্যের তদন্ত সাপেক্ষে জানা যায় যে, তিনি পূর্বে দেশের কোথাও ভোটার হননি। বর্তমানে তিনি দেশে অবস্থান করছেন এবং অত্র ইউনিয়নের স্থায়ী বাসিন্দা হিসেবে নতুন ভোটার নিবন্ধন করতে ইচ্ছুক। তার নৈতিক চরিত্র উত্তম।",
+                "তিনি ইতিপূর্বে প্রবাসে থাকার কারণে যথাসময়ে ভোটার হতে পারেননি। ইউপি সদস্যের তথ্যমতে, তিনি পূর্বে কোথাও ভোটার হননি। বর্তমানে তিনি নতুন ভোটার হতে ইচ্ছুক এবং তার নৈতিক চরিত্র ভালো।",
                 "New Voter Certificate (Expatriate)",
-                "He/She was unable to enroll in the voter list in due time as he/she was residing abroad for employment. As per investigation by the local UP Member, he/she has never been enrolled as a voter anywhere in Bangladesh. Currently he/she is residing in Bangladesh and wishes to register as a new voter as a permanent resident of this Union. He/She possesses a good moral character.",
+                "He/She was unable to register as a voter earlier due to residing abroad. As verified by the local UP Member, he/she has never been enrolled as a voter anywhere and currently wishes to register as a new voter. He/She bears a good moral character.",
                 "আমি তার সার্বিক কল্যাণ ও উন্নতি কামনা করি।",
                 "I wish him/her all success and prosperity in life."
               )}

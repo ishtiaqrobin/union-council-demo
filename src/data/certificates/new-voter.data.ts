@@ -58,8 +58,8 @@ export const NEW_VOTER_INITIAL_DATA: CertificateData = {
     trn_no: "72304",
     qr_url: "https://www.lgoms.org/prot_certificates.php?id=72304"
   },
-  customDescriptionBn: "তিনি অত্র ইউনিয়নের একজন স্থায়ী বাসিন্দা। স্থানীয় ইউপি সদস্য ও গ্রাম পুলিশ দ্বারা তদন্ত করে নিশ্চিত হওয়া গেছে যে, তিনি ইতিপূর্বে বাংলাদেশের কোথাও ভোটার তালিকাভুক্ত হননি। ইতিপূর্বে ভোটার নিবন্ধনের সময় এলাকায় না থাকার কারনে ভোটার নিবন্ধন করতে ব্যর্থ হন। বর্তমানে তিনি নতুন ভোটার তালিকায় নাম অন্তর্ভুক্ত করতে ইচ্ছুক। আমার জানা মতে তিনি কোনো রাষ্ট্রবিরোধী বা সমাজবিরোধী কর্মকাণ্ডে জড়িত নন এবং তার নৈতিক চরিত্র ভালো।",
-  customDescriptionEn: "He/She is a permanent resident of this Union Parishad. As verified by the local UP Member and Village Police, he/she has not been enrolled in the voter list anywhere in Bangladesh previously. He/She was unable to register earlier due to absence from the locality during voter registration. Currently he/she wishes to enroll as a new voter. To the best of my knowledge, he/she is not involved in any anti-state activities and bears a good moral character.",
+  customDescriptionBn: "তিনি অত্র ইউনিয়নের স্থায়ী বাসিন্দা। স্থানীয় ইউপি সদস্যের তথ্যমতে, তিনি ইতিপূর্বে দেশের কোথাও ভোটার হননি। বর্তমানে তিনি নতুন ভোটার হতে ইচ্ছুক। আমার জানামতে তার নৈতিক চরিত্র ভালো।",
+  customDescriptionEn: "He/She is a permanent resident of this Union Parishad. As verified by the local UP Member, he/she has never been enrolled as a voter anywhere in Bangladesh and currently wishes to enroll as a new voter. To the best of my knowledge, he/she bears a good moral character.",
   closingWishBn: "আমি তার সার্বিক কল্যাণ ও উন্নতি কামনা করি।",
   closingWishEn: "I wish him/her all success and prosperity in life."
 };
