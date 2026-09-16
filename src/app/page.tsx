@@ -22,7 +22,9 @@ import {
   MapPinOff,
   HeartHandshake,
   FileCheck,
-  Sparkles
+  Sparkles,
+  UserPlus,
+  ArrowRightLeft
 } from "lucide-react";
 
 const ICON_MAP: Record<string, React.ReactNode> = {
@@ -37,7 +39,9 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   Award: <Award className="w-6 h-6 text-slate-600 dark:text-slate-300" />,
   Banknote: <Banknote className="w-6 h-6 text-emerald-600 dark:text-emerald-300" />,
   MapPinOff: <MapPinOff className="w-6 h-6 text-cyan-500 dark:text-cyan-400" />,
-  FileText: <FileText className="w-6 h-6 text-emerald-500 dark:text-emerald-400" />
+  FileText: <FileText className="w-6 h-6 text-emerald-500 dark:text-emerald-400" />,
+  UserPlus: <UserPlus className="w-6 h-6 text-emerald-500 dark:text-emerald-400" />,
+  ArrowRightLeft: <ArrowRightLeft className="w-6 h-6 text-blue-500 dark:text-blue-400" />
 };
 
 export default function HomePage() {

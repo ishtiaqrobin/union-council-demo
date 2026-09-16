@@ -85,6 +85,13 @@ export const CERTIFICATE_MENU_ITEMS: CertificateMenuItem[] = [
     titleEn: "New Voter Certificate",
     iconName: "UserPlus",
     description: "নতুন ভোটার তালিকায় নাম অন্তর্ভুক্তির জন্য অফিসিয়াল প্রত্যয়নপত্র"
+  },
+  {
+    slug: "voter-transfer",
+    titleBn: "ভোটার এলাকা স্থানান্তর প্রত্যয়ন",
+    titleEn: "Voter Area Transfer Certificate",
+    iconName: "ArrowRightLeft",
+    description: "এক এলাকা বা স্বামীর ঠিকানায় ভোটার এলাকা স্থানান্তরের প্রত্যয়ন ও সুপারিশপত্র"
   }
 ];
 

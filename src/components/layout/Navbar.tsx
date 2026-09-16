@@ -23,7 +23,9 @@ import {
   MapPinOff,
   HeartHandshake,
   FileCheck,
-  Sparkles
+  Sparkles,
+  UserPlus,
+  ArrowRightLeft
 } from "lucide-react";
 
 // Icon mapping helper
@@ -39,7 +41,9 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   Award: <Award className="w-4 h-4 text-slate-600 dark:text-slate-300" />,
   Banknote: <Banknote className="w-4 h-4 text-emerald-600 dark:text-emerald-300" />,
   MapPinOff: <MapPinOff className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />,
-  FileText: <FileText className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+  FileText: <FileText className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />,
+  UserPlus: <UserPlus className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />,
+  ArrowRightLeft: <ArrowRightLeft className="w-4 h-4 text-blue-600 dark:text-blue-400" />
 };
 
 interface NavbarProps {
