@@ -78,6 +78,13 @@ export const CERTIFICATE_MENU_ITEMS: CertificateMenuItem[] = [
     titleEn: "Death Registration Certificate",
     iconName: "FileText",
     description: "জন্ম ও মৃত্যু নিবন্ধকের কার্যালয় কর্তৃক প্রস্তুতকৃত মৃত্যু নিবন্ধন সনদ"
+  },
+  {
+    slug: "new-voter",
+    titleBn: "নতুন ভোটার প্রত্যয়ন",
+    titleEn: "New Voter Certificate",
+    iconName: "UserPlus",
+    description: "নতুন ভোটার তালিকায় নাম অন্তর্ভুক্তির জন্য অফিসিয়াল প্রত্যয়নপত্র"
   }
 ];
 

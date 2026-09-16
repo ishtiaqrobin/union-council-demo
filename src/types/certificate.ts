@@ -22,6 +22,10 @@ export interface ApplicantInfo {
   person_name_en?: string;
   nid_no: string;
   nid_no_en?: string;
+  birth_reg_no?: string;
+  birth_reg_no_en?: string;
+  dob?: string;
+  dob_en?: string;
   father_name: string;
   father_name_en?: string;
   mother_name: string;

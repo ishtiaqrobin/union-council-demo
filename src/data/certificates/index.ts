@@ -9,6 +9,7 @@ import { TESTIMONIAL_INITIAL_DATA } from "./testimonial.data";
 import { ANNUAL_INCOME_INITIAL_DATA } from "./annual-income.data";
 import { LANDLESS_INITIAL_DATA } from "./landless.data";
 import { DEATH_REGISTRATION_INITIAL_DATA } from "./deathRegistrationData";
+import { NEW_VOTER_INITIAL_DATA } from "./new-voter.data";
 import { CertificateData } from "@/types/certificate";
 
 export {
@@ -23,6 +24,7 @@ export {
   ANNUAL_INCOME_INITIAL_DATA,
   LANDLESS_INITIAL_DATA,
   DEATH_REGISTRATION_INITIAL_DATA,
+  NEW_VOTER_INITIAL_DATA,
 };
 
 export const CERTIFICATES_DATA_MAP: Record<string, CertificateData> = {
@@ -37,4 +39,5 @@ export const CERTIFICATES_DATA_MAP: Record<string, CertificateData> = {
   "annual-income": ANNUAL_INCOME_INITIAL_DATA,
   landless: LANDLESS_INITIAL_DATA,
   "death-registration": DEATH_REGISTRATION_INITIAL_DATA,
+  "new-voter": NEW_VOTER_INITIAL_DATA,
 };
