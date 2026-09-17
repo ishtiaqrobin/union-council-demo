@@ -145,9 +145,9 @@ export function NewVoterForm({
           <div className="grid grid-cols-1 gap-1.5 mt-1">
             <button
               onClick={() => applyTemplate(
-                "নতুন ভোটার নিবন্ধনের প্রত্যয়ন",
+                "নতুন ভোটার প্রত্যয়ন",
                 "তিনি অত্র ইউনিয়নের স্থায়ী বাসিন্দা। স্থানীয় ইউপি সদস্যের তথ্যমতে, তিনি ইতিপূর্বে দেশের কোথাও ভোটার হননি। বর্তমানে তিনি নতুন ভোটার হতে ইচ্ছুক। আমার জানামতে তার নৈতিক চরিত্র ভালো।",
-                "New Voter Registration Certificate",
+                "New Voter Certificate",
                 "He/She is a permanent resident of this Union Parishad. As verified by the local UP Member, he/she has never been enrolled as a voter anywhere in Bangladesh and currently wishes to enroll as a new voter. To the best of my knowledge, he/she bears a good moral character.",
                 "আমি তার সার্বিক কল্যাণ ও উন্নতি কামনা করি।",
                 "I wish him/her all success and prosperity in life."
@@ -158,9 +158,9 @@ export function NewVoterForm({
             </button>
             <button
               onClick={() => applyTemplate(
-                "নতুন ভোটার প্রত্যয়ন (বিদেশে অবস্থান সংক্রান্ত)",
+                "নতুন ভোটার প্রত্যয়ন",
                 "তিনি ইতিপূর্বে প্রবাসে থাকার কারণে যথাসময়ে ভোটার হতে পারেননি। ইউপি সদস্যের তথ্যমতে, তিনি পূর্বে কোথাও ভোটার হননি। বর্তমানে তিনি নতুন ভোটার হতে ইচ্ছুক এবং তার নৈতিক চরিত্র ভালো।",
-                "New Voter Certificate (Expatriate)",
+                "New Voter Certificate",
                 "He/She was unable to register as a voter earlier due to residing abroad. As verified by the local UP Member, he/she has never been enrolled as a voter anywhere and currently wishes to register as a new voter. He/She bears a good moral character.",
                 "আমি তার সার্বিক কল্যাণ ও উন্নতি কামনা করি।",
                 "I wish him/her all success and prosperity in life."

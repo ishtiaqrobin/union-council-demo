@@ -158,9 +158,9 @@ export function PermanentResidentForm({
             </button>
             <button
               onClick={() => applyTemplate(
-                "স্থায়ী বাসিন্দা সনদপত্র (চাকরি ও কোটা যাচাই)",
+                "স্থায়ী বাসিন্দা সনদপত্র",
                 "স্থানীয় ইউপি সদস্য ও গ্রাম পুলিশ দ্বারা যাচাই করে নিশ্চিত হওয়া গেছে যে, তিনি অত্র ইউনিয়ন ও উপজেলার জন্মসূত্রে একজন স্থায়ী বাসিন্দা। সরকারি চাকরি, শিক্ষক নিয়োগ ও জেলা কোটা সুবিধা প্রাপ্তির স্বপক্ষে অত্র স্থায়ী বাসিন্দা প্রত্যয়নপত্র প্রদান করা হলো। তিনি কোনো রাষ্ট্রবিরোধী কর্মকাণ্ডে জড়িত নন।",
-                "Permanent Resident Certificate (Employment & Quota)",
+                "Permanent Resident Certificate",
                 "As verified by the local UP Member and Village Police, he/she is a permanent resident of this Union and Upazila by birth. This certificate is issued to confirm his/her permanent residency for government employment and district quota eligibility. He/She is not involved in any anti-state activities.",
                 "আমি তার সার্বিক কল্যাণ ও ভবিষ্যৎ সমৃদ্ধি কামনা করি।",
                 "I wish him/her all success and future prosperity."
@@ -171,9 +171,9 @@ export function PermanentResidentForm({
             </button>
             <button
               onClick={() => applyTemplate(
-                "স্থায়ী বাসিন্দা সনদপত্র (ভূমি ও পাসপোর্ট ভেরিফিকেশন)",
-                "তিনি অত্র ইউনিয়নের স্থায়ী বাসিন্দা হিসেবে সপরিবারে অত্র ঠিকানায় বসবাস করছেন। তার পিতা ও পূর্বপুরুষের নামে অত্র এলাকায় বৈধ জোতজমি ও বসতভিটা বিদ্যমান রহিয়াছে। তিনি একজন শান্তিপ্রিয় নাগরিক। পাসপোর্ট ও পুলিশ ভেরিফিকেশনের সুবিধার্থে অত্র সনদপত্র প্রদান করা হলো।",
-                "Permanent Resident Certificate (Police & Property Verification)",
+                "স্থায়ী বাসিন্দা সনদপত্র",
+                "তিনি অত্র ইউনিয়নের স্থায়ী বাসিন্দা হিসেবে সপরিবারে অত্র ঠিকানায় বসবাস করছেন। তার পিতা ও পূর্বপুরুষের নামে অত্র এলাকায় বৈধ জোতজমি ও বসতভিটা বিদ্যমান রহিয়াছে। তিনি একজন শান্তি প্রিয় নাগরিক। পাসপোর্ট ও পুলিশ ভেরিফিকেশনের সুবিধার্থে অত্র সনদপত্র প্রদান করা হলো।",
+                "Permanent Resident Certificate",
                 "He/She resides permanently with family at this address of this Union Parishad. His/Her father and ancestors own lawful homestead and land in this locality. He/She is a peace-loving citizen. This certificate is issued for passport and police verification purposes.",
                 "আমি তার জীবনের মঙ্গল ও উন্নতি কামনা করি।",
                 "I wish him/her all success in life."
