@@ -11,6 +11,7 @@ import { LANDLESS_INITIAL_DATA } from "./landless.data";
 import { DEATH_REGISTRATION_INITIAL_DATA } from "./deathRegistrationData";
 import { NEW_VOTER_INITIAL_DATA } from "./new-voter.data";
 import { VOTER_TRANSFER_INITIAL_DATA } from "./voter-transfer.data";
+import { PERMANENT_RESIDENT_INITIAL_DATA } from "./permanent-resident.data";
 import { CertificateData } from "@/types/certificate";
 
 export {
@@ -27,6 +28,7 @@ export {
   DEATH_REGISTRATION_INITIAL_DATA,
   NEW_VOTER_INITIAL_DATA,
   VOTER_TRANSFER_INITIAL_DATA,
+  PERMANENT_RESIDENT_INITIAL_DATA,
 };
 
 export const CERTIFICATES_DATA_MAP: Record<string, CertificateData> = {
@@ -43,4 +45,5 @@ export const CERTIFICATES_DATA_MAP: Record<string, CertificateData> = {
   "death-registration": DEATH_REGISTRATION_INITIAL_DATA,
   "new-voter": NEW_VOTER_INITIAL_DATA,
   "voter-transfer": VOTER_TRANSFER_INITIAL_DATA,
+  "permanent-resident": PERMANENT_RESIDENT_INITIAL_DATA,
 };

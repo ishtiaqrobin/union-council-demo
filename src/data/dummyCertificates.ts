@@ -92,6 +92,13 @@ export const CERTIFICATE_MENU_ITEMS: CertificateMenuItem[] = [
     titleEn: "Voter Area Transfer Certificate",
     iconName: "ArrowRightLeft",
     description: "এক এলাকা বা স্বামীর ঠিকানায় ভোটার এলাকা স্থানান্তরের প্রত্যয়ন ও সুপারিশপত্র"
+  },
+  {
+    slug: "permanent-resident",
+    titleBn: "স্থায়ী বাসিন্দা সনদ",
+    titleEn: "Permanent Resident Certificate",
+    iconName: "Home",
+    description: "বংশানুক্রমিক ও স্থায়ী নাগরিকত্ব প্রমাণের অফিসিয়াল সনদপত্র"
   }
 ];
 
