@@ -39,11 +39,11 @@ export interface TradeLicenseData {
   business: {
     institution_name: string; // প্রতিষ্ঠানের নাম
     institution_name_en?: string;
-    business_type: string;    // ব্যবসার ধরন
+    business_type: string; // ব্যবসার ধরন
     business_type_en?: string;
-    business_nature: string;  // ব্যবসার প্রকৃতি
+    business_nature: string; // ব্যবসার প্রকৃতি
     business_nature_en?: string;
-    business_place: string;   // ব্যবসার স্থান
+    business_place: string; // ব্যবসার স্থান
     business_place_en?: string;
   };
   owner: {
@@ -125,9 +125,9 @@ export interface VehicleLicenseData {
     renewal_deadline_date_en?: string;
   };
   vehicle: {
-    name: string;        // যানবাহনের নাম e.g. P.S.V PLUS DOLPHIN LINE
+    name: string; // যানবাহনের নাম e.g. P.S.V PLUS DOLPHIN LINE
     name_en?: string;
-    type: string;        // যানবাহনের ধরণ
+    type: string; // যানবাহনের ধরণ
     type_en?: string;
     route_place: string; // চলাচলের স্থান e.g. ঢাকা-ফরিদপুর-রাজবাড়ী
     route_place_en?: string;
@@ -172,6 +172,26 @@ export interface VehicleLicenseData {
     trn_no: string;
     qr_url: string;
   };
+  /**
+   * Where this certificate sits among the licences of one application — e.g.
+   * "ফ্লিটের ২ / ৩" — or absent for an ordinary single licence.
+   *
+   * 🔴 WHY IT IS ON THE DOCUMENT AND NOT IN THE NUMBER. One application may license
+   * several vehicles, and the union rejected `-A/-B/-C` suffixes: a second numbering
+   * rule would also leave gaps in the sequence, because a fleet of three consumes three
+   * numbers and a later single licence would then appear to skip one. The grouping is
+   * therefore printed, and the backend derives it by counting siblings — never by
+   * parsing the serial.
+   *
+   * `null` (never `১ / ১`) for a single licence, so the line disappears rather than
+   * claiming that a second certificate exists.
+   */
+  fleet?: {
+    index: number;
+    size: number;
+    labelBn: string;
+    labelEn: string;
+  } | null;
 }
 
 export interface ProfessionLicenseData {
@@ -203,9 +223,9 @@ export interface ProfessionLicenseData {
   business: {
     institution_name: string; // প্রতিষ্ঠানের নাম
     institution_name_en?: string;
-    business_type: string;    // ব্যবসার ধরণ
+    business_type: string; // ব্যবসার ধরণ
     business_type_en?: string;
-    business_place: string;   // ব্যবসার স্থান
+    business_place: string; // ব্যবসার স্থান
     business_place_en?: string;
   };
   owner: {
@@ -215,16 +235,16 @@ export interface ProfessionLicenseData {
     father_or_husband_name_en?: string;
     mother_name: string;
     mother_name_en?: string;
-    address: string;          // ঠিকানা
+    address: string; // ঠিকানা
     address_en?: string;
     mobile_no?: string;
     mobile_no_en?: string;
     photo_url?: string;
   };
   financials: {
-    fee_amount: string;       // ফি প্রদানের পরিমাণ (১৫% ভ্যাটসহ) e.g. "৩৪৫/-/-"
+    fee_amount: string; // ফি প্রদানের পরিমাণ (১৫% ভ্যাটসহ) e.g. "৩৪৫/-/-"
     fee_amount_en?: string;
-    amount_in_words: string;  // কথায় e.g. "তিন শত পঁতাল্লিশ টাকা মাত্র।"
+    amount_in_words: string; // কথায় e.g. "তিন শত পঁতাল্লিশ টাকা মাত্র।"
     amount_in_words_en?: string;
   };
   signatory: {
