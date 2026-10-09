@@ -35,8 +35,10 @@ export const TRADE_LICENSE_INITIAL_DATA: TradeLicenseData = {
   business: {
     institution_name: "মুহাম্মদ টেলিকম",
     institution_name_en: "Muhammad Telecom",
-    business_type: "স'মিল, কাঠগোলা, ডিজেল, গ্যাস বা বিদ্যুৎ চালিত অন্যান্য মিল লিঃ সং ব্যতীত...",
-    business_type_en: "Retail & Wholesale Telecom Accessories & Electronics Dealer",
+    business_type:
+      "স'মিল, কাঠগোলা, ডিজেল, গ্যাস বা বিদ্যুৎ চালিত অন্যান্য মিল লিঃ সং ব্যতীত...",
+    business_type_en:
+      "Retail & Wholesale Telecom Accessories & Electronics Dealer",
     business_nature: "খুচরা ও পাইকারী টেলিকম সামগ্রী বিক্রেতা",
     business_nature_en: "Retail & Wholesale Telecom Goods Seller",
     business_place: "উদয়পুর বাজার, রাজবাড়ী সদর",
@@ -51,10 +53,14 @@ export const TRADE_LICENSE_INITIAL_DATA: TradeLicenseData = {
     mother_name_en: "Samsunnahar",
     spouse_name: "মোরশেদা বেগম",
     spouse_name_en: "Morsheda Begum",
-    permanent_address: "গ্রাম: উদয়পুর, ডাকঘর: উদয়পুর-৭৮০০, উপজেলা: রাজবাড়ী সদর, জেলা: রাজবাড়ী।",
-    permanent_address_en: "Village: Udaypur, Post: Udaypur-7800, Upazila: Rajbari Sadar, District: Rajbari.",
-    present_address: "গ্রাম: উদয়পুর, ডাকঘর: উদয়পুর-৭৮০০, উপজেলা: রাজবাড়ী সদর, জেলা: রাজবাড়ী।",
-    present_address_en: "Village: Udaypur, Post: Udaypur-7800, Upazila: Rajbari Sadar, District: Rajbari.",
+    permanent_address:
+      "গ্রাম: উদয়পুর, ডাকঘর: উদয়পুর-৭৮০০, উপজেলা: রাজবাড়ী সদর, জেলা: রাজবাড়ী।",
+    permanent_address_en:
+      "Village: Udaypur, Post: Udaypur-7800, Upazila: Rajbari Sadar, District: Rajbari.",
+    present_address:
+      "গ্রাম: উদয়পুর, ডাকঘর: উদয়পুর-৭৮০০, উপজেলা: রাজবাড়ী সদর, জেলা: রাজবাড়ী।",
+    present_address_en:
+      "Village: Udaypur, Post: Udaypur-7800, Upazila: Rajbari Sadar, District: Rajbari.",
     nid_or_bc: "7776299138",
     nid_or_bc_en: "7776299138",
     tin_no: "--------",
@@ -87,5 +93,18 @@ export const TRADE_LICENSE_INITIAL_DATA: TradeLicenseData = {
     right_role_en: "Panel Chairman-2",
     trn_no: "10425",
     qr_url: "https://www.lgoms.org/trade_license.php?id=10425",
+  },
+  /**
+   * The same block the backend's `ILicenceCertificate` carries.
+   *
+   * `missingEnglish: []` because this sample is fully translated — so the sheet
+   * prints no fallback note, which is the correct output. To SEE the note, clear an
+   * English field in the form (e.g. "Name (English)") and switch the sheet to
+   * English: the Bengali value stays and the note appears beside it.
+   */
+  lang: {
+    available: ["bn", "en"],
+    missingEnglish: [],
+    fallbackNote: "(as per the Bengali record)",
   },
 };

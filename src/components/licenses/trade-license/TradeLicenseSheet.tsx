@@ -10,10 +10,29 @@ interface TradeLicenseSheetProps {
   lang?: "bn" | "en";
 }
 
-export function TradeLicenseSheet({ data, lang = "bn" }: TradeLicenseSheetProps) {
-  const { union, meta, business, owner, financials, signatory, fiscalYearBn, fiscalYearEn } = data;
+export function TradeLicenseSheet({
+  data,
+  lang = "bn",
+}: TradeLicenseSheetProps) {
+  const {
+    union,
+    meta,
+    business,
+    owner,
+    financials,
+    signatory,
+    fiscalYearBn,
+    fiscalYearEn,
+  } = data;
   const [printDateTime, setPrintDateTime] = useState("2/12/26, 10:30 AM");
   const isEn = lang === "en";
+
+  /**
+   * The platform's wording for a value printed in Bengali on the English document
+   * (plan §১৬.৪). Read from the contract, never written here — two printers must not
+   * print two different sentences for the same fact.
+   */
+  const fallbackNote = data.lang?.fallbackNote ?? "";
 
   useEffect(() => {
     const now = new Date();
@@ -28,7 +47,40 @@ export function TradeLicenseSheet({ data, lang = "bn" }: TradeLicenseSheetProps)
     setPrintDateTime(`${month}/${day}/${year}, ${hours}:${minutes} ${ampm}`);
   }, []);
 
-  const lineBorderClass = "font-semibold text-black border-b-[1.5px] border-dashed border-black pb-0.5";
+  const lineBorderClass =
+    "font-semibold text-black border-b-[1.5px] border-dashed border-black pb-0.5";
+
+  /**
+   * A value the applicant or the union wrote in words, resolved for the English sheet.
+   *
+   * 🔴 WHY `english || bengali` IS NOT ENOUGH, and why this replaced it. The English
+   * column would otherwise repeat a Bengali name with nothing to say that it is the
+   * Bengali record's — a reader of the English document cannot tell a translated name
+   * from a copied one, and that distinction is the whole reason the English field is
+   * separate. So when the English is absent the Bengali is printed WITH the note.
+   *
+   * ⚠️ AND WHY SO FEW LINES USE THIS. Plan §১৬ splits every field three ways:
+   *   · the SYSTEM translates it — dates, money, ward, geography, business type;
+   *   · the APPLICANT writes it — institution name, owner's and parents' names, addresses;
+   *   · it is ALREADY LATIN — NID, mobile, TIN, BIN.
+   * Only the middle class can be missing, so only it can honestly carry the note. A note
+   * on a date would claim an untranslated value where the value is a numeral.
+   */
+  const written = (enValue?: string, bnValue?: string) => {
+    const english = (enValue ?? "").trim();
+    if (english.length > 0) return <>{english}</>;
+    return (
+      <>
+        {bnValue}
+        {fallbackNote ? (
+          <span className="text-[10px] font-normal italic text-black/70">
+            {" "}
+            {fallbackNote}
+          </span>
+        ) : null}
+      </>
+    );
+  };
 
   return (
     <div
@@ -44,7 +96,7 @@ export function TradeLicenseSheet({ data, lang = "bn" }: TradeLicenseSheetProps)
         }
       `}</style>
 
-       {/* Top Header Bar (Outside thick border box) */}
+      {/* Top Header Bar (Outside thick border box) */}
       {/* <div className="flex justify-between items-center text-[11px] text-black font-sans px-1 pb-1">
         <div className="w-[150px] text-[12px] text-left font-normal text-black">
           {printDateTime}
@@ -58,7 +110,6 @@ export function TradeLicenseSheet({ data, lang = "bn" }: TradeLicenseSheetProps)
       {/* Main Certificate Box with Outer Padding and Thick Maroon Gradient Border */}
       <div className="flex-1 relative p-3.5 my-2 mx-1 bg-gradient-to-br from-rose-600 via-rose-800 to-rose-600 shadow-md flex flex-col">
         <div className="certificate-inner-frame w-full h-full bg-white pt-4 px-6 pb-3 relative flex flex-col justify-between z-10 flex-1 border border-red-200">
-
           {/* Background Watermark */}
           <div className="watermark-container absolute top-[52%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] pointer-events-none -z-10 flex justify-center items-center">
             <Image
@@ -77,7 +128,9 @@ export function TradeLicenseSheet({ data, lang = "bn" }: TradeLicenseSheetProps)
             <div className="gov-seal-left w-[72px] h-[72px] flex items-center justify-center">
               <Image
                 src="/assets/logo/logo.webp"
-                alt={isEn ? "Government Seal of Bangladesh" : "বাংলাদেশ সরকার সিল"}
+                alt={
+                  isEn ? "Government Seal of Bangladesh" : "বাংলাদেশ সরকার সিল"
+                }
                 width={72}
                 height={72}
                 className="gov-monogram w-full h-full drop-shadow-sm"
@@ -88,16 +141,25 @@ export function TradeLicenseSheet({ data, lang = "bn" }: TradeLicenseSheetProps)
             {/* Center Header Titles */}
             <div className="header-titles flex flex-col items-center justify-center">
               <div className="gov-sub-title text-[12.5px] text-black tracking-wide mb-[1px]">
-                {isEn ? "Government of the People's Republic of Bangladesh" : "গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার"}
+                {isEn
+                  ? "Government of the People's Republic of Bangladesh"
+                  : "গণ-প্রজাতন্ত্রী বাংলাদেশ সরকার"}
               </div>
               <h1 className="up-main-title text-[24px] font-bold text-header-red leading-tight m-0 tracking-wide">
-                {isEn ? (union.up_name_en || union.up_name) : union.up_name}
+                {isEn ? union.up_name_en || union.up_name : union.up_name}
               </h1>
               <div className="up-sub-address text-[12px] font-bold text-black mt-[1px]">
                 {isEn ? (
-                  <>Upazila: <span>{union.upazila_en || union.upazila}</span>, District: <span>{union.district_en || union.district}</span>.</>
+                  <>
+                    Upazila: <span>{union.upazila_en || union.upazila}</span>,
+                    District: <span>{union.district_en || union.district}</span>
+                    .
+                  </>
                 ) : (
-                  <>উপজেলা: <span>{union.upazila}</span>, জেলা: <span>{union.district}</span>।</>
+                  <>
+                    উপজেলা: <span>{union.upazila}</span>, জেলা:{" "}
+                    <span>{union.district}</span>।
+                  </>
                 )}
               </div>
               <div className="up-web-url font-siliguri text-[11.5px] font-semibold text-black mt-[1px]">
@@ -105,7 +167,11 @@ export function TradeLicenseSheet({ data, lang = "bn" }: TradeLicenseSheetProps)
               </div>
               <div className="text-sm font-bold text-black mt-[1px]">
                 {isEn ? "Fiscal Year: " : "অর্থ বছর: "}
-                <span>{isEn ? (fiscalYearEn || fiscalYearBn || "2025-2026") : (fiscalYearBn || "২০২৫-২০২৬")}</span>
+                <span>
+                  {isEn
+                    ? fiscalYearEn || fiscalYearBn || "2025-2026"
+                    : fiscalYearBn || "২০২৫-২০২৬"}
+                </span>
               </div>
               <div className="mt-1.5">
                 <span className="bg-red-800 text-white text-lg font-bold px-9 py-1 rounded-[4px] tracking-wider inline-block shadow-md">
@@ -130,28 +196,64 @@ export function TradeLicenseSheet({ data, lang = "bn" }: TradeLicenseSheetProps)
           {/* Top Metadata Grid */}
           <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 text-[12.5px] leading-relaxed">
             <div className="flex items-baseline gap-1">
-              <span className="text-black w-[130px]">{isEn ? "License No." : "লাইসেন্স নং"}</span>
-              <span className={`flex-1 ${lineBorderClass}`}>: {isEn ? (meta.license_no_en || meta.license_no) : meta.license_no}</span>
+              <span className="text-black w-[130px]">
+                {isEn ? "License No." : "লাইসেন্স নং"}
+              </span>
+              <span className={`flex-1 ${lineBorderClass}`}>
+                :{" "}
+                {isEn ? meta.license_no_en || meta.license_no : meta.license_no}
+              </span>
             </div>
             <div className="flex items-baseline gap-1">
-              <span className="text-black w-[130px]">{isEn ? "License ID" : "লাইসেন্স আইডি"}</span>
-              <span className={`flex-1 ${lineBorderClass}`}>: {isEn ? (meta.license_id_en || meta.license_id) : meta.license_id}</span>
+              <span className="text-black w-[130px]">
+                {isEn ? "License ID" : "লাইসেন্স আইডি"}
+              </span>
+              <span className={`flex-1 ${lineBorderClass}`}>
+                :{" "}
+                {isEn ? meta.license_id_en || meta.license_id : meta.license_id}
+              </span>
             </div>
             <div className="flex items-baseline gap-1">
-              <span className="text-black w-[130px]">{isEn ? "Ward No." : "ওয়ার্ড নং"}</span>
-              <span className={`flex-1 ${lineBorderClass}`}>: {isEn ? (meta.ward_no_en || meta.ward_no) : meta.ward_no}</span>
+              <span className="text-black w-[130px]">
+                {isEn ? "Ward No." : "ওয়ার্ড নং"}
+              </span>
+              <span className={`flex-1 ${lineBorderClass}`}>
+                : {isEn ? meta.ward_no_en || meta.ward_no : meta.ward_no}
+              </span>
             </div>
             <div className="flex items-baseline gap-1">
-              <span className="text-black w-[130px]">{isEn ? "Circle/Road/Mohalla" : "সার্কেল/রাস্তা/মহল্লা"}</span>
-              <span className={`flex-1 ${lineBorderClass}`}>: {isEn ? (meta.circle_road_mohalla_en || meta.circle_road_mohalla) : meta.circle_road_mohalla}</span>
+              <span className="text-black w-[130px]">
+                {isEn ? "Circle/Road/Mohalla" : "সার্কেল/রাস্তা/মহল্লা"}
+              </span>
+              <span className={`flex-1 ${lineBorderClass}`}>
+                :{" "}
+                {isEn
+                  ? written(
+                      meta.circle_road_mohalla_en,
+                      meta.circle_road_mohalla,
+                    )
+                  : meta.circle_road_mohalla}
+              </span>
             </div>
             <div className="flex items-baseline gap-1">
-              <span className="text-black w-[130px]">{isEn ? "Issue Date" : "লাইসেন্স ইস্যুর তারিখ"}</span>
-              <span className={`flex-1 ${lineBorderClass}`}>: {isEn ? (meta.issue_date_en || meta.issue_date) : meta.issue_date}</span>
+              <span className="text-black w-[130px]">
+                {isEn ? "Issue Date" : "লাইসেন্স ইস্যুর তারিখ"}
+              </span>
+              <span className={`flex-1 ${lineBorderClass}`}>
+                :{" "}
+                {isEn ? meta.issue_date_en || meta.issue_date : meta.issue_date}
+              </span>
             </div>
             <div className="flex items-baseline gap-1">
-              <span className="text-black w-[130px]">{isEn ? "Renewal Date" : "লাইসেন্স নবায়নের তারিখ"}</span>
-              <span className={`flex-1 ${lineBorderClass}`}>: {isEn ? (meta.renewal_date_en || meta.renewal_date) : meta.renewal_date}</span>
+              <span className="text-black w-[130px]">
+                {isEn ? "Renewal Date" : "লাইসেন্স নবায়নের তারিখ"}
+              </span>
+              <span className={`flex-1 ${lineBorderClass}`}>
+                :{" "}
+                {isEn
+                  ? meta.renewal_date_en || meta.renewal_date
+                  : meta.renewal_date}
+              </span>
             </div>
           </div>
 
@@ -159,11 +261,27 @@ export function TradeLicenseSheet({ data, lang = "bn" }: TradeLicenseSheetProps)
           <div className="my-1.5 text-[12.5px] leading-snug text-black text-justify">
             {isEn ? (
               <>
-                By virtue of powers conferred under Section 66 of the Local Government (Union Parishad) Act 2009, and in accordance with Articles 6 & 17 of the Model Tax Schedule 2013, this Trade License is issued to the following person/institution for collecting tax imposed on business, profession, or industry. It shall remain valid until <span className="font-bold">{meta.valid_until_date_en || meta.valid_until_date}</span>.
+                By virtue of powers conferred under Section 66 of the Local
+                Government (Union Parishad) Act 2009, and in accordance with
+                Articles 6 & 17 of the Model Tax Schedule 2013, this Trade
+                License is issued to the following person/institution for
+                collecting tax imposed on business, profession, or industry. It
+                shall remain valid until{" "}
+                <span className="font-bold">
+                  {meta.valid_until_date_en || meta.valid_until_date}
+                </span>
+                .
               </>
             ) : (
               <>
-                স্থানীয় সরকার (ইউনিয়ন পরিষদ) আইন, ২০০৯ সনের ৬৬ নং আইনের ধারা ৬৬ তে প্রদত্ত ক্ষমতাবলে সরকার প্রণীত আদর্শ কর তফসিল ২০১৩ এর ৬ ও ১৭ নং অনুচ্ছেদ অনুযায়ী ব্যবসা, বৃত্তি, পেশা বা শিল্প প্রতিষ্ঠানের উপর আরোপিত কর আদায়ের লক্ষ্যে নির্ধারিত শর্তে নিম্নলিখিত ব্যক্তি/প্রতিষ্ঠানের অনুকূলে এই ট্রেড লাইসেন্সটি ইস্যু করা হইল। যাহার মেয়াদ তারিখ <span className="font-bold">{meta.valid_until_date}</span> তারিখ পর্যন্ত বলবৎ থাকিবে।
+                স্থানীয় সরকার (ইউনিয়ন পরিষদ) আইন, ২০০৯ সনের ৬৬ নং আইনের ধারা ৬৬
+                তে প্রদত্ত ক্ষমতাবলে সরকার প্রণীত আদর্শ কর তফসিল ২০১৩ এর ৬ ও ১৭
+                নং অনুচ্ছেদ অনুযায়ী ব্যবসা, বৃত্তি, পেশা বা শিল্প প্রতিষ্ঠানের
+                উপর আরোপিত কর আদায়ের লক্ষ্যে নির্ধারিত শর্তে নিম্নলিখিত
+                ব্যক্তি/প্রতিষ্ঠানের অনুকূলে এই ট্রেড লাইসেন্সটি ইস্যু করা হইল।
+                যাহার মেয়াদ তারিখ{" "}
+                <span className="font-bold">{meta.valid_until_date}</span> তারিখ
+                পর্যন্ত বলবৎ থাকিবে।
               </>
             )}
           </div>
@@ -171,76 +289,182 @@ export function TradeLicenseSheet({ data, lang = "bn" }: TradeLicenseSheetProps)
           {/* Numbered Details List (1 - 13) */}
           <div className="flex-1 flex flex-col gap-1 text-[12.5px] leading-relaxed">
             <div className="grid grid-cols-[165px_1fr] items-baseline">
-              <span className="text-black">{isEn ? "1. Institution Name" : "১। প্রতিষ্ঠানের নাম"}</span>
-              <span className={`text-[13.5px] text-black ${lineBorderClass}`}>: {isEn ? (business.institution_name_en || business.institution_name) : business.institution_name}</span>
+              <span className="text-black">
+                {isEn ? "1. Institution Name" : "১। প্রতিষ্ঠানের নাম"}
+              </span>
+              <span className={`text-[13.5px] text-black ${lineBorderClass}`}>
+                :{" "}
+                {isEn
+                  ? written(
+                      business.institution_name_en,
+                      business.institution_name,
+                    )
+                  : business.institution_name}
+              </span>
             </div>
             <div className="grid grid-cols-[165px_1fr] items-baseline">
-              <span className="text-black">{isEn ? "2. Business Type" : "২। ব্যবসার ধরণ"}</span>
-              <span className={lineBorderClass}>: {isEn ? (business.business_type_en || business.business_type) : business.business_type}</span>
+              <span className="text-black">
+                {isEn ? "2. Business Type" : "২। ব্যবসার ধরণ"}
+              </span>
+              <span className={lineBorderClass}>
+                :{" "}
+                {isEn
+                  ? business.business_type_en || business.business_type
+                  : business.business_type}
+              </span>
             </div>
             <div className="grid grid-cols-[165px_1fr] items-baseline">
-              <span className="text-black">{isEn ? "3. Business Nature" : "৩। ব্যবসার প্রকৃতি"}</span>
-              <span className={lineBorderClass}>: {isEn ? (business.business_nature_en || business.business_nature) : business.business_nature}</span>
+              <span className="text-black">
+                {isEn ? "3. Business Nature" : "৩। ব্যবসার প্রকৃতি"}
+              </span>
+              <span className={lineBorderClass}>
+                :{" "}
+                {isEn
+                  ? business.business_nature_en || business.business_nature
+                  : business.business_nature}
+              </span>
             </div>
             <div className="grid grid-cols-[165px_1fr] items-baseline">
-              <span className="text-black">{isEn ? "4. License Holder Name" : "৪। লাইসেন্সধারীর নাম"}</span>
-              <span className={`text-[13.5px] ${lineBorderClass}`}>: {isEn ? (owner.name_en || owner.name) : owner.name}</span>
+              <span className="text-black">
+                {isEn ? "4. License Holder Name" : "৪। লাইসেন্সধারীর নাম"}
+              </span>
+              <span className={`text-[13.5px] ${lineBorderClass}`}>
+                : {isEn ? written(owner.name_en, owner.name) : owner.name}
+              </span>
             </div>
             <div className="grid grid-cols-[165px_1fr] items-baseline">
-              <span className="text-black">{isEn ? "5. Father's Name" : "৫। পিতার নাম"}</span>
-              <span className={lineBorderClass}>: {isEn ? (owner.father_name_en || owner.father_name) : owner.father_name}</span>
+              <span className="text-black">
+                {isEn ? "5. Father's Name" : "৫। পিতার নাম"}
+              </span>
+              <span className={lineBorderClass}>
+                :{" "}
+                {isEn
+                  ? written(owner.father_name_en, owner.father_name)
+                  : owner.father_name}
+              </span>
             </div>
             <div className="grid grid-cols-[165px_1fr] items-baseline">
-              <span className="text-black">{isEn ? "6. Mother's Name" : "৬। মাতার নাম"}</span>
-              <span className={lineBorderClass}>: {isEn ? (owner.mother_name_en || owner.mother_name) : owner.mother_name}</span>
+              <span className="text-black">
+                {isEn ? "6. Mother's Name" : "৬। মাতার নাম"}
+              </span>
+              <span className={lineBorderClass}>
+                :{" "}
+                {isEn
+                  ? written(owner.mother_name_en, owner.mother_name)
+                  : owner.mother_name}
+              </span>
             </div>
             <div className="grid grid-cols-[165px_1fr] items-baseline">
-              <span className="text-black">{isEn ? "7. Spouse's Name" : "৭। স্বামী/স্ত্রীর নাম"}</span>
-              <span className={lineBorderClass}>: {isEn ? (owner.spouse_name_en || owner.spouse_name || "--------") : (owner.spouse_name || "--------")}</span>
+              <span className="text-black">
+                {isEn ? "7. Spouse's Name" : "৭। স্বামী/স্ত্রীর নাম"}
+              </span>
+              <span className={lineBorderClass}>
+                :{" "}
+                {isEn
+                  ? written(
+                      owner.spouse_name_en,
+                      owner.spouse_name || "--------",
+                    )
+                  : owner.spouse_name || "--------"}
+              </span>
             </div>
             <div className="grid grid-cols-[165px_1fr] items-baseline">
-              <span className="text-black">{isEn ? "8. Business Place" : "৮। ব্যবসার স্থান"}</span>
-              <span className={lineBorderClass}>: {isEn ? (business.business_place_en || business.business_place) : business.business_place}</span>
+              <span className="text-black">
+                {isEn ? "8. Business Place" : "৮। ব্যবসার স্থান"}
+              </span>
+              <span className={lineBorderClass}>
+                :{" "}
+                {isEn
+                  ? written(business.business_place_en, business.business_place)
+                  : business.business_place}
+              </span>
             </div>
             <div className="grid grid-cols-[165px_1fr] items-baseline">
-              <span className="text-black">{isEn ? "9. Permanent Address" : "৯। স্থায়ী ঠিকানা"}</span>
-              <span className={lineBorderClass}>: {isEn ? (owner.permanent_address_en || owner.permanent_address) : owner.permanent_address}</span>
+              <span className="text-black">
+                {isEn ? "9. Permanent Address" : "৯। স্থায়ী ঠিকানা"}
+              </span>
+              <span className={lineBorderClass}>
+                :{" "}
+                {isEn
+                  ? written(owner.permanent_address_en, owner.permanent_address)
+                  : owner.permanent_address}
+              </span>
             </div>
             <div className="grid grid-cols-[165px_1fr] items-baseline">
-              <span className="text-black">{isEn ? "10. Present Address" : "১০। বর্তমান ঠিকানা"}</span>
-              <span className={lineBorderClass}>: {isEn ? (owner.present_address_en || owner.present_address) : owner.present_address}</span>
+              <span className="text-black">
+                {isEn ? "10. Present Address" : "১০। বর্তমান ঠিকানা"}
+              </span>
+              <span className={lineBorderClass}>
+                :{" "}
+                {isEn
+                  ? written(owner.present_address_en, owner.present_address)
+                  : owner.present_address}
+              </span>
             </div>
 
             <div className="grid grid-cols-2 gap-2">
               <div className="grid grid-cols-[180px_1fr] items-baseline">
-                <span className="text-black">{isEn ? "11. NID/BC No." : "১১। এনআইডি/বিআর/পাসপোর্ট নং"}</span>
-                <span className={lineBorderClass}>: {isEn ? (owner.nid_or_bc_en || owner.nid_or_bc) : owner.nid_or_bc}</span>
+                <span className="text-black">
+                  {isEn ? "11. NID/BC No." : "১১। এনআইডি/বিআর/পাসপোর্ট নং"}
+                </span>
+                <span className={lineBorderClass}>
+                  :{" "}
+                  {isEn
+                    ? owner.nid_or_bc_en || owner.nid_or_bc
+                    : owner.nid_or_bc}
+                </span>
               </div>
               <div className="grid grid-cols-[100px_1fr] items-baseline">
-                <span className="text-black">{isEn ? "Tax Zone" : "করঅঞ্চল"}</span>
-                <span className={lineBorderClass}>: {isEn ? (owner.tax_zone_en || owner.tax_zone || "Rajbari") : (owner.tax_zone || "রাজবাড়ী")}</span>
+                <span className="text-black">
+                  {isEn ? "Tax Zone" : "করঅঞ্চল"}
+                </span>
+                <span className={lineBorderClass}>
+                  :{" "}
+                  {isEn
+                    ? owner.tax_zone_en || owner.tax_zone || "Rajbari"
+                    : owner.tax_zone || "রাজবাড়ী"}
+                </span>
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-2">
               <div className="grid grid-cols-[180px_1fr] items-baseline">
-                <span className="text-black">{isEn ? "12. TIN No." : "১২। ট্যাক্স আইডেন্টিফিকেশন নং"}</span>
-                <span className={lineBorderClass}>: {owner.tin_no || "--------"}</span>
+                <span className="text-black">
+                  {isEn ? "12. TIN No." : "১২। ট্যাক্স আইডেন্টিফিকেশন নং"}
+                </span>
+                <span className={lineBorderClass}>
+                  : {owner.tin_no || "--------"}
+                </span>
               </div>
               <div className="grid grid-cols-[100px_1fr] items-baseline">
-                <span className="text-black">{isEn ? "Mobile No." : "মোবাইল নং"}</span>
-                <span className={lineBorderClass}>: {isEn ? (owner.mobile_no_en || owner.mobile_no) : owner.mobile_no}</span>
+                <span className="text-black">
+                  {isEn ? "Mobile No." : "মোবাইল নং"}
+                </span>
+                <span className={lineBorderClass}>
+                  :{" "}
+                  {isEn
+                    ? owner.mobile_no_en || owner.mobile_no
+                    : owner.mobile_no}
+                </span>
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-2">
               <div className="grid grid-cols-[180px_1fr] items-baseline">
-                <span className="text-black">{isEn ? "13. BIN No." : "১৩। বিজনেস আইডেন্টিফিকেশন নং"}</span>
-                <span className={lineBorderClass}>: {owner.bin_no || "--------"}</span>
+                <span className="text-black">
+                  {isEn ? "13. BIN No." : "১৩। বিজনেস আইডেন্টিফিকেশন নং"}
+                </span>
+                <span className={lineBorderClass}>
+                  : {owner.bin_no || "--------"}
+                </span>
               </div>
               <div className="grid grid-cols-[100px_1fr] items-baseline">
-                <span className="text-black">{isEn ? "Email" : "ইমেইল নং"}</span>
-                <span className={lineBorderClass}>: {owner.email || "--------"}</span>
+                <span className="text-black">
+                  {isEn ? "Email" : "ইমেইল নং"}
+                </span>
+                <span className={lineBorderClass}>
+                  : {owner.email || "--------"}
+                </span>
               </div>
             </div>
           </div>
@@ -266,51 +490,67 @@ export function TradeLicenseSheet({ data, lang = "bn" }: TradeLicenseSheetProps)
                 <tr>
                   <td className="border border-gray-400 px-2 py-0.5">*</td>
                   <td className="border border-gray-400 px-3 py-0.5 text-left">
-                    {isEn ? "Trade License / Renewal Fee" : "ট্রেড লাইসেন্স/নবায়ন ফি"}
+                    {isEn
+                      ? "Trade License / Renewal Fee"
+                      : "ট্রেড লাইসেন্স/নবায়ন ফি"}
                   </td>
-                  <td className="border border-gray-400 px-3 py-0.5 text-right">{financials.license_fee}</td>
+                  <td className="border border-gray-400 px-3 py-0.5 text-right">
+                    {financials.license_fee}
+                  </td>
                 </tr>
                 <tr>
                   <td className="border border-gray-400 px-2 py-0.5">*</td>
                   <td className="border border-gray-400 px-3 py-0.5 text-left">
                     {isEn ? "Arrear Fee" : "বকেয়া ফি"}
                   </td>
-                  <td className="border border-gray-400 px-3 py-0.5 text-right">{financials.arrear_fee}</td>
+                  <td className="border border-gray-400 px-3 py-0.5 text-right">
+                    {financials.arrear_fee}
+                  </td>
                 </tr>
                 <tr>
                   <td className="border border-gray-400 px-2 py-0.5">*</td>
                   <td className="border border-gray-400 px-3 py-0.5 text-left">
                     {isEn ? "Signboard Tax" : "সাইনবোর্ড কর"}
                   </td>
-                  <td className="border border-gray-400 px-3 py-0.5 text-right">{financials.signboard_tax}</td>
+                  <td className="border border-gray-400 px-3 py-0.5 text-right">
+                    {financials.signboard_tax}
+                  </td>
                 </tr>
                 <tr>
                   <td className="border border-gray-400 px-2 py-0.5">*</td>
                   <td className="border border-gray-400 px-3 py-0.5 text-left">
                     {isEn ? "VAT" : "ভ্যাট"}
                   </td>
-                  <td className="border border-gray-400 px-3 py-0.5 text-right">{financials.vat}</td>
+                  <td className="border border-gray-400 px-3 py-0.5 text-right">
+                    {financials.vat}
+                  </td>
                 </tr>
                 <tr>
                   <td className="border border-gray-400 px-2 py-0.5">*</td>
                   <td className="border border-gray-400 px-3 py-0.5 text-left">
                     {isEn ? "Profession Tax" : "পেশা-জীবিকাকর"}
                   </td>
-                  <td className="border border-gray-400 px-3 py-0.5 text-right">{financials.profession_tax}</td>
+                  <td className="border border-gray-400 px-3 py-0.5 text-right">
+                    {financials.profession_tax}
+                  </td>
                 </tr>
                 <tr className="bg-slate-50">
                   <td className="border border-gray-400 px-2 py-0.5">*</td>
                   <td className="border border-gray-400 px-3 py-0.5 text-left font-bold">
                     {isEn ? "Total" : "মোট"}
                   </td>
-                  <td className="border border-gray-400 px-3 py-0.5 text-right font-bold">{financials.total_amount}.00</td>
+                  <td className="border border-gray-400 px-3 py-0.5 text-right font-bold">
+                    {financials.total_amount}.00
+                  </td>
                 </tr>
               </tbody>
             </table>
             <div className="mt-1 text-[13px] font-bold text-black">
               {isEn ? "In Words: " : "কথায় : "}
               <span className="border-b-[1.5px] border-dashed border-black">
-                {isEn ? (financials.amount_in_words_en || financials.amount_in_words) : financials.amount_in_words}
+                {isEn
+                  ? financials.amount_in_words_en || financials.amount_in_words
+                  : financials.amount_in_words}
               </span>
             </div>
           </div>
@@ -319,11 +559,27 @@ export function TradeLicenseSheet({ data, lang = "bn" }: TradeLicenseSheetProps)
           <div className="mt-2 text-[13px] leading-normal text-black">
             {isEn ? (
               <>
-                Total amount in words: <span className="font-bold border-b-[1.5px] border-dashed border-black">{financials.amount_in_words_en || financials.amount_in_words}</span> has been received from Mr./Ms. <span className="font-bold border-b-[1.5px] border-dashed border-black">{owner.name_en || owner.name}</span> for all dues.
+                Total amount in words:{" "}
+                <span className="font-bold border-b-[1.5px] border-dashed border-black">
+                  {financials.amount_in_words_en || financials.amount_in_words}
+                </span>{" "}
+                has been received from Mr./Ms.{" "}
+                <span className="font-bold border-b-[1.5px] border-dashed border-black">
+                  {owner.name_en || owner.name}
+                </span>{" "}
+                for all dues.
               </>
             ) : (
               <>
-                লাইসেন্সধারী জনাব/জনাবা <span className="font-bold border-b-[1.5px] border-dashed border-black">{owner.name}</span> নিকট হইতে সকল পাওনা বাবদ মোট টাকা, কথায়: <span className="font-bold border-b-[1.5px] border-dashed border-black">{financials.amount_in_words}</span> আদায় করা হইল।
+                লাইসেন্সধারী জনাব/জনাবা{" "}
+                <span className="font-bold border-b-[1.5px] border-dashed border-black">
+                  {owner.name}
+                </span>{" "}
+                নিকট হইতে সকল পাওনা বাবদ মোট টাকা, কথায়:{" "}
+                <span className="font-bold border-b-[1.5px] border-dashed border-black">
+                  {financials.amount_in_words}
+                </span>{" "}
+                আদায় করা হইল।
               </>
             )}
           </div>
@@ -334,16 +590,22 @@ export function TradeLicenseSheet({ data, lang = "bn" }: TradeLicenseSheetProps)
             <div className="signatory-box text-center min-w-[170px]">
               <div className="sign-space h-[24px]" />
               <div className="sign-name text-[13.5px] font-bold text-black leading-tight">
-                {isEn ? (signatory.left_name_en || signatory.left_name) : signatory.left_name}
+                {isEn
+                  ? written(signatory.left_name_en, signatory.left_name)
+                  : signatory.left_name}
               </div>
               <div className="sign-role-sub text-[12px] text-black leading-tight">
-                {isEn ? (signatory.left_role_en || signatory.left_role) : signatory.left_role}
+                {isEn
+                  ? signatory.left_role_en || signatory.left_role
+                  : signatory.left_role}
               </div>
               <div className="sign-office text-[12px] text-black leading-tight">
-                {isEn ? (union.up_name_en || union.up_name) : union.up_name}
+                {isEn ? union.up_name_en || union.up_name : union.up_name}
               </div>
               <div className="sign-location text-[12px] text-black leading-tight">
-                {isEn ? `${union.upazila_en || union.upazila}, ${union.district_en || union.district}.` : `${union.upazila}, ${union.district}।`}
+                {isEn
+                  ? `${union.upazila_en || union.upazila}, ${union.district_en || union.district}.`
+                  : `${union.upazila}, ${union.district}।`}
               </div>
             </div>
 
@@ -365,20 +627,25 @@ export function TradeLicenseSheet({ data, lang = "bn" }: TradeLicenseSheetProps)
             <div className="signatory-box text-center min-w-[170px]">
               <div className="sign-space h-[24px]" />
               <div className="sign-name text-[13.5px] font-bold text-black leading-tight">
-                {isEn ? (signatory.right_name_en || signatory.right_name) : signatory.right_name}
+                {isEn
+                  ? written(signatory.right_name_en, signatory.right_name)
+                  : signatory.right_name}
               </div>
               <div className="sign-role-sub text-[12px] text-black leading-tight">
-                {isEn ? (signatory.right_role_en || signatory.right_role) : signatory.right_role}
+                {isEn
+                  ? signatory.right_role_en || signatory.right_role
+                  : signatory.right_role}
               </div>
               <div className="sign-office text-[12px] text-black leading-tight">
-                {isEn ? (union.up_name_en || union.up_name) : union.up_name}
+                {isEn ? union.up_name_en || union.up_name : union.up_name}
               </div>
               <div className="sign-location text-[12px] text-black leading-tight">
-                {isEn ? `${union.upazila_en || union.upazila}, ${union.district_en || union.district}.` : `${union.upazila}, ${union.district}।`}
+                {isEn
+                  ? `${union.upazila_en || union.upazila}, ${union.district_en || union.district}.`
+                  : `${union.upazila}, ${union.district}।`}
               </div>
             </div>
           </div>
-
         </div>
       </div>
 

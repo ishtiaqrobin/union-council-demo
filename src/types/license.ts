@@ -92,6 +92,25 @@ export interface TradeLicenseData {
     trn_no: string;
     qr_url: string;
   };
+  /**
+   * Which languages this certificate can be printed in, and the words to use when an
+   * English field has no English (plan §১৬).
+   *
+   * 🔴 WHY THE NOTE COMES FROM THE CONTRACT AND NOT FROM THIS COMPONENT. It is a
+   * statement about the document's provenance — "this is the Bengali record's name,
+   * not a translation" — and the platform fixes the wording so that two unions
+   * cannot print two different sentences for the same fact. A literal here would be
+   * a second home for one fact, and the two would drift.
+   *
+   * ⚠️ `missingEnglish` is NOT what the sheet uses. The sheet resolves every line as
+   * it renders it, so it already knows which ones fell back; the list exists for a
+   * printer that renders blind, and for auditing a union whose data is untranslated.
+   */
+  lang?: {
+    available?: ("bn" | "en")[];
+    missingEnglish?: string[];
+    fallbackNote?: string;
+  };
 }
 
 export interface VehicleLicenseData {
