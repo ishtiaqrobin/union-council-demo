@@ -240,9 +240,9 @@ export function ProfessionLicenseForm({
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-              {isEn ? "Address" : "ঠিকানা"}
+              {isEn ? "Present Address" : "বর্তমান ঠিকানা"}
             </label>
-            <input type="text" value={getOwnerValue("address")} onChange={(e) => updateOwner("address", e.target.value)} className={inputClass} />
+            <input type="text" value={getOwnerValue("present_address")} onChange={(e) => updateOwner("present_address", e.target.value)} className={inputClass} />
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
@@ -267,7 +267,7 @@ export function ProfessionLicenseForm({
             <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
               {isEn ? "Fee Amount (incl. 15% VAT)" : "ফি প্রদানের পরিমাণ (১৫% ভ্যাটসহ)"}
             </label>
-            <input type="text" value={getFinancialsValue("fee_amount")} onChange={(e) => updateFinancials("fee_amount", e.target.value)} className={inputClass} />
+            <input type="text" value={getFinancialsValue("total_amount")} onChange={(e) => updateFinancials("total_amount", e.target.value)} className={inputClass} />
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
@@ -286,7 +286,7 @@ export function ProfessionLicenseForm({
             <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
               {isEn ? "Chairman Name" : "চেয়ারম্যানের নাম"}
             </label>
-            <input type="text" value={getSignatoryValue("name")} onChange={(e) => updateSignatory("name", e.target.value)} className={inputClass} />
+            <input type="text" value={getSignatoryValue("left_name")} onChange={(e) => updateSignatory("left_name", e.target.value)} className={inputClass} />
           </div>
         </div>
       </div>

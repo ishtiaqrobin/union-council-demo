@@ -259,8 +259,8 @@ export function ProfessionLicenseSheet({
               <span className={lineBorderClass}>
                 :{" "}
                 {isEn
-                  ? written(owner.address_en, owner.address)
-                  : owner.address}
+                  ? written(owner.present_address_en, owner.present_address)
+                  : owner.present_address}
               </span>
             </div>
 
@@ -321,8 +321,8 @@ export function ProfessionLicenseSheet({
               <span className={lineBorderClass}>
                 :{" "}
                 {isEn
-                  ? financials.fee_amount_en || financials.fee_amount
-                  : financials.fee_amount}{" "}
+                  ? financials.total_amount
+                  : financials.total_amount}{" "}
                 ({isEn ? "In Words: " : "কথায়: "}
                 {isEn
                   ? financials.amount_in_words_en || financials.amount_in_words
@@ -379,13 +379,13 @@ export function ProfessionLicenseSheet({
               <div className="sign-space h-[28px]" />
               <div className="sign-name text-base font-semibold text-black leading-tight">
                 {isEn
-                  ? written(signatory.name_en, signatory.name)
-                  : signatory.name}
+                  ? written(signatory.left_name_en, signatory.left_name)
+                  : signatory.left_name}
               </div>
               <div className="sign-role-sub text-base text-black leading-tight">
                 {isEn
-                  ? written(signatory.role_en, signatory.role)
-                  : signatory.role}
+                  ? written(signatory.left_role_en, signatory.left_role)
+                  : signatory.left_role}
               </div>
               <div className="sign-office text-base text-black leading-tight">
                 {isEn ? union.up_name_en || union.up_name : union.up_name}

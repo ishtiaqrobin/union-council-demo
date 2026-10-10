@@ -41,21 +41,38 @@ export const PROFESSION_LICENSE_INITIAL_DATA: ProfessionLicenseData = {
     father_or_husband_name_en: "Abdul Kader Ali Khan",
     mother_name: "মোছাঃ জাহানারা খাতুন",
     mother_name_en: "Mst. Jahanara Khatun",
-    address: "০০,কোলা ,বিলকোলা ,মেহেরপুর সদর,মেহেরপুর",
-    address_en: "00, Kola, Bilkola, Meherpur Sadar, Meherpur",
+    /**
+     * ⚠️ ONE ADDRESS LINE BECOMES TWO, as the form collects them. The sheet prints the
+     * PRESENT address (the line it always printed) and the type now also carries the
+     * permanent one, because a single `address` field could not hold both and dropped one
+     * of the applicant's answers.
+     */
+    present_address: "০০, কোলা, বিলকোলা, মেহেরপুর সদর, মেহেরপুর",
+    present_address_en: "00, Kola, Bilkola, Meherpur Sadar, Meherpur",
+    mobile_no: "01752242603",
+    mobile_no_en: "01752242603",
     photo_url: "/assets/image/person.webp",
   },
   financials: {
-    fee_amount: "৩৪৫/-",
-    fee_amount_en: "345/-",
+    /**
+     * ✅ ONE FIELD, NO ENGLISH TWIN. A figure is written in Latin on both sheets, so
+     * `total_amount` needs no `_en` partner — and the old `fee_amount_en` therefore had a
+     * fallback that could never fire.
+     */
+    total_amount: "৩৪৫/-",
     amount_in_words: "তিন শত পঁতাল্লিশ টাকা মাত্র।",
     amount_in_words_en: "Three Hundred Forty-Five Taka Only.",
   },
   signatory: {
-    name: "মোঃ সিরাজুল ইসলাম",
-    name_en: "Md. Sirajul Islam",
-    role: "চেয়ারম্যান",
-    role_en: "Chairman",
+    /**
+     * The ISSUING officer, which `buildCertificateBlock` puts in the LEFT slot. A
+     * profession certificate carries one signature — the counter that issued it — where a
+     * trade or vehicle certificate carries the secretary and the chairman.
+     */
+    left_name: "মোঃ সিরাজুল ইসলাম",
+    left_name_en: "Md. Sirajul Islam",
+    left_role: "চেয়ারম্যান",
+    left_role_en: "Chairman",
     trn_no: "289",
     qr_url: "https://www.lgoms.org/prof_certificates_view.php?id=289",
   },

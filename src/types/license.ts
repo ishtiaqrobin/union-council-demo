@@ -273,23 +273,45 @@ export interface ProfessionLicenseData {
     father_or_husband_name_en?: string;
     mother_name: string;
     mother_name_en?: string;
-    address: string; // ঠিকানা
-    address_en?: string;
+    /**
+     * ⚠️ TWO ADDRESSES, NAMED AS THE SHARED CERTIFICATE CONTRACT NAMES THEM.
+     *
+     * This block used to carry a single `address`, which could not express what the form
+     * collects — a present AND a permanent address — so one of them was silently dropped.
+     * `TradeLicenseData` and `VehicleLicenseData` already read `present_address` /
+     * `permanent_address`, so the odd name is gone rather than aliased: a contract three
+     * certificates share must not grow a duplicate of a field it already has, for the
+     * benefit of one consumer.
+     */
+    present_address: string;
+    present_address_en?: string;
     mobile_no?: string;
     mobile_no_en?: string;
     photo_url?: string;
   };
   financials: {
-    fee_amount: string; // ফি প্রদানের পরিমাণ (১৫% ভ্যাটসহ) e.g. "৩৪৫/-/-"
-    fee_amount_en?: string;
+    /**
+     * The fee paid, VAT included — e.g. `৳৩৪৫` on the printed specimen.
+     *
+     * ✅ `total_amount` AND NO `_en` TWIN. A figure is written in Latin on both sheets, so
+     * there is nothing to translate and no English field that could ever be empty. The old
+     * `fee_amount_en || fee_amount` pair therefore carried a fallback that could never fire,
+     * under a name (`fee_amount`) that neither sibling used.
+     */
+    total_amount: string;
     amount_in_words: string; // কথায় e.g. "তিন শত পঁতাল্লিশ টাকা মাত্র।"
     amount_in_words_en?: string;
   };
   signatory: {
-    name: string;
-    name_en?: string;
-    role: string;
-    role_en?: string;
+    /**
+     * ⚠️ THE LEFT SLOT IS THE ISSUING OFFICER. `buildCertificateBlock` maps the secretary
+     * to `left_*` and the chairman to `right_*`, and a profession certificate carries ONE
+     * signature — the counter that issued it. The trade and vehicle sheets print both.
+     */
+    left_name: string;
+    left_name_en?: string;
+    left_role: string;
+    left_role_en?: string;
     trn_no: string;
     qr_url: string;
   };
