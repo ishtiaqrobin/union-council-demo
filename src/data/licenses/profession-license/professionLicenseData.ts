@@ -59,4 +59,17 @@ export const PROFESSION_LICENSE_INITIAL_DATA: ProfessionLicenseData = {
     trn_no: "289",
     qr_url: "https://www.lgoms.org/prof_certificates_view.php?id=289",
   },
+  /**
+   * The block the backend's `ILicenceCertificate` carries.
+   *
+   * `missingEnglish: []` because this sample is fully translated, so the sheet prints
+   * no fallback note — which is the correct output. To SEE the note, clear an English
+   * field in the form and switch the sheet to English: the Bengali value stays and the
+   * note appears beside it.
+   */
+  lang: {
+    available: ["bn", "en"],
+    missingEnglish: [],
+    fallbackNote: "(as per the Bengali record)",
+  },
 };

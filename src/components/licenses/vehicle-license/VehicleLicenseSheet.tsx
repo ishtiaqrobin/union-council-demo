@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { QRCodeSVG } from "qrcode.react";
 import { VehicleLicenseData } from "@/types/license";
+import { certificateWritten } from "@/components/licenses/certificate-text";
 
 interface VehicleLicenseSheetProps {
   data: VehicleLicenseData;
@@ -27,6 +28,13 @@ export function VehicleLicenseSheet({
   const [printDateTime, setPrintDateTime] = useState("2/12/26, 10:30 AM");
   const isEn = lang === "en";
 
+  /**
+   * The platform's wording for a value printed in Bengali on the English document
+   * (plan §১৬.৪). Read from the contract, never written here — two printers must not
+   * print two different sentences for the same fact.
+   */
+  const fallbackNote = data.lang?.fallbackNote ?? "";
+
   useEffect(() => {
     const now = new Date();
     const month = now.getMonth() + 1;
@@ -42,6 +50,24 @@ export function VehicleLicenseSheet({
 
   const lineBorderClass =
     "font-semibold text-black border-b-[1.5px] border-dashed border-black pb-0.5";
+
+  /**
+   * A value the applicant or the union wrote in words, resolved for the English sheet.
+   *
+   * 🔴 THE RULE LIVES IN `certificate-text.tsx`, NOT HERE. This sheet used to print
+   * `vehicle.name_en || vehicle.name`, which put a Bengali name in the English column
+   * with nothing to say it was untranslated — a reader could not tell it from a name
+   * that really had been transliterated. That is the whole reason the English column
+   * is a separate column.
+   *
+   * ⚠️ A ROUTE OR A TYPE NAME CAN BE MISSING TOO, and it is in the same class: the
+   * applicant writes it, so it may have no English, and the note is honest there.
+   * Dates, money, ward and the union's own geography are NOT passed through this —
+   * the system translates those, and a note on a date would claim an untranslated
+   * value where the value is a numeral.
+   */
+  const written = (enValue?: string, bnValue?: string) =>
+    certificateWritten(enValue, bnValue, fallbackNote);
 
   return (
     <div
@@ -251,7 +277,7 @@ export function VehicleLicenseSheet({
                 {isEn ? "1. Vehicle Name" : "১। যানবাহনের নাম"}
               </span>
               <span className={`text-[13.5px] text-black ${lineBorderClass}`}>
-                : {isEn ? vehicle.name_en || vehicle.name : vehicle.name}
+                : {isEn ? written(vehicle.name_en, vehicle.name) : vehicle.name}
               </span>
             </div>
             <div className="grid grid-cols-[165px_1fr] items-baseline">
@@ -259,7 +285,7 @@ export function VehicleLicenseSheet({
                 {isEn ? "2. Vehicle Type" : "২। যানবাহনের ধরণ"}
               </span>
               <span className={lineBorderClass}>
-                : {isEn ? vehicle.type_en || vehicle.type : vehicle.type}
+                : {isEn ? written(vehicle.type_en, vehicle.type) : vehicle.type}
               </span>
             </div>
             <div className="grid grid-cols-[165px_1fr] items-baseline">
@@ -267,7 +293,7 @@ export function VehicleLicenseSheet({
                 {isEn ? "3. Owner Name" : "৩। মালিকের নাম"}
               </span>
               <span className={`text-[13.5px] ${lineBorderClass}`}>
-                : {isEn ? owner.name_en || owner.name : owner.name}
+                : {isEn ? written(owner.name_en, owner.name) : owner.name}
               </span>
             </div>
             <div className="grid grid-cols-[165px_1fr] items-baseline">
@@ -277,8 +303,10 @@ export function VehicleLicenseSheet({
               <span className={lineBorderClass}>
                 :{" "}
                 {isEn
-                  ? owner.father_or_husband_name_en ||
-                    owner.father_or_husband_name
+                  ? written(
+                      owner.father_or_husband_name_en,
+                      owner.father_or_husband_name,
+                    )
                   : owner.father_or_husband_name}
               </span>
             </div>
@@ -289,7 +317,7 @@ export function VehicleLicenseSheet({
               <span className={lineBorderClass}>
                 :{" "}
                 {isEn
-                  ? owner.mother_name_en || owner.mother_name
+                  ? written(owner.mother_name_en, owner.mother_name)
                   : owner.mother_name}
               </span>
             </div>
@@ -300,7 +328,7 @@ export function VehicleLicenseSheet({
               <span className={lineBorderClass}>
                 :{" "}
                 {isEn
-                  ? owner.permanent_address_en || owner.permanent_address
+                  ? written(owner.permanent_address_en, owner.permanent_address)
                   : owner.permanent_address}
               </span>
             </div>
@@ -311,7 +339,7 @@ export function VehicleLicenseSheet({
               <span className={lineBorderClass}>
                 :{" "}
                 {isEn
-                  ? owner.present_address_en || owner.present_address
+                  ? written(owner.present_address_en, owner.present_address)
                   : owner.present_address}
               </span>
             </div>
@@ -341,7 +369,7 @@ export function VehicleLicenseSheet({
               <span className={lineBorderClass}>
                 :{" "}
                 {isEn
-                  ? vehicle.route_place_en || vehicle.route_place
+                  ? written(vehicle.route_place_en, vehicle.route_place)
                   : vehicle.route_place}
               </span>
             </div>
@@ -446,7 +474,7 @@ export function VehicleLicenseSheet({
               <>
                 This license is hereby issued to Mr./Ms.{" "}
                 <span className="font-bold border-b-[1.5px] border-dashed border-black">
-                  {owner.name_en || owner.name}
+                  {written(owner.name_en, owner.name)}
                 </span>{" "}
                 to operate their vehicle/vehicle business upon receipt of fees.
                 The last date for renewal of this license is{" "}
@@ -478,7 +506,7 @@ export function VehicleLicenseSheet({
               <div className="sign-space h-[24px]" />
               <div className="sign-name text-[13.5px] font-bold text-black leading-tight">
                 {isEn
-                  ? signatory.left_name_en || signatory.left_name
+                  ? written(signatory.left_name_en, signatory.left_name)
                   : signatory.left_name}
               </div>
               <div className="sign-role-sub text-[12px] text-black leading-tight">
@@ -515,7 +543,7 @@ export function VehicleLicenseSheet({
               <div className="sign-space h-[24px]" />
               <div className="sign-name text-[13.5px] font-bold text-black leading-tight">
                 {isEn
-                  ? signatory.right_name_en || signatory.right_name
+                  ? written(signatory.right_name_en, signatory.right_name)
                   : signatory.right_name}
               </div>
               <div className="sign-role-sub text-[12px] text-black leading-tight">

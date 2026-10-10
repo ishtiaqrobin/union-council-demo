@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { QRCodeSVG } from "qrcode.react";
 import { TradeLicenseData } from "@/types/license";
+import { certificateWritten } from "@/components/licenses/certificate-text";
 
 interface TradeLicenseSheetProps {
   data: TradeLicenseData;
@@ -53,34 +54,19 @@ export function TradeLicenseSheet({
   /**
    * A value the applicant or the union wrote in words, resolved for the English sheet.
    *
-   * 🔴 WHY `english || bengali` IS NOT ENOUGH, and why this replaced it. The English
-   * column would otherwise repeat a Bengali name with nothing to say that it is the
-   * Bengali record's — a reader of the English document cannot tell a translated name
-   * from a copied one, and that distinction is the whole reason the English field is
-   * separate. So when the English is absent the Bengali is printed WITH the note.
+   * 🔴 THE RULE LIVES IN `certificate-text.tsx`, NOT HERE. There are three licence
+   * certificates and they must not print two different rules: when the English is
+   * absent the Bengali is printed WITH the platform's note, so a reader can tell an
+   * untranslated name from a transliterated one.
    *
-   * ⚠️ AND WHY SO FEW LINES USE THIS. Plan §১৬ splits every field three ways:
-   *   · the SYSTEM translates it — dates, money, ward, geography, business type;
-   *   · the APPLICANT writes it — institution name, owner's and parents' names, addresses;
-   *   · it is ALREADY LATIN — NID, mobile, TIN, BIN.
-   * Only the middle class can be missing, so only it can honestly carry the note. A note
-   * on a date would claim an untranslated value where the value is a numeral.
+   * ⚠️ AND WHY SO FEW LINES USE THIS. Plan §১৬ splits every field three ways — the
+   * system translates dates, money, ward and geography itself; the applicant writes
+   * the names and addresses; NID, mobile, TIN and BIN are already Latin. Only the
+   * second class can be missing, so only it can honestly carry the note. A note on a
+   * date would claim an untranslated value where the value is a numeral.
    */
-  const written = (enValue?: string, bnValue?: string) => {
-    const english = (enValue ?? "").trim();
-    if (english.length > 0) return <>{english}</>;
-    return (
-      <>
-        {bnValue}
-        {fallbackNote ? (
-          <span className="text-[10px] font-normal italic text-black/70">
-            {" "}
-            {fallbackNote}
-          </span>
-        ) : null}
-      </>
-    );
-  };
+  const written = (enValue?: string, bnValue?: string) =>
+    certificateWritten(enValue, bnValue, fallbackNote);
 
   return (
     <div
@@ -309,7 +295,7 @@ export function TradeLicenseSheet({
               <span className={lineBorderClass}>
                 :{" "}
                 {isEn
-                  ? business.business_type_en || business.business_type
+                  ? written(business.business_type_en, business.business_type)
                   : business.business_type}
               </span>
             </div>
@@ -320,7 +306,10 @@ export function TradeLicenseSheet({
               <span className={lineBorderClass}>
                 :{" "}
                 {isEn
-                  ? business.business_nature_en || business.business_nature
+                  ? written(
+                      business.business_nature_en,
+                      business.business_nature,
+                    )
                   : business.business_nature}
               </span>
             </div>
@@ -565,7 +554,7 @@ export function TradeLicenseSheet({
                 </span>{" "}
                 has been received from Mr./Ms.{" "}
                 <span className="font-bold border-b-[1.5px] border-dashed border-black">
-                  {owner.name_en || owner.name}
+                  {written(owner.name_en, owner.name)}
                 </span>{" "}
                 for all dues.
               </>

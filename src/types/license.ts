@@ -105,12 +105,20 @@ export interface TradeLicenseData {
    * ⚠️ `missingEnglish` is NOT what the sheet uses. The sheet resolves every line as
    * it renders it, so it already knows which ones fell back; the list exists for a
    * printer that renders blind, and for auditing a union whose data is untranslated.
+   *
+   * ⚠️ A NAMED INTERFACE, REFERENCED BY ALL THREE LICENCE TYPES. Written out three
+   * times it would be three places to forget when the backend's
+   * `ILicenceCertificateLang` gains a field — and the sheet that was forgotten would
+   * silently print no note.
    */
-  lang?: {
-    available?: ("bn" | "en")[];
-    missingEnglish?: string[];
-    fallbackNote?: string;
-  };
+  lang?: LicenseCertificateLang;
+}
+
+/** The `lang` block every licence certificate carries. See the note above. */
+export interface LicenseCertificateLang {
+  available?: ("bn" | "en")[];
+  missingEnglish?: string[];
+  fallbackNote?: string;
 }
 
 export interface VehicleLicenseData {
@@ -211,6 +219,17 @@ export interface VehicleLicenseData {
     labelBn: string;
     labelEn: string;
   } | null;
+  /**
+   * The same language contract the trade certificate carries, and for the same reason:
+   * a Bengali value printed on the English sheet must say so.
+   *
+   * 🔴 ADDED WHEN THE PLAN CLAIMED IT ALREADY EXISTED. The trade sheet printed the
+   * note and this one did not, so the SAME fact read two ways across two documents —
+   * exactly what plan §১৬.৪ forbids. This sheet printed a bare Bengali name with
+   * nothing to mark it as untranslated, and a reader of the English document could
+   * not tell it from a name that really had been transliterated.
+   */
+  lang?: LicenseCertificateLang;
 }
 
 export interface ProfessionLicenseData {
@@ -274,4 +293,6 @@ export interface ProfessionLicenseData {
     trn_no: string;
     qr_url: string;
   };
+  /** The language contract — see `LicenseCertificateLang`. */
+  lang?: LicenseCertificateLang;
 }

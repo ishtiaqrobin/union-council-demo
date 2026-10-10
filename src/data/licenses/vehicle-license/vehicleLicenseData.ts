@@ -45,10 +45,14 @@ export const VEHICLE_LICENSE_INITIAL_DATA: VehicleLicenseData = {
     father_or_husband_name_en: "Shibanath Chandra Sarkar",
     mother_name: "রিভা রানী সরকার",
     mother_name_en: "Riba Rani Sarkar",
-    permanent_address: "গ্রাম: হাটজয়পুর, পোস্ট: বসন্তপুর, উপজেলা: Rajbari Sadar, District: Rajbari.",
-    permanent_address_en: "Village: Hatjoypur, Post: Basantapur, Upazila: Rajbari Sadar, District: Rajbari.",
-    present_address: "বাসা/হোল্ডিং: ৪০ নং উ:রাজার বাগ, গ্রাম/রাস্তা: রাজারবাগ, ডাকঘর: বাসাবো - ১২১৪, সবুজবাগ, ঢাকা দক্ষিণ সিটি কর্পোরেশন, ঢাকা।",
-    present_address_en: "Holding: 40 N. Rajarbagh, Road: Rajarbagh, Post: Basabo-1214, Sabujbagh, Dhaka South City Corporation, Dhaka.",
+    permanent_address:
+      "গ্রাম: হাটজয়পুর, পোস্ট: বসন্তপুর, উপজেলা: Rajbari Sadar, District: Rajbari.",
+    permanent_address_en:
+      "Village: Hatjoypur, Post: Basantapur, Upazila: Rajbari Sadar, District: Rajbari.",
+    present_address:
+      "বাসা/হোল্ডিং: ৪০ নং উ:রাজার বাগ, গ্রাম/রাস্তা: রাজারবাগ, ডাকঘর: বাসাবো - ১২১৪, সবুজবাগ, ঢাকা দক্ষিণ সিটি কর্পোরেশন, ঢাকা।",
+    present_address_en:
+      "Holding: 40 N. Rajarbagh, Road: Rajarbagh, Post: Basabo-1214, Sabujbagh, Dhaka South City Corporation, Dhaka.",
     nid_no: "7318202632",
     nid_no_en: "7318202632",
     mobile_no: "01738974698",
@@ -77,5 +81,18 @@ export const VEHICLE_LICENSE_INITIAL_DATA: VehicleLicenseData = {
     right_role_en: "Panel Chairman-2",
     trn_no: "10428",
     qr_url: "https://www.lgoms.org/vehicle_license.php?id=10428",
+  },
+  /**
+   * The block the backend's `ILicenceCertificate` carries.
+   *
+   * `missingEnglish: []` because this sample is fully translated, so the sheet prints
+   * no fallback note — which is the correct output. To SEE the note, clear an English
+   * field in the form (e.g. "Vehicle Name (English)") and switch the sheet to
+   * English: the Bengali value stays and the note appears beside it.
+   */
+  lang: {
+    available: ["bn", "en"],
+    missingEnglish: [],
+    fallbackNote: "(as per the Bengali record)",
   },
 };
