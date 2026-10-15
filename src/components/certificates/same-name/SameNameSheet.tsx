@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { QRCodeSVG } from "qrcode.react";
 import { CertificateData } from "@/types/certificate";
+import { CERTIFICATE_FALLBACK_NOTE } from "@/lib/certificate-source";
+import { certificateWritten } from "@/components/licenses/certificate-text";
 
 interface SameNameSheetProps {
   data: CertificateData;
@@ -15,6 +17,23 @@ export function SameNameSheet({ data, lang = "bn" }: SameNameSheetProps) {
   const [printDateTime, setPrintDateTime] = useState("2/12/26, 10:30 AM");
   const isEn = lang === "en";
 
+
+  /**
+   * 🔴 AN ENGLISH LINE THAT FELL BACK TO BENGALI MUST SAY SO.
+   *
+   * `person_name_en` and its siblings are separate COLUMNS, not translations, so the
+   * English can legitimately be empty — and `person_name_en || person_name` printed a
+   * Bengali name with NOTHING to distinguish it from a name that really was
+   * transliterated. A bank reading that document cannot tell the two apart, which is the
+   * entire reason the English column exists.
+   *
+   * ⚠️ THE WORDS ARE THE PLATFORM'S, NOT THIS SHEET'S. `CERTIFICATE_FALLBACK_NOTE` is
+   * one constant in `lib/certificate-source.ts`, mirroring the backend's own
+   * `CERTIFICATE_FALLBACK_NOTE`, because two printers inventing two sentences would make
+   * two documents that mean the same thing read differently.
+   */
+  const written = (enValue?: string, bnValue?: string) =>
+    certificateWritten(enValue, bnValue, CERTIFICATE_FALLBACK_NOTE);
   useEffect(() => {
     const now = new Date();
     const month = now.getMonth() + 1;
@@ -144,7 +163,7 @@ export function SameNameSheet({ data, lang = "bn" }: SameNameSheetProps) {
               <p className="cert-paragraph text-base leading-[2.2] text-black text-justify font-serif">
                 This is to certify that,{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.person_name_en || applicant.person_name}
+                  {isEn ? written(applicant.person_name_en, applicant.person_name) : applicant.person_name}
                 </span>{" "}
                 alias{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
@@ -156,19 +175,19 @@ export function SameNameSheet({ data, lang = "bn" }: SameNameSheetProps) {
                 </span>
                 ), Father:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.father_name_en || applicant.father_name}
+                  {isEn ? written(applicant.father_name_en, applicant.father_name) : applicant.father_name}
                 </span>
                 , Mother:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.mother_name_en || applicant.mother_name}
+                  {isEn ? written(applicant.mother_name_en, applicant.mother_name) : applicant.mother_name}
                 </span>
                 , Village:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.village_en || applicant.village}
+                  {isEn ? written(applicant.village_en, applicant.village) : applicant.village}
                 </span>
                 , House No:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.house_no_en || applicant.house_no}
+                  {isEn ? written(applicant.house_no_en, applicant.house_no) : applicant.house_no}
                 </span>
                 , Ward No:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
@@ -176,7 +195,7 @@ export function SameNameSheet({ data, lang = "bn" }: SameNameSheetProps) {
                 </span>
                 , Post Office:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.post_office_en || applicant.post_office}
+                  {isEn ? written(applicant.post_office_en, applicant.post_office) : applicant.post_office}
                 </span>
                 , Upazila:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
@@ -188,7 +207,7 @@ export function SameNameSheet({ data, lang = "bn" }: SameNameSheetProps) {
                 </span>
                 . He/She is a permanent resident of this Union Parishad. To the best of my knowledge,{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.person_name_en || applicant.person_name}
+                  {isEn ? written(applicant.person_name_en, applicant.person_name) : applicant.person_name}
                 </span>{" "}
                 and{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
@@ -254,6 +273,44 @@ export function SameNameSheet({ data, lang = "bn" }: SameNameSheetProps) {
               </p>
             )}
 
+            {data.discrepanciesBn && data.discrepanciesBn.length > 0 && (
+              <div className="discrepancies-block my-2 overflow-hidden">
+                <div className="text-xs font-bold mb-1 text-black">
+                  {isEn ? "Document Discrepancy Table:" : "বিভিন্ন দলিলে নামের ভিন্নতা সংক্রান্ত বিবরণ:"}
+                </div>
+                <table className="w-full border-collapse border border-gray-400 text-xs">
+                  <thead>
+                    <tr className="bg-gray-100 font-bold text-center">
+                      <th className="border border-gray-400 px-2 py-1 w-12">{isEn ? "SL" : "নং"}</th>
+                      <th className="border border-gray-400 px-2 py-1 text-left">{isEn ? "Document / Record" : "দলিলের বিবরণ"}</th>
+                      <th className="border border-gray-400 px-2 py-1 text-left">{isEn ? "Primary Name" : "মূল নাম"}</th>
+                      <th className="border border-gray-400 px-2 py-1 text-left">{isEn ? "Recorded / Alias Name" : "ভিন্ন নাম / ওরেফে"}</th>
+                      <th className="border border-gray-400 px-2 py-1 text-left">{isEn ? "Remarks" : "মন্তব্য"}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.discrepanciesBn.map((item, idx) => (
+                      <tr key={idx} className="text-center">
+                        <td className="border border-gray-400 px-2 py-1">{item.serialNo || idx + 1}</td>
+                        <td className="border border-gray-400 px-2 py-1 text-left">{item.subject}</td>
+                        <td className="border border-gray-400 px-2 py-1 text-left font-semibold">{item.primaryName}</td>
+                        <td className="border border-gray-400 px-2 py-1 text-left font-semibold">{item.aliasName}</td>
+                        <td className="border border-gray-400 px-2 py-1 text-left">{item.remarks || (isEn ? "Same Person" : "একই ব্যক্তি")}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {(data.expiresAtBn || data.expiresAtEn) && (
+              <div className="validity-note mt-2 text-xs font-semibold text-slate-700 bg-slate-50 border border-slate-200 px-3 py-1 rounded inline-block">
+                {isEn
+                  ? `Validity: This certificate is valid until ${data.expiresAtEn || data.expiresAtBn}.`
+                  : `মেয়াদ: এই সনদটি ইস্যুর তারিখ হইতে ${data.expiresAtBn} পর্যন্ত বলবৎ থাকিবে।`}
+              </div>
+            )}
+
             <p className={`cert-closing text-base font-semibold text-black mt-3 pl-[16px] ${isEn ? "font-serif" : "font-solaiman"}`}>
               {isEn
                 ? "I wish him/her all success and prosperity in life."
@@ -275,7 +332,7 @@ export function SameNameSheet({ data, lang = "bn" }: SameNameSheetProps) {
             <div className="signatory-box text-center min-w-[200px] pb-[2px]">
               <div className="sign-space h-[32px]" />
               <div className="sign-name text-base font-semibold text-black leading-tight">
-                {isEn ? (signatory.signatory_name_en || signatory.signatory_name) : signatory.signatory_name}
+                {isEn ? written(signatory.signatory_name_en, signatory.signatory_name) : signatory.signatory_name}
               </div>
               <div className="sign-role-sub text-base text-black leading-tight">
                 {isEn ? "Authorized Signatory" : "অনুমোদনকারী/প্রদানকারী"}

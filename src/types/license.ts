@@ -76,6 +76,8 @@ export interface TradeLicenseData {
     signboard_tax: string;
     vat: string;
     profession_tax: string;
+    penalty?: string;
+    miscellaneous?: string;
     total_amount: string;
     amount_in_words: string;
     amount_in_words_en?: string;

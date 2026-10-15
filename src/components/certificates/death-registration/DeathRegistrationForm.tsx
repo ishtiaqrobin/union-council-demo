@@ -244,9 +244,9 @@ export function DeathRegistrationForm({
             </label>
             <input
               type="text"
-              value={isEn ? (data.dateOfDeathInWordsEn || data.dateOfDeathInWordsBn || "") : (data.dateOfDeathInWordsBn || "")}
+              value={isEn ? (data.dateOfDeathInWordsBn || data.dateOfDeathInWordsBn || "") : (data.dateOfDeathInWordsBn || "")}
               onChange={(e) => {
-                const key = isEn ? "dateOfDeathInWordsEn" : "dateOfDeathInWordsBn";
+                const key = isEn ? "dateOfDeathInWordsBn" : "dateOfDeathInWordsBn";
                 onChange({ ...data, [key]: e.target.value });
               }}
               className={inputClass}

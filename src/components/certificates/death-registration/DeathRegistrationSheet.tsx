@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { QRCodeSVG } from "qrcode.react";
 import { CertificateData } from "@/types/certificate";
+import { CERTIFICATE_FALLBACK_NOTE } from "@/lib/certificate-source";
+import { certificateWritten } from "@/components/licenses/certificate-text";
 
 interface DeathRegistrationSheetProps {
   data: CertificateData;
@@ -23,7 +25,6 @@ export function DeathRegistrationSheet({ data, lang = "bn" }: DeathRegistrationS
     dateOfDeathBn,
     dateOfDeathEn,
     dateOfDeathInWordsBn,
-    dateOfDeathInWordsEn,
     genderBn,
     genderEn,
     permanentAddressBn,
@@ -43,6 +44,23 @@ export function DeathRegistrationSheet({ data, lang = "bn" }: DeathRegistrationS
   const [printDateTime, setPrintDateTime] = useState("2/12/26, 10:30 AM");
   const isEn = lang === "en";
 
+
+  /**
+   * 🔴 AN ENGLISH LINE THAT FELL BACK TO BENGALI MUST SAY SO.
+   *
+   * `person_name_en` and its siblings are separate COLUMNS, not translations, so the
+   * English can legitimately be empty — and `person_name_en || person_name` printed a
+   * Bengali name with NOTHING to distinguish it from a name that really was
+   * transliterated. A bank reading that document cannot tell the two apart, which is the
+   * entire reason the English column exists.
+   *
+   * ⚠️ THE WORDS ARE THE PLATFORM'S, NOT THIS SHEET'S. `CERTIFICATE_FALLBACK_NOTE` is
+   * one constant in `lib/certificate-source.ts`, mirroring the backend's own
+   * `CERTIFICATE_FALLBACK_NOTE`, because two printers inventing two sentences would make
+   * two documents that mean the same thing read differently.
+   */
+  const written = (enValue?: string, bnValue?: string) =>
+    certificateWritten(enValue, bnValue, CERTIFICATE_FALLBACK_NOTE);
   useEffect(() => {
     const now = new Date();
     const month = now.getMonth() + 1;
@@ -174,7 +192,7 @@ export function DeathRegistrationSheet({ data, lang = "bn" }: DeathRegistrationS
           <div className={`${isEn ? "text-[15px]" : "text-base"} mt-4 gap-2.5 flex-1 flex flex-col leading-normal text-black`}>
             <div className="grid grid-cols-[140px_1fr] items-baseline pb-1">
               <span className="text-black">{isEn ? "Name" : "নাম"}</span>
-              <span className={`${isEn ? "text-[15px]" : "text-base"} font-semibold text-black border-b-[1.5px] border-dashed border-black pb-0.5`}>: {isEn ? (applicant.person_name_en || applicant.person_name) : applicant.person_name}</span>
+              <span className={`${isEn ? "text-[15px]" : "text-base"} font-semibold text-black border-b-[1.5px] border-dashed border-black pb-0.5`}>: {isEn ? written(data.deceasedNameEn || applicant.person_name_en, data.deceasedNameBn || applicant.person_name) : (data.deceasedNameBn || applicant.person_name)}</span>
             </div>
 
             <div className="grid grid-cols-[140px_1fr] items-baseline pb-1">
@@ -184,38 +202,38 @@ export function DeathRegistrationSheet({ data, lang = "bn" }: DeathRegistrationS
 
             <div className="grid grid-cols-[140px_1fr] items-baseline pb-1">
               <span className="text-black">{isEn ? "In Words" : "কথায়"}</span>
-              <span className={borderClass}>: {(isEn ? dateOfDeathInWordsEn : dateOfDeathInWordsBn) || "5th May Nineteen Hundred Ninety Nine"}</span>
+              <span className={borderClass}>: {dateOfDeathInWordsBn || "5th May Nineteen Hundred Ninety Nine"}</span>
             </div>
 
             <div className="grid grid-cols-[140px_1fr] items-baseline pb-1">
               <span className="text-black">{isEn ? "Gender" : "লিঙ্গ"}</span>
-              <span className={borderClass}>: {(isEn ? genderEn : genderBn) || (isEn ? "Female" : "নারী")}</span>
+              <span className={borderClass}>: {(isEn ? genderEn : (data.deceasedGenderBn || genderBn)) || (isEn ? "Female" : "নারী")}</span>
             </div>
 
             <div className="grid grid-cols-2 gap-4 pb-1">
               <div className="grid grid-cols-[140px_1fr] items-baseline">
                 <span className="text-black">{isEn ? "Father's Name" : "পিতার নাম"}</span>
-                <span className={borderClass}>: {isEn ? (applicant.father_name_en || applicant.father_name) : applicant.father_name}</span>
+                <span className={borderClass}>: {isEn ? written(applicant.father_name_en, data.deceasedFatherNameBn || applicant.father_name) : (data.deceasedFatherNameBn || applicant.father_name)}</span>
               </div>
               <div className="grid grid-cols-[110px_1fr] items-baseline">
                 <span className="text-black">{isEn ? "Mother's Name" : "মাতার নাম"}</span>
-                <span className={borderClass}>: {isEn ? (applicant.mother_name_en || applicant.mother_name) : applicant.mother_name}</span>
+                <span className={borderClass}>: {isEn ? written(applicant.mother_name_en, data.deceasedMotherNameBn || applicant.mother_name) : (data.deceasedMotherNameBn || applicant.mother_name)}</span>
               </div>
             </div>
 
             <div className="grid grid-cols-[140px_1fr] items-baseline pb-1">
               <span className="text-black">{isEn ? "Spouse Name" : "স্বামী/স্ত্রীর নাম"}</span>
-              <span className={borderClass}>: {isEn ? (applicant.spouse_name_en || applicant.spouse_name || "Late Dipali Adhikari") : (applicant.spouse_name || "মৃত- দিপালী অধিকারী")}</span>
+              <span className={borderClass}>: {isEn ? written(applicant.spouse_name_en, data.deceasedSpouseNameBn || applicant.spouse_name || "--------") : (data.deceasedSpouseNameBn || applicant.spouse_name || "--------")}</span>
             </div>
 
             <div className="grid grid-cols-[140px_1fr] items-baseline pb-1">
               <span className="text-black">{isEn ? "Permanent Address" : "স্থায়ী ঠিকানা"}</span>
-              <span className={borderClass}>: {(isEn ? permanentAddressEn : permanentAddressBn) || (isEn ? `Village: ${applicant.village_en || applicant.village}, Post Office: ${applicant.post_office_en || applicant.post_office}, Upazila: ${applicant.person_upazila_en || applicant.person_upazila}, District: ${applicant.person_district_en || applicant.person_district}.` : `গ্রাম: ${applicant.village}, ডাকঘর: ${applicant.post_office}, উপজেলা: ${applicant.person_upazila}, জেলা: ${applicant.person_district}।`)}</span>
+              <span className={borderClass}>: {(isEn ? permanentAddressEn : permanentAddressBn) || (isEn ? `Village: ${isEn ? written(applicant.village_en, applicant.village) : applicant.village}, Post Office: ${isEn ? written(applicant.post_office_en, applicant.post_office) : applicant.post_office}, Upazila: ${applicant.person_upazila_en || applicant.person_upazila}, District: ${applicant.person_district_en || applicant.person_district}.` : `গ্রাম: ${applicant.village}, ডাকঘর: ${applicant.post_office}, উপজেলা: ${applicant.person_upazila}, জেলা: ${applicant.person_district}।`)}</span>
             </div>
 
             <div className="grid grid-cols-[140px_1fr] items-baseline pb-1">
               <span className="text-black">{isEn ? "Present Address" : "বর্তমান ঠিকানা"}</span>
-              <span className={borderClass}>: {(isEn ? presentAddressEn : presentAddressBn) || (isEn ? `Village: ${applicant.village_en || applicant.village}, Post Office: ${applicant.post_office_en || applicant.post_office}, Upazila: ${applicant.person_upazila_en || applicant.person_upazila}, District: ${applicant.person_district_en || applicant.person_district}.` : `গ্রাম: ${applicant.village}, ডাকঘর: ${applicant.post_office}, উপজেলা: ${applicant.person_upazila}, জেলা: ${applicant.person_district}।`)}</span>
+              <span className={borderClass}>: {(isEn ? presentAddressEn : presentAddressBn) || (isEn ? `Village: ${isEn ? written(applicant.village_en, applicant.village) : applicant.village}, Post Office: ${isEn ? written(applicant.post_office_en, applicant.post_office) : applicant.post_office}, Upazila: ${applicant.person_upazila_en || applicant.person_upazila}, District: ${applicant.person_district_en || applicant.person_district}.` : `গ্রাম: ${applicant.village}, ডাকঘর: ${applicant.post_office}, উপজেলা: ${applicant.person_upazila}, জেলা: ${applicant.person_district}।`)}</span>
             </div>
 
             <div className="grid grid-cols-2 gap-4 pb-1">
@@ -225,7 +243,7 @@ export function DeathRegistrationSheet({ data, lang = "bn" }: DeathRegistrationS
               </div>
               <div className="grid grid-cols-[110px_1fr] items-baseline">
                 <span className="text-black">{isEn ? "Place of Death" : "মৃত্যুর স্থান"}</span>
-                <span className={borderClass}>: {(isEn ? placeOfDeathEn : placeOfDeathBn) || (isEn ? `Village: ${applicant.village_en || applicant.village}, Post Office: ${applicant.post_office_en || applicant.post_office}, Upazila: ${applicant.person_upazila_en || applicant.person_upazila}, District: ${applicant.person_district_en || applicant.person_district}.` : `গ্রাম: ${applicant.village}, ডাকঘর: ${applicant.post_office}, উপজেলা: ${applicant.person_upazila}, জেলা: ${applicant.person_district}।`)}</span>
+                <span className={borderClass}>: {(isEn ? placeOfDeathEn : placeOfDeathBn) || (isEn ? `Village: ${isEn ? written(applicant.village_en, applicant.village) : applicant.village}, Post Office: ${isEn ? written(applicant.post_office_en, applicant.post_office) : applicant.post_office}, Upazila: ${applicant.person_upazila_en || applicant.person_upazila}, District: ${applicant.person_district_en || applicant.person_district}.` : `গ্রাম: ${applicant.village}, ডাকঘর: ${applicant.post_office}, উপজেলা: ${applicant.person_upazila}, জেলা: ${applicant.person_district}।`)}</span>
               </div>
             </div>
           </div>
@@ -267,7 +285,7 @@ export function DeathRegistrationSheet({ data, lang = "bn" }: DeathRegistrationS
             <div className={`${isEn ? "text-[15px]" : "text-base"} signatory-box text-center min-w-[170px]`}>
               <div className="sign-space h-[28px]" />
               <div className="sign-name font-semibold text-black leading-tight">
-                {isEn ? (signatory.signatory_name_en || signatory.signatory_name) : signatory.signatory_name}
+                {isEn ? written(signatory.signatory_name_en, signatory.signatory_name) : signatory.signatory_name}
               </div>
               <div className="sign-role-sub text-black leading-tight">
                 {isEn ? (signatory.signatory_role_en || signatory.signatory_role) : signatory.signatory_role}

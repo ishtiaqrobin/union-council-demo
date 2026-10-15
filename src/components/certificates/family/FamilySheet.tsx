@@ -4,6 +4,12 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { QRCodeSVG } from "qrcode.react";
 import { CertificateData } from "@/types/certificate";
+import {
+  CERTIFICATE_FALLBACK_NOTE,
+  relationCountsOf,
+  relativesOf,
+} from "@/lib/certificate-source";
+import { certificateWritten } from "@/components/licenses/certificate-text";
 
 interface FamilySheetProps {
   data: CertificateData;
@@ -15,6 +21,23 @@ export function FamilySheet({ data, lang = "bn" }: FamilySheetProps) {
   const [printDateTime, setPrintDateTime] = useState("2/12/26, 10:30 AM");
   const isEn = lang === "en";
 
+
+  /**
+   * 🔴 AN ENGLISH LINE THAT FELL BACK TO BENGALI MUST SAY SO.
+   *
+   * `person_name_en` and its siblings are separate COLUMNS, not translations, so the
+   * English can legitimately be empty — and `person_name_en || person_name` printed a
+   * Bengali name with NOTHING to distinguish it from a name that really was
+   * transliterated. A bank reading that document cannot tell the two apart, which is the
+   * entire reason the English column exists.
+   *
+   * ⚠️ THE WORDS ARE THE PLATFORM'S, NOT THIS SHEET'S. `CERTIFICATE_FALLBACK_NOTE` is
+   * one constant in `lib/certificate-source.ts`, mirroring the backend's own
+   * `CERTIFICATE_FALLBACK_NOTE`, because two printers inventing two sentences would make
+   * two documents that mean the same thing read differently.
+   */
+  const written = (enValue?: string, bnValue?: string) =>
+    certificateWritten(enValue, bnValue, CERTIFICATE_FALLBACK_NOTE);
   useEffect(() => {
     const now = new Date();
     const month = now.getMonth() + 1;
@@ -49,15 +72,79 @@ export function FamilySheet({ data, lang = "bn" }: FamilySheetProps) {
     return wordsMap[num] || String(num);
   };
 
-  const sonCount = heirs.filter((h) => (h.relation_en || h.relation).toLowerCase().includes("son") || h.relation.includes("পুত্র")).length;
-  const daughterCount = heirs.filter((h) => (h.relation_en || h.relation).toLowerCase().includes("daughter") || h.relation.includes("কন্যা")).length;
-  const spouseCount = heirs.filter((h) => (h.relation_en || h.relation).toLowerCase().includes("spouse") || (h.relation_en || h.relation).toLowerCase().includes("wife") || (h.relation_en || h.relation).toLowerCase().includes("husband") || h.relation.includes("স্ত্রী") || h.relation.includes("স্বামী")).length;
-  const fatherCount = heirs.filter((h) => (h.relation_en || h.relation).toLowerCase().includes("father") || h.relation.includes("পিতা")).length;
-  const motherCount = heirs.filter((h) => (h.relation_en || h.relation).toLowerCase().includes("mother") || h.relation.includes("মাতা")).length;
-  const brotherCount = heirs.filter((h) => (h.relation_en || h.relation).toLowerCase().includes("brother") || h.relation.includes("ভাই")).length;
-  const sisterCount = heirs.filter((h) => (h.relation_en || h.relation).toLowerCase().includes("sister") || h.relation.includes("বোন")).length;
-  const selfCount = heirs.filter((h) => (h.relation_en || h.relation).toLowerCase().includes("self") || h.relation.includes("নিজ")).length;
-  const totalCount = heirs.length;
+  /**
+
+   * 🔴 THESE NUMBERS COME FROM ONE PLACE — `relationCountsOf(data)`.
+
+   *
+
+   * WHAT STOOD HERE, AND WHY IT WAS WRONG. Each sheet computed its own totals by filtering
+
+   * the rows and STRING-MATCHING the relation text:
+
+   *
+
+   *     const sonCount = heirs.filter((h) =>
+
+   *         (h.relation_en || h.relation).toLowerCase().includes("son") ||
+
+   *         h.relation.includes("পুত্র")).length;
+
+   *
+
+   *   ১. THREE IMPLEMENTATIONS of a number the backend derives at render. §৪.৫ rules that
+
+   *      counts are computed so a list and a total cannot disagree — and counting again
+
+   *      here recreated the disagreement in the place it is hardest to see.
+
+   *   ২. `includes("son")` MATCHES "Person"; `includes("পিতা")` is a substring test on free
+
+   *      text, so a "SON-IN-LAW" counted as a son.
+
+   *   ৩. `heirs.length` WAS THE TOTAL, which includes the head of the family when the list
+
+   *      carries `SELF` — so the sheet could print more members than a reader could name.
+
+   *   ৪. IT DIFFERED FROM PUBLIC VERIFICATION, which reads the backend's number. Two
+
+   *      documents about one application then disagree, and the QR is the one a bank trusts.
+
+   *
+
+   * ⚠️ `withSelf` IS THE "নিজসহ মোট" FIGURE. `dependants` excludes the head of the family,
+
+   * because "৪ জন সদস্য" that counted the person listing themselves reads as one member
+
+   * more than a reader can name as a relation.
+
+   */
+
+  const counts = relationCountsOf(data);
+
+  const {
+
+    son: sonCount,
+
+    daughter: daughterCount,
+
+    spouse: spouseCount,
+
+    father: fatherCount,
+
+    mother: motherCount,
+
+    brother: brotherCount,
+
+    sister: sisterCount,
+
+    self: selfCount,
+
+    dependants: totalCount,
+
+  } = counts;
+
+  const relativesCount = relativesOf(counts);
 
   return (
     <div
@@ -133,19 +220,8 @@ export function FamilySheet({ data, lang = "bn" }: FamilySheetProps) {
               </div>
             </div>
 
-            {/* Top Right Logo AND Photo Image side by side */}
-            <div className="flex items-center justify-end">
-              <div className="owner-photo-box w-[68px] h-[78px] border border-slate-400 bg-white p-0.5 shadow-sm flex items-center justify-center overflow-hidden">
-                <Image
-                  src={applicant.photo_url || "/assets/image/person.webp"}
-                  alt="Applicant Photo"
-                  width={64}
-                  height={74}
-                  className="w-full h-full object-cover text-xs"
-                  unoptimized
-                />
-              </div>
-            </div>
+            {/* Right Spacer — Family certificate has no photo (§12.6) */}
+            <div className="header-right-spacer w-[76px] h-[76px]" />
           </div>
 
           {/* Metadata Ribbon */}
@@ -177,7 +253,7 @@ export function FamilySheet({ data, lang = "bn" }: FamilySheetProps) {
               <p className="cert-paragraph text-base leading-[2.1] text-black text-justify mb-2 font-serif">
                 This family certificate is hereby issued stating that{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.person_name_en || applicant.person_name}
+                  {isEn ? written(applicant.person_name_en, applicant.person_name) : applicant.person_name}
                 </span>{" "}
                 (ID No:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
@@ -185,15 +261,15 @@ export function FamilySheet({ data, lang = "bn" }: FamilySheetProps) {
                 </span>
                 ), Father:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.father_name_en || applicant.father_name}
+                  {isEn ? written(applicant.father_name_en, applicant.father_name) : applicant.father_name}
                 </span>
                 , Mother:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.mother_name_en || applicant.mother_name}
+                  {isEn ? written(applicant.mother_name_en, applicant.mother_name) : applicant.mother_name}
                 </span>
                 , Village:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.village_en || applicant.village}
+                  {isEn ? written(applicant.village_en, applicant.village) : applicant.village}
                 </span>
                 , Ward:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
@@ -201,7 +277,7 @@ export function FamilySheet({ data, lang = "bn" }: FamilySheetProps) {
                 </span>
                 , House No:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.house_no_en || applicant.house_no}
+                  {isEn ? written(applicant.house_no_en, applicant.house_no) : applicant.house_no}
                 </span>
                 , Union:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
@@ -279,10 +355,10 @@ export function FamilySheet({ data, lang = "bn" }: FamilySheetProps) {
                   {heirs.map((item, idx) => (
                     <tr key={item.id || idx} className="text-center">
                       <td className="border border-gray-400 px-2 py-1">{isEn ? idx + 1 : toBnNo(idx + 1)}</td>
-                      <td className="border border-gray-400 px-3 py-1 text-left">{isEn ? (item.name_en || item.name) : item.name}</td>
+                      <td className="border border-gray-400 px-3 py-1 text-left">{isEn ? written(item.name_en, item.name) : item.name}</td>
                       <td className="border border-gray-400 px-3 py-1">{isEn ? (item.dob_en || item.dob || item.age_or_dob_en || item.age_or_dob) : (item.dob || item.age_or_dob)}</td>
                       <td className="border border-gray-400 px-2 py-1">{isEn ? (item.age_or_dob_en || item.age_or_dob) : item.age_or_dob}</td>
-                      <td className="border border-gray-400 px-3 py-1">{isEn ? (item.relation_en || item.relation) : item.relation}</td>
+                      <td className="border border-gray-400 px-3 py-1">{isEn ? written(item.relation_en, item.relation) : item.relation}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -315,7 +391,7 @@ export function FamilySheet({ data, lang = "bn" }: FamilySheetProps) {
             <div className="signatory-box text-center min-w-[200px] pb-[2px]">
               <div className="sign-space h-[32px]" />
               <div className="sign-name text-base font-semibold text-black leading-tight">
-                {isEn ? (signatory.signatory_name_en || signatory.signatory_name) : signatory.signatory_name}
+                {isEn ? written(signatory.signatory_name_en, signatory.signatory_name) : signatory.signatory_name}
               </div>
               <div className="sign-designation text-base text-black leading-tight">
                 {isEn ? (signatory.signatory_role_en || signatory.signatory_role) : signatory.signatory_role}

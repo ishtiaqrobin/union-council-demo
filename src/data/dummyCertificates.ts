@@ -99,6 +99,26 @@ export const CERTIFICATE_MENU_ITEMS: CertificateMenuItem[] = [
     titleEn: "Permanent Resident Certificate",
     iconName: "Home",
     description: "বংশানুক্রমিক ও স্থায়ী নাগরিকত্ব প্রমাণের অফিসিয়াল সনদপত্র"
+  },
+  {
+    /**
+     * 🔴 THE FIFTEENTH CERTIFICATE, AND THE ONLY LAND-BASED ONE.
+     *
+     * It was absent from this list because it was absent from the CATALOGUE: the v3 guideline
+     * names `NOC_CERTIFICATE` among the fifteen services, and the backend answered `ABSENT` for it
+     * — no service row, no seed, no form, no sheet. A menu is the visible half of that gap: a union
+     * could not offer the certificate, and a designer could not see what it should look like.
+     *
+     * ⚠️ `FileCheck` IS THE ICON BECAUSE THE DOCUMENT IS AN OPINION ABOUT A PLOT rather than a fact
+     * about a person — a reader of this menu should be able to tell at a glance that this is the one
+     * certificate asking for a mouza, a khatian and a dag.
+     */
+    slug: "noc",
+    titleBn: "অনাপত্তি সনদ (এনওসি)",
+    titleEn: "No Objection Certificate (NOC)",
+    iconName: "FileCheck",
+    description:
+      "ভবন নির্মাণ, কারখানা বা টাওয়ার স্থাপনের জন্য জমির দলিল-খতিয়ানসহ অনাপত্তি সনদ"
   }
 ];
 

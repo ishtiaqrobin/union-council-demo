@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { QRCodeSVG } from "qrcode.react";
 import { CertificateData } from "@/types/certificate";
+import { CERTIFICATE_FALLBACK_NOTE } from "@/lib/certificate-source";
+import { certificateWritten } from "@/components/licenses/certificate-text";
 
 interface AnnualIncomeSheetProps {
   data: CertificateData;
@@ -15,6 +17,23 @@ export function AnnualIncomeSheet({ data, lang = "bn" }: AnnualIncomeSheetProps)
   const [printDateTime, setPrintDateTime] = useState("2/12/26, 10:30 AM");
   const isEn = lang === "en";
 
+
+  /**
+   * 🔴 AN ENGLISH LINE THAT FELL BACK TO BENGALI MUST SAY SO.
+   *
+   * `person_name_en` and its siblings are separate COLUMNS, not translations, so the
+   * English can legitimately be empty — and `person_name_en || person_name` printed a
+   * Bengali name with NOTHING to distinguish it from a name that really was
+   * transliterated. A bank reading that document cannot tell the two apart, which is the
+   * entire reason the English column exists.
+   *
+   * ⚠️ THE WORDS ARE THE PLATFORM'S, NOT THIS SHEET'S. `CERTIFICATE_FALLBACK_NOTE` is
+   * one constant in `lib/certificate-source.ts`, mirroring the backend's own
+   * `CERTIFICATE_FALLBACK_NOTE`, because two printers inventing two sentences would make
+   * two documents that mean the same thing read differently.
+   */
+  const written = (enValue?: string, bnValue?: string) =>
+    certificateWritten(enValue, bnValue, CERTIFICATE_FALLBACK_NOTE);
   useEffect(() => {
     const now = new Date();
     const month = now.getMonth() + 1;
@@ -134,7 +153,7 @@ export function AnnualIncomeSheet({ data, lang = "bn" }: AnnualIncomeSheetProps)
               <p className="cert-paragraph text-base leading-[2.2] text-black text-justify font-serif">
                 This is to certify that,{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.person_name_en || applicant.person_name}
+                  {isEn ? written(applicant.person_name_en, applicant.person_name) : applicant.person_name}
                 </span>{" "}
                 (NID:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
@@ -142,15 +161,15 @@ export function AnnualIncomeSheet({ data, lang = "bn" }: AnnualIncomeSheetProps)
                 </span>
                 ), Father:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.father_name_en || applicant.father_name}
+                  {isEn ? written(applicant.father_name_en, applicant.father_name) : applicant.father_name}
                 </span>
                 , Mother:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.mother_name_en || applicant.mother_name}
+                  {isEn ? written(applicant.mother_name_en, applicant.mother_name) : applicant.mother_name}
                 </span>
                 , Village:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.village_en || applicant.village}
+                  {isEn ? written(applicant.village_en, applicant.village) : applicant.village}
                 </span>
                 , Ward No:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
@@ -212,6 +231,14 @@ export function AnnualIncomeSheet({ data, lang = "bn" }: AnnualIncomeSheetProps)
               </p>
             )}
 
+            {(data.expiresAtBn || data.expiresAtEn) && (
+              <div className="validity-note mt-2 text-xs font-semibold text-slate-700 bg-slate-50 border border-slate-200 px-3 py-1 rounded inline-block">
+                {isEn
+                  ? `Validity: This certificate is valid until ${data.expiresAtEn || data.expiresAtBn}.`
+                  : `মেয়াদ: এই সনদটি ইস্যুর তারিখ হইতে ${data.expiresAtBn} পর্যন্ত বলবৎ থাকিবে।`}
+              </div>
+            )}
+
             <p className={`cert-closing text-base font-semibold text-black mt-3 pl-[16px] ${isEn ? "font-serif" : "font-solaiman"}`}>
               {isEn
                 ? "I wish him/her all success and prosperity in life."
@@ -233,7 +260,7 @@ export function AnnualIncomeSheet({ data, lang = "bn" }: AnnualIncomeSheetProps)
             <div className="signatory-box text-center min-w-[200px] pb-[2px]">
               <div className="sign-space h-[32px]" />
               <div className="sign-name text-base font-semibold text-black leading-tight">
-                {isEn ? (signatory.signatory_name_en || signatory.signatory_name) : signatory.signatory_name}
+                {isEn ? written(signatory.signatory_name_en, signatory.signatory_name) : signatory.signatory_name}
               </div>
               <div className="sign-role-sub text-base text-black leading-tight">
                 {isEn ? "Authorized Signatory" : "অনুমোদনকারী/প্রদানকারী"}

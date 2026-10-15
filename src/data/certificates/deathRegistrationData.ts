@@ -61,8 +61,13 @@ export const DEATH_REGISTRATION_INITIAL_DATA: CertificateData = {
   registrationNoEn: "19998217629000001",
   dateOfDeathBn: "05-05-1999",
   dateOfDeathEn: "05-05-1999",
+  /**
+   * ⚠️ ONE VALUE, NOT TWO. `dateOfDeathInWordsBn` is composed by the BACKEND because BDRIS
+   * prints a death date in words, and the format is a government convention rather than a
+   * design choice — there is no English counterpart in the contract, so the English sheet
+   * prints the same words.
+   */
   dateOfDeathInWordsBn: "পাঁচই মে উনিশশত নিরানব্বই",
-  dateOfDeathInWordsEn: "5th May Nineteen Hundred Ninety Nine",
   genderBn: "নারী",
   genderEn: "Female",
   permanentAddressBn: "গ্রাম: হাটজয়পুর, ডাকঘর: বসন্তপুর, উপজেলা: রাজবাড়ী সদর, জেলা: রাজবাড়ী।",

@@ -4,6 +4,12 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { QRCodeSVG } from "qrcode.react";
 import { CertificateData } from "@/types/certificate";
+import {
+  CERTIFICATE_FALLBACK_NOTE,
+  relationCountsOf,
+  relativesOf,
+} from "@/lib/certificate-source";
+import { certificateWritten } from "@/components/licenses/certificate-text";
 
 interface WarishSheetProps {
   data: CertificateData;
@@ -15,6 +21,23 @@ export function WarishSheet({ data, lang = "bn" }: WarishSheetProps) {
   const [printDateTime, setPrintDateTime] = useState("2/12/26, 10:30 AM");
   const isEn = lang === "en";
 
+
+  /**
+   * 🔴 AN ENGLISH LINE THAT FELL BACK TO BENGALI MUST SAY SO.
+   *
+   * `person_name_en` and its siblings are separate COLUMNS, not translations, so the
+   * English can legitimately be empty — and `person_name_en || person_name` printed a
+   * Bengali name with NOTHING to distinguish it from a name that really was
+   * transliterated. A bank reading that document cannot tell the two apart, which is the
+   * entire reason the English column exists.
+   *
+   * ⚠️ THE WORDS ARE THE PLATFORM'S, NOT THIS SHEET'S. `CERTIFICATE_FALLBACK_NOTE` is
+   * one constant in `lib/certificate-source.ts`, mirroring the backend's own
+   * `CERTIFICATE_FALLBACK_NOTE`, because two printers inventing two sentences would make
+   * two documents that mean the same thing read differently.
+   */
+  const written = (enValue?: string, bnValue?: string) =>
+    certificateWritten(enValue, bnValue, CERTIFICATE_FALLBACK_NOTE);
   useEffect(() => {
     const now = new Date();
     const month = now.getMonth() + 1;
@@ -49,11 +72,79 @@ export function WarishSheet({ data, lang = "bn" }: WarishSheetProps) {
     return wordsMap[num] || String(num);
   };
 
-  const sonCount = heirs.filter((h) => (h.relation_en || h.relation).toLowerCase().includes("son") || h.relation.includes("পুত্র")).length;
-  const daughterCount = heirs.filter((h) => (h.relation_en || h.relation).toLowerCase().includes("daughter") || h.relation.includes("কন্যা")).length;
-  const spouseCount = heirs.filter((h) => (h.relation_en || h.relation).toLowerCase().includes("spouse") || (h.relation_en || h.relation).toLowerCase().includes("wife") || (h.relation_en || h.relation).toLowerCase().includes("husband") || h.relation.includes("স্ত্রী") || h.relation.includes("স্বামী")).length;
-  const relativesCount = heirs.filter((h) => !((h.relation_en || h.relation).toLowerCase().includes("son") || h.relation.includes("পুত্র")) && !((h.relation_en || h.relation).toLowerCase().includes("daughter") || h.relation.includes("কন্যা")) && !((h.relation_en || h.relation).toLowerCase().includes("wife") || (h.relation_en || h.relation).toLowerCase().includes("spouse") || h.relation.includes("স্ত্রী") || h.relation.includes("স্বামী"))).length;
-  const totalCount = heirs.length;
+  /**
+
+   * 🔴 THESE NUMBERS COME FROM ONE PLACE — `relationCountsOf(data)`.
+
+   *
+
+   * WHAT STOOD HERE, AND WHY IT WAS WRONG. Each sheet computed its own totals by filtering
+
+   * the rows and STRING-MATCHING the relation text:
+
+   *
+
+   *     const sonCount = heirs.filter((h) =>
+
+   *         (h.relation_en || h.relation).toLowerCase().includes("son") ||
+
+   *         h.relation.includes("পুত্র")).length;
+
+   *
+
+   *   ১. THREE IMPLEMENTATIONS of a number the backend derives at render. §৪.৫ rules that
+
+   *      counts are computed so a list and a total cannot disagree — and counting again
+
+   *      here recreated the disagreement in the place it is hardest to see.
+
+   *   ২. `includes("son")` MATCHES "Person"; `includes("পিতা")` is a substring test on free
+
+   *      text, so a "SON-IN-LAW" counted as a son.
+
+   *   ৩. `heirs.length` WAS THE TOTAL, which includes the head of the family when the list
+
+   *      carries `SELF` — so the sheet could print more members than a reader could name.
+
+   *   ৪. IT DIFFERED FROM PUBLIC VERIFICATION, which reads the backend's number. Two
+
+   *      documents about one application then disagree, and the QR is the one a bank trusts.
+
+   *
+
+   * ⚠️ `withSelf` IS THE "নিজসহ মোট" FIGURE. `dependants` excludes the head of the family,
+
+   * because "৪ জন সদস্য" that counted the person listing themselves reads as one member
+
+   * more than a reader can name as a relation.
+
+   */
+
+  const counts = relationCountsOf(data);
+
+  const {
+
+    son: sonCount,
+
+    daughter: daughterCount,
+
+    spouse: spouseCount,
+
+    father: fatherCount,
+
+    mother: motherCount,
+
+    brother: brotherCount,
+
+    sister: sisterCount,
+
+    self: selfCount,
+
+    dependants: totalCount,
+
+  } = counts;
+
+  const relativesCount = relativesOf(counts);
 
   return (
     <div
@@ -130,19 +221,8 @@ export function WarishSheet({ data, lang = "bn" }: WarishSheetProps) {
               </div>
             </div>
 
-            {/* Top Right Logo AND Photo Image side by side */}
-            <div className="flex items-center justify-end">
-              <div className="owner-photo-box w-[68px] h-[78px] border border-slate-400 bg-white p-0.5 shadow-sm flex items-center justify-center overflow-hidden">
-                <Image
-                  src={applicant.photo_url || "/assets/image/person.webp"}
-                  alt={`${isEn ? "Applicant's Photo" : "আবেদনকারীর ছবি"}`}
-                  width={64}
-                  height={74}
-                  className="w-full h-full object-cover text-xs"
-                  unoptimized
-                />
-              </div>
-            </div>
+            {/* Right Spacer — Warish has no photo (§12.6) */}
+            <div className="header-right-spacer w-[76px] h-[76px]" />
           </div>
 
           {/* Metadata Ribbon */}
@@ -172,33 +252,42 @@ export function WarishSheet({ data, lang = "bn" }: WarishSheetProps) {
           <div className="cert-content-body mt-3 px-1 flex-1 flex flex-col justify-start">
             {isEn ? (
               <p className="cert-paragraph text-base leading-[2.1] text-black text-justify mb-2 font-serif">
-                This warish certificate is hereby issued stating that{" "}
+                This Warish Certificate is hereby issued that the late{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.person_name_en || applicant.person_name}
-                </span>{" "}
-                (ID No:{" "}
-                <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.nid_no_en || applicant.nid_no}
+                  {isEn
+                    ? written(data.deceasedNameEn || applicant.person_name_en, data.deceasedNameBn || applicant.person_name)
+                    : (data.deceasedNameBn || applicant.person_name)}
                 </span>
-                ), Father:{" "}
+                {data.deceasedNidNo || applicant.nid_no ? (
+                  <>
+                    {" "}(ID No:{" "}
+                    <span className="font-semibold border-b border-dotted border-black pb-[1px]">
+                      {data.deceasedNidNo || applicant.nid_no_en || applicant.nid_no}
+                    </span>
+                    )
+                  </>
+                ) : null}
+                , Father:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.father_name_en || applicant.father_name}
+                  {isEn
+                    ? written(applicant.father_name_en, data.deceasedFatherNameBn || applicant.father_name)
+                    : (data.deceasedFatherNameBn || applicant.father_name)}
                 </span>
                 , Mother:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.mother_name_en || applicant.mother_name}
+                  {isEn
+                    ? written(applicant.mother_name_en, data.deceasedMotherNameBn || applicant.mother_name)
+                    : (data.deceasedMotherNameBn || applicant.mother_name)}
                 </span>
                 , Village:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.village_en || applicant.village}
+                  {isEn
+                    ? written(applicant.village_en, data.deceasedVillageBn || applicant.village)
+                    : (data.deceasedVillageBn || applicant.village)}
                 </span>
                 , Ward No:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.ward_no_en || applicant.ward_no}
-                </span>
-                , House No:{" "}
-                <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.house_no_en || applicant.house_no}
+                  {data.deceasedWardBn || applicant.ward_no_en || applicant.ward_no}
                 </span>
                 , Union:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
@@ -212,37 +301,46 @@ export function WarishSheet({ data, lang = "bn" }: WarishSheetProps) {
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                   {union.district_en || union.district}
                 </span>
-                , has the following legal heirs.
+                {data.dateOfDeathEn || data.dateOfDeathBn ? (
+                  <>
+                    , passed away on{" "}
+                    <span className="font-semibold border-b border-dotted border-black pb-[1px]">
+                      {isEn ? (data.dateOfDeathEn || data.dateOfDeathBn) : data.dateOfDeathBn}
+                    </span>
+                  </>
+                ) : null}
+                . At the time of demise, he/she left behind the following legal heirs. Following field investigation and local testimony, it is certified that he/she has no other legal heirs except the individuals listed below:
               </p>
             ) : (
               <p className="cert-paragraph text-base leading-[2.1] text-black text-justify mb-2 font-solaiman">
-                এই মর্মে ওয়ারিশ সনদ দেওয়া হইতেছে যে,{" "}
+                এই মর্মে ওয়ারিশ সনদ প্রদান করা যাইতেছে যে, মরহুম{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.person_name}
-                </span>{" "}
-                (আইডি নং:{" "}
+                  {data.deceasedNameBn || applicant.person_name}
+                </span>
+                {data.deceasedNidNo || applicant.nid_no ? (
+                  <>
+                    {" "}(আইডি নং:{" "}
+                    <span className="font-semibold border-b border-dotted border-black pb-[1px]">
+                      {data.deceasedNidNo || applicant.nid_no}
+                    </span>
+                    )
+                  </>
+                ) : null}
+                , পিতা:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.nid_no}
-                </span>{" "}
-                ), পিতা:{" "}
-                <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.father_name}
+                  {data.deceasedFatherNameBn || applicant.father_name}
                 </span>
                 , মাতা:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.mother_name}
+                  {data.deceasedMotherNameBn || applicant.mother_name}
                 </span>
                 , গ্রাম:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.village}
+                  {data.deceasedVillageBn || applicant.village}
                 </span>
                 , ওয়ার্ড নং:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.ward_no}
-                </span>
-                , বাসা নং{" "}
-                <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.house_no}
+                  {data.deceasedWardBn || applicant.ward_no}
                 </span>
                 , ইউনিয়ন:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
@@ -256,7 +354,16 @@ export function WarishSheet({ data, lang = "bn" }: WarishSheetProps) {
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                   {union.district}
                 </span>
-                , উল্লেখিত ব্যক্তির পরিবারে নিম্নলিখিত ওয়ারিশ রহিয়াছে যাদের সম্পর্ক উল্লেখ করা হলো।
+                {data.dateOfDeathBn ? (
+                  <>
+                    । তিনি গত{" "}
+                    <span className="font-semibold border-b border-dotted border-black pb-[1px]">
+                      {data.dateOfDeathBn}
+                    </span>{" "}
+                    তারিখে মৃত্যুবরণ করিয়াছেন
+                  </>
+                ) : null}
+                । মৃত্যুকালে তিনি নিম্নবর্ণিত ওয়ারিশগণ রাখিয়া যান। সরেজমিনে তদন্ত ও স্থানীয় সাক্ষ্য-প্রমাণ সাপেক্ষে প্রত্যয়ন করা যাইতেছে যে, নিম্নোক্ত ব্যক্তিবর্গ ব্যতীত তাঁহার আর কোনো বৈধ ওয়ারিশ নাই:
               </p>
             )}
 
@@ -276,10 +383,10 @@ export function WarishSheet({ data, lang = "bn" }: WarishSheetProps) {
                   {heirs.map((item, idx) => (
                     <tr key={item.id || idx} className="text-center">
                       <td className="border border-gray-400 px-2 py-1">{isEn ? idx + 1 : toBnNo(idx + 1)}</td>
-                      <td className="border border-gray-400 px-3 py-1 text-left">{isEn ? (item.name_en || item.name) : item.name}</td>
+                      <td className="border border-gray-400 px-3 py-1 text-left">{isEn ? written(item.name_en, item.name) : item.name}</td>
                       <td className="border border-gray-400 px-3 py-1">{isEn ? (item.dob_en || item.dob || item.age_or_dob_en || item.age_or_dob) : (item.dob || item.age_or_dob)}</td>
                       <td className="border border-gray-400 px-2 py-1">{isEn ? (item.age_or_dob_en || item.age_or_dob) : item.age_or_dob}</td>
-                      <td className="border border-gray-400 px-3 py-1">{isEn ? (item.relation_en || item.relation) : item.relation}</td>
+                      <td className="border border-gray-400 px-3 py-1">{isEn ? written(item.relation_en, item.relation) : item.relation}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -312,7 +419,7 @@ export function WarishSheet({ data, lang = "bn" }: WarishSheetProps) {
             <div className="signatory-box text-center min-w-[200px] pb-[2px]">
               <div className="sign-space h-[32px]" />
               <div className="sign-name text-base font-semibold text-black leading-tight">
-                {isEn ? (signatory.signatory_name_en || signatory.signatory_name) : signatory.signatory_name}
+                {isEn ? written(signatory.signatory_name_en, signatory.signatory_name) : signatory.signatory_name}
               </div>
               <div className="sign-designation text-base text-black leading-tight">
                 {isEn ? (signatory.signatory_role_en || signatory.signatory_role) : signatory.signatory_role}

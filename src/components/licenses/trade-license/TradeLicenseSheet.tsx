@@ -523,6 +523,32 @@ export function TradeLicenseSheet({
                     {financials.profession_tax}
                   </td>
                 </tr>
+                {financials.penalty &&
+                  financials.penalty !== "0" &&
+                  financials.penalty !== "0.00" && (
+                    <tr>
+                      <td className="border border-gray-400 px-2 py-0.5">*</td>
+                      <td className="border border-gray-400 px-3 py-0.5 text-left">
+                        {isEn ? "Penalty / Surcharge" : "জরিমানা / সারচার্জ"}
+                      </td>
+                      <td className="border border-gray-400 px-3 py-0.5 text-right">
+                        {financials.penalty}
+                      </td>
+                    </tr>
+                  )}
+                {financials.miscellaneous &&
+                  financials.miscellaneous !== "0" &&
+                  financials.miscellaneous !== "0.00" && (
+                    <tr>
+                      <td className="border border-gray-400 px-2 py-0.5">*</td>
+                      <td className="border border-gray-400 px-3 py-0.5 text-left">
+                        {isEn ? "Miscellaneous" : "বিবিধ"}
+                      </td>
+                      <td className="border border-gray-400 px-3 py-0.5 text-right">
+                        {financials.miscellaneous}
+                      </td>
+                    </tr>
+                  )}
                 <tr className="bg-slate-50">
                   <td className="border border-gray-400 px-2 py-0.5">*</td>
                   <td className="border border-gray-400 px-3 py-0.5 text-left font-bold">

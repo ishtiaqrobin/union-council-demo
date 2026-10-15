@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { QRCodeSVG } from "qrcode.react";
 import { CertificateData } from "@/types/certificate";
+import { CERTIFICATE_FALLBACK_NOTE } from "@/lib/certificate-source";
+import { certificateWritten } from "@/components/licenses/certificate-text";
 
 interface TestimonialSheetProps {
   data: CertificateData;
@@ -15,6 +17,23 @@ export function TestimonialSheet({ data, lang = "bn" }: TestimonialSheetProps) {
   const [printDateTime, setPrintDateTime] = useState("2/12/26, 10:30 AM");
   const isEn = lang === "en";
 
+
+  /**
+   * 🔴 AN ENGLISH LINE THAT FELL BACK TO BENGALI MUST SAY SO.
+   *
+   * `person_name_en` and its siblings are separate COLUMNS, not translations, so the
+   * English can legitimately be empty — and `person_name_en || person_name` printed a
+   * Bengali name with NOTHING to distinguish it from a name that really was
+   * transliterated. A bank reading that document cannot tell the two apart, which is the
+   * entire reason the English column exists.
+   *
+   * ⚠️ THE WORDS ARE THE PLATFORM'S, NOT THIS SHEET'S. `CERTIFICATE_FALLBACK_NOTE` is
+   * one constant in `lib/certificate-source.ts`, mirroring the backend's own
+   * `CERTIFICATE_FALLBACK_NOTE`, because two printers inventing two sentences would make
+   * two documents that mean the same thing read differently.
+   */
+  const written = (enValue?: string, bnValue?: string) =>
+    certificateWritten(enValue, bnValue, CERTIFICATE_FALLBACK_NOTE);
   useEffect(() => {
     const now = new Date();
     const month = now.getMonth() + 1;
@@ -27,6 +46,28 @@ export function TestimonialSheet({ data, lang = "bn" }: TestimonialSheetProps) {
 
     setPrintDateTime(`${month}/${day}/${year}, ${hours}:${minutes} ${ampm}`);
   }, []);
+
+  /**
+   * 🔴 ONE DECISION DRIVES BOTH LANGUAGES, AND THAT IS A CORRECTION.
+   *
+   * The version that stood here chose the two languages INDEPENDENTLY:
+   *
+   *     {applicant.spouse_name_en || applicant.father_name_en,
+   *      applicant.spouse_name    || applicant.father_name}
+   *
+   * A citizen who filled in a SPOUSE and left the spouse's English empty produced an English
+   * certificate naming the FATHER while the Bengali named the spouse — two documents disagreeing
+   * about who somebody is, both carrying the union's seal and a verifying QR code.
+   *
+   * ⚠️ `hasSpouse` IS READ FROM THE BENGALI because the Bengali is the field the form REQUIRES;
+   * the English is optional by design (§১৬). So one decision cannot print two different people,
+   * and an absent English falls through to `written(…)`, which says which record the name is
+   * from rather than silently substituting another relative.
+   */
+  const hasSpouse = Boolean(applicant.spouse_name);
+  const guardianBn = hasSpouse ? applicant.spouse_name : applicant.father_name;
+  const guardianEn = hasSpouse ? applicant.spouse_name_en : applicant.father_name_en;
+
 
   return (
     <div
@@ -140,31 +181,38 @@ export function TestimonialSheet({ data, lang = "bn" }: TestimonialSheetProps) {
 
           {/* Certificate Content Body */}
           <div className="cert-content-body mt-6 px-2 flex-1 flex flex-col justify-start">
+            {(data.attestationSubjectBn || data.attestationSubjectEn) && (
+              <div className="mb-3 text-base font-bold text-black border-b border-gray-300 pb-1">
+                <span className="text-gray-700 mr-2">{isEn ? "Subject:" : "বিষয়:"}</span>
+                <span>{isEn ? (data.attestationSubjectEn || data.attestationSubjectBn) : data.attestationSubjectBn}</span>
+              </div>
+            )}
+
             {isEn ? (
               <p className="cert-paragraph text-base leading-[2.2] text-black text-justify font-serif">
                 This is to certify that,{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.person_name_en || applicant.person_name}
+                  {isEn ? written(applicant.person_name_en, applicant.person_name) : applicant.person_name}
                 </span>{" "}
                 (ID No:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
                   {applicant.nid_no_en || applicant.nid_no || "-"}
                 </span>
-                ), {applicant.spouse_name_en || applicant.spouse_name ? "Spouse:" : "Father:"}{" "}
+                ), {hasSpouse ? "Spouse:" : "Father:"}{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.spouse_name_en || applicant.spouse_name || applicant.father_name_en || applicant.father_name}
+                  {isEn ? written(guardianEn, guardianBn) : guardianBn}
                 </span>
                 , Mother:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.mother_name_en || applicant.mother_name}
+                  {isEn ? written(applicant.mother_name_en, applicant.mother_name) : applicant.mother_name}
                 </span>
                 , Village:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.village_en || applicant.village}
+                  {isEn ? written(applicant.village_en, applicant.village) : applicant.village}
                 </span>
                 , House No:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.house_no_en || applicant.house_no}
+                  {isEn ? written(applicant.house_no_en, applicant.house_no) : applicant.house_no}
                 </span>
                 , Ward No:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
@@ -172,7 +220,7 @@ export function TestimonialSheet({ data, lang = "bn" }: TestimonialSheetProps) {
                 </span>
                 , Post Office:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
-                  {applicant.post_office_en || applicant.post_office}
+                  {isEn ? written(applicant.post_office_en, applicant.post_office) : applicant.post_office}
                 </span>
                 , Upazila:{" "}
                 <span className="font-semibold border-b border-dotted border-black pb-[1px]">
@@ -230,6 +278,14 @@ export function TestimonialSheet({ data, lang = "bn" }: TestimonialSheetProps) {
               </p>
             )}
 
+            {(data.expiresAtBn || data.expiresAtEn) && (
+              <div className="validity-note mt-2 text-xs font-semibold text-slate-700 bg-slate-50 border border-slate-200 px-3 py-1 rounded inline-block">
+                {isEn
+                  ? `Validity: This certificate is valid until ${data.expiresAtEn || data.expiresAtBn}.`
+                  : `মেয়াদ: এই সনদটি ইস্যুর তারিখ হইতে ${data.expiresAtBn} পর্যন্ত বলবৎ থাকিবে।`}
+              </div>
+            )}
+
             {(closingWishEn || closingWishBn) && (
               <p className={`cert-closing text-base font-semibold text-black mt-3 ${isEn ? "font-serif" : "font-solaiman"}`}>
                 {isEn ? (closingWishEn || closingWishBn) : closingWishBn}
@@ -251,7 +307,7 @@ export function TestimonialSheet({ data, lang = "bn" }: TestimonialSheetProps) {
             <div className="signatory-box text-center min-w-[200px] pb-[2px]">
               <div className="sign-space h-[32px]" />
               <div className="sign-name text-base font-semibold text-black leading-tight">
-                {isEn ? (signatory.signatory_name_en || signatory.signatory_name) : signatory.signatory_name}
+                {isEn ? written(signatory.signatory_name_en, signatory.signatory_name) : signatory.signatory_name}
               </div>
               <div className="sign-role-sub text-base text-black leading-tight">
                 {isEn ? "Authorized Signatory" : "অনুমোদনকারী/প্রদানকারী"}
