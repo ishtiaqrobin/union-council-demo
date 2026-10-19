@@ -50,8 +50,8 @@ export const DEATH_REGISTRATION_INITIAL_DATA: CertificateData = {
   signatory: {
     signatory_name: "মোঃ সাহাবুদ্দিন মিঞা (সেলিম)",
     signatory_name_en: "Md. Sahabuddin Mia (Selim)",
-    signatory_role: "প্যানেল চেয়ারম্যান-২",
-    signatory_role_en: "Panel Chairman-2",
+    signatory_role: "চেয়ারম্যান",
+    signatory_role_en: "Chairman",
     trn_no: "10423",
     qr_url: "https://www.lgoms.org/death_certificates.php?id=10423",
   },
