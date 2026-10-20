@@ -36,7 +36,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={`${SolaimanLipi.variable} bg-slate-950 text-slate-100 min-h-screen antialiased transition-colors duration-200`}>
+      <body
+        className={`${SolaimanLipi.variable} bg-slate-950 text-slate-100 min-h-screen antialiased transition-colors duration-200`}
+        suppressHydrationWarning
+      >
         <Providers>
           {children}
         </Providers>
