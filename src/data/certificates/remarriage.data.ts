@@ -54,6 +54,8 @@ export const REMARRIAGE_INITIAL_DATA: CertificateData = {
     signatory_role: "চেয়ারম্যান",
     signatory_role_en: "Chairman",
     trn_no: "1500",
-    qr_url: "https://www.lgoms.org/rmc_certificates_view.php?id=1500"
+    qr_url: "https://www.lgoms.org/rmc_certificates_view.php?id=1500",
+    signature_url: "/assets/signature/chairman-signature.png",
+    seal_url: "/assets/signature/chairman-seal.png",
   }
 };

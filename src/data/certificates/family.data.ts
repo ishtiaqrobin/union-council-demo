@@ -52,7 +52,9 @@ export const FAMILY_INITIAL_DATA: CertificateData = {
     signatory_role: "চেয়ারম্যান(ভারপ্রাপ্ত)",
     signatory_role_en: "Chairman (Acting)",
     trn_no: "7450",
-    qr_url: "https://www.lgoms.org/re_certificates_view.php?id=7450"
+    qr_url: "https://www.lgoms.org/re_certificates_view.php?id=7450",
+    signature_url: "/assets/signature/chairman-signature.png",
+    seal_url: "/assets/signature/chairman-seal.png",
   },
   heirs: [
     { id: "1", name: "মোঃ ইলফাজদ্দীন", name_en: "Md. Ilfazuddin", relation: "পিতা", relation_en: "Father", dob: "১১-০৩-১৯৬২", dob_en: "11-03-1962", age_or_dob: "৬৪ বছর", age_or_dob_en: "64 Years", nid_or_bc: "", comments: "" },

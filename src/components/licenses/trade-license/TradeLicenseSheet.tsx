@@ -1,5 +1,6 @@
 "use client";
 
+import { SignatureImage, SealImage } from "@/providers/SignatureModeProvider";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { QRCodeSVG } from "qrcode.react";
@@ -603,7 +604,18 @@ export function TradeLicenseSheet({
           <div className="cert-footer-section flex justify-between items-end mt-auto pt-3 pb-1 px-1">
             {/* Left Signatory */}
             <div className="signatory-box text-center min-w-[170px]">
-              <div className="sign-space h-[24px]" />
+              <div className="sign-space relative h-[32px] flex items-end justify-center">
+                {/* Optional by design — absent leaves a blank line for a hand signature. */}
+                <SealImage
+                  url={signatory.left_seal_url}
+                  alt={isEn ? "Seal" : "সীল"}
+                />
+                <SignatureImage
+                  url={signatory.left_signature_url}
+                  alt={isEn ? "Signature" : "স্বাক্ষর"}
+                  className="max-h-[30px] max-w-[125px] object-contain relative z-10"
+                />
+              </div>
               <div className="sign-name text-[13.5px] font-bold text-black leading-tight">
                 {isEn
                   ? written(signatory.left_name_en, signatory.left_name)
@@ -640,7 +652,18 @@ export function TradeLicenseSheet({
 
             {/* Right Signatory */}
             <div className="signatory-box text-center min-w-[170px]">
-              <div className="sign-space h-[24px]" />
+              <div className="sign-space relative h-[32px] flex items-end justify-center">
+                {/* Optional by design — absent leaves a blank line for a hand signature. */}
+                <SealImage
+                  url={signatory.right_seal_url}
+                  alt={isEn ? "Seal" : "সীল"}
+                />
+                <SignatureImage
+                  url={signatory.right_signature_url}
+                  alt={isEn ? "Signature" : "স্বাক্ষর"}
+                  className="max-h-[30px] max-w-[125px] object-contain relative z-10"
+                />
+              </div>
               <div className="sign-name text-[13.5px] font-bold text-black leading-tight">
                 {isEn
                   ? written(signatory.right_name_en, signatory.right_name)

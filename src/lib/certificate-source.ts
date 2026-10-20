@@ -199,6 +199,30 @@ export interface CertificateRenderData {
     sealUrl?: string | null;
     signedAt: string;
   };
+  /**
+   * The other two signatures on the documents that carry more than one.
+   *
+   * ⚠️ ABSENT (`undefined`) ON A ONE-SIGNATURE DOCUMENT, which is how a sheet knows whether to
+   * render one column or three. That is why these are optional and not `null` — a `null` left/right
+   * would be indistinguishable from "this document has that slot but nobody holds the office",
+   * and the sheet would draw an empty box nobody can fill.
+   */
+  leftSignatory?: {
+    name: string;
+    designationBn: string;
+    designationEn?: string | null;
+    signatureUrl?: string | null;
+    sealUrl?: string | null;
+    signedAt: string;
+  };
+  middleSignatory?: {
+    name: string;
+    designationBn: string;
+    designationEn?: string | null;
+    signatureUrl?: string | null;
+    sealUrl?: string | null;
+    signedAt: string;
+  };
   recipient: {
     applicantUserId?: string | null;
     fullNameBn: string;
@@ -501,7 +525,66 @@ export const toSheetData = (
        */
       trn_no: certificate.verificationCode,
       qr_url: certificate.qrDataString,
+      /**
+       * 🔴 THE SIGNATURE AND SEAL — AND UNTIL NOW THEY NEVER REACHED THE PAPER.
+       *
+       * MEASURED before this: this mapping carried four SIGNATORY fields (`signatory_name`,
+       * `signatory_name_en`, `signatory_role`, `signatory_role_en`) and NOTHING for the images.
+       * The backend's `signatureUrl`/`sealUrl` were read by no one, so even a correctly uploaded
+       * signature could not have appeared on a sheet.
+       *
+       * ⚠️ `undefined` RATHER THAN `null` when absent: `str()` drops empty strings, and the sheets
+       * test for truthiness. A `null` here renders the same, but `undefined` keeps the sheet data
+       * object free of keys that say "we looked and there was nothing".
+       */
+      signature_url: str(signatory.signatureUrl),
+      seal_url: str(signatory.sealUrl),
     },
+
+    /**
+     * 🔴 THE OTHER SIGNATORY COLUMNS — present only on an NOC and a death certificate.
+     *
+     * `NOCSheet` used to fall back to the HARDCODED string "সৈয়দ মেহেদী মাসুদ" for its middle
+     * column, and `DeathRegistrationSheet` to "Syed Mehedi Masud" for its left — the seeded
+     * secretary of ONE union, printed on every union's document. Removing that default without
+     * supplying the real value would have replaced a wrong name with a blank; supplying it is the
+     * other half of the fix.
+     *
+     * ⚠️ LEFT AND MIDDLE ARE NOT THE SAME PEOPLE. On an NOC: accountant (left), secretary
+     * (middle), chairman (right). On a death certificate: secretary (left), chairman (right) —
+     * because there is no third signature and the centre column holds the QR.
+     */
+    ...(payload.leftSignatory
+      ? {
+          /**
+           * ⚠️ THE `Bn`-SUFFIXED KEYS, not new names. `NOCSheet` and `DeathRegistrationSheet`
+           * already READ `leftSignatoryNameBn`, `middleSignatoryRoleBn` and friends — against a
+           * hardcoded fallback because nothing ever supplied them. Adding a second spelling would
+           * have left those sheets still reading the old keys and still printing the same
+           * hardcoded name, with the mapping looking correct.
+           */
+          leftSignatoryNameBn: payload.leftSignatory.name,
+          leftSignatoryNameEn: payload.leftSignatory.designationEn
+            ? payload.leftSignatory.name
+            : undefined,
+          leftSignatoryRoleBn: payload.leftSignatory.designationBn,
+          leftSignatoryRoleEn: payload.leftSignatory.designationEn ?? undefined,
+          leftSignatorySignatureUrl: str(payload.leftSignatory.signatureUrl),
+          leftSignatorySealUrl: str(payload.leftSignatory.sealUrl),
+        }
+      : {}),
+    ...(payload.middleSignatory
+      ? {
+          middleSignatoryNameBn: payload.middleSignatory.name,
+          middleSignatoryNameEn: payload.middleSignatory.designationEn
+            ? payload.middleSignatory.name
+            : undefined,
+          middleSignatoryRoleBn: payload.middleSignatory.designationBn,
+          middleSignatoryRoleEn: payload.middleSignatory.designationEn ?? undefined,
+          middleSignatorySignatureUrl: str(payload.middleSignatory.signatureUrl),
+          middleSignatorySealUrl: str(payload.middleSignatory.sealUrl),
+        }
+      : {}),
 
     heirs: heirs.length > 0 ? heirs : undefined,
 

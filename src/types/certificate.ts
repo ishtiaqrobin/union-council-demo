@@ -64,6 +64,14 @@ export interface SignatoryInfo {
   signatory_role_en?: string;
   trn_no: string;
   qr_url: string;
+  /**
+   * The scanned signature and seal, or absent when the union has not uploaded one.
+   *
+   * ⚠️ ABSENT IS THE NORMAL STATE, not an error. A sheet must leave the box EMPTY so a chairman
+   * can sign by hand — a printed certificate is never blocked because a file was not uploaded.
+   */
+  signature_url?: string;
+  seal_url?: string;
 }
 
 export interface HeirItem {
@@ -274,10 +282,25 @@ export interface CertificateData {
   leftSignatoryNameEn?: string;
   leftSignatoryRoleBn?: string;
   leftSignatoryRoleEn?: string;
+  /**
+   * 🔴 THE LEFT COLUMN'S SIGNATURE AND SEAL — and the sheets already had a BOX for them.
+   *
+   * `NOCSheet` and `DeathRegistrationSheet` print a `sign-space` div for every column; what they
+   * never had was an image to put in it, and what the left column never had was a real NAME —
+   * the sheets fell back to the string "সৈয়দ মেহেদী মাসুদ", the seeded secretary of ONE union,
+   * printed on every union's document. These fields are the other half of that fix.
+   *
+   * ⚠️ ABSENT IS NORMAL: a union that has not uploaded a signature leaves the box empty for a
+   * hand signature, which is ordinary practice.
+   */
+  leftSignatorySignatureUrl?: string;
+  leftSignatorySealUrl?: string;
   middleSignatoryNameBn?: string;
   middleSignatoryNameEn?: string;
   middleSignatoryRoleBn?: string;
   middleSignatoryRoleEn?: string;
+  middleSignatorySignatureUrl?: string;
+  middleSignatorySealUrl?: string;
   fiscalYearBn?: string;
   fiscalYearEn?: string;
   nocFeeAmount?: string;

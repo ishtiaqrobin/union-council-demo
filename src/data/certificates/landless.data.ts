@@ -51,7 +51,9 @@ export const LANDLESS_INITIAL_DATA: CertificateData = {
     signatory_role: "চেয়ারম্যান(ভারপ্রাপ্ত)",
     signatory_role_en: "Chairman (Acting)",
     trn_no: "10432",
-    qr_url: "https://www.lgoms.org/umc_certificates.php?id=10432"
+    qr_url: "https://www.lgoms.org/umc_certificates.php?id=10432",
+    signature_url: "/assets/signature/chairman-signature.png",
+    seal_url: "/assets/signature/chairman-seal.png",
   },
   landDetailsBn: "আমার জানামতে তার কোন জায়গা জমি নাই। তিনি একজন ভূমিহীন।",
   landDetailsEn: "To the best of my knowledge, he/she does not own any agricultural or non-agricultural land. He/She is completely landless."

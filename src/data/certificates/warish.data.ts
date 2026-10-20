@@ -52,7 +52,9 @@ export const WARISH_INITIAL_DATA: CertificateData = {
     signatory_role: "চেয়ারম্যান(ভারপ্রাপ্ত)",
     signatory_role_en: "Chairman (Acting)",
     trn_no: "10424",
-    qr_url: "https://www.lgoms.org/umc_certificates.php?id=10424"
+    qr_url: "https://www.lgoms.org/umc_certificates.php?id=10424",
+    signature_url: "/assets/signature/chairman-signature.png",
+    seal_url: "/assets/signature/chairman-seal.png",
   },
   heirs: [
     { id: "1", name: "শরিফুন্নেছা (এন আইডি)", name_en: "Sharifunnesa (NID)", relation: "স্ত্রী", relation_en: "Wife", age_or_dob: "৬৬ বছর", age_or_dob_en: "66 Years", dob: "০৫-১১-১৯৫৭", dob_en: "05-11-1957", nid_or_bc: "", comments: "" },

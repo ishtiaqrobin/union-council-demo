@@ -91,6 +91,21 @@ export interface TradeLicenseData {
     right_name_en?: string;
     right_role: string;
     right_role_en?: string;
+    /**
+     * The scanned signature and seal — ABSENT when the union has not uploaded one.
+     *
+     * ⚠️ `?: string` AND NOT `string | null`, EVEN THOUGH THE BACKEND SENDS `null`. Two reasons:
+     * the forms bind these values into `<input>` props, where `null` is not assignable; and the
+     * mapping layer already normalises `null` and `""` to `undefined` — the same `str()` helper
+     * the certificate path uses. One convention at the boundary, no `null` inside the UI.
+     *
+     * ⚠️ ABSENT IS NORMAL: the sheet prints a blank line and the officer signs by hand. A printed
+     * licence is never blocked because a file was not uploaded.
+     */
+    left_signature_url?: string;
+    left_seal_url?: string;
+    right_signature_url?: string;
+    right_seal_url?: string;
     trn_no: string;
     qr_url: string;
   };
@@ -198,6 +213,21 @@ export interface VehicleLicenseData {
     right_name_en?: string;
     right_role: string;
     right_role_en?: string;
+    /**
+     * The scanned signature and seal — ABSENT when the union has not uploaded one.
+     *
+     * ⚠️ `?: string` AND NOT `string | null`, EVEN THOUGH THE BACKEND SENDS `null`. Two reasons:
+     * the forms bind these values into `<input>` props, where `null` is not assignable; and the
+     * mapping layer already normalises `null` and `""` to `undefined` — the same `str()` helper
+     * the certificate path uses. One convention at the boundary, no `null` inside the UI.
+     *
+     * ⚠️ ABSENT IS NORMAL: the sheet prints a blank line and the officer signs by hand. A printed
+     * licence is never blocked because a file was not uploaded.
+     */
+    left_signature_url?: string;
+    left_seal_url?: string;
+    right_signature_url?: string;
+    right_seal_url?: string;
     trn_no: string;
     qr_url: string;
   };
@@ -314,6 +344,17 @@ export interface ProfessionLicenseData {
     left_name_en?: string;
     left_role: string;
     left_role_en?: string;
+    /**
+     * 🔴 THE SINGLE SIGNATURE OF A PROFESSION LICENCE LIVES IN THE LEFT SLOT.
+     *
+     * `buildCertificateBlock` maps secretary → `left_*` and chairman → `right_*`, and this
+     * document carries ONE signature: the officer at the counter that issued it. So the image
+     * belongs on `left_*` — putting it on `right_*` (which does not exist on this type) was what
+     * first went wrong here, and it is the kind of mistake that would have printed a blank line
+     * on every profession licence while the trade sheet worked.
+     */
+    left_signature_url?: string;
+    left_seal_url?: string;
     trn_no: string;
     qr_url: string;
   };

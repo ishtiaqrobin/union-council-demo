@@ -118,9 +118,23 @@ export interface LicenceCertificateSignatory {
   right_name_en: string;
   right_role: string;
   right_role_en: string;
+  /**
+   * The scanned signature and seal. The BACKEND sends `null` when the union has not uploaded one;
+   * this interface records `null` because it is a faithful copy of that payload. The mapping below
+   * normalises it to `undefined` before it reaches a sheet or a form — `null` is not assignable to
+   * an `<input>` value.
+   */
+  left_signature_url: string | null;
+  left_seal_url: string | null;
+  right_signature_url: string | null;
+  right_seal_url: string | null;
   trn_no: string | null;
   qr_url: string;
 }
+
+/** `null` / `""` / `undefined` → `undefined`; a real value passes through untouched. */
+const emptyToUndefined = (value: string | null | undefined): string | undefined =>
+  typeof value === "string" && value.trim() !== "" ? value : undefined;
 
 export interface LicenceCertificateFleet {
   index: number;
@@ -361,6 +375,16 @@ export function toTradeLicenseSheetData(
     right_name_en: sig?.right_name_en || initial?.signatory?.right_name_en || "",
     right_role: sig?.right_role || initial?.signatory?.right_role || "",
     right_role_en: sig?.right_role_en || initial?.signatory?.right_role_en || "",
+    /**
+     * 🔴 `null` BECOMES ABSENT HERE, ONCE. The backend answers `null` for an un-uploaded
+     * signature, and `null` is not assignable to a React `<input value>` — so the normalisation
+     * happens at this boundary rather than in eighteen sheets, each doing it differently or not
+     * at all. `emptyToUndefined` keeps a real URL and drops the absence.
+     */
+    left_signature_url: emptyToUndefined(sig?.left_signature_url),
+    left_seal_url: emptyToUndefined(sig?.left_seal_url),
+    right_signature_url: emptyToUndefined(sig?.right_signature_url),
+    right_seal_url: emptyToUndefined(sig?.right_seal_url),
     trn_no: sig?.trn_no || initial?.signatory?.trn_no || payload.license.verificationCode || "",
     qr_url: sig?.qr_url || initial?.signatory?.qr_url || payload.license.verificationUrl || "",
   };

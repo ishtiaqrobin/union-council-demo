@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><body>
+<div id='test' style='display:inline-block'>
+<svg width='300' height='300' viewBox='0 0 300 300'>
+  <defs>
+    <!-- Top Arc (clockwise) -->
+    <path id='topPath' d='M 40,150 A 110,110 0 0,1 260,150' fill='none' stroke='red' />
+    <!-- Bottom Arc: sweeping under, counter-clockwise (sweep-flag=0) -->
+    <path id='bottomPath' d='M 40,150 A 110,110 0 0,0 260,150' fill='none' stroke='blue' />
+  </defs>
+  <circle cx='150' cy='150' r='140' stroke='black' fill='none'/>
+  <text font-size='16' font-family='SolaimanLipi, Vrinda, sans-serif' fill='black'>
+    <textPath href='#topPath' startOffset='50%' text-anchor='middle'>১নং বসন্তপুর ইউনিয়ন পরিষদ</textPath>
+  </text>
+  <text font-size='15' font-family='SolaimanLipi, Vrinda, sans-serif' fill='black'>
+    <textPath href='#bottomPath' startOffset='50%' text-anchor='middle'>রাজবাড়ী সদর, রাজবাড়ী</textPath>
+  </text>
+  <text x='150' y='155' font-size='20' font-family='SolaimanLipi, Vrinda, sans-serif' text-anchor='middle'>চেয়ারম্যান</text>
+</svg>
+</div>
+</body></html>

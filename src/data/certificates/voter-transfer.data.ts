@@ -54,7 +54,9 @@ export const VOTER_TRANSFER_INITIAL_DATA: CertificateData = {
     signatory_role: "চেয়ারম্যান",
     signatory_role_en: "Chairman",
     trn_no: "72315",
-    qr_url: "https://www.lgoms.org/prot_certificates.php?id=72315"
+    qr_url: "https://www.lgoms.org/prot_certificates.php?id=72315",
+    signature_url: "/assets/signature/chairman-signature.png",
+    seal_url: "/assets/signature/chairman-seal.png",
   },
   customDescriptionBn: "তিনি সমাজ বা রাষ্ট্রবিরোধী কোন কার্যকলাপের সহিত জড়িত নন। তিনি ইতিপূর্বে অন্য এলাকায় বসবাস ও পূর্বে স্বামীর সহিত অবস্থান করার কারণে উক্ত স্থানে ভোটার হয়েছিলেন। বর্তমানে তার বিবাহ বিচ্ছেদ হয়েছে এবং পুনঃরায় বিবাহ হয়েছে তাই নতুন স্বামীর স্থায়ী ঠিকানায় অত্র ইউনিয়নের ০৮নং ওয়ার্ডভুক্ত রঘুনাথপুর গ্রামে ভোটার স্থানান্তর করবার জন্য সুপারিশ করা হলো।",
   customDescriptionEn: "She is not involved in any anti-social or anti-state activities. Previously, she was enrolled as a voter in another area while residing with her former husband. Due to her divorce and subsequent remarriage, it is hereby recommended to transfer her voter registration to her new husband's permanent address at Village: Raghunathpur, Ward No: 08 of this Union Parishad.",

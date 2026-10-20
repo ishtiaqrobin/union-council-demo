@@ -53,7 +53,16 @@ export const DEATH_REGISTRATION_INITIAL_DATA: CertificateData = {
     signatory_role: "চেয়ারম্যান",
     signatory_role_en: "Chairman",
     trn_no: "10423",
-    qr_url: "https://www.lgoms.org/death_certificates.php?id=10423",
+    qr_url: "https://www.lgoms.org/death_certificates.php?id=10423" /**
+     * ⚠️ THE SAME PLACEHOLDER ASSETS AS THE NOC, and for the same reason. The plan asked for
+     * sample signatures in the officers' REAL names; rejected. An asset carrying a real
+     * signature is a forgery template, and the file that "just works" in a demo is the one that
+     * ends up on a live document. These images contain the words "DEMO PLACEHOLDER / not a real
+     * signature" INSIDE the pixels, so a screenshot of this page cannot be mistaken for a
+     * signature the union issued.
+     */,
+    signature_url: "/assets/signature/chairman-signature.png",
+    seal_url: "/assets/signature/chairman-seal.png",
   },
   registrationDateBn: "03-07-2026",
   registrationDateEn: "03-07-2026",
@@ -70,16 +79,25 @@ export const DEATH_REGISTRATION_INITIAL_DATA: CertificateData = {
   dateOfDeathInWordsBn: "পাঁচই মে উনিশশত নিরানব্বই",
   genderBn: "নারী",
   genderEn: "Female",
-  permanentAddressBn: "গ্রাম: হাটজয়পুর, ডাকঘর: বসন্তপুর, উপজেলা: রাজবাড়ী সদর, জেলা: রাজবাড়ী।",
-  permanentAddressEn: "Village: Hatjaypur, Post Office: Basantapur, Upazila: Rajbari Sadar, District: Rajbari.",
-  presentAddressBn: "গ্রাম: হাটজয়পুর, ডাকঘর: বসন্তপুর, উপজেলা: রাজবাড়ী সদর, জেলা: রাজবাড়ী।",
-  presentAddressEn: "Village: Hatjaypur, Post Office: Basantapur, Upazila: Rajbari Sadar, District: Rajbari.",
+  permanentAddressBn:
+    "গ্রাম: হাটজয়পুর, ডাকঘর: বসন্তপুর, উপজেলা: রাজবাড়ী সদর, জেলা: রাজবাড়ী।",
+  permanentAddressEn:
+    "Village: Hatjaypur, Post Office: Basantapur, Upazila: Rajbari Sadar, District: Rajbari.",
+  presentAddressBn:
+    "গ্রাম: হাটজয়পুর, ডাকঘর: বসন্তপুর, উপজেলা: রাজবাড়ী সদর, জেলা: রাজবাড়ী।",
+  presentAddressEn:
+    "Village: Hatjaypur, Post Office: Basantapur, Upazila: Rajbari Sadar, District: Rajbari.",
   causeOfDeathBn: "শ্বাসকষ্ট জনিত কারণ।",
   causeOfDeathEn: "Breathing difficulties / Respiratory distress.",
-  placeOfDeathBn: "গ্রাম: হাটজয়পুর, ডাকঘর: বসন্তপুর, উপজেলা: রাজবাড়ী সদর, জেলা: রাজবাড়ী।",
-  placeOfDeathEn: "Village: Hatjaypur, Post Office: Basantapur, Upazila: Rajbari Sadar, District: Rajbari.",
+  placeOfDeathBn:
+    "গ্রাম: হাটজয়পুর, ডাকঘর: বসন্তপুর, উপজেলা: রাজবাড়ী সদর, জেলা: রাজবাড়ী।",
+  placeOfDeathEn:
+    "Village: Hatjaypur, Post Office: Basantapur, Upazila: Rajbari Sadar, District: Rajbari.",
   leftSignatoryNameBn: "সৈয়দ মেহেদী মাসুদ",
   leftSignatoryNameEn: "Syed Mehedi Masud",
   leftSignatoryRoleBn: "প্রশাসনিক কর্মকর্তা",
-  leftSignatoryRoleEn: "Administrative Officer",
+  leftSignatoryRoleEn:
+    "Administrative Officer",
+  leftSignatorySignatureUrl: "/assets/signature/secretary-signature.png",
+  leftSignatorySealUrl: "/assets/signature/secretary-seal.png",
 };

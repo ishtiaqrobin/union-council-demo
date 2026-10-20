@@ -56,7 +56,9 @@ export const NEW_VOTER_INITIAL_DATA: CertificateData = {
     signatory_role: "চেয়ারম্যান",
     signatory_role_en: "Chairman",
     trn_no: "72304",
-    qr_url: "https://www.lgoms.org/prot_certificates.php?id=72304"
+    qr_url: "https://www.lgoms.org/prot_certificates.php?id=72304",
+    signature_url: "/assets/signature/chairman-signature.png",
+    seal_url: "/assets/signature/chairman-seal.png",
   },
   customDescriptionBn: "তিনি অত্র ইউনিয়নের স্থায়ী বাসিন্দা। স্থানীয় ইউপি সদস্যের তথ্যমতে, তিনি ইতিপূর্বে দেশের কোথাও ভোটার হননি। বর্তমানে তিনি নতুন ভোটার হতে ইচ্ছুক। আমার জানামতে তার নৈতিক চরিত্র ভালো।",
   customDescriptionEn: "He/She is a permanent resident of this Union Parishad. As verified by the local UP Member, he/she has never been enrolled as a voter anywhere in Bangladesh and currently wishes to enroll as a new voter. To the best of my knowledge, he/she bears a good moral character.",

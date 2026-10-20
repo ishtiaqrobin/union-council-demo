@@ -52,7 +52,9 @@ export const PERMANENT_RESIDENT_INITIAL_DATA: CertificateData = {
     signatory_role: "চেয়ারম্যান",
     signatory_role_en: "Chairman",
     trn_no: "72328",
-    qr_url: "https://www.lgoms.org/prot_certificates.php?id=72328"
+    qr_url: "https://www.lgoms.org/prot_certificates.php?id=72328",
+    signature_url: "/assets/signature/chairman-signature.png",
+    seal_url: "/assets/signature/chairman-seal.png",
   },
   customDescriptionBn: "স্থানীয় ইউপি সদস্যের তদন্ত ও পরিষদীয় রেকর্ড অনুযায়ী জানা যায় যে, তিনি এবং তাহার পরিবার জন্মসূত্রে ও বংশানুক্রমিকভাবে অত্র ইউনিয়ন পরিষদের উল্লিখিত ঠিকানার স্থায়ী বাসিন্দা। তিনি কোনো সমাজ বা রাষ্ট্রবিরোধী কার্যকলাপে জড়িত নন এবং তার নৈতিক চরিত্র উত্তম।",
   customDescriptionEn: "According to investigation by the local UP Member and Parishad records, he/she and his/her family are permanent residents of the aforementioned address of this Union Parishad by birth and lineage. He/She is not involved in any anti-social or anti-state activities and bears an excellent moral character.",

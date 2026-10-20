@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { SignatureControls } from "@/providers/SignatureModeProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { InheritanceForm } from "@/components/certificates/inheritance/InheritanceForm";
 import { InheritanceSheet } from "@/components/certificates/inheritance/InheritanceSheet";
@@ -37,6 +38,11 @@ export default function InheritancePage() {
         />
 
         <main className="certificate-viewport flex-1 p-8 px-4 flex justify-center items-start overflow-x-auto print:p-0 print:m-0 print:block print:overflow-visible bg-slate-200/80 dark:bg-slate-900/60 shadow-inner">
+          {/* Print controls — language and the digital/manual signature switch. */}
+          <div className="no-print w-full max-w-[210mm] flex justify-end mb-2">
+            <SignatureControls lang={lang} setLang={setLang} />
+          </div>
+
           <InheritanceSheet data={certData} lang={lang} />
         </main>
       </div>

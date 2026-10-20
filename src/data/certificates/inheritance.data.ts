@@ -52,7 +52,9 @@ export const INHERITANCE_INITIAL_DATA: CertificateData = {
     signatory_role: "চেয়ারম্যান",
     signatory_role_en: "Chairman",
     trn_no: "5708",
-    qr_url: "https://www.lgoms.org/inheritance_certificates.php?id=10423"
+    qr_url: "https://www.lgoms.org/inheritance_certificates.php?id=10423",
+    signature_url: "/assets/signature/chairman-signature.png",
+    seal_url: "/assets/signature/chairman-seal.png",
   },
   heirs: [
     { id: "1", name: "মোছাঃ খাদিজা বেগম", name_en: "Mst. Khadija Begum", relation: "স্ত্রী", relation_en: "Wife", age_or_dob: "", nid_or_bc: "", comments: "" },

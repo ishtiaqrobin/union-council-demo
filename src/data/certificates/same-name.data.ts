@@ -52,7 +52,9 @@ export const SAME_NAME_INITIAL_DATA: CertificateData = {
     signatory_role: "চেয়ারম্যান",
     signatory_role_en: "Chairman",
     trn_no: "57637",
-    qr_url: "https://www.lgoms.org/snp_certificates_view.php?id=57637"
+    qr_url: "https://www.lgoms.org/snp_certificates_view.php?id=57637",
+    signature_url: "/assets/signature/chairman-signature.png",
+    seal_url: "/assets/signature/chairman-seal.png",
   },
   aliasNameBn: "মোহাঃ রহমত পাল",
   aliasNameEn: "Md. Rahmat Paul"

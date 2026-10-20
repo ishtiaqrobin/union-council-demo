@@ -51,6 +51,8 @@ export const UNMARRIED_INITIAL_DATA: CertificateData = {
     signatory_role: "চেয়ারম্যান(ভারপ্রাপ্ত)",
     signatory_role_en: "Chairman (Acting)",
     trn_no: "10422",
-    qr_url: "https://www.lgoms.org/umc_certificates.php?id=10422"
+    qr_url: "https://www.lgoms.org/umc_certificates.php?id=10422",
+    signature_url: "/assets/signature/chairman-signature.png",
+    seal_url: "/assets/signature/chairman-seal.png",
   }
 };

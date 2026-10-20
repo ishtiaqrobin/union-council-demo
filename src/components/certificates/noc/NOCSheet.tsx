@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { QRCodeSVG } from "qrcode.react";
+import { SignatureImage, SealImage } from "@/providers/SignatureModeProvider";
 import { CertificateData } from "@/types/certificate";
 import { CERTIFICATE_FALLBACK_NOTE } from "@/lib/certificate-source";
 import { certificateWritten } from "@/components/licenses/certificate-text";
@@ -487,7 +488,17 @@ export function NOCSheet({ data, lang = "bn" }: NOCSheetProps) {
           <div className="cert-footer-section grid grid-cols-3 gap-2 text-center mt-auto pt-4 pb-1 px-1">
             {/* Left Signatory (Accounts Assistant / Prepared by) */}
             <div className="signatory-box text-center">
-              <div className="sign-space h-[22px]" />
+              <div className="sign-space relative h-[28px] flex items-end justify-center">
+                {/* Optional by design — absent means a blank box for a hand signature. */}
+                <SealImage
+                  url={data.leftSignatorySealUrl}
+                  alt={isEn ? "Seal" : "সীল"}
+                />
+                <SignatureImage
+                  url={data.leftSignatorySignatureUrl}
+                  alt={isEn ? "Signature" : "স্বাক্ষর"}
+                />
+              </div>
               <div className="sign-name text-[12px] font-bold text-black leading-tight">
                 {isEn
                   ? data.leftSignatoryNameEn ||
@@ -508,14 +519,39 @@ export function NOCSheet({ data, lang = "bn" }: NOCSheetProps) {
 
             {/* Middle Signatory (Administrative Officer) */}
             <div className="signatory-box text-center">
-              <div className="sign-space h-[22px]" />
+              {/*
+                🔴 THE HARDCODED NAME IS GONE, AND IT WAS NOT A HARMLESS DEFAULT.
+
+                `data.middleSignatoryNameBn || "সৈয়দ মেহেদী মাসুদ"` printed the SEEDED SECRETARY OF
+                ONE UNION on every union's NOC — because the backend never sent the key at all
+                (measured: zero producers of `middleSignatoryNameBn` anywhere in the API). Falling
+                back to `undefined` renders nothing, which at least reads as "missing"; falling
+                back to a PERSON'S NAME reads as a complete document and is false.
+
+                ⚠️ THE POSITION IS STILL NAMED. When no officer is recorded the line says what the
+                OFFICE is. A designatory label is a legitimate default; a person's name is not.
+
+                ⚠️ THE SIGNATURE IS OPTIONAL ON PURPOSE. Absent means the sheet prints a blank box
+                so the chairman can sign by hand — ordinary practice, and a printed certificate is
+                never blocked because a file was not uploaded.
+              */}
+              <div className="sign-space relative h-[28px] flex items-end justify-center">
+                <SealImage
+                  url={data.middleSignatorySealUrl}
+                  alt={isEn ? "Seal" : "সীল"}
+                />
+                <SignatureImage
+                  url={data.middleSignatorySignatureUrl}
+                  alt={isEn ? "Signature" : "স্বাক্ষর"}
+                />
+              </div>
               <div className="sign-name text-[12px] font-bold text-black leading-tight">
                 {isEn
                   ? written(
                       data.middleSignatoryNameEn,
-                      data.middleSignatoryNameBn || "সৈয়দ মেহেদী মাসুদ",
+                      data.middleSignatoryNameBn || "Administrative Officer",
                     )
-                  : data.middleSignatoryNameBn || "সৈয়দ মেহেদী মাসুদ"}
+                  : data.middleSignatoryNameBn || "প্রশাসনিক কর্মকর্তা"}
               </div>
               <div className="sign-role-sub text-[11px] font-semibold text-black leading-tight mt-0.5">
                 {isEn
@@ -536,7 +572,17 @@ export function NOCSheet({ data, lang = "bn" }: NOCSheetProps) {
 
             {/* Right Signatory (Chairman) */}
             <div className="signatory-box text-center">
-              <div className="sign-space h-[22px]" />
+              <div className="sign-space relative h-[28px] flex items-end justify-center">
+                {/* Optional by design — absent means a blank box for a hand signature. */}
+                <SealImage
+                  url={signatory.seal_url}
+                  alt={isEn ? "Seal" : "সীল"}
+                />
+                <SignatureImage
+                  url={signatory.signature_url}
+                  alt={isEn ? "Signature" : "স্বাক্ষর"}
+                />
+              </div>
               <div className="sign-name text-[12px] font-bold text-black leading-tight">
                 {isEn
                   ? written(signatory.signatory_name_en, signatory.signatory_name)

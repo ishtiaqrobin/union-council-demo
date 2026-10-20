@@ -51,7 +51,9 @@ export const ANNUAL_INCOME_INITIAL_DATA: CertificateData = {
     signatory_role: "চেয়ারম্যান(ভারপ্রাপ্ত)",
     signatory_role_en: "Chairman (Acting)",
     trn_no: "10431",
-    qr_url: "https://www.lgoms.org/umc_certificates.php?id=10431"
+    qr_url: "https://www.lgoms.org/umc_certificates.php?id=10431",
+    signature_url: "/assets/signature/chairman-signature.png",
+    seal_url: "/assets/signature/chairman-seal.png",
   },
   incomeAmountBn: "১,৮০,০০০/- (এক লক্ষ আশি হাজার)",
   incomeAmountEn: "1,80,000/- (One Lakh Eighty Thousand BDT)"

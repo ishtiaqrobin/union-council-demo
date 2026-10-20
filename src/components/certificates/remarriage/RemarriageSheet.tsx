@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { QRCodeSVG } from "qrcode.react";
+import { SignatureImage, SealImage } from "@/providers/SignatureModeProvider";
 import { CertificateData } from "@/types/certificate";
 import { CERTIFICATE_FALLBACK_NOTE } from "@/lib/certificate-source";
 import { certificateWritten } from "@/components/licenses/certificate-text";
@@ -298,7 +299,18 @@ export function RemarriageSheet({ data, lang = "bn" }: RemarriageSheetProps) {
             </div>
 
             <div className="signatory-box text-center min-w-[200px] pb-[2px]">
-              <div className="sign-space h-[32px]" />
+              <div className="sign-space relative h-[32px] flex items-end justify-center">
+                {/* Optional by design — absent leaves a blank line for a hand signature. */}
+                                <SealImage
+                  url={signatory.seal_url}
+                  alt={isEn ? "Seal" : "সীল"}
+                />
+<SignatureImage
+                  url={signatory.signature_url}
+                  alt={isEn ? "Signature" : "স্বাক্ষর"}
+                  className="max-h-[30px] max-w-[130px] object-contain"
+                />
+              </div>
               <div className="sign-name text-base font-semibold text-black leading-tight">
                 {isEn ? written(signatory.signatory_name_en, signatory.signatory_name) : signatory.signatory_name}
               </div>

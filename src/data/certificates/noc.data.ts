@@ -96,11 +96,26 @@ export const NOC_INITIAL_DATA: CertificateData = {
   leftSignatoryNameEn: "Accounts Assistant / Prepared by",
   leftSignatoryRoleBn: "০৮ নং বসন্তপুর ইউনিয়ন পরিষদ",
   leftSignatoryRoleEn: "08 No Basantapur Union Parishad",
+  /**
+   * 🔴 A PLACEHOLDER, AND IT SAYS SO INSIDE ITS PIXELS.
+   *
+   * The plan called for sample signatures in the officers' REAL names. Rejected: an asset
+   * carrying a real signature is a forgery template, and the file that "just works" is the one
+   * that ends up on a live document. This image reads "DEMO PLACEHOLDER / not a real signature"
+   * so it cannot be mistaken for a credential even after being downloaded.
+   *
+   * ⚠️ IT IS HERE SO THE THREE-COLUMN LAYOUT CAN BE REVIEWED. Without it the NOC prints three
+   * empty lines — correct behaviour, but useless for checking alignment.
+   */
+  leftSignatorySignatureUrl: "/assets/signature/assistant-signature.png",
+  leftSignatorySealUrl: "/assets/signature/assistant-seal.png",
 
   middleSignatoryNameBn: "সৈয়দ মেহেদী মাসুদ",
   middleSignatoryNameEn: "Syed Mehdi Masud",
   middleSignatoryRoleBn: "প্রশাসনিক কর্মকর্তা",
   middleSignatoryRoleEn: "Administrative Officer",
+  middleSignatorySignatureUrl: "/assets/signature/secretary-signature.png",
+  middleSignatorySealUrl: "/assets/signature/secretary-seal.png",
 
   signatory: {
     signatory_name: "মোঃ জাকির হোসেন সরদার",
@@ -108,6 +123,8 @@ export const NOC_INITIAL_DATA: CertificateData = {
     signatory_role: "চেয়ারম্যান",
     signatory_role_en: "Chairman",
     trn_no: "29-0166-0674-00000001",
+    signature_url: "/assets/signature/chairman-signature.png",
+    seal_url: "/assets/signature/chairman-seal.png",
     qr_url: "https://www.lgoms.org/verify?id=29-0166-0674-00000001",
   },
 

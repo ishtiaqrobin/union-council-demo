@@ -73,6 +73,8 @@ export const PROFESSION_LICENSE_INITIAL_DATA: ProfessionLicenseData = {
     left_name_en: "Md. Sirajul Islam",
     left_role: "চেয়ারম্যান",
     left_role_en: "Chairman",
+    left_signature_url: "/assets/signature/chairman-signature.png",
+    left_seal_url: "/assets/signature/chairman-seal.png",
     trn_no: "289",
     qr_url: "https://www.lgoms.org/prof_certificates_view.php?id=289",
   },

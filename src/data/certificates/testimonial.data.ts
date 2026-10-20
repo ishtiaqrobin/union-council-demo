@@ -52,7 +52,9 @@ export const TESTIMONIAL_INITIAL_DATA: CertificateData = {
     signatory_role: "চেয়ারম্যান",
     signatory_role_en: "Chairman",
     trn_no: "72303",
-    qr_url: "https://www.lgoms.org/prot_certificates.php?id=72303"
+    qr_url: "https://www.lgoms.org/prot_certificates.php?id=72303",
+    signature_url: "/assets/signature/chairman-signature.png",
+    seal_url: "/assets/signature/chairman-seal.png",
   },
   customDescriptionBn: "তিনি বিগত দিনে মৌজা/মহল্লাঃ মধুপুর, ডাকঘরঃ নারুয়া-7730, বালিয়াকান্দি, রাজবাড়ী স্থায়ীভাবে বসবাস করতেন। বর্তমানে তিনি অত্র ইউনিয়নের ০1 নং ওয়ার্ডের গ্রামঃ গাবলা, ডাকঘরঃ উদয়পুর-৭৮০০, উপজেলাঃ রাজবাড়ী সদর, জেলাঃ রাজবাড়ী- স্থায়ীভাবে বসবাস করছেন। তিনি অত্র ঠিকানায় ভোটার স্থানান্তর করতে ইচ্ছুক। আমার জানা মতে তার নৈতিক চরিত্র ভালো।",
   customDescriptionEn: "He/She previously resided permanently at Mauza/Mahalla: Madhupur, Post Office: Naruwa-7730, Baliakandi, Rajbari. Currently he/she resides permanently at Ward No: 01, Village: Gabla, Post Office: Udaypur-7800, Upazila: Rajbari Sadar, District: Rajbari of this Union. He/She wishes to transfer voter registration to this present address. To the best of my knowledge, he/she bears a good moral character.",
